@@ -1,12 +1,12 @@
 #!/bin/bash
 
 #SBATCH --gres=gpu:0
-#SBATCH --job-name=LoadModels
+#SBATCH --job-name=DownloadModels
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=3
 #SBATCH --time=01:00:00
 #SBATCH --mem=32000M
-#SBATCH --output=jobs/slurm_output/load-models_%A.out
+#SBATCH --output=jobs/slurm_output/download-models_%A.out
 
 module purge
 module load 2021
@@ -15,4 +15,4 @@ module load Anaconda3/2021.05
 cd $HOME/CoT/
 source activate cot
 
-srun python -u load_models.py
+srun python -u download_model.py

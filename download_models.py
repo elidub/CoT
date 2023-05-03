@@ -9,7 +9,11 @@ if __name__ == '__main__':
 
     for m_id, m_dict in m_dicts.items():
 
-        print(f'Loading model: {m_id}')
+        print(f'Downloading model: {m_id}')
+
+        # Don't download it with all the settings
+        if 'model_kwargs' in m_dict:
+            del m_dict['model_kwargs'] 
 
         model, tokenizer = load_model(m_id, m_dict)
 
