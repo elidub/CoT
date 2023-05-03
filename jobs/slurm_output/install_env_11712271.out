@@ -1,0 +1,337 @@
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... done
+
+Downloading and Extracting Packages
+llvm-openmp-16.0.2   | 40.6 MB   |            |   0% llvm-openmp-16.0.2   | 40.6 MB   | 4          |   5% llvm-openmp-16.0.2   | 40.6 MB   | ####2      |  42% llvm-openmp-16.0.2   | 40.6 MB   | #######4   |  75% llvm-openmp-16.0.2   | 40.6 MB   | ########## | 100% llvm-openmp-16.0.2   | 40.6 MB   | ########## | 100% 
+requests-2.29.0      | 55 KB     |            |   0% requests-2.29.0      | 55 KB     | ########## | 100% requests-2.29.0      | 55 KB     | ########## | 100% 
+setuptools-67.7.2    | 569 KB    |            |   0% setuptools-67.7.2    | 569 KB    | ########## | 100% setuptools-67.7.2    | 569 KB    | ########## | 100% 
+numpy-1.24.3         | 6.4 MB    |            |   0% numpy-1.24.3         | 6.4 MB    | ########## | 100% numpy-1.24.3         | 6.4 MB    | ########## | 100% 
+openssl-3.1.0        | 2.5 MB    |            |   0% openssl-3.1.0        | 2.5 MB    | ########## | 100% openssl-3.1.0        | 2.5 MB    | ########## | 100% 
+platformdirs-3.5.0   | 18 KB     |            |   0% platformdirs-3.5.0   | 18 KB     | ########## | 100% platformdirs-3.5.0   | 18 KB     | ########## | 100% 
+libsqlite-3.40.0     | 785 KB    |            |   0% libsqlite-3.40.0     | 785 KB    | ########## | 100% libsqlite-3.40.0     | 785 KB    | ########## | 100% 
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+Installing pip dependencies: ...working... Ran pip subprocess with arguments:
+['/home/lcur1112/.conda/envs/cot/bin/python', '-m', 'pip', 'install', '-U', '-r', '/home/lcur1112/CoT/condaenv.biqv7uyq.requirements.txt']
+Pip subprocess output:
+Collecting pytorch-lightning==1.7.7
+  Using cached pytorch_lightning-1.7.7-py3-none-any.whl (708 kB)
+Collecting tensorboard==2.10.1
+  Using cached tensorboard-2.10.1-py3-none-any.whl (5.9 MB)
+Collecting tabulate>=0.8.9
+  Using cached tabulate-0.9.0-py3-none-any.whl (35 kB)
+Requirement already satisfied: tqdm>=4.62.3 in /home/lcur1112/.conda/envs/cot/lib/python3.10/site-packages (from -r /home/lcur1112/CoT/condaenv.biqv7uyq.requirements.txt (line 4)) (4.65.0)
+Requirement already satisfied: pillow>=8.0.1 in /home/lcur1112/.conda/envs/cot/lib/python3.10/site-packages (from -r /home/lcur1112/CoT/condaenv.biqv7uyq.requirements.txt (line 5)) (9.4.0)
+Collecting pillow>=8.0.1
+  Using cached Pillow-9.5.0-cp310-cp310-manylinux_2_28_x86_64.whl (3.4 MB)
+Collecting notebook>=6.4.5
+  Using cached notebook-6.5.4-py3-none-any.whl (529 kB)
+Collecting jupyterlab>=3.2.1
+  Using cached jupyterlab-3.6.3-py3-none-any.whl (8.9 MB)
+Collecting matplotlib>=3.4.3
+  Using cached matplotlib-3.7.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (11.6 MB)
+Collecting seaborn>=0.11.2
+  Using cached seaborn-0.12.2-py3-none-any.whl (293 kB)
+Collecting ipywidgets>=7.6.5
+  Using cached ipywidgets-8.0.6-py3-none-any.whl (138 kB)
+Collecting datasets>=2.11.0
+  Downloading datasets-2.12.0-py3-none-any.whl (474 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 474.6/474.6 kB 14.3 MB/s eta 0:00:00
+Collecting fsspec[http]!=2021.06.0,>=2021.05.0
+  Using cached fsspec-2023.4.0-py3-none-any.whl (153 kB)
+Requirement already satisfied: typing-extensions>=4.0.0 in /home/lcur1112/.conda/envs/cot/lib/python3.10/site-packages (from pytorch-lightning==1.7.7->-r /home/lcur1112/CoT/condaenv.biqv7uyq.requirements.txt (line 1)) (4.5.0)
+Requirement already satisfied: torch>=1.9.* in /home/lcur1112/.conda/envs/cot/lib/python3.10/site-packages (from pytorch-lightning==1.7.7->-r /home/lcur1112/CoT/condaenv.biqv7uyq.requirements.txt (line 1)) (1.13.0)
+Collecting pyDeprecate>=0.3.1
+  Using cached pyDeprecate-0.3.2-py3-none-any.whl (10 kB)
+Requirement already satisfied: numpy>=1.17.2 in /home/lcur1112/.conda/envs/cot/lib/python3.10/site-packages (from pytorch-lightning==1.7.7->-r /home/lcur1112/CoT/condaenv.biqv7uyq.requirements.txt (line 1)) (1.24.3)
+Collecting torchmetrics>=0.7.0
+  Using cached torchmetrics-0.11.4-py3-none-any.whl (519 kB)
+Collecting PyYAML>=5.4
+  Using cached PyYAML-6.0-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl (682 kB)
+Requirement already satisfied: packaging>=17.0 in /home/lcur1112/.conda/envs/cot/lib/python3.10/site-packages (from pytorch-lightning==1.7.7->-r /home/lcur1112/CoT/condaenv.biqv7uyq.requirements.txt (line 1)) (23.1)
+Collecting werkzeug>=1.0.1
+  Downloading Werkzeug-2.3.3-py3-none-any.whl (242 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 242.3/242.3 kB 35.5 MB/s eta 0:00:00
+Requirement already satisfied: wheel>=0.26 in /home/lcur1112/.conda/envs/cot/lib/python3.10/site-packages (from tensorboard==2.10.1->-r /home/lcur1112/CoT/condaenv.biqv7uyq.requirements.txt (line 2)) (0.40.0)
+Collecting absl-py>=0.4
+  Using cached absl_py-1.4.0-py3-none-any.whl (126 kB)
+Collecting google-auth<3,>=1.6.3
+  Using cached google_auth-2.17.3-py2.py3-none-any.whl (178 kB)
+Collecting grpcio>=1.24.3
+  Using cached grpcio-1.54.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (5.1 MB)
+Collecting protobuf<3.20,>=3.9.2
+  Using cached protobuf-3.19.6-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.1 MB)
+Requirement already satisfied: requests<3,>=2.21.0 in /home/lcur1112/.conda/envs/cot/lib/python3.10/site-packages (from tensorboard==2.10.1->-r /home/lcur1112/CoT/condaenv.biqv7uyq.requirements.txt (line 2)) (2.29.0)
+Collecting tensorboard-data-server<0.7.0,>=0.6.0
+  Using cached tensorboard_data_server-0.6.1-py3-none-manylinux2010_x86_64.whl (4.9 MB)
+Collecting google-auth-oauthlib<0.5,>=0.4.1
+  Using cached google_auth_oauthlib-0.4.6-py2.py3-none-any.whl (18 kB)
+Requirement already satisfied: setuptools>=41.0.0 in /home/lcur1112/.conda/envs/cot/lib/python3.10/site-packages (from tensorboard==2.10.1->-r /home/lcur1112/CoT/condaenv.biqv7uyq.requirements.txt (line 2)) (67.7.2)
+Collecting tensorboard-plugin-wit>=1.6.0
+  Using cached tensorboard_plugin_wit-1.8.1-py3-none-any.whl (781 kB)
+Collecting markdown>=2.6.8
+  Using cached Markdown-3.4.3-py3-none-any.whl (93 kB)
+Collecting tornado>=6.1
+  Downloading tornado-6.3.1-cp38-abi3-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (426 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 426.8/426.8 kB 48.7 MB/s eta 0:00:00
+Collecting nbformat
+  Using cached nbformat-5.8.0-py3-none-any.whl (77 kB)
+Collecting pyzmq>=17
+  Using cached pyzmq-25.0.2-cp310-cp310-manylinux_2_28_x86_64.whl (1.1 MB)
+Collecting nest-asyncio>=1.5
+  Using cached nest_asyncio-1.5.6-py3-none-any.whl (5.2 kB)
+Collecting jupyter-core>=4.6.1
+  Using cached jupyter_core-5.3.0-py3-none-any.whl (93 kB)
+Collecting nbclassic>=0.4.7
+  Downloading nbclassic-0.5.6-py3-none-any.whl (10.0 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10.0/10.0 MB 56.0 MB/s eta 0:00:00
+Collecting prometheus-client
+  Using cached prometheus_client-0.16.0-py3-none-any.whl (122 kB)
+Collecting traitlets>=4.2.1
+  Using cached traitlets-5.9.0-py3-none-any.whl (117 kB)
+Collecting nbconvert>=5
+  Using cached nbconvert-7.3.1-py3-none-any.whl (284 kB)
+Collecting jupyter-client>=5.3.4
+  Using cached jupyter_client-8.2.0-py3-none-any.whl (103 kB)
+Collecting terminado>=0.8.3
+  Using cached terminado-0.17.1-py3-none-any.whl (17 kB)
+Collecting Send2Trash>=1.8.0
+  Downloading Send2Trash-1.8.2-py3-none-any.whl (18 kB)
+Collecting jinja2
+  Using cached Jinja2-3.1.2-py3-none-any.whl (133 kB)
+Collecting argon2-cffi
+  Using cached argon2_cffi-21.3.0-py3-none-any.whl (14 kB)
+Collecting ipykernel
+  Using cached ipykernel-6.22.0-py3-none-any.whl (149 kB)
+Collecting ipython-genutils
+  Using cached ipython_genutils-0.2.0-py2.py3-none-any.whl (26 kB)
+Collecting jupyterlab-server~=2.19
+  Using cached jupyterlab_server-2.22.1-py3-none-any.whl (57 kB)
+Collecting jupyter-server<3,>=1.16.0
+  Using cached jupyter_server-2.5.0-py3-none-any.whl (366 kB)
+Collecting tomli
+  Using cached tomli-2.0.1-py3-none-any.whl (12 kB)
+Collecting ipython
+  Downloading ipython-8.13.1-py3-none-any.whl (797 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 797.6/797.6 kB 58.1 MB/s eta 0:00:00
+Collecting jupyter-server-ydoc~=0.8.0
+  Using cached jupyter_server_ydoc-0.8.0-py3-none-any.whl (11 kB)
+Collecting jupyter-ydoc~=0.2.3
+  Using cached jupyter_ydoc-0.2.4-py3-none-any.whl (5.9 kB)
+Collecting python-dateutil>=2.7
+  Using cached python_dateutil-2.8.2-py2.py3-none-any.whl (247 kB)
+Collecting cycler>=0.10
+  Using cached cycler-0.11.0-py3-none-any.whl (6.4 kB)
+Collecting pyparsing>=2.3.1
+  Using cached pyparsing-3.0.9-py3-none-any.whl (98 kB)
+Collecting kiwisolver>=1.0.1
+  Using cached kiwisolver-1.4.4-cp310-cp310-manylinux_2_12_x86_64.manylinux2010_x86_64.whl (1.6 MB)
+Collecting fonttools>=4.22.0
+  Using cached fonttools-4.39.3-py3-none-any.whl (1.0 MB)
+Collecting contourpy>=1.0.1
+  Using cached contourpy-1.0.7-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (300 kB)
+Collecting pandas>=0.25
+  Downloading pandas-2.0.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (12.3 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.3/12.3 MB 155.7 MB/s eta 0:00:00
+Collecting widgetsnbextension~=4.0.7
+  Using cached widgetsnbextension-4.0.7-py3-none-any.whl (2.1 MB)
+Collecting jupyterlab-widgets~=3.0.7
+  Using cached jupyterlab_widgets-3.0.7-py3-none-any.whl (198 kB)
+Collecting xxhash
+  Using cached xxhash-3.2.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (212 kB)
+Collecting huggingface-hub<1.0.0,>=0.11.0
+  Downloading huggingface_hub-0.14.1-py3-none-any.whl (224 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 224.5/224.5 kB 26.3 MB/s eta 0:00:00
+Collecting responses<0.19
+  Using cached responses-0.18.0-py3-none-any.whl (38 kB)
+Collecting dill<0.3.7,>=0.3.0
+  Using cached dill-0.3.6-py3-none-any.whl (110 kB)
+Collecting pyarrow>=8.0.0
+  Using cached pyarrow-11.0.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (34.9 MB)
+Collecting aiohttp
+  Using cached aiohttp-3.8.4-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.0 MB)
+Collecting multiprocess
+  Using cached multiprocess-0.70.14-py310-none-any.whl (134 kB)
+Requirement already satisfied: charset-normalizer<4.0,>=2.0 in /home/lcur1112/.conda/envs/cot/lib/python3.10/site-packages (from aiohttp->datasets>=2.11.0->-r /home/lcur1112/CoT/condaenv.biqv7uyq.requirements.txt (line 11)) (3.1.0)
+Collecting multidict<7.0,>=4.5
+  Using cached multidict-6.0.4-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (114 kB)
+Collecting frozenlist>=1.1.1
+  Using cached frozenlist-1.3.3-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (149 kB)
+Collecting attrs>=17.3.0
+  Using cached attrs-23.1.0-py3-none-any.whl (61 kB)
+Collecting aiosignal>=1.1.2
+  Using cached aiosignal-1.3.1-py3-none-any.whl (7.6 kB)
+Collecting yarl<2.0,>=1.0
+  Downloading yarl-1.9.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (268 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 268.8/268.8 kB 43.2 MB/s eta 0:00:00
+Collecting async-timeout<5.0,>=4.0.0a3
+  Using cached async_timeout-4.0.2-py3-none-any.whl (5.8 kB)
+Collecting cachetools<6.0,>=2.0.0
+  Using cached cachetools-5.3.0-py3-none-any.whl (9.3 kB)
+Collecting pyasn1-modules>=0.2.1
+  Using cached pyasn1_modules-0.3.0-py2.py3-none-any.whl (181 kB)
+Collecting six>=1.9.0
+  Using cached six-1.16.0-py2.py3-none-any.whl (11 kB)
+Collecting rsa<5,>=3.1.4
+  Using cached rsa-4.9-py3-none-any.whl (34 kB)
+Collecting requests-oauthlib>=0.7.0
+  Using cached requests_oauthlib-1.3.1-py2.py3-none-any.whl (23 kB)
+Collecting filelock
+  Using cached filelock-3.12.0-py3-none-any.whl (10 kB)
+Collecting matplotlib-inline>=0.1
+  Using cached matplotlib_inline-0.1.6-py3-none-any.whl (9.4 kB)
+Collecting comm>=0.1.1
+  Using cached comm-0.1.3-py3-none-any.whl (6.6 kB)
+Collecting psutil
+  Using cached psutil-5.9.5-cp36-abi3-manylinux_2_12_x86_64.manylinux2010_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (282 kB)
+Collecting debugpy>=1.6.5
+  Using cached debugpy-1.6.7-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.0 MB)
+Collecting decorator
+  Using cached decorator-5.1.1-py3-none-any.whl (9.1 kB)
+Collecting stack-data
+  Using cached stack_data-0.6.2-py3-none-any.whl (24 kB)
+Collecting jedi>=0.16
+  Using cached jedi-0.18.2-py2.py3-none-any.whl (1.6 MB)
+Collecting pickleshare
+  Using cached pickleshare-0.7.5-py2.py3-none-any.whl (6.9 kB)
+Collecting prompt-toolkit!=3.0.37,<3.1.0,>=3.0.30
+  Using cached prompt_toolkit-3.0.38-py3-none-any.whl (385 kB)
+Collecting pexpect>4.3
+  Using cached pexpect-4.8.0-py2.py3-none-any.whl (59 kB)
+Collecting backcall
+  Using cached backcall-0.2.0-py2.py3-none-any.whl (11 kB)
+Collecting pygments>=2.4.0
+  Using cached Pygments-2.15.1-py3-none-any.whl (1.1 MB)
+Collecting MarkupSafe>=2.0
+  Using cached MarkupSafe-2.1.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (25 kB)
+Requirement already satisfied: platformdirs>=2.5 in /home/lcur1112/.conda/envs/cot/lib/python3.10/site-packages (from jupyter-core>=4.6.1->notebook>=6.4.5->-r /home/lcur1112/CoT/condaenv.biqv7uyq.requirements.txt (line 6)) (3.5.0)
+Collecting jupyter-server-terminals
+  Using cached jupyter_server_terminals-0.4.4-py3-none-any.whl (13 kB)
+Collecting anyio>=3.1.0
+  Using cached anyio-3.6.2-py3-none-any.whl (80 kB)
+Collecting jupyter-events>=0.4.0
+  Using cached jupyter_events-0.6.3-py3-none-any.whl (18 kB)
+Collecting websocket-client
+  Using cached websocket_client-1.5.1-py3-none-any.whl (55 kB)
+Collecting ypy-websocket<0.9.0,>=0.8.2
+  Using cached ypy_websocket-0.8.4-py3-none-any.whl (10 kB)
+Collecting jupyter-server-fileid<1,>=0.6.0
+  Using cached jupyter_server_fileid-0.9.0-py3-none-any.whl (15 kB)
+Collecting y-py<0.6.0,>=0.5.3
+  Using cached y_py-0.5.9-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.6 MB)
+Collecting json5>=0.9.0
+  Using cached json5-0.9.11-py2.py3-none-any.whl (19 kB)
+Collecting babel>=2.10
+  Using cached Babel-2.12.1-py3-none-any.whl (10.1 MB)
+Collecting jsonschema>=4.17.3
+  Using cached jsonschema-4.17.3-py3-none-any.whl (90 kB)
+Collecting notebook-shim>=0.2.3
+  Downloading notebook_shim-0.2.3-py3-none-any.whl (13 kB)
+Collecting defusedxml
+  Using cached defusedxml-0.7.1-py2.py3-none-any.whl (25 kB)
+Collecting nbclient>=0.5.0
+  Downloading nbclient-0.7.4-py3-none-any.whl (73 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 73.1/73.1 kB 10.5 MB/s eta 0:00:00
+Collecting tinycss2
+  Using cached tinycss2-1.2.1-py3-none-any.whl (21 kB)
+Collecting pandocfilters>=1.4.1
+  Using cached pandocfilters-1.5.0-py2.py3-none-any.whl (8.7 kB)
+Collecting jupyterlab-pygments
+  Using cached jupyterlab_pygments-0.2.2-py2.py3-none-any.whl (21 kB)
+Collecting beautifulsoup4
+  Using cached beautifulsoup4-4.12.2-py3-none-any.whl (142 kB)
+Collecting bleach
+  Using cached bleach-6.0.0-py3-none-any.whl (162 kB)
+Collecting mistune<3,>=2.0.3
+  Using cached mistune-2.0.5-py2.py3-none-any.whl (24 kB)
+Collecting fastjsonschema
+  Using cached fastjsonschema-2.16.3-py3-none-any.whl (23 kB)
+Collecting tzdata>=2022.1
+  Using cached tzdata-2023.3-py2.py3-none-any.whl (341 kB)
+Collecting pytz>=2020.1
+  Using cached pytz-2023.3-py2.py3-none-any.whl (502 kB)
+Requirement already satisfied: urllib3<1.27,>=1.21.1 in /home/lcur1112/.conda/envs/cot/lib/python3.10/site-packages (from requests<3,>=2.21.0->tensorboard==2.10.1->-r /home/lcur1112/CoT/condaenv.biqv7uyq.requirements.txt (line 2)) (1.26.15)
+Requirement already satisfied: idna<4,>=2.5 in /home/lcur1112/.conda/envs/cot/lib/python3.10/site-packages (from requests<3,>=2.21.0->tensorboard==2.10.1->-r /home/lcur1112/CoT/condaenv.biqv7uyq.requirements.txt (line 2)) (3.4)
+Requirement already satisfied: certifi>=2017.4.17 in /home/lcur1112/.conda/envs/cot/lib/python3.10/site-packages (from requests<3,>=2.21.0->tensorboard==2.10.1->-r /home/lcur1112/CoT/condaenv.biqv7uyq.requirements.txt (line 2)) (2022.12.7)
+Collecting ptyprocess
+  Using cached ptyprocess-0.7.0-py2.py3-none-any.whl (13 kB)
+Collecting argon2-cffi-bindings
+  Using cached argon2_cffi_bindings-21.2.0-cp36-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (86 kB)
+Collecting sniffio>=1.1
+  Using cached sniffio-1.3.0-py3-none-any.whl (10 kB)
+Collecting parso<0.9.0,>=0.8.0
+  Using cached parso-0.8.3-py2.py3-none-any.whl (100 kB)
+Collecting pyrsistent!=0.17.0,!=0.17.1,!=0.17.2,>=0.14.0
+  Using cached pyrsistent-0.19.3-py3-none-any.whl (57 kB)
+Collecting python-json-logger>=2.0.4
+  Using cached python_json_logger-2.0.7-py3-none-any.whl (8.1 kB)
+Collecting rfc3986-validator>=0.1.1
+  Using cached rfc3986_validator-0.1.1-py2.py3-none-any.whl (4.2 kB)
+Collecting rfc3339-validator
+  Using cached rfc3339_validator-0.1.4-py2.py3-none-any.whl (3.5 kB)
+Collecting wcwidth
+  Using cached wcwidth-0.2.6-py2.py3-none-any.whl (29 kB)
+Collecting pyasn1<0.6.0,>=0.4.6
+  Using cached pyasn1-0.5.0-py2.py3-none-any.whl (83 kB)
+Collecting oauthlib>=3.0.0
+  Using cached oauthlib-3.2.2-py3-none-any.whl (151 kB)
+Collecting ypy-websocket<0.9.0,>=0.8.2
+  Using cached ypy_websocket-0.8.3-py3-none-any.whl (10 kB)
+  Using cached ypy_websocket-0.8.2-py3-none-any.whl (10 kB)
+Collecting aiosqlite<1,>=0.17.0
+  Using cached aiosqlite-0.19.0-py3-none-any.whl (15 kB)
+Collecting aiofiles<23,>=22.1.0
+  Using cached aiofiles-22.1.0-py3-none-any.whl (14 kB)
+Requirement already satisfied: cffi>=1.0.1 in /home/lcur1112/.conda/envs/cot/lib/python3.10/site-packages (from argon2-cffi-bindings->argon2-cffi->notebook>=6.4.5->-r /home/lcur1112/CoT/condaenv.biqv7uyq.requirements.txt (line 6)) (1.15.1)
+Collecting soupsieve>1.2
+  Using cached soupsieve-2.4.1-py3-none-any.whl (36 kB)
+Collecting webencodings
+  Using cached webencodings-0.5.1-py2.py3-none-any.whl (11 kB)
+Collecting asttokens>=2.1.0
+  Using cached asttokens-2.2.1-py2.py3-none-any.whl (26 kB)
+Collecting executing>=1.2.0
+  Using cached executing-1.2.0-py2.py3-none-any.whl (24 kB)
+Collecting pure-eval
+  Using cached pure_eval-0.2.2-py3-none-any.whl (11 kB)
+Requirement already satisfied: pycparser in /home/lcur1112/.conda/envs/cot/lib/python3.10/site-packages (from cffi>=1.0.1->argon2-cffi-bindings->argon2-cffi->notebook>=6.4.5->-r /home/lcur1112/CoT/condaenv.biqv7uyq.requirements.txt (line 6)) (2.21)
+Collecting webcolors>=1.11
+  Using cached webcolors-1.13-py3-none-any.whl (14 kB)
+Collecting fqdn
+  Using cached fqdn-1.5.1-py3-none-any.whl (9.1 kB)
+Collecting uri-template
+  Using cached uri_template-1.2.0-py3-none-any.whl (10 kB)
+Collecting jsonpointer>1.13
+  Using cached jsonpointer-2.3-py2.py3-none-any.whl (7.8 kB)
+Collecting isoduration
+  Using cached isoduration-20.11.0-py3-none-any.whl (11 kB)
+Collecting arrow>=0.15.0
+  Using cached arrow-1.2.3-py3-none-any.whl (66 kB)
+Installing collected packages: y-py, webencodings, wcwidth, tensorboard-plugin-wit, pytz, pure-eval, ptyprocess, pickleshare, mistune, json5, ipython-genutils, fastjsonschema, executing, backcall, xxhash, widgetsnbextension, websocket-client, webcolors, uri-template, tzdata, traitlets, tornado, tomli, tinycss2, tensorboard-data-server, tabulate, soupsieve, sniffio, six, Send2Trash, rfc3986-validator, pyzmq, PyYAML, python-json-logger, pyrsistent, pyparsing, pygments, pyDeprecate, pyasn1, pyarrow, psutil, protobuf, prompt-toolkit, prometheus-client, pillow, pexpect, parso, pandocfilters, oauthlib, nest-asyncio, multidict, MarkupSafe, markdown, kiwisolver, jupyterlab-widgets, jupyterlab-pygments, jupyter-ydoc, jsonpointer, grpcio, fsspec, frozenlist, fqdn, fonttools, filelock, dill, defusedxml, decorator, debugpy, cycler, contourpy, cachetools, babel, attrs, async-timeout, aiosqlite, aiofiles, absl-py, ypy-websocket, yarl, werkzeug, torchmetrics, terminado, rsa, rfc3339-validator, responses, requests-oauthlib, python-dateutil, pyasn1-modules, multiprocess, matplotlib-inline, jupyter-core, jsonschema, jinja2, jedi, huggingface-hub, comm, bleach, beautifulsoup4, asttokens, argon2-cffi-bindings, anyio, aiosignal, stack-data, pandas, nbformat, matplotlib, jupyter-server-terminals, jupyter-client, google-auth, arrow, argon2-cffi, aiohttp, seaborn, nbclient, isoduration, ipython, google-auth-oauthlib, tensorboard, nbconvert, ipykernel, datasets, pytorch-lightning, jupyter-events, ipywidgets, jupyter-server, notebook-shim, jupyterlab-server, jupyter-server-fileid, nbclassic, jupyter-server-ydoc, notebook, jupyterlab
+  Attempting uninstall: pillow
+    Found existing installation: Pillow 9.4.0
+    Uninstalling Pillow-9.4.0:
+      Successfully uninstalled Pillow-9.4.0
+Successfully installed MarkupSafe-2.1.2 PyYAML-6.0 Send2Trash-1.8.2 absl-py-1.4.0 aiofiles-22.1.0 aiohttp-3.8.4 aiosignal-1.3.1 aiosqlite-0.19.0 anyio-3.6.2 argon2-cffi-21.3.0 argon2-cffi-bindings-21.2.0 arrow-1.2.3 asttokens-2.2.1 async-timeout-4.0.2 attrs-23.1.0 babel-2.12.1 backcall-0.2.0 beautifulsoup4-4.12.2 bleach-6.0.0 cachetools-5.3.0 comm-0.1.3 contourpy-1.0.7 cycler-0.11.0 datasets-2.12.0 debugpy-1.6.7 decorator-5.1.1 defusedxml-0.7.1 dill-0.3.6 executing-1.2.0 fastjsonschema-2.16.3 filelock-3.12.0 fonttools-4.39.3 fqdn-1.5.1 frozenlist-1.3.3 fsspec-2023.4.0 google-auth-2.17.3 google-auth-oauthlib-0.4.6 grpcio-1.54.0 huggingface-hub-0.14.1 ipykernel-6.22.0 ipython-8.13.1 ipython-genutils-0.2.0 ipywidgets-8.0.6 isoduration-20.11.0 jedi-0.18.2 jinja2-3.1.2 json5-0.9.11 jsonpointer-2.3 jsonschema-4.17.3 jupyter-client-8.2.0 jupyter-core-5.3.0 jupyter-events-0.6.3 jupyter-server-2.5.0 jupyter-server-fileid-0.9.0 jupyter-server-terminals-0.4.4 jupyter-server-ydoc-0.8.0 jupyter-ydoc-0.2.4 jupyterlab-3.6.3 jupyterlab-pygments-0.2.2 jupyterlab-server-2.22.1 jupyterlab-widgets-3.0.7 kiwisolver-1.4.4 markdown-3.4.3 matplotlib-3.7.1 matplotlib-inline-0.1.6 mistune-2.0.5 multidict-6.0.4 multiprocess-0.70.14 nbclassic-0.5.6 nbclient-0.7.4 nbconvert-7.3.1 nbformat-5.8.0 nest-asyncio-1.5.6 notebook-6.5.4 notebook-shim-0.2.3 oauthlib-3.2.2 pandas-2.0.1 pandocfilters-1.5.0 parso-0.8.3 pexpect-4.8.0 pickleshare-0.7.5 pillow-9.5.0 prometheus-client-0.16.0 prompt-toolkit-3.0.38 protobuf-3.19.6 psutil-5.9.5 ptyprocess-0.7.0 pure-eval-0.2.2 pyDeprecate-0.3.2 pyarrow-11.0.0 pyasn1-0.5.0 pyasn1-modules-0.3.0 pygments-2.15.1 pyparsing-3.0.9 pyrsistent-0.19.3 python-dateutil-2.8.2 python-json-logger-2.0.7 pytorch-lightning-1.7.7 pytz-2023.3 pyzmq-25.0.2 requests-oauthlib-1.3.1 responses-0.18.0 rfc3339-validator-0.1.4 rfc3986-validator-0.1.1 rsa-4.9 seaborn-0.12.2 six-1.16.0 sniffio-1.3.0 soupsieve-2.4.1 stack-data-0.6.2 tabulate-0.9.0 tensorboard-2.10.1 tensorboard-data-server-0.6.1 tensorboard-plugin-wit-1.8.1 terminado-0.17.1 tinycss2-1.2.1 tomli-2.0.1 torchmetrics-0.11.4 tornado-6.3.1 traitlets-5.9.0 tzdata-2023.3 uri-template-1.2.0 wcwidth-0.2.6 webcolors-1.13 webencodings-0.5.1 websocket-client-1.5.1 werkzeug-2.3.3 widgetsnbextension-4.0.7 xxhash-3.2.0 y-py-0.5.9 yarl-1.9.2 ypy-websocket-0.8.2
+
+done
+
+
+==> WARNING: A newer version of conda exists. <==
+  current version: 4.10.1
+  latest version: 23.3.1
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+
+
+#
+# To activate this environment, use
+#
+#     $ conda activate cot
+#
+# To deactivate an active environment, use
+#
+#     $ conda deactivate
+

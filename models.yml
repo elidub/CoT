@@ -1,0 +1,21 @@
+bigscience/bloom:
+  model: AutoModelForCausalLM
+  tokenizer: AutoTokenizer
+  model_kwargs: 
+    device_map: auto
+    torch_dtype: auto
+google/flan-t5-small:
+  model: AutoModelForSeq2SeqLM
+  tokenizer: AutoTokenizer
+google/flan-t5-base:
+  model: AutoModelForSeq2SeqLM
+  tokenizer: AutoTokenizer
+google/flan-t5-large:
+  model: AutoModelForSeq2SeqLM
+  tokenizer: AutoTokenizer
+bigscience/T0pp:
+  model: AutoModelForSeq2SeqLM
+  tokenizer: AutoTokenizer
+bigscience/T0_3B:
+  model: AutoModelForSeq2SeqLM
+  tokenizer: AutoTokenizer
