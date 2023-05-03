@@ -1,10 +1,12 @@
-from transformers import AutoModelForCausalLM, AutoModelForSeq2SeqLM, AutoTokenizer
+from transformers import AutoModelForCausalLM, AutoModelForSeq2SeqLM, AutoTokenizer, T5ForConditionalGeneration, T5Tokenizer
 import yaml
 
 transformer_dict = {
     'AutoModelForCausalLM' : AutoModelForCausalLM,
     'AutoModelForSeq2SeqLM' : AutoModelForSeq2SeqLM,
-    'AutoTokenizer' : AutoTokenizer
+    'AutoTokenizer' : AutoTokenizer,
+    'T5ForConditionalGeneration' : T5ForConditionalGeneration,
+    'T5Tokenizer' : T5Tokenizer
 }
 
 def load_model_dicts(models_yml = 'models.yml'):

@@ -5,11 +5,14 @@ bigscience/bloom:
     device_map: auto
     torch_dtype: auto
 google/flan-t5-small:
-  model: AutoModelForSeq2SeqLM
-  tokenizer: AutoTokenizer
+  model: T5ForConditionalGeneration
+  tokenizer: T5Tokenizer
+  model_kwargs: 
+    device_map: auto
+    load_in_8bit: True
 google/flan-t5-base:
-  model: AutoModelForSeq2SeqLM
-  tokenizer: AutoTokenizer
+  model: T5ForConditionalGeneration
+  tokenizer: T5Tokenizer
 google/flan-t5-large:
   model: AutoModelForSeq2SeqLM
   tokenizer: AutoTokenizer
