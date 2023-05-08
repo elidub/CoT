@@ -14,6 +14,7 @@ from torch.utils.data import DataLoader
 from tqdm import tqdm
 from transformers import (
     AutoModelForCausalLM,
+    AutoModelForSeq2SeqLM,
     AutoTokenizer,
     default_data_collator,
     get_linear_schedule_with_warmup,
@@ -36,8 +37,8 @@ def print_gpu_utilization():
 
 
 device = "cuda"
-model_name_or_path = "bigscience/bloomz-560m"
-tokenizer_name_or_path = "bigscience/bloomz-560m"
+# model_name_or_path = "bigscience/bloomz-560m"
+# tokenizer_name_or_path = "bigscience/bloomz-560m"
 # model_name_or_path = "bigscience/bloomz-1b1"
 # tokenizer_name_or_path = "bigscience/bloomz-1b1"
 # model_name_or_path = "bigscience/bloomz-1b7"
@@ -49,6 +50,8 @@ tokenizer_name_or_path = "bigscience/bloomz-560m"
 # model_name_or_path = "bigscience/bloomz"
 # tokenizer_name_or_path = "bigscience/bloomz"
 
+model_name_or_path = "google/flan-t5-large"
+tokenizer_name_or_path = "google/flan-t5-large"
 
 # peft_config = PromptTuningConfig(
 #     task_type=TaskType.CAUSAL_LM,
@@ -57,11 +60,17 @@ tokenizer_name_or_path = "bigscience/bloomz-560m"
 #     prompt_tuning_init_text="Classify if the tweet is a complaint or not:",
 #     tokenizer_name_or_path=model_name_or_path,
 # )
+# peft_config = AdaLoraConfig(
+#     task_type=TaskType.CAUSAL_LM,
+#     inference_mode=False,
+#     target_r=32,
+#     initial_r=64
+# )
 
 peft_config = LoraConfig(
     task_type=TaskType.CAUSAL_LM,
     inference_mode=False,
-    r=1,
+    r=8,
     lora_alpha=32,
     lora_dropout=0.1,
 )
@@ -70,13 +79,13 @@ dataset_name = "twitter_complaints"
 checkpoint_name = f"{dataset_name}_{model_name_or_path}_{peft_config.peft_type}_{peft_config.task_type}_v1.pt".replace(
     "/", "_"
 )
-hf_cache = "/mnt/mass_storage/LLM/"
+hf_cache = "/scratch/atcs_cot2"
 text_column = "Tweet text"
 label_column = "text_label"
-max_length = 64
+max_length = 1024
 lr = 3e-2
-num_epochs = 50
-batch_size = 8
+num_epochs = 1
+batch_size = 1
 
 model_kwargs = {"device_map": "auto", "load_in_8bit": True}
 
@@ -216,7 +225,10 @@ next(iter(test_dataloader))
 #############################
 
 # creating model
-model = AutoModelForCausalLM.from_pretrained(
+# model = AutoModelForCausalLM.from_pretrained(
+#     model_name_or_path, **model_kwargs, cache_dir=hf_cache
+# )
+model = AutoModelForSeq2SeqLM.from_pretrained(
     model_name_or_path, **model_kwargs, cache_dir=hf_cache
 )
 model = get_peft_model(model, peft_config)
@@ -238,6 +250,7 @@ for epoch in range(num_epochs):
     model.train()
     total_loss = 0
     for step, batch in enumerate(tqdm(train_dataloader)):
+
         batch = {k: v.to(device) for k, v in batch.items()}
         #         print(batch)
         #         print(batch["input_ids"].shape)
