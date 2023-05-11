@@ -34,7 +34,6 @@ def load_model(
     print(hf_cache)
     model = model_dict['model'].from_pretrained(
         model_id, 
-        device_map='auto', 
         **model_kwargs,
     )
     tokenizer = model_dict['tokenizer'].from_pretrained(model_id, cache_dir = hf_cache)

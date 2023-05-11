@@ -2782,3 +2782,437 @@ Downloading model: bigscience/bloomz-3b
 /project/gpuuva021/shared/cot/hf_cache
 Downloading (…)lve/main/config.json:   0%|          | 0.00/715 [00:00<?, ?B/s]Downloading (…)lve/main/config.json: 100%|██████████| 715/715 [00:00<00:00, 2.28MB/s]
 Downloading pytorch_model.bin:   0%|          | 0.00/6.01G [00:00<?, ?B/s]Downloading pytorch_model.bin:   0%|          | 10.5M/6.01G [00:00<01:09, 86.6MB/s]Downloading pytorch_model.bin:   1%|          | 31.5M/6.01G [00:00<00:41, 145MB/s] Downloading pytorch_model.bin:   1%|          | 62.9M/6.01G [00:00<00:34, 171MB/s]Downloading pytorch_model.bin:   1%|▏         | 83.9M/6.01G [00:00<00:36, 161MB/s]Downloading pytorch_model.bin:   2%|▏         | 115M/6.01G [00:00<00:28, 204MB/s] Downloading pytorch_model.bin:   3%|▎         | 157M/6.01G [00:00<00:23, 245MB/s]Downloading pytorch_model.bin:   3%|▎         | 189M/6.01G [00:00<00:22, 260MB/s]Downloading pytorch_model.bin:   4%|▍         | 241M/6.01G [00:01<00:18, 309MB/s]Downloading pytorch_model.bin:   5%|▍         | 273M/6.01G [00:01<00:19, 287MB/s]Downloading pytorch_model.bin:   5%|▌         | 325M/6.01G [00:01<00:17, 329MB/s]Downloading pytorch_model.bin:   6%|▌         | 367M/6.01G [00:01<00:16, 340MB/s]Downloading pytorch_model.bin:   7%|▋         | 409M/6.01G [00:01<00:15, 352MB/s]Downloading pytorch_model.bin:   8%|▊         | 451M/6.01G [00:01<00:16, 339MB/s]Downloading pytorch_model.bin:   8%|▊         | 493M/6.01G [00:01<00:15, 353MB/s]Downloading pytorch_model.bin:   9%|▉         | 535M/6.01G [00:01<00:16, 335MB/s]Downloading pytorch_model.bin:  10%|▉         | 577M/6.01G [00:02<00:17, 314MB/s]Downloading pytorch_model.bin:  10%|█         | 619M/6.01G [00:02<00:16, 318MB/s]Downloading pytorch_model.bin:  11%|█         | 661M/6.01G [00:02<00:16, 329MB/s]Downloading pytorch_model.bin:  12%|█▏        | 703M/6.01G [00:02<00:15, 338MB/s]Downloading pytorch_model.bin:  12%|█▏        | 744M/6.01G [00:02<00:16, 328MB/s]Downloading pytorch_model.bin:  13%|█▎        | 786M/6.01G [00:02<00:14, 349MB/s]Downloading pytorch_model.bin:  14%|█▍        | 828M/6.01G [00:02<00:15, 345MB/s]Downloading pytorch_model.bin:  14%|█▍        | 870M/6.01G [00:02<00:15, 342MB/s]Downloading pytorch_model.bin:  15%|█▌        | 912M/6.01G [00:03<00:15, 328MB/s]Downloading pytorch_model.bin:  16%|█▌        | 954M/6.01G [00:03<00:15, 329MB/s]Downloading pytorch_model.bin:  17%|█▋        | 996M/6.01G [00:03<00:15, 321MB/s]Downloading pytorch_model.bin:  17%|█▋        | 1.04G/6.01G [00:03<00:17, 290MB/s]Downloading pytorch_model.bin:  18%|█▊        | 1.07G/6.01G [00:03<00:16, 291MB/s]Downloading pytorch_model.bin:  19%|█▊        | 1.11G/6.01G [00:03<00:15, 318MB/s]Downloading pytorch_model.bin:  19%|█▉        | 1.15G/6.01G [00:03<00:14, 338MB/s]Downloading pytorch_model.bin:  20%|█▉        | 1.20G/6.01G [00:03<00:14, 338MB/s]Downloading pytorch_model.bin:  21%|██        | 1.24G/6.01G [00:04<00:13, 341MB/s]Downloading pytorch_model.bin:  21%|██▏       | 1.29G/6.01G [00:04<00:12, 373MB/s]Downloading pytorch_model.bin:  22%|██▏       | 1.33G/6.01G [00:04<00:12, 374MB/s]Downloading pytorch_model.bin:  23%|██▎       | 1.37G/6.01G [00:04<00:12, 381MB/s]Downloading pytorch_model.bin:  24%|██▎       | 1.42G/6.01G [00:04<00:12, 380MB/s]Downloading pytorch_model.bin:  24%|██▍       | 1.46G/6.01G [00:04<00:13, 338MB/s]Downloading pytorch_model.bin:  25%|██▍       | 1.50G/6.01G [00:04<00:12, 350MB/s]Downloading pytorch_model.bin:  26%|██▌       | 1.54G/6.01G [00:04<00:13, 319MB/s]Downloading pytorch_model.bin:  26%|██▋       | 1.58G/6.01G [00:05<00:13, 328MB/s]Downloading pytorch_model.bin:  27%|██▋       | 1.63G/6.01G [00:05<00:12, 347MB/s]Downloading pytorch_model.bin:  28%|██▊       | 1.67G/6.01G [00:05<00:12, 354MB/s]Downloading pytorch_model.bin:  28%|██▊       | 1.71G/6.01G [00:05<00:11, 367MB/s]Downloading pytorch_model.bin:  29%|██▉       | 1.75G/6.01G [00:05<00:11, 369MB/s]Downloading pytorch_model.bin:  30%|██▉       | 1.79G/6.01G [00:05<00:11, 361MB/s]Downloading pytorch_model.bin:  31%|███       | 1.84G/6.01G [00:05<00:11, 368MB/s]Downloading pytorch_model.bin:  31%|███▏      | 1.88G/6.01G [00:05<00:10, 381MB/s]Downloading pytorch_model.bin:  32%|███▏      | 1.92G/6.01G [00:05<00:11, 363MB/s]Downloading pytorch_model.bin:  33%|███▎      | 1.96G/6.01G [00:06<00:11, 361MB/s]Downloading pytorch_model.bin:  33%|███▎      | 2.00G/6.01G [00:06<00:11, 361MB/s]Downloading pytorch_model.bin:  34%|███▍      | 2.04G/6.01G [00:06<00:10, 363MB/s]Downloading pytorch_model.bin:  35%|███▍      | 2.09G/6.01G [00:06<00:11, 349MB/s]Downloading pytorch_model.bin:  35%|███▌      | 2.13G/6.01G [00:06<00:11, 343MB/s]Downloading pytorch_model.bin:  36%|███▌      | 2.17G/6.01G [00:06<00:11, 338MB/s]Downloading pytorch_model.bin:  37%|███▋      | 2.21G/6.01G [00:06<00:10, 347MB/s]Downloading pytorch_model.bin:  38%|███▊      | 2.25G/6.01G [00:06<00:10, 343MB/s]Downloading pytorch_model.bin:  38%|███▊      | 2.30G/6.01G [00:07<00:11, 330MB/s]Downloading pytorch_model.bin:  39%|███▉      | 2.34G/6.01G [00:07<00:11, 326MB/s]Downloading pytorch_model.bin:  40%|███▉      | 2.38G/6.01G [00:07<00:10, 331MB/s]Downloading pytorch_model.bin:  40%|████      | 2.42G/6.01G [00:07<00:10, 350MB/s]Downloading pytorch_model.bin:  41%|████      | 2.46G/6.01G [00:07<00:09, 364MB/s]Downloading pytorch_model.bin:  42%|████▏     | 2.51G/6.01G [00:07<00:09, 373MB/s]Downloading pytorch_model.bin:  42%|████▏     | 2.55G/6.01G [00:07<00:09, 365MB/s]Downloading pytorch_model.bin:  43%|████▎     | 2.59G/6.01G [00:07<00:09, 376MB/s]Downloading pytorch_model.bin:  44%|████▍     | 2.63G/6.01G [00:07<00:09, 357MB/s]Downloading pytorch_model.bin:  45%|████▍     | 2.67G/6.01G [00:08<00:09, 361MB/s]Downloading pytorch_model.bin:  45%|████▌     | 2.72G/6.01G [00:08<00:09, 357MB/s]Downloading pytorch_model.bin:  46%|████▌     | 2.76G/6.01G [00:08<00:08, 366MB/s]Downloading pytorch_model.bin:  47%|████▋     | 2.80G/6.01G [00:08<00:08, 371MB/s]Downloading pytorch_model.bin:  47%|████▋     | 2.84G/6.01G [00:08<00:08, 364MB/s]Downloading pytorch_model.bin:  48%|████▊     | 2.88G/6.01G [00:08<00:09, 341MB/s]Downloading pytorch_model.bin:  49%|████▊     | 2.93G/6.01G [00:08<00:08, 349MB/s]Downloading pytorch_model.bin:  49%|████▉     | 2.97G/6.01G [00:08<00:09, 337MB/s]Downloading pytorch_model.bin:  50%|█████     | 3.01G/6.01G [00:09<00:08, 335MB/s]Downloading pytorch_model.bin:  51%|█████     | 3.05G/6.01G [00:09<00:08, 328MB/s]Downloading pytorch_model.bin:  52%|█████▏    | 3.09G/6.01G [00:09<00:09, 310MB/s]Downloading pytorch_model.bin:  52%|█████▏    | 3.14G/6.01G [00:09<00:08, 332MB/s]Downloading pytorch_model.bin:  53%|█████▎    | 3.18G/6.01G [00:09<00:08, 344MB/s]Downloading pytorch_model.bin:  54%|█████▎    | 3.22G/6.01G [00:09<00:08, 347MB/s]Downloading pytorch_model.bin:  54%|█████▍    | 3.26G/6.01G [00:09<00:07, 358MB/s]Downloading pytorch_model.bin:  55%|█████▌    | 3.30G/6.01G [00:09<00:07, 355MB/s]Downloading pytorch_model.bin:  56%|█████▌    | 3.34G/6.01G [00:09<00:07, 362MB/s]Downloading pytorch_model.bin:  56%|█████▋    | 3.39G/6.01G [00:10<00:11, 233MB/s]Downloading pytorch_model.bin:  57%|█████▋    | 3.42G/6.01G [00:10<00:15, 162MB/s]Downloading pytorch_model.bin:  57%|█████▋    | 3.45G/6.01G [00:11<00:21, 117MB/s]Downloading pytorch_model.bin:  58%|█████▊    | 3.47G/6.01G [00:11<00:21, 120MB/s]Downloading pytorch_model.bin:  58%|█████▊    | 3.50G/6.01G [00:11<00:19, 128MB/s]Downloading pytorch_model.bin:  59%|█████▊    | 3.52G/6.01G [00:11<00:21, 116MB/s]Downloading pytorch_model.bin:  59%|█████▉    | 3.54G/6.01G [00:11<00:21, 112MB/s]Downloading pytorch_model.bin:  59%|█████▉    | 3.57G/6.01G [00:12<00:29, 83.6MB/s]Downloading pytorch_model.bin:  60%|█████▉    | 3.58G/6.01G [00:12<00:32, 75.1MB/s]Downloading pytorch_model.bin:  60%|█████▉    | 3.59G/6.01G [00:12<00:32, 74.5MB/s]Downloading pytorch_model.bin:  60%|█████▉    | 3.60G/6.01G [00:12<00:34, 69.7MB/s]Downloading pytorch_model.bin:  60%|██████    | 3.63G/6.01G [00:13<00:25, 93.3MB/s]Downloading pytorch_model.bin:  61%|██████    | 3.64G/6.01G [00:13<00:28, 83.4MB/s]Downloading pytorch_model.bin:  61%|██████    | 3.65G/6.01G [00:13<00:34, 68.9MB/s]Downloading pytorch_model.bin:  61%|██████    | 3.66G/6.01G [00:13<00:36, 63.5MB/s]Downloading pytorch_model.bin:  61%|██████▏   | 3.69G/6.01G [00:13<00:23, 97.9MB/s]Downloading pytorch_model.bin:  62%|██████▏   | 3.71G/6.01G [00:14<00:20, 114MB/s] Downloading pytorch_model.bin:  63%|██████▎   | 3.75G/6.01G [00:14<00:13, 166MB/s]Downloading pytorch_model.bin:  63%|██████▎   | 3.80G/6.01G [00:14<00:10, 208MB/s]Downloading pytorch_model.bin:  64%|██████▎   | 3.83G/6.01G [00:14<00:09, 221MB/s]Downloading pytorch_model.bin:  64%|██████▍   | 3.86G/6.01G [00:14<00:14, 145MB/s]Downloading pytorch_model.bin:  65%|██████▍   | 3.88G/6.01G [00:15<00:16, 127MB/s]Downloading pytorch_model.bin:  65%|██████▍   | 3.90G/6.01G [00:15<00:24, 87.2MB/s]Downloading pytorch_model.bin:  65%|██████▌   | 3.93G/6.01G [00:15<00:18, 113MB/s] Downloading pytorch_model.bin:  66%|██████▌   | 3.96G/6.01G [00:15<00:14, 141MB/s]Downloading pytorch_model.bin:  67%|██████▋   | 4.01G/6.01G [00:15<00:11, 181MB/s]Downloading pytorch_model.bin:  67%|██████▋   | 4.04G/6.01G [00:16<00:09, 204MB/s]Downloading pytorch_model.bin:  68%|██████▊   | 4.08G/6.01G [00:16<00:07, 243MB/s]Downloading pytorch_model.bin:  69%|██████▊   | 4.12G/6.01G [00:16<00:06, 276MB/s]Downloading pytorch_model.bin:  69%|██████▉   | 4.17G/6.01G [00:16<00:06, 263MB/s]Downloading pytorch_model.bin:  70%|███████   | 4.22G/6.01G [00:16<00:06, 273MB/s]Downloading pytorch_model.bin:  71%|███████   | 4.26G/6.01G [00:16<00:05, 291MB/s]Downloading pytorch_model.bin:  72%|███████▏  | 4.30G/6.01G [00:16<00:05, 311MB/s]Downloading pytorch_model.bin:  72%|███████▏  | 4.34G/6.01G [00:16<00:05, 324MB/s]Downloading pytorch_model.bin:  73%|███████▎  | 4.38G/6.01G [00:17<00:04, 329MB/s]Downloading pytorch_model.bin:  74%|███████▎  | 4.42G/6.01G [00:17<00:06, 235MB/s]Downloading pytorch_model.bin:  75%|███████▍  | 4.48G/6.01G [00:17<00:05, 278MB/s]Downloading pytorch_model.bin:  75%|███████▌  | 4.52G/6.01G [00:17<00:04, 306MB/s]Downloading pytorch_model.bin:  76%|███████▌  | 4.56G/6.01G [00:17<00:04, 322MB/s]Downloading pytorch_model.bin:  77%|███████▋  | 4.60G/6.01G [00:17<00:04, 317MB/s]Downloading pytorch_model.bin:  77%|███████▋  | 4.65G/6.01G [00:18<00:06, 225MB/s]Downloading pytorch_model.bin:  78%|███████▊  | 4.68G/6.01G [00:18<00:09, 145MB/s]Downloading pytorch_model.bin:  78%|███████▊  | 4.71G/6.01G [00:18<00:07, 166MB/s]Downloading pytorch_model.bin:  79%|███████▉  | 4.74G/6.01G [00:18<00:07, 180MB/s]Downloading pytorch_model.bin:  80%|███████▉  | 4.78G/6.01G [00:18<00:05, 219MB/s]Downloading pytorch_model.bin:  80%|████████  | 4.82G/6.01G [00:19<00:04, 243MB/s]Downloading pytorch_model.bin:  81%|████████  | 4.87G/6.01G [00:19<00:04, 278MB/s]Downloading pytorch_model.bin:  82%|████████▏ | 4.91G/6.01G [00:19<00:03, 298MB/s]Downloading pytorch_model.bin:  82%|████████▏ | 4.95G/6.01G [00:19<00:04, 264MB/s]Downloading pytorch_model.bin:  83%|████████▎ | 4.98G/6.01G [00:19<00:03, 258MB/s]Downloading pytorch_model.bin:  84%|████████▎ | 5.02G/6.01G [00:19<00:03, 276MB/s]Downloading pytorch_model.bin:  84%|████████▍ | 5.05G/6.01G [00:19<00:03, 267MB/s]Downloading pytorch_model.bin:  85%|████████▍ | 5.10G/6.01G [00:20<00:03, 287MB/s]Downloading pytorch_model.bin:  85%|████████▌ | 5.13G/6.01G [00:20<00:03, 280MB/s]Downloading pytorch_model.bin:  86%|████████▌ | 5.17G/6.01G [00:20<00:03, 274MB/s]Downloading pytorch_model.bin:  87%|████████▋ | 5.20G/6.01G [00:20<00:02, 277MB/s]Downloading pytorch_model.bin:  87%|████████▋ | 5.24G/6.01G [00:20<00:02, 300MB/s]Downloading pytorch_model.bin:  88%|████████▊ | 5.28G/6.01G [00:20<00:02, 330MB/s]Downloading pytorch_model.bin:  89%|████████▊ | 5.33G/6.01G [00:20<00:02, 330MB/s]Downloading pytorch_model.bin:  89%|████████▉ | 5.37G/6.01G [00:20<00:01, 326MB/s]Downloading pytorch_model.bin:  90%|█████████ | 5.41G/6.01G [00:21<00:01, 331MB/s]Downloading pytorch_model.bin:  91%|█████████ | 5.45G/6.01G [00:21<00:01, 344MB/s]Downloading pytorch_model.bin:  91%|█████████▏| 5.49G/6.01G [00:21<00:01, 358MB/s]Downloading pytorch_model.bin:  92%|█████████▏| 5.54G/6.01G [00:21<00:01, 340MB/s]Downloading pytorch_model.bin:  93%|█████████▎| 5.58G/6.01G [00:21<00:01, 349MB/s]Downloading pytorch_model.bin:  94%|█████████▎| 5.62G/6.01G [00:21<00:01, 357MB/s]Downloading pytorch_model.bin:  94%|█████████▍| 5.66G/6.01G [00:21<00:00, 366MB/s]Downloading pytorch_model.bin:  95%|█████████▍| 5.70G/6.01G [00:21<00:00, 375MB/s]Downloading pytorch_model.bin:  96%|█████████▌| 5.75G/6.01G [00:21<00:00, 387MB/s]Downloading pytorch_model.bin:  96%|█████████▋| 5.79G/6.01G [00:22<00:00, 323MB/s]Downloading pytorch_model.bin:  97%|█████████▋| 5.83G/6.01G [00:22<00:00, 339MB/s]Downloading pytorch_model.bin:  98%|█████████▊| 5.87G/6.01G [00:22<00:00, 352MB/s]Downloading pytorch_model.bin:  98%|█████████▊| 5.91G/6.01G [00:22<00:00, 325MB/s]Downloading pytorch_model.bin:  99%|█████████▉| 5.96G/6.01G [00:22<00:00, 282MB/s]Downloading pytorch_model.bin: 100%|█████████▉| 6.00G/6.01G [00:22<00:00, 305MB/s]Downloading pytorch_model.bin: 100%|██████████| 6.01G/6.01G [00:22<00:00, 263MB/s]
+Downloading (…)okenizer_config.json:   0%|          | 0.00/199 [00:00<?, ?B/s]Downloading (…)okenizer_config.json: 100%|██████████| 199/199 [00:00<00:00, 643kB/s]
+Downloading tokenizer.json:   0%|          | 0.00/14.5M [00:00<?, ?B/s]Downloading tokenizer.json:  72%|███████▏  | 10.5M/14.5M [00:00<00:00, 12.7MB/s]Downloading tokenizer.json: 100%|██████████| 14.5M/14.5M [00:00<00:00, 15.7MB/s]
+Downloading (…)cial_tokens_map.json:   0%|          | 0.00/85.0 [00:00<?, ?B/s]Downloading (…)cial_tokens_map.json: 100%|██████████| 85.0/85.0 [00:00<00:00, 286kB/s]
+Vocab size: 250680.
+Model parameters: <bound method ModuleUtilsMixin.num_parameters of BloomForCausalLM(
+  (transformer): BloomModel(
+    (word_embeddings): Embedding(250880, 2560)
+    (word_embeddings_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+    (h): ModuleList(
+      (0): BloomBlock(
+        (input_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2560, out_features=7680, bias=True)
+          (dense): Linear(in_features=2560, out_features=2560, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2560, out_features=10240, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=10240, out_features=2560, bias=True)
+        )
+      )
+      (1): BloomBlock(
+        (input_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2560, out_features=7680, bias=True)
+          (dense): Linear(in_features=2560, out_features=2560, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2560, out_features=10240, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=10240, out_features=2560, bias=True)
+        )
+      )
+      (2): BloomBlock(
+        (input_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2560, out_features=7680, bias=True)
+          (dense): Linear(in_features=2560, out_features=2560, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2560, out_features=10240, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=10240, out_features=2560, bias=True)
+        )
+      )
+      (3): BloomBlock(
+        (input_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2560, out_features=7680, bias=True)
+          (dense): Linear(in_features=2560, out_features=2560, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2560, out_features=10240, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=10240, out_features=2560, bias=True)
+        )
+      )
+      (4): BloomBlock(
+        (input_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2560, out_features=7680, bias=True)
+          (dense): Linear(in_features=2560, out_features=2560, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2560, out_features=10240, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=10240, out_features=2560, bias=True)
+        )
+      )
+      (5): BloomBlock(
+        (input_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2560, out_features=7680, bias=True)
+          (dense): Linear(in_features=2560, out_features=2560, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2560, out_features=10240, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=10240, out_features=2560, bias=True)
+        )
+      )
+      (6): BloomBlock(
+        (input_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2560, out_features=7680, bias=True)
+          (dense): Linear(in_features=2560, out_features=2560, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2560, out_features=10240, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=10240, out_features=2560, bias=True)
+        )
+      )
+      (7): BloomBlock(
+        (input_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2560, out_features=7680, bias=True)
+          (dense): Linear(in_features=2560, out_features=2560, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2560, out_features=10240, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=10240, out_features=2560, bias=True)
+        )
+      )
+      (8): BloomBlock(
+        (input_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2560, out_features=7680, bias=True)
+          (dense): Linear(in_features=2560, out_features=2560, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2560, out_features=10240, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=10240, out_features=2560, bias=True)
+        )
+      )
+      (9): BloomBlock(
+        (input_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2560, out_features=7680, bias=True)
+          (dense): Linear(in_features=2560, out_features=2560, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2560, out_features=10240, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=10240, out_features=2560, bias=True)
+        )
+      )
+      (10): BloomBlock(
+        (input_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2560, out_features=7680, bias=True)
+          (dense): Linear(in_features=2560, out_features=2560, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2560, out_features=10240, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=10240, out_features=2560, bias=True)
+        )
+      )
+      (11): BloomBlock(
+        (input_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2560, out_features=7680, bias=True)
+          (dense): Linear(in_features=2560, out_features=2560, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2560, out_features=10240, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=10240, out_features=2560, bias=True)
+        )
+      )
+      (12): BloomBlock(
+        (input_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2560, out_features=7680, bias=True)
+          (dense): Linear(in_features=2560, out_features=2560, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2560, out_features=10240, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=10240, out_features=2560, bias=True)
+        )
+      )
+      (13): BloomBlock(
+        (input_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2560, out_features=7680, bias=True)
+          (dense): Linear(in_features=2560, out_features=2560, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2560, out_features=10240, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=10240, out_features=2560, bias=True)
+        )
+      )
+      (14): BloomBlock(
+        (input_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2560, out_features=7680, bias=True)
+          (dense): Linear(in_features=2560, out_features=2560, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2560, out_features=10240, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=10240, out_features=2560, bias=True)
+        )
+      )
+      (15): BloomBlock(
+        (input_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2560, out_features=7680, bias=True)
+          (dense): Linear(in_features=2560, out_features=2560, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2560, out_features=10240, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=10240, out_features=2560, bias=True)
+        )
+      )
+      (16): BloomBlock(
+        (input_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2560, out_features=7680, bias=True)
+          (dense): Linear(in_features=2560, out_features=2560, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2560, out_features=10240, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=10240, out_features=2560, bias=True)
+        )
+      )
+      (17): BloomBlock(
+        (input_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2560, out_features=7680, bias=True)
+          (dense): Linear(in_features=2560, out_features=2560, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2560, out_features=10240, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=10240, out_features=2560, bias=True)
+        )
+      )
+      (18): BloomBlock(
+        (input_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2560, out_features=7680, bias=True)
+          (dense): Linear(in_features=2560, out_features=2560, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2560, out_features=10240, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=10240, out_features=2560, bias=True)
+        )
+      )
+      (19): BloomBlock(
+        (input_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2560, out_features=7680, bias=True)
+          (dense): Linear(in_features=2560, out_features=2560, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2560, out_features=10240, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=10240, out_features=2560, bias=True)
+        )
+      )
+      (20): BloomBlock(
+        (input_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2560, out_features=7680, bias=True)
+          (dense): Linear(in_features=2560, out_features=2560, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2560, out_features=10240, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=10240, out_features=2560, bias=True)
+        )
+      )
+      (21): BloomBlock(
+        (input_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2560, out_features=7680, bias=True)
+          (dense): Linear(in_features=2560, out_features=2560, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2560, out_features=10240, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=10240, out_features=2560, bias=True)
+        )
+      )
+      (22): BloomBlock(
+        (input_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2560, out_features=7680, bias=True)
+          (dense): Linear(in_features=2560, out_features=2560, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2560, out_features=10240, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=10240, out_features=2560, bias=True)
+        )
+      )
+      (23): BloomBlock(
+        (input_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2560, out_features=7680, bias=True)
+          (dense): Linear(in_features=2560, out_features=2560, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2560, out_features=10240, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=10240, out_features=2560, bias=True)
+        )
+      )
+      (24): BloomBlock(
+        (input_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2560, out_features=7680, bias=True)
+          (dense): Linear(in_features=2560, out_features=2560, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2560, out_features=10240, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=10240, out_features=2560, bias=True)
+        )
+      )
+      (25): BloomBlock(
+        (input_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2560, out_features=7680, bias=True)
+          (dense): Linear(in_features=2560, out_features=2560, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2560, out_features=10240, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=10240, out_features=2560, bias=True)
+        )
+      )
+      (26): BloomBlock(
+        (input_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2560, out_features=7680, bias=True)
+          (dense): Linear(in_features=2560, out_features=2560, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2560, out_features=10240, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=10240, out_features=2560, bias=True)
+        )
+      )
+      (27): BloomBlock(
+        (input_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2560, out_features=7680, bias=True)
+          (dense): Linear(in_features=2560, out_features=2560, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2560, out_features=10240, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=10240, out_features=2560, bias=True)
+        )
+      )
+      (28): BloomBlock(
+        (input_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2560, out_features=7680, bias=True)
+          (dense): Linear(in_features=2560, out_features=2560, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2560, out_features=10240, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=10240, out_features=2560, bias=True)
+        )
+      )
+      (29): BloomBlock(
+        (input_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2560, out_features=7680, bias=True)
+          (dense): Linear(in_features=2560, out_features=2560, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2560, out_features=10240, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=10240, out_features=2560, bias=True)
+        )
+      )
+    )
+    (ln_f): LayerNorm((2560,), eps=1e-05, elementwise_affine=True)
+  )
+  (lm_head): Linear(in_features=2560, out_features=250880, bias=False)
+)>
