@@ -1,0 +1,2784 @@
+Downloading model: bigscience/mt0-xl
+/project/gpuuva021/shared/cot/hf_cache
+Downloading shards:   0%|          | 0/2 [00:00<?, ?it/s]
+Downloading (…)l-00001-of-00002.bin:   0%|          | 0.00/7.94G [00:00<?, ?B/s][A
+Downloading (…)l-00001-of-00002.bin:   1%|          | 52.4M/7.94G [00:00<00:17, 462MB/s][A
+Downloading (…)l-00001-of-00002.bin:   1%|▏         | 115M/7.94G [00:00<00:15, 507MB/s] [A
+Downloading (…)l-00001-of-00002.bin:   2%|▏         | 168M/7.94G [00:00<00:15, 500MB/s][A
+Downloading (…)l-00001-of-00002.bin:   3%|▎         | 220M/7.94G [00:00<00:15, 485MB/s][A
+Downloading (…)l-00001-of-00002.bin:   3%|▎         | 273M/7.94G [00:00<00:15, 493MB/s][A
+Downloading (…)l-00001-of-00002.bin:   4%|▍         | 336M/7.94G [00:00<00:14, 513MB/s][A
+Downloading (…)l-00001-of-00002.bin:   5%|▌         | 398M/7.94G [00:00<00:14, 525MB/s][A
+Downloading (…)l-00001-of-00002.bin:   6%|▌         | 461M/7.94G [00:00<00:14, 530MB/s][A
+Downloading (…)l-00001-of-00002.bin:   7%|▋         | 524M/7.94G [00:01<00:13, 533MB/s][A
+Downloading (…)l-00001-of-00002.bin:   7%|▋         | 587M/7.94G [00:01<00:13, 535MB/s][A
+Downloading (…)l-00001-of-00002.bin:   8%|▊         | 650M/7.94G [00:01<00:13, 538MB/s][A
+Downloading (…)l-00001-of-00002.bin:   9%|▉         | 713M/7.94G [00:01<00:13, 542MB/s][A
+Downloading (…)l-00001-of-00002.bin:  10%|▉         | 776M/7.94G [00:01<00:13, 542MB/s][A
+Downloading (…)l-00001-of-00002.bin:  11%|█         | 839M/7.94G [00:01<00:13, 544MB/s][A
+Downloading (…)l-00001-of-00002.bin:  11%|█▏        | 902M/7.94G [00:01<00:13, 541MB/s][A
+Downloading (…)l-00001-of-00002.bin:  12%|█▏        | 965M/7.94G [00:01<00:12, 540MB/s][A
+Downloading (…)l-00001-of-00002.bin:  13%|█▎        | 1.03G/7.94G [00:01<00:12, 543MB/s][A
+Downloading (…)l-00001-of-00002.bin:  14%|█▎        | 1.09G/7.94G [00:02<00:12, 545MB/s][A
+Downloading (…)l-00001-of-00002.bin:  15%|█▍        | 1.15G/7.94G [00:02<00:12, 545MB/s][A
+Downloading (…)l-00001-of-00002.bin:  15%|█▌        | 1.22G/7.94G [00:02<00:12, 546MB/s][A
+Downloading (…)l-00001-of-00002.bin:  16%|█▌        | 1.28G/7.94G [00:02<00:12, 547MB/s][A
+Downloading (…)l-00001-of-00002.bin:  17%|█▋        | 1.34G/7.94G [00:02<00:12, 547MB/s][A
+Downloading (…)l-00001-of-00002.bin:  18%|█▊        | 1.41G/7.94G [00:02<00:11, 548MB/s][A
+Downloading (…)l-00001-of-00002.bin:  18%|█▊        | 1.47G/7.94G [00:02<00:11, 549MB/s][A
+Downloading (…)l-00001-of-00002.bin:  19%|█▉        | 1.53G/7.94G [00:02<00:11, 549MB/s][A
+Downloading (…)l-00001-of-00002.bin:  20%|██        | 1.59G/7.94G [00:02<00:11, 543MB/s][A
+Downloading (…)l-00001-of-00002.bin:  21%|██        | 1.66G/7.94G [00:03<00:11, 534MB/s][A
+Downloading (…)l-00001-of-00002.bin:  22%|██▏       | 1.72G/7.94G [00:03<00:11, 536MB/s][A
+Downloading (…)l-00001-of-00002.bin:  22%|██▏       | 1.78G/7.94G [00:03<00:11, 539MB/s][A
+Downloading (…)l-00001-of-00002.bin:  23%|██▎       | 1.85G/7.94G [00:03<00:11, 544MB/s][A
+Downloading (…)l-00001-of-00002.bin:  24%|██▍       | 1.91G/7.94G [00:03<00:11, 545MB/s][A
+Downloading (…)l-00001-of-00002.bin:  25%|██▍       | 1.97G/7.94G [00:03<00:10, 547MB/s][A
+Downloading (…)l-00001-of-00002.bin:  26%|██▌       | 2.03G/7.94G [00:03<00:10, 542MB/s][A
+Downloading (…)l-00001-of-00002.bin:  26%|██▋       | 2.10G/7.94G [00:03<00:10, 543MB/s][A
+Downloading (…)l-00001-of-00002.bin:  27%|██▋       | 2.16G/7.94G [00:04<00:10, 546MB/s][A
+Downloading (…)l-00001-of-00002.bin:  28%|██▊       | 2.22G/7.94G [00:04<00:10, 542MB/s][A
+Downloading (…)l-00001-of-00002.bin:  29%|██▉       | 2.29G/7.94G [00:04<00:10, 544MB/s][A
+Downloading (…)l-00001-of-00002.bin:  30%|██▉       | 2.35G/7.94G [00:04<00:10, 548MB/s][A
+Downloading (…)l-00001-of-00002.bin:  30%|███       | 2.41G/7.94G [00:04<00:10, 521MB/s][A
+Downloading (…)l-00001-of-00002.bin:  31%|███       | 2.47G/7.94G [00:04<00:10, 529MB/s][A
+Downloading (…)l-00001-of-00002.bin:  32%|███▏      | 2.54G/7.94G [00:04<00:10, 535MB/s][A
+Downloading (…)l-00001-of-00002.bin:  33%|███▎      | 2.60G/7.94G [00:04<00:10, 523MB/s][A
+Downloading (…)l-00001-of-00002.bin:  34%|███▎      | 2.66G/7.94G [00:04<00:09, 531MB/s][A
+Downloading (…)l-00001-of-00002.bin:  34%|███▍      | 2.73G/7.94G [00:05<00:09, 537MB/s][A
+Downloading (…)l-00001-of-00002.bin:  35%|███▌      | 2.79G/7.94G [00:05<00:10, 498MB/s][A
+Downloading (…)l-00001-of-00002.bin:  36%|███▌      | 2.84G/7.94G [00:05<00:10, 477MB/s][A
+Downloading (…)l-00001-of-00002.bin:  36%|███▋      | 2.89G/7.94G [00:05<00:11, 431MB/s][A
+Downloading (…)l-00001-of-00002.bin:  37%|███▋      | 2.96G/7.94G [00:05<00:10, 462MB/s][A
+Downloading (…)l-00001-of-00002.bin:  38%|███▊      | 3.02G/7.94G [00:05<00:10, 478MB/s][A
+Downloading (…)l-00001-of-00002.bin:  39%|███▊      | 3.07G/7.94G [00:05<00:09, 488MB/s][A
+Downloading (…)l-00001-of-00002.bin:  39%|███▉      | 3.14G/7.94G [00:05<00:09, 506MB/s][A
+Downloading (…)l-00001-of-00002.bin:  40%|████      | 3.20G/7.94G [00:06<00:09, 518MB/s][A
+Downloading (…)l-00001-of-00002.bin:  41%|████      | 3.26G/7.94G [00:06<00:08, 526MB/s][A
+Downloading (…)l-00001-of-00002.bin:  42%|████▏     | 3.32G/7.94G [00:06<00:08, 536MB/s][A
+Downloading (…)l-00001-of-00002.bin:  43%|████▎     | 3.39G/7.94G [00:06<00:08, 539MB/s][A
+Downloading (…)l-00001-of-00002.bin:  43%|████▎     | 3.45G/7.94G [00:06<00:08, 537MB/s][A
+Downloading (…)l-00001-of-00002.bin:  44%|████▍     | 3.51G/7.94G [00:06<00:08, 520MB/s][A
+Downloading (…)l-00001-of-00002.bin:  45%|████▌     | 3.58G/7.94G [00:06<00:08, 531MB/s][A
+Downloading (…)l-00001-of-00002.bin:  46%|████▌     | 3.64G/7.94G [00:06<00:08, 537MB/s][A
+Downloading (…)l-00001-of-00002.bin:  47%|████▋     | 3.70G/7.94G [00:07<00:08, 500MB/s][A
+Downloading (…)l-00001-of-00002.bin:  47%|████▋     | 3.75G/7.94G [00:07<00:08, 487MB/s][A
+Downloading (…)l-00001-of-00002.bin:  48%|████▊     | 3.81G/7.94G [00:07<00:08, 471MB/s][A
+Downloading (…)l-00001-of-00002.bin:  49%|████▊     | 3.86G/7.94G [00:07<00:08, 470MB/s][A
+Downloading (…)l-00001-of-00002.bin:  49%|████▉     | 3.92G/7.94G [00:07<00:08, 496MB/s][A
+Downloading (…)l-00001-of-00002.bin:  50%|█████     | 3.98G/7.94G [00:07<00:07, 515MB/s][A
+Downloading (…)l-00001-of-00002.bin:  51%|█████     | 4.05G/7.94G [00:07<00:07, 528MB/s][A
+Downloading (…)l-00001-of-00002.bin:  52%|█████▏    | 4.11G/7.94G [00:07<00:07, 538MB/s][A
+Downloading (…)l-00001-of-00002.bin:  53%|█████▎    | 4.17G/7.94G [00:07<00:06, 545MB/s][A
+Downloading (…)l-00001-of-00002.bin:  53%|█████▎    | 4.24G/7.94G [00:08<00:06, 550MB/s][A
+Downloading (…)l-00001-of-00002.bin:  54%|█████▍    | 4.30G/7.94G [00:08<00:06, 554MB/s][A
+Downloading (…)l-00001-of-00002.bin:  55%|█████▍    | 4.36G/7.94G [00:08<00:06, 557MB/s][A
+Downloading (…)l-00001-of-00002.bin:  56%|█████▌    | 4.42G/7.94G [00:08<00:06, 524MB/s][A
+Downloading (…)l-00001-of-00002.bin:  57%|█████▋    | 4.49G/7.94G [00:08<00:06, 534MB/s][A
+Downloading (…)l-00001-of-00002.bin:  57%|█████▋    | 4.55G/7.94G [00:08<00:06, 541MB/s][A
+Downloading (…)l-00001-of-00002.bin:  58%|█████▊    | 4.61G/7.94G [00:08<00:06, 546MB/s][A
+Downloading (…)l-00001-of-00002.bin:  59%|█████▉    | 4.68G/7.94G [00:08<00:05, 549MB/s][A
+Downloading (…)l-00001-of-00002.bin:  60%|█████▉    | 4.74G/7.94G [00:08<00:05, 553MB/s][A
+Downloading (…)l-00001-of-00002.bin:  60%|██████    | 4.80G/7.94G [00:09<00:05, 555MB/s][A
+Downloading (…)l-00001-of-00002.bin:  61%|██████▏   | 4.87G/7.94G [00:09<00:05, 555MB/s][A
+Downloading (…)l-00001-of-00002.bin:  62%|██████▏   | 4.93G/7.94G [00:09<00:05, 531MB/s][A
+Downloading (…)l-00001-of-00002.bin:  63%|██████▎   | 4.99G/7.94G [00:09<00:05, 528MB/s][A
+Downloading (…)l-00001-of-00002.bin:  64%|██████▎   | 5.05G/7.94G [00:09<00:05, 520MB/s][A
+Downloading (…)l-00001-of-00002.bin:  64%|██████▍   | 5.12G/7.94G [00:09<00:05, 527MB/s][A
+Downloading (…)l-00001-of-00002.bin:  65%|██████▌   | 5.18G/7.94G [00:09<00:05, 536MB/s][A
+Downloading (…)l-00001-of-00002.bin:  66%|██████▌   | 5.24G/7.94G [00:09<00:05, 520MB/s][A
+Downloading (…)l-00001-of-00002.bin:  67%|██████▋   | 5.30G/7.94G [00:10<00:05, 488MB/s][A
+Downloading (…)l-00001-of-00002.bin:  67%|██████▋   | 5.35G/7.94G [00:10<00:05, 469MB/s][A
+Downloading (…)l-00001-of-00002.bin:  68%|██████▊   | 5.40G/7.94G [00:10<00:05, 455MB/s][A
+Downloading (…)l-00001-of-00002.bin:  69%|██████▊   | 5.45G/7.94G [00:10<00:05, 444MB/s][A
+Downloading (…)l-00001-of-00002.bin:  69%|██████▉   | 5.51G/7.94G [00:10<00:05, 436MB/s][A
+Downloading (…)l-00001-of-00002.bin:  70%|███████   | 5.56G/7.94G [00:10<00:05, 432MB/s][A
+Downloading (…)l-00001-of-00002.bin:  71%|███████   | 5.61G/7.94G [00:10<00:05, 429MB/s][A
+Downloading (…)l-00001-of-00002.bin:  71%|███████▏  | 5.66G/7.94G [00:10<00:05, 428MB/s][A
+Downloading (…)l-00001-of-00002.bin:  72%|███████▏  | 5.71G/7.94G [00:11<00:05, 439MB/s][A
+Downloading (…)l-00001-of-00002.bin:  73%|███████▎  | 5.77G/7.94G [00:11<00:05, 376MB/s][A
+Downloading (…)l-00001-of-00002.bin:  73%|███████▎  | 5.81G/7.94G [00:11<00:05, 374MB/s][A
+Downloading (…)l-00001-of-00002.bin:  74%|███████▍  | 5.86G/7.94G [00:11<00:05, 400MB/s][A
+Downloading (…)l-00001-of-00002.bin:  74%|███████▍  | 5.91G/7.94G [00:11<00:04, 426MB/s][A
+Downloading (…)l-00001-of-00002.bin:  75%|███████▌  | 5.98G/7.94G [00:11<00:04, 462MB/s][A
+Downloading (…)l-00001-of-00002.bin:  76%|███████▌  | 6.04G/7.94G [00:11<00:03, 491MB/s][A
+Downloading (…)l-00001-of-00002.bin:  77%|███████▋  | 6.10G/7.94G [00:11<00:03, 511MB/s][A
+Downloading (…)l-00001-of-00002.bin:  78%|███████▊  | 6.17G/7.94G [00:12<00:03, 527MB/s][A
+Downloading (…)l-00001-of-00002.bin:  78%|███████▊  | 6.23G/7.94G [00:12<00:03, 536MB/s][A
+Downloading (…)l-00001-of-00002.bin:  79%|███████▉  | 6.29G/7.94G [00:12<00:03, 542MB/s][A
+Downloading (…)l-00001-of-00002.bin:  80%|████████  | 6.35G/7.94G [00:12<00:02, 550MB/s][A
+Downloading (…)l-00001-of-00002.bin:  81%|████████  | 6.42G/7.94G [00:12<00:02, 555MB/s][A
+Downloading (…)l-00001-of-00002.bin:  82%|████████▏ | 6.48G/7.94G [00:12<00:02, 558MB/s][A
+Downloading (…)l-00001-of-00002.bin:  82%|████████▏ | 6.54G/7.94G [00:12<00:02, 561MB/s][A
+Downloading (…)l-00001-of-00002.bin:  83%|████████▎ | 6.61G/7.94G [00:12<00:02, 562MB/s][A
+Downloading (…)l-00001-of-00002.bin:  84%|████████▍ | 6.67G/7.94G [00:12<00:02, 562MB/s][A
+Downloading (…)l-00001-of-00002.bin:  85%|████████▍ | 6.73G/7.94G [00:13<00:02, 561MB/s][A
+Downloading (…)l-00001-of-00002.bin:  86%|████████▌ | 6.79G/7.94G [00:13<00:02, 562MB/s][A
+Downloading (…)l-00001-of-00002.bin:  86%|████████▋ | 6.86G/7.94G [00:13<00:01, 563MB/s][A
+Downloading (…)l-00001-of-00002.bin:  87%|████████▋ | 6.92G/7.94G [00:13<00:01, 563MB/s][A
+Downloading (…)l-00001-of-00002.bin:  88%|████████▊ | 6.98G/7.94G [00:13<00:01, 565MB/s][A
+Downloading (…)l-00001-of-00002.bin:  89%|████████▉ | 7.05G/7.94G [00:13<00:01, 561MB/s][A
+Downloading (…)l-00001-of-00002.bin:  90%|████████▉ | 7.11G/7.94G [00:13<00:01, 534MB/s][A
+Downloading (…)l-00001-of-00002.bin:  90%|█████████ | 7.17G/7.94G [00:13<00:01, 543MB/s][A
+Downloading (…)l-00001-of-00002.bin:  91%|█████████ | 7.24G/7.94G [00:13<00:01, 549MB/s][A
+Downloading (…)l-00001-of-00002.bin:  92%|█████████▏| 7.30G/7.94G [00:14<00:01, 543MB/s][A
+Downloading (…)l-00001-of-00002.bin:  93%|█████████▎| 7.36G/7.94G [00:14<00:01, 472MB/s][A
+Downloading (…)l-00001-of-00002.bin:  93%|█████████▎| 7.41G/7.94G [00:14<00:01, 465MB/s][A
+Downloading (…)l-00001-of-00002.bin:  94%|█████████▍| 7.47G/7.94G [00:14<00:01, 460MB/s][A
+Downloading (…)l-00001-of-00002.bin:  95%|█████████▍| 7.52G/7.94G [00:14<00:00, 453MB/s][A
+Downloading (…)l-00001-of-00002.bin:  95%|█████████▌| 7.57G/7.94G [00:14<00:00, 438MB/s][A
+Downloading (…)l-00001-of-00002.bin:  96%|█████████▌| 7.62G/7.94G [00:14<00:00, 440MB/s][A
+Downloading (…)l-00001-of-00002.bin:  97%|█████████▋| 7.68G/7.94G [00:14<00:00, 442MB/s][A
+Downloading (…)l-00001-of-00002.bin:  97%|█████████▋| 7.73G/7.94G [00:15<00:00, 444MB/s][A
+Downloading (…)l-00001-of-00002.bin:  98%|█████████▊| 7.78G/7.94G [00:15<00:00, 444MB/s][A
+Downloading (…)l-00001-of-00002.bin:  99%|█████████▊| 7.83G/7.94G [00:15<00:00, 443MB/s][A
+Downloading (…)l-00001-of-00002.bin:  99%|█████████▉| 7.89G/7.94G [00:15<00:00, 446MB/s][A
+Downloading (…)l-00001-of-00002.bin: 100%|█████████▉| 7.94G/7.94G [00:15<00:00, 447MB/s][ADownloading (…)l-00001-of-00002.bin: 100%|██████████| 7.94G/7.94G [00:15<00:00, 511MB/s]
+Downloading shards:  50%|█████     | 1/2 [00:25<00:25, 25.69s/it]
+Downloading (…)l-00002-of-00002.bin:   0%|          | 0.00/7.03G [00:00<?, ?B/s][A
+Downloading (…)l-00002-of-00002.bin:   0%|          | 10.5M/7.03G [00:00<02:31, 46.4MB/s][A
+Downloading (…)l-00002-of-00002.bin:   1%|          | 52.4M/7.03G [00:00<00:38, 182MB/s] [A
+Downloading (…)l-00002-of-00002.bin:   2%|▏         | 115M/7.03G [00:00<00:21, 317MB/s] [A
+Downloading (…)l-00002-of-00002.bin:   3%|▎         | 178M/7.03G [00:00<00:17, 394MB/s][A
+Downloading (…)l-00002-of-00002.bin:   3%|▎         | 241M/7.03G [00:00<00:15, 443MB/s][A
+Downloading (…)l-00002-of-00002.bin:   4%|▍         | 294M/7.03G [00:00<00:14, 465MB/s][A
+Downloading (…)l-00002-of-00002.bin:   5%|▌         | 357M/7.03G [00:00<00:13, 487MB/s][A
+Downloading (…)l-00002-of-00002.bin:   6%|▌         | 419M/7.03G [00:01<00:13, 503MB/s][A
+Downloading (…)l-00002-of-00002.bin:   7%|▋         | 482M/7.03G [00:01<00:12, 516MB/s][A
+Downloading (…)l-00002-of-00002.bin:   8%|▊         | 545M/7.03G [00:01<00:12, 522MB/s][A
+Downloading (…)l-00002-of-00002.bin:   9%|▊         | 608M/7.03G [00:01<00:12, 528MB/s][A
+Downloading (…)l-00002-of-00002.bin:  10%|▉         | 671M/7.03G [00:01<00:11, 533MB/s][A
+Downloading (…)l-00002-of-00002.bin:  10%|█         | 734M/7.03G [00:01<00:11, 529MB/s][A
+Downloading (…)l-00002-of-00002.bin:  11%|█▏        | 797M/7.03G [00:01<00:11, 534MB/s][A
+Downloading (…)l-00002-of-00002.bin:  12%|█▏        | 860M/7.03G [00:01<00:11, 537MB/s][A
+Downloading (…)l-00002-of-00002.bin:  13%|█▎        | 923M/7.03G [00:01<00:11, 537MB/s][A
+Downloading (…)l-00002-of-00002.bin:  14%|█▍        | 986M/7.03G [00:02<00:11, 536MB/s][A
+Downloading (…)l-00002-of-00002.bin:  15%|█▍        | 1.05G/7.03G [00:02<00:11, 538MB/s][A
+Downloading (…)l-00002-of-00002.bin:  16%|█▌        | 1.11G/7.03G [00:02<00:11, 527MB/s][A
+Downloading (…)l-00002-of-00002.bin:  17%|█▋        | 1.17G/7.03G [00:02<00:11, 527MB/s][A
+Downloading (…)l-00002-of-00002.bin:  18%|█▊        | 1.24G/7.03G [00:02<00:10, 527MB/s][A
+Downloading (…)l-00002-of-00002.bin:  18%|█▊        | 1.30G/7.03G [00:02<00:10, 527MB/s][A
+Downloading (…)l-00002-of-00002.bin:  19%|█▉        | 1.36G/7.03G [00:02<00:10, 531MB/s][A
+Downloading (…)l-00002-of-00002.bin:  20%|██        | 1.43G/7.03G [00:02<00:10, 536MB/s][A
+Downloading (…)l-00002-of-00002.bin:  21%|██        | 1.49G/7.03G [00:03<00:10, 540MB/s][A
+Downloading (…)l-00002-of-00002.bin:  22%|██▏       | 1.55G/7.03G [00:03<00:10, 542MB/s][A
+Downloading (…)l-00002-of-00002.bin:  23%|██▎       | 1.61G/7.03G [00:03<00:09, 543MB/s][A
+Downloading (…)l-00002-of-00002.bin:  24%|██▍       | 1.68G/7.03G [00:03<00:09, 545MB/s][A
+Downloading (…)l-00002-of-00002.bin:  25%|██▍       | 1.74G/7.03G [00:03<00:09, 546MB/s][A
+Downloading (…)l-00002-of-00002.bin:  26%|██▌       | 1.80G/7.03G [00:03<00:09, 549MB/s][A
+Downloading (…)l-00002-of-00002.bin:  27%|██▋       | 1.87G/7.03G [00:03<00:09, 548MB/s][A
+Downloading (…)l-00002-of-00002.bin:  27%|██▋       | 1.93G/7.03G [00:03<00:09, 548MB/s][A
+Downloading (…)l-00002-of-00002.bin:  28%|██▊       | 1.99G/7.03G [00:03<00:09, 540MB/s][A
+Downloading (…)l-00002-of-00002.bin:  29%|██▉       | 2.06G/7.03G [00:04<00:09, 543MB/s][A
+Downloading (…)l-00002-of-00002.bin:  30%|███       | 2.12G/7.03G [00:04<00:09, 545MB/s][A
+Downloading (…)l-00002-of-00002.bin:  31%|███       | 2.18G/7.03G [00:04<00:08, 545MB/s][A
+Downloading (…)l-00002-of-00002.bin:  32%|███▏      | 2.24G/7.03G [00:04<00:08, 545MB/s][A
+Downloading (…)l-00002-of-00002.bin:  33%|███▎      | 2.31G/7.03G [00:04<00:08, 544MB/s][A
+Downloading (…)l-00002-of-00002.bin:  34%|███▎      | 2.37G/7.03G [00:04<00:08, 544MB/s][A
+Downloading (…)l-00002-of-00002.bin:  35%|███▍      | 2.43G/7.03G [00:04<00:08, 544MB/s][A
+Downloading (…)l-00002-of-00002.bin:  35%|███▌      | 2.50G/7.03G [00:04<00:08, 544MB/s][A
+Downloading (…)l-00002-of-00002.bin:  36%|███▋      | 2.56G/7.03G [00:04<00:08, 545MB/s][A
+Downloading (…)l-00002-of-00002.bin:  37%|███▋      | 2.62G/7.03G [00:05<00:08, 506MB/s][A
+Downloading (…)l-00002-of-00002.bin:  38%|███▊      | 2.68G/7.03G [00:05<00:08, 519MB/s][A
+Downloading (…)l-00002-of-00002.bin:  39%|███▉      | 2.75G/7.03G [00:05<00:08, 527MB/s][A
+Downloading (…)l-00002-of-00002.bin:  40%|███▉      | 2.81G/7.03G [00:05<00:07, 533MB/s][A
+Downloading (…)l-00002-of-00002.bin:  41%|████      | 2.87G/7.03G [00:05<00:07, 539MB/s][A
+Downloading (…)l-00002-of-00002.bin:  42%|████▏     | 2.94G/7.03G [00:05<00:08, 506MB/s][A
+Downloading (…)l-00002-of-00002.bin:  43%|████▎     | 3.00G/7.03G [00:05<00:07, 518MB/s][A
+Downloading (…)l-00002-of-00002.bin:  44%|████▎     | 3.06G/7.03G [00:05<00:07, 527MB/s][A
+Downloading (…)l-00002-of-00002.bin:  44%|████▍     | 3.12G/7.03G [00:06<00:07, 536MB/s][A
+Downloading (…)l-00002-of-00002.bin:  45%|████▌     | 3.19G/7.03G [00:06<00:07, 540MB/s][A
+Downloading (…)l-00002-of-00002.bin:  46%|████▌     | 3.25G/7.03G [00:06<00:07, 521MB/s][A
+Downloading (…)l-00002-of-00002.bin:  47%|████▋     | 3.30G/7.03G [00:06<00:07, 507MB/s][A
+Downloading (…)l-00002-of-00002.bin:  48%|████▊     | 3.37G/7.03G [00:06<00:07, 518MB/s][A
+Downloading (…)l-00002-of-00002.bin:  49%|████▉     | 3.43G/7.03G [00:06<00:06, 526MB/s][A
+Downloading (…)l-00002-of-00002.bin:  50%|████▉     | 3.49G/7.03G [00:06<00:06, 535MB/s][A
+Downloading (…)l-00002-of-00002.bin:  51%|█████     | 3.55G/7.03G [00:06<00:06, 539MB/s][A
+Downloading (…)l-00002-of-00002.bin:  51%|█████▏    | 3.62G/7.03G [00:07<00:06, 543MB/s][A
+Downloading (…)l-00002-of-00002.bin:  52%|█████▏    | 3.68G/7.03G [00:07<00:06, 546MB/s][A
+Downloading (…)l-00002-of-00002.bin:  53%|█████▎    | 3.74G/7.03G [00:07<00:06, 547MB/s][A
+Downloading (…)l-00002-of-00002.bin:  54%|█████▍    | 3.81G/7.03G [00:07<00:05, 546MB/s][A
+Downloading (…)l-00002-of-00002.bin:  55%|█████▌    | 3.87G/7.03G [00:07<00:06, 490MB/s][A
+Downloading (…)l-00002-of-00002.bin:  56%|█████▌    | 3.92G/7.03G [00:07<00:06, 464MB/s][A
+Downloading (…)l-00002-of-00002.bin:  57%|█████▋    | 3.97G/7.03G [00:07<00:06, 469MB/s][A
+Downloading (…)l-00002-of-00002.bin:  57%|█████▋    | 4.04G/7.03G [00:07<00:06, 494MB/s][A
+Downloading (…)l-00002-of-00002.bin:  58%|█████▊    | 4.10G/7.03G [00:07<00:05, 511MB/s][A
+Downloading (…)l-00002-of-00002.bin:  59%|█████▉    | 4.16G/7.03G [00:08<00:05, 517MB/s][A
+Downloading (…)l-00002-of-00002.bin:  60%|██████    | 4.23G/7.03G [00:08<00:05, 526MB/s][A
+Downloading (…)l-00002-of-00002.bin:  61%|██████    | 4.29G/7.03G [00:08<00:05, 532MB/s][A
+Downloading (…)l-00002-of-00002.bin:  62%|██████▏   | 4.35G/7.03G [00:08<00:04, 538MB/s][A
+Downloading (…)l-00002-of-00002.bin:  63%|██████▎   | 4.41G/7.03G [00:08<00:04, 542MB/s][A
+Downloading (…)l-00002-of-00002.bin:  64%|██████▎   | 4.48G/7.03G [00:08<00:04, 543MB/s][A
+Downloading (…)l-00002-of-00002.bin:  65%|██████▍   | 4.54G/7.03G [00:08<00:04, 546MB/s][A
+Downloading (…)l-00002-of-00002.bin:  65%|██████▌   | 4.60G/7.03G [00:08<00:04, 549MB/s][A
+Downloading (…)l-00002-of-00002.bin:  66%|██████▋   | 4.67G/7.03G [00:09<00:04, 549MB/s][A
+Downloading (…)l-00002-of-00002.bin:  67%|██████▋   | 4.73G/7.03G [00:09<00:04, 552MB/s][A
+Downloading (…)l-00002-of-00002.bin:  68%|██████▊   | 4.79G/7.03G [00:09<00:05, 406MB/s][A
+Downloading (…)l-00002-of-00002.bin:  69%|██████▉   | 4.85G/7.03G [00:09<00:04, 441MB/s][A
+Downloading (…)l-00002-of-00002.bin:  70%|██████▉   | 4.92G/7.03G [00:09<00:04, 470MB/s][A
+Downloading (…)l-00002-of-00002.bin:  71%|███████   | 4.98G/7.03G [00:09<00:04, 491MB/s][A
+Downloading (…)l-00002-of-00002.bin:  72%|███████▏  | 5.03G/7.03G [00:09<00:04, 495MB/s][A
+Downloading (…)l-00002-of-00002.bin:  72%|███████▏  | 5.10G/7.03G [00:09<00:03, 506MB/s][A
+Downloading (…)l-00002-of-00002.bin:  73%|███████▎  | 5.16G/7.03G [00:10<00:03, 519MB/s][A
+Downloading (…)l-00002-of-00002.bin:  74%|███████▍  | 5.22G/7.03G [00:10<00:03, 529MB/s][A
+Downloading (…)l-00002-of-00002.bin:  75%|███████▌  | 5.28G/7.03G [00:10<00:03, 535MB/s][A
+Downloading (…)l-00002-of-00002.bin:  76%|███████▌  | 5.35G/7.03G [00:10<00:03, 535MB/s][A
+Downloading (…)l-00002-of-00002.bin:  77%|███████▋  | 5.41G/7.03G [00:10<00:03, 524MB/s][A
+Downloading (…)l-00002-of-00002.bin:  78%|███████▊  | 5.47G/7.03G [00:10<00:03, 514MB/s][A
+Downloading (…)l-00002-of-00002.bin:  79%|███████▊  | 5.54G/7.03G [00:10<00:02, 525MB/s][A
+Downloading (…)l-00002-of-00002.bin:  80%|███████▉  | 5.60G/7.03G [00:10<00:02, 525MB/s][A
+Downloading (…)l-00002-of-00002.bin:  81%|████████  | 5.66G/7.03G [00:10<00:02, 532MB/s][A
+Downloading (…)l-00002-of-00002.bin:  81%|████████▏ | 5.73G/7.03G [00:11<00:02, 538MB/s][A
+Downloading (…)l-00002-of-00002.bin:  82%|████████▏ | 5.79G/7.03G [00:11<00:02, 542MB/s][A
+Downloading (…)l-00002-of-00002.bin:  83%|████████▎ | 5.85G/7.03G [00:11<00:02, 545MB/s][A
+Downloading (…)l-00002-of-00002.bin:  84%|████████▍ | 5.91G/7.03G [00:11<00:02, 546MB/s][A
+Downloading (…)l-00002-of-00002.bin:  85%|████████▍ | 5.98G/7.03G [00:11<00:01, 548MB/s][A
+Downloading (…)l-00002-of-00002.bin:  86%|████████▌ | 6.04G/7.03G [00:11<00:01, 550MB/s][A
+Downloading (…)l-00002-of-00002.bin:  87%|████████▋ | 6.10G/7.03G [00:11<00:01, 550MB/s][A
+Downloading (…)l-00002-of-00002.bin:  88%|████████▊ | 6.17G/7.03G [00:11<00:01, 552MB/s][A
+Downloading (…)l-00002-of-00002.bin:  89%|████████▊ | 6.23G/7.03G [00:12<00:01, 552MB/s][A
+Downloading (…)l-00002-of-00002.bin:  89%|████████▉ | 6.29G/7.03G [00:12<00:01, 552MB/s][A
+Downloading (…)l-00002-of-00002.bin:  90%|█████████ | 6.35G/7.03G [00:12<00:01, 551MB/s][A
+Downloading (…)l-00002-of-00002.bin:  91%|█████████▏| 6.42G/7.03G [00:12<00:01, 551MB/s][A
+Downloading (…)l-00002-of-00002.bin:  92%|█████████▏| 6.48G/7.03G [00:12<00:01, 551MB/s][A
+Downloading (…)l-00002-of-00002.bin:  93%|█████████▎| 6.54G/7.03G [00:12<00:00, 553MB/s][A
+Downloading (…)l-00002-of-00002.bin:  94%|█████████▍| 6.61G/7.03G [00:12<00:00, 552MB/s][A
+Downloading (…)l-00002-of-00002.bin:  95%|█████████▍| 6.67G/7.03G [00:12<00:00, 552MB/s][A
+Downloading (…)l-00002-of-00002.bin:  96%|█████████▌| 6.73G/7.03G [00:12<00:00, 552MB/s][A
+Downloading (…)l-00002-of-00002.bin:  97%|█████████▋| 6.79G/7.03G [00:13<00:00, 552MB/s][A
+Downloading (…)l-00002-of-00002.bin:  98%|█████████▊| 6.86G/7.03G [00:13<00:00, 552MB/s][A
+Downloading (…)l-00002-of-00002.bin:  98%|█████████▊| 6.92G/7.03G [00:13<00:00, 349MB/s][A
+Downloading (…)l-00002-of-00002.bin:  99%|█████████▉| 6.98G/7.03G [00:13<00:00, 390MB/s][ADownloading (…)l-00002-of-00002.bin: 100%|██████████| 7.03G/7.03G [00:13<00:00, 513MB/s]
+Downloading shards: 100%|██████████| 2/2 [00:50<00:00, 25.15s/it]Downloading shards: 100%|██████████| 2/2 [00:50<00:00, 25.23s/it]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:07<00:07,  7.31s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:13<00:00,  6.79s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:13<00:00,  6.87s/it]
+Downloading (…)okenizer_config.json:   0%|          | 0.00/430 [00:00<?, ?B/s]Downloading (…)okenizer_config.json: 100%|██████████| 430/430 [00:00<00:00, 1.35MB/s]
+Downloading spiece.model:   0%|          | 0.00/4.31M [00:00<?, ?B/s]Downloading spiece.model: 100%|██████████| 4.31M/4.31M [00:00<00:00, 20.7MB/s]Downloading spiece.model: 100%|██████████| 4.31M/4.31M [00:00<00:00, 20.2MB/s]
+Downloading tokenizer.json:   0%|          | 0.00/16.3M [00:00<?, ?B/s]Downloading tokenizer.json: 100%|██████████| 16.3M/16.3M [00:00<00:00, 361MB/s]
+Downloading (…)cial_tokens_map.json:   0%|          | 0.00/74.0 [00:00<?, ?B/s]Downloading (…)cial_tokens_map.json: 100%|██████████| 74.0/74.0 [00:00<00:00, 250kB/s]
+Vocab size: 250100.
+Model parameters: <bound method ModuleUtilsMixin.num_parameters of MT5ForConditionalGeneration(
+  (shared): Embedding(250112, 2048)
+  (encoder): MT5Stack(
+    (embed_tokens): Embedding(250112, 2048)
+    (block): ModuleList(
+      (0): MT5Block(
+        (layer): ModuleList(
+          (0): MT5LayerSelfAttention(
+            (SelfAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+              (relative_attention_bias): Embedding(32, 32)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): MT5LayerFF(
+            (DenseReluDense): MT5DenseGatedActDense(
+              (wi_0): Linear(in_features=2048, out_features=5120, bias=False)
+              (wi_1): Linear(in_features=2048, out_features=5120, bias=False)
+              (wo): Linear(in_features=5120, out_features=2048, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (1): MT5Block(
+        (layer): ModuleList(
+          (0): MT5LayerSelfAttention(
+            (SelfAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): MT5LayerFF(
+            (DenseReluDense): MT5DenseGatedActDense(
+              (wi_0): Linear(in_features=2048, out_features=5120, bias=False)
+              (wi_1): Linear(in_features=2048, out_features=5120, bias=False)
+              (wo): Linear(in_features=5120, out_features=2048, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (2): MT5Block(
+        (layer): ModuleList(
+          (0): MT5LayerSelfAttention(
+            (SelfAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): MT5LayerFF(
+            (DenseReluDense): MT5DenseGatedActDense(
+              (wi_0): Linear(in_features=2048, out_features=5120, bias=False)
+              (wi_1): Linear(in_features=2048, out_features=5120, bias=False)
+              (wo): Linear(in_features=5120, out_features=2048, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (3): MT5Block(
+        (layer): ModuleList(
+          (0): MT5LayerSelfAttention(
+            (SelfAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): MT5LayerFF(
+            (DenseReluDense): MT5DenseGatedActDense(
+              (wi_0): Linear(in_features=2048, out_features=5120, bias=False)
+              (wi_1): Linear(in_features=2048, out_features=5120, bias=False)
+              (wo): Linear(in_features=5120, out_features=2048, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (4): MT5Block(
+        (layer): ModuleList(
+          (0): MT5LayerSelfAttention(
+            (SelfAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): MT5LayerFF(
+            (DenseReluDense): MT5DenseGatedActDense(
+              (wi_0): Linear(in_features=2048, out_features=5120, bias=False)
+              (wi_1): Linear(in_features=2048, out_features=5120, bias=False)
+              (wo): Linear(in_features=5120, out_features=2048, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (5): MT5Block(
+        (layer): ModuleList(
+          (0): MT5LayerSelfAttention(
+            (SelfAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): MT5LayerFF(
+            (DenseReluDense): MT5DenseGatedActDense(
+              (wi_0): Linear(in_features=2048, out_features=5120, bias=False)
+              (wi_1): Linear(in_features=2048, out_features=5120, bias=False)
+              (wo): Linear(in_features=5120, out_features=2048, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (6): MT5Block(
+        (layer): ModuleList(
+          (0): MT5LayerSelfAttention(
+            (SelfAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): MT5LayerFF(
+            (DenseReluDense): MT5DenseGatedActDense(
+              (wi_0): Linear(in_features=2048, out_features=5120, bias=False)
+              (wi_1): Linear(in_features=2048, out_features=5120, bias=False)
+              (wo): Linear(in_features=5120, out_features=2048, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (7): MT5Block(
+        (layer): ModuleList(
+          (0): MT5LayerSelfAttention(
+            (SelfAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): MT5LayerFF(
+            (DenseReluDense): MT5DenseGatedActDense(
+              (wi_0): Linear(in_features=2048, out_features=5120, bias=False)
+              (wi_1): Linear(in_features=2048, out_features=5120, bias=False)
+              (wo): Linear(in_features=5120, out_features=2048, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (8): MT5Block(
+        (layer): ModuleList(
+          (0): MT5LayerSelfAttention(
+            (SelfAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): MT5LayerFF(
+            (DenseReluDense): MT5DenseGatedActDense(
+              (wi_0): Linear(in_features=2048, out_features=5120, bias=False)
+              (wi_1): Linear(in_features=2048, out_features=5120, bias=False)
+              (wo): Linear(in_features=5120, out_features=2048, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (9): MT5Block(
+        (layer): ModuleList(
+          (0): MT5LayerSelfAttention(
+            (SelfAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): MT5LayerFF(
+            (DenseReluDense): MT5DenseGatedActDense(
+              (wi_0): Linear(in_features=2048, out_features=5120, bias=False)
+              (wi_1): Linear(in_features=2048, out_features=5120, bias=False)
+              (wo): Linear(in_features=5120, out_features=2048, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (10): MT5Block(
+        (layer): ModuleList(
+          (0): MT5LayerSelfAttention(
+            (SelfAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): MT5LayerFF(
+            (DenseReluDense): MT5DenseGatedActDense(
+              (wi_0): Linear(in_features=2048, out_features=5120, bias=False)
+              (wi_1): Linear(in_features=2048, out_features=5120, bias=False)
+              (wo): Linear(in_features=5120, out_features=2048, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (11): MT5Block(
+        (layer): ModuleList(
+          (0): MT5LayerSelfAttention(
+            (SelfAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): MT5LayerFF(
+            (DenseReluDense): MT5DenseGatedActDense(
+              (wi_0): Linear(in_features=2048, out_features=5120, bias=False)
+              (wi_1): Linear(in_features=2048, out_features=5120, bias=False)
+              (wo): Linear(in_features=5120, out_features=2048, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (12): MT5Block(
+        (layer): ModuleList(
+          (0): MT5LayerSelfAttention(
+            (SelfAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): MT5LayerFF(
+            (DenseReluDense): MT5DenseGatedActDense(
+              (wi_0): Linear(in_features=2048, out_features=5120, bias=False)
+              (wi_1): Linear(in_features=2048, out_features=5120, bias=False)
+              (wo): Linear(in_features=5120, out_features=2048, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (13): MT5Block(
+        (layer): ModuleList(
+          (0): MT5LayerSelfAttention(
+            (SelfAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): MT5LayerFF(
+            (DenseReluDense): MT5DenseGatedActDense(
+              (wi_0): Linear(in_features=2048, out_features=5120, bias=False)
+              (wi_1): Linear(in_features=2048, out_features=5120, bias=False)
+              (wo): Linear(in_features=5120, out_features=2048, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (14): MT5Block(
+        (layer): ModuleList(
+          (0): MT5LayerSelfAttention(
+            (SelfAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): MT5LayerFF(
+            (DenseReluDense): MT5DenseGatedActDense(
+              (wi_0): Linear(in_features=2048, out_features=5120, bias=False)
+              (wi_1): Linear(in_features=2048, out_features=5120, bias=False)
+              (wo): Linear(in_features=5120, out_features=2048, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (15): MT5Block(
+        (layer): ModuleList(
+          (0): MT5LayerSelfAttention(
+            (SelfAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): MT5LayerFF(
+            (DenseReluDense): MT5DenseGatedActDense(
+              (wi_0): Linear(in_features=2048, out_features=5120, bias=False)
+              (wi_1): Linear(in_features=2048, out_features=5120, bias=False)
+              (wo): Linear(in_features=5120, out_features=2048, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (16): MT5Block(
+        (layer): ModuleList(
+          (0): MT5LayerSelfAttention(
+            (SelfAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): MT5LayerFF(
+            (DenseReluDense): MT5DenseGatedActDense(
+              (wi_0): Linear(in_features=2048, out_features=5120, bias=False)
+              (wi_1): Linear(in_features=2048, out_features=5120, bias=False)
+              (wo): Linear(in_features=5120, out_features=2048, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (17): MT5Block(
+        (layer): ModuleList(
+          (0): MT5LayerSelfAttention(
+            (SelfAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): MT5LayerFF(
+            (DenseReluDense): MT5DenseGatedActDense(
+              (wi_0): Linear(in_features=2048, out_features=5120, bias=False)
+              (wi_1): Linear(in_features=2048, out_features=5120, bias=False)
+              (wo): Linear(in_features=5120, out_features=2048, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (18): MT5Block(
+        (layer): ModuleList(
+          (0): MT5LayerSelfAttention(
+            (SelfAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): MT5LayerFF(
+            (DenseReluDense): MT5DenseGatedActDense(
+              (wi_0): Linear(in_features=2048, out_features=5120, bias=False)
+              (wi_1): Linear(in_features=2048, out_features=5120, bias=False)
+              (wo): Linear(in_features=5120, out_features=2048, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (19): MT5Block(
+        (layer): ModuleList(
+          (0): MT5LayerSelfAttention(
+            (SelfAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): MT5LayerFF(
+            (DenseReluDense): MT5DenseGatedActDense(
+              (wi_0): Linear(in_features=2048, out_features=5120, bias=False)
+              (wi_1): Linear(in_features=2048, out_features=5120, bias=False)
+              (wo): Linear(in_features=5120, out_features=2048, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (20): MT5Block(
+        (layer): ModuleList(
+          (0): MT5LayerSelfAttention(
+            (SelfAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): MT5LayerFF(
+            (DenseReluDense): MT5DenseGatedActDense(
+              (wi_0): Linear(in_features=2048, out_features=5120, bias=False)
+              (wi_1): Linear(in_features=2048, out_features=5120, bias=False)
+              (wo): Linear(in_features=5120, out_features=2048, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (21): MT5Block(
+        (layer): ModuleList(
+          (0): MT5LayerSelfAttention(
+            (SelfAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): MT5LayerFF(
+            (DenseReluDense): MT5DenseGatedActDense(
+              (wi_0): Linear(in_features=2048, out_features=5120, bias=False)
+              (wi_1): Linear(in_features=2048, out_features=5120, bias=False)
+              (wo): Linear(in_features=5120, out_features=2048, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (22): MT5Block(
+        (layer): ModuleList(
+          (0): MT5LayerSelfAttention(
+            (SelfAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): MT5LayerFF(
+            (DenseReluDense): MT5DenseGatedActDense(
+              (wi_0): Linear(in_features=2048, out_features=5120, bias=False)
+              (wi_1): Linear(in_features=2048, out_features=5120, bias=False)
+              (wo): Linear(in_features=5120, out_features=2048, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (23): MT5Block(
+        (layer): ModuleList(
+          (0): MT5LayerSelfAttention(
+            (SelfAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): MT5LayerFF(
+            (DenseReluDense): MT5DenseGatedActDense(
+              (wi_0): Linear(in_features=2048, out_features=5120, bias=False)
+              (wi_1): Linear(in_features=2048, out_features=5120, bias=False)
+              (wo): Linear(in_features=5120, out_features=2048, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+    )
+    (final_layer_norm): MT5LayerNorm()
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (decoder): MT5Stack(
+    (embed_tokens): Embedding(250112, 2048)
+    (block): ModuleList(
+      (0): MT5Block(
+        (layer): ModuleList(
+          (0): MT5LayerSelfAttention(
+            (SelfAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+              (relative_attention_bias): Embedding(32, 32)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): MT5LayerCrossAttention(
+            (EncDecAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (2): MT5LayerFF(
+            (DenseReluDense): MT5DenseGatedActDense(
+              (wi_0): Linear(in_features=2048, out_features=5120, bias=False)
+              (wi_1): Linear(in_features=2048, out_features=5120, bias=False)
+              (wo): Linear(in_features=5120, out_features=2048, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (1): MT5Block(
+        (layer): ModuleList(
+          (0): MT5LayerSelfAttention(
+            (SelfAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): MT5LayerCrossAttention(
+            (EncDecAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (2): MT5LayerFF(
+            (DenseReluDense): MT5DenseGatedActDense(
+              (wi_0): Linear(in_features=2048, out_features=5120, bias=False)
+              (wi_1): Linear(in_features=2048, out_features=5120, bias=False)
+              (wo): Linear(in_features=5120, out_features=2048, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (2): MT5Block(
+        (layer): ModuleList(
+          (0): MT5LayerSelfAttention(
+            (SelfAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): MT5LayerCrossAttention(
+            (EncDecAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (2): MT5LayerFF(
+            (DenseReluDense): MT5DenseGatedActDense(
+              (wi_0): Linear(in_features=2048, out_features=5120, bias=False)
+              (wi_1): Linear(in_features=2048, out_features=5120, bias=False)
+              (wo): Linear(in_features=5120, out_features=2048, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (3): MT5Block(
+        (layer): ModuleList(
+          (0): MT5LayerSelfAttention(
+            (SelfAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): MT5LayerCrossAttention(
+            (EncDecAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (2): MT5LayerFF(
+            (DenseReluDense): MT5DenseGatedActDense(
+              (wi_0): Linear(in_features=2048, out_features=5120, bias=False)
+              (wi_1): Linear(in_features=2048, out_features=5120, bias=False)
+              (wo): Linear(in_features=5120, out_features=2048, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (4): MT5Block(
+        (layer): ModuleList(
+          (0): MT5LayerSelfAttention(
+            (SelfAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): MT5LayerCrossAttention(
+            (EncDecAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (2): MT5LayerFF(
+            (DenseReluDense): MT5DenseGatedActDense(
+              (wi_0): Linear(in_features=2048, out_features=5120, bias=False)
+              (wi_1): Linear(in_features=2048, out_features=5120, bias=False)
+              (wo): Linear(in_features=5120, out_features=2048, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (5): MT5Block(
+        (layer): ModuleList(
+          (0): MT5LayerSelfAttention(
+            (SelfAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): MT5LayerCrossAttention(
+            (EncDecAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (2): MT5LayerFF(
+            (DenseReluDense): MT5DenseGatedActDense(
+              (wi_0): Linear(in_features=2048, out_features=5120, bias=False)
+              (wi_1): Linear(in_features=2048, out_features=5120, bias=False)
+              (wo): Linear(in_features=5120, out_features=2048, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (6): MT5Block(
+        (layer): ModuleList(
+          (0): MT5LayerSelfAttention(
+            (SelfAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): MT5LayerCrossAttention(
+            (EncDecAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (2): MT5LayerFF(
+            (DenseReluDense): MT5DenseGatedActDense(
+              (wi_0): Linear(in_features=2048, out_features=5120, bias=False)
+              (wi_1): Linear(in_features=2048, out_features=5120, bias=False)
+              (wo): Linear(in_features=5120, out_features=2048, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (7): MT5Block(
+        (layer): ModuleList(
+          (0): MT5LayerSelfAttention(
+            (SelfAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): MT5LayerCrossAttention(
+            (EncDecAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (2): MT5LayerFF(
+            (DenseReluDense): MT5DenseGatedActDense(
+              (wi_0): Linear(in_features=2048, out_features=5120, bias=False)
+              (wi_1): Linear(in_features=2048, out_features=5120, bias=False)
+              (wo): Linear(in_features=5120, out_features=2048, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (8): MT5Block(
+        (layer): ModuleList(
+          (0): MT5LayerSelfAttention(
+            (SelfAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): MT5LayerCrossAttention(
+            (EncDecAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (2): MT5LayerFF(
+            (DenseReluDense): MT5DenseGatedActDense(
+              (wi_0): Linear(in_features=2048, out_features=5120, bias=False)
+              (wi_1): Linear(in_features=2048, out_features=5120, bias=False)
+              (wo): Linear(in_features=5120, out_features=2048, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (9): MT5Block(
+        (layer): ModuleList(
+          (0): MT5LayerSelfAttention(
+            (SelfAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): MT5LayerCrossAttention(
+            (EncDecAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (2): MT5LayerFF(
+            (DenseReluDense): MT5DenseGatedActDense(
+              (wi_0): Linear(in_features=2048, out_features=5120, bias=False)
+              (wi_1): Linear(in_features=2048, out_features=5120, bias=False)
+              (wo): Linear(in_features=5120, out_features=2048, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (10): MT5Block(
+        (layer): ModuleList(
+          (0): MT5LayerSelfAttention(
+            (SelfAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): MT5LayerCrossAttention(
+            (EncDecAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (2): MT5LayerFF(
+            (DenseReluDense): MT5DenseGatedActDense(
+              (wi_0): Linear(in_features=2048, out_features=5120, bias=False)
+              (wi_1): Linear(in_features=2048, out_features=5120, bias=False)
+              (wo): Linear(in_features=5120, out_features=2048, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (11): MT5Block(
+        (layer): ModuleList(
+          (0): MT5LayerSelfAttention(
+            (SelfAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): MT5LayerCrossAttention(
+            (EncDecAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (2): MT5LayerFF(
+            (DenseReluDense): MT5DenseGatedActDense(
+              (wi_0): Linear(in_features=2048, out_features=5120, bias=False)
+              (wi_1): Linear(in_features=2048, out_features=5120, bias=False)
+              (wo): Linear(in_features=5120, out_features=2048, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (12): MT5Block(
+        (layer): ModuleList(
+          (0): MT5LayerSelfAttention(
+            (SelfAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): MT5LayerCrossAttention(
+            (EncDecAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (2): MT5LayerFF(
+            (DenseReluDense): MT5DenseGatedActDense(
+              (wi_0): Linear(in_features=2048, out_features=5120, bias=False)
+              (wi_1): Linear(in_features=2048, out_features=5120, bias=False)
+              (wo): Linear(in_features=5120, out_features=2048, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (13): MT5Block(
+        (layer): ModuleList(
+          (0): MT5LayerSelfAttention(
+            (SelfAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): MT5LayerCrossAttention(
+            (EncDecAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (2): MT5LayerFF(
+            (DenseReluDense): MT5DenseGatedActDense(
+              (wi_0): Linear(in_features=2048, out_features=5120, bias=False)
+              (wi_1): Linear(in_features=2048, out_features=5120, bias=False)
+              (wo): Linear(in_features=5120, out_features=2048, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (14): MT5Block(
+        (layer): ModuleList(
+          (0): MT5LayerSelfAttention(
+            (SelfAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): MT5LayerCrossAttention(
+            (EncDecAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (2): MT5LayerFF(
+            (DenseReluDense): MT5DenseGatedActDense(
+              (wi_0): Linear(in_features=2048, out_features=5120, bias=False)
+              (wi_1): Linear(in_features=2048, out_features=5120, bias=False)
+              (wo): Linear(in_features=5120, out_features=2048, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (15): MT5Block(
+        (layer): ModuleList(
+          (0): MT5LayerSelfAttention(
+            (SelfAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): MT5LayerCrossAttention(
+            (EncDecAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (2): MT5LayerFF(
+            (DenseReluDense): MT5DenseGatedActDense(
+              (wi_0): Linear(in_features=2048, out_features=5120, bias=False)
+              (wi_1): Linear(in_features=2048, out_features=5120, bias=False)
+              (wo): Linear(in_features=5120, out_features=2048, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (16): MT5Block(
+        (layer): ModuleList(
+          (0): MT5LayerSelfAttention(
+            (SelfAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): MT5LayerCrossAttention(
+            (EncDecAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (2): MT5LayerFF(
+            (DenseReluDense): MT5DenseGatedActDense(
+              (wi_0): Linear(in_features=2048, out_features=5120, bias=False)
+              (wi_1): Linear(in_features=2048, out_features=5120, bias=False)
+              (wo): Linear(in_features=5120, out_features=2048, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (17): MT5Block(
+        (layer): ModuleList(
+          (0): MT5LayerSelfAttention(
+            (SelfAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): MT5LayerCrossAttention(
+            (EncDecAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (2): MT5LayerFF(
+            (DenseReluDense): MT5DenseGatedActDense(
+              (wi_0): Linear(in_features=2048, out_features=5120, bias=False)
+              (wi_1): Linear(in_features=2048, out_features=5120, bias=False)
+              (wo): Linear(in_features=5120, out_features=2048, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (18): MT5Block(
+        (layer): ModuleList(
+          (0): MT5LayerSelfAttention(
+            (SelfAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): MT5LayerCrossAttention(
+            (EncDecAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (2): MT5LayerFF(
+            (DenseReluDense): MT5DenseGatedActDense(
+              (wi_0): Linear(in_features=2048, out_features=5120, bias=False)
+              (wi_1): Linear(in_features=2048, out_features=5120, bias=False)
+              (wo): Linear(in_features=5120, out_features=2048, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (19): MT5Block(
+        (layer): ModuleList(
+          (0): MT5LayerSelfAttention(
+            (SelfAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): MT5LayerCrossAttention(
+            (EncDecAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (2): MT5LayerFF(
+            (DenseReluDense): MT5DenseGatedActDense(
+              (wi_0): Linear(in_features=2048, out_features=5120, bias=False)
+              (wi_1): Linear(in_features=2048, out_features=5120, bias=False)
+              (wo): Linear(in_features=5120, out_features=2048, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (20): MT5Block(
+        (layer): ModuleList(
+          (0): MT5LayerSelfAttention(
+            (SelfAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): MT5LayerCrossAttention(
+            (EncDecAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (2): MT5LayerFF(
+            (DenseReluDense): MT5DenseGatedActDense(
+              (wi_0): Linear(in_features=2048, out_features=5120, bias=False)
+              (wi_1): Linear(in_features=2048, out_features=5120, bias=False)
+              (wo): Linear(in_features=5120, out_features=2048, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (21): MT5Block(
+        (layer): ModuleList(
+          (0): MT5LayerSelfAttention(
+            (SelfAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): MT5LayerCrossAttention(
+            (EncDecAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (2): MT5LayerFF(
+            (DenseReluDense): MT5DenseGatedActDense(
+              (wi_0): Linear(in_features=2048, out_features=5120, bias=False)
+              (wi_1): Linear(in_features=2048, out_features=5120, bias=False)
+              (wo): Linear(in_features=5120, out_features=2048, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (22): MT5Block(
+        (layer): ModuleList(
+          (0): MT5LayerSelfAttention(
+            (SelfAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): MT5LayerCrossAttention(
+            (EncDecAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (2): MT5LayerFF(
+            (DenseReluDense): MT5DenseGatedActDense(
+              (wi_0): Linear(in_features=2048, out_features=5120, bias=False)
+              (wi_1): Linear(in_features=2048, out_features=5120, bias=False)
+              (wo): Linear(in_features=5120, out_features=2048, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+      (23): MT5Block(
+        (layer): ModuleList(
+          (0): MT5LayerSelfAttention(
+            (SelfAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (1): MT5LayerCrossAttention(
+            (EncDecAttention): MT5Attention(
+              (q): Linear(in_features=2048, out_features=2048, bias=False)
+              (k): Linear(in_features=2048, out_features=2048, bias=False)
+              (v): Linear(in_features=2048, out_features=2048, bias=False)
+              (o): Linear(in_features=2048, out_features=2048, bias=False)
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+          (2): MT5LayerFF(
+            (DenseReluDense): MT5DenseGatedActDense(
+              (wi_0): Linear(in_features=2048, out_features=5120, bias=False)
+              (wi_1): Linear(in_features=2048, out_features=5120, bias=False)
+              (wo): Linear(in_features=5120, out_features=2048, bias=False)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (act): NewGELUActivation()
+            )
+            (layer_norm): MT5LayerNorm()
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+    )
+    (final_layer_norm): MT5LayerNorm()
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (lm_head): Linear(in_features=2048, out_features=250112, bias=False)
+)>
+Downloading model: bigscience/bloomz-560m
+/project/gpuuva021/shared/cot/hf_cache
+Downloading (…)lve/main/config.json:   0%|          | 0.00/715 [00:00<?, ?B/s]Downloading (…)lve/main/config.json: 100%|██████████| 715/715 [00:00<00:00, 2.35MB/s]
+Downloading pytorch_model.bin:   0%|          | 0.00/1.12G [00:00<?, ?B/s]Downloading pytorch_model.bin:   4%|▎         | 41.9M/1.12G [00:00<00:02, 392MB/s]Downloading pytorch_model.bin:   9%|▉         | 105M/1.12G [00:00<00:02, 488MB/s] Downloading pytorch_model.bin:  15%|█▍        | 168M/1.12G [00:00<00:01, 520MB/s]Downloading pytorch_model.bin:  21%|██        | 231M/1.12G [00:00<00:01, 536MB/s]Downloading pytorch_model.bin:  26%|██▌       | 294M/1.12G [00:00<00:01, 544MB/s]Downloading pytorch_model.bin:  32%|███▏      | 357M/1.12G [00:00<00:01, 551MB/s]Downloading pytorch_model.bin:  37%|███▋      | 419M/1.12G [00:00<00:01, 552MB/s]Downloading pytorch_model.bin:  43%|████▎     | 482M/1.12G [00:00<00:01, 553MB/s]Downloading pytorch_model.bin:  49%|████▊     | 545M/1.12G [00:01<00:01, 554MB/s]Downloading pytorch_model.bin:  54%|█████▍    | 608M/1.12G [00:01<00:00, 553MB/s]Downloading pytorch_model.bin:  60%|█████▉    | 671M/1.12G [00:01<00:00, 554MB/s]Downloading pytorch_model.bin:  66%|██████▌   | 734M/1.12G [00:01<00:00, 555MB/s]Downloading pytorch_model.bin:  71%|███████   | 797M/1.12G [00:01<00:00, 543MB/s]Downloading pytorch_model.bin:  77%|███████▋  | 860M/1.12G [00:01<00:00, 511MB/s]Downloading pytorch_model.bin:  82%|████████▏ | 912M/1.12G [00:01<00:00, 499MB/s]Downloading pytorch_model.bin:  87%|████████▋ | 975M/1.12G [00:01<00:00, 517MB/s]Downloading pytorch_model.bin:  93%|█████████▎| 1.04G/1.12G [00:01<00:00, 529MB/s]Downloading pytorch_model.bin:  98%|█████████▊| 1.10G/1.12G [00:02<00:00, 538MB/s]Downloading pytorch_model.bin: 100%|██████████| 1.12G/1.12G [00:02<00:00, 533MB/s]
+Downloading (…)okenizer_config.json:   0%|          | 0.00/222 [00:00<?, ?B/s]Downloading (…)okenizer_config.json: 100%|██████████| 222/222 [00:00<00:00, 662kB/s]
+Downloading tokenizer.json:   0%|          | 0.00/14.5M [00:00<?, ?B/s]Downloading tokenizer.json: 100%|██████████| 14.5M/14.5M [00:00<00:00, 119MB/s]Downloading tokenizer.json: 100%|██████████| 14.5M/14.5M [00:00<00:00, 117MB/s]
+Downloading (…)cial_tokens_map.json:   0%|          | 0.00/85.0 [00:00<?, ?B/s]Downloading (…)cial_tokens_map.json: 100%|██████████| 85.0/85.0 [00:00<00:00, 284kB/s]
+Vocab size: 250680.
+Model parameters: <bound method ModuleUtilsMixin.num_parameters of BloomForCausalLM(
+  (transformer): BloomModel(
+    (word_embeddings): Embedding(250880, 1024)
+    (word_embeddings_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+    (h): ModuleList(
+      (0): BloomBlock(
+        (input_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=1024, out_features=3072, bias=True)
+          (dense): Linear(in_features=1024, out_features=1024, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=1024, out_features=4096, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=4096, out_features=1024, bias=True)
+        )
+      )
+      (1): BloomBlock(
+        (input_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=1024, out_features=3072, bias=True)
+          (dense): Linear(in_features=1024, out_features=1024, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=1024, out_features=4096, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=4096, out_features=1024, bias=True)
+        )
+      )
+      (2): BloomBlock(
+        (input_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=1024, out_features=3072, bias=True)
+          (dense): Linear(in_features=1024, out_features=1024, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=1024, out_features=4096, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=4096, out_features=1024, bias=True)
+        )
+      )
+      (3): BloomBlock(
+        (input_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=1024, out_features=3072, bias=True)
+          (dense): Linear(in_features=1024, out_features=1024, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=1024, out_features=4096, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=4096, out_features=1024, bias=True)
+        )
+      )
+      (4): BloomBlock(
+        (input_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=1024, out_features=3072, bias=True)
+          (dense): Linear(in_features=1024, out_features=1024, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=1024, out_features=4096, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=4096, out_features=1024, bias=True)
+        )
+      )
+      (5): BloomBlock(
+        (input_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=1024, out_features=3072, bias=True)
+          (dense): Linear(in_features=1024, out_features=1024, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=1024, out_features=4096, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=4096, out_features=1024, bias=True)
+        )
+      )
+      (6): BloomBlock(
+        (input_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=1024, out_features=3072, bias=True)
+          (dense): Linear(in_features=1024, out_features=1024, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=1024, out_features=4096, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=4096, out_features=1024, bias=True)
+        )
+      )
+      (7): BloomBlock(
+        (input_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=1024, out_features=3072, bias=True)
+          (dense): Linear(in_features=1024, out_features=1024, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=1024, out_features=4096, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=4096, out_features=1024, bias=True)
+        )
+      )
+      (8): BloomBlock(
+        (input_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=1024, out_features=3072, bias=True)
+          (dense): Linear(in_features=1024, out_features=1024, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=1024, out_features=4096, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=4096, out_features=1024, bias=True)
+        )
+      )
+      (9): BloomBlock(
+        (input_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=1024, out_features=3072, bias=True)
+          (dense): Linear(in_features=1024, out_features=1024, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=1024, out_features=4096, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=4096, out_features=1024, bias=True)
+        )
+      )
+      (10): BloomBlock(
+        (input_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=1024, out_features=3072, bias=True)
+          (dense): Linear(in_features=1024, out_features=1024, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=1024, out_features=4096, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=4096, out_features=1024, bias=True)
+        )
+      )
+      (11): BloomBlock(
+        (input_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=1024, out_features=3072, bias=True)
+          (dense): Linear(in_features=1024, out_features=1024, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=1024, out_features=4096, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=4096, out_features=1024, bias=True)
+        )
+      )
+      (12): BloomBlock(
+        (input_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=1024, out_features=3072, bias=True)
+          (dense): Linear(in_features=1024, out_features=1024, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=1024, out_features=4096, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=4096, out_features=1024, bias=True)
+        )
+      )
+      (13): BloomBlock(
+        (input_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=1024, out_features=3072, bias=True)
+          (dense): Linear(in_features=1024, out_features=1024, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=1024, out_features=4096, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=4096, out_features=1024, bias=True)
+        )
+      )
+      (14): BloomBlock(
+        (input_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=1024, out_features=3072, bias=True)
+          (dense): Linear(in_features=1024, out_features=1024, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=1024, out_features=4096, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=4096, out_features=1024, bias=True)
+        )
+      )
+      (15): BloomBlock(
+        (input_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=1024, out_features=3072, bias=True)
+          (dense): Linear(in_features=1024, out_features=1024, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=1024, out_features=4096, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=4096, out_features=1024, bias=True)
+        )
+      )
+      (16): BloomBlock(
+        (input_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=1024, out_features=3072, bias=True)
+          (dense): Linear(in_features=1024, out_features=1024, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=1024, out_features=4096, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=4096, out_features=1024, bias=True)
+        )
+      )
+      (17): BloomBlock(
+        (input_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=1024, out_features=3072, bias=True)
+          (dense): Linear(in_features=1024, out_features=1024, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=1024, out_features=4096, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=4096, out_features=1024, bias=True)
+        )
+      )
+      (18): BloomBlock(
+        (input_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=1024, out_features=3072, bias=True)
+          (dense): Linear(in_features=1024, out_features=1024, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=1024, out_features=4096, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=4096, out_features=1024, bias=True)
+        )
+      )
+      (19): BloomBlock(
+        (input_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=1024, out_features=3072, bias=True)
+          (dense): Linear(in_features=1024, out_features=1024, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=1024, out_features=4096, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=4096, out_features=1024, bias=True)
+        )
+      )
+      (20): BloomBlock(
+        (input_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=1024, out_features=3072, bias=True)
+          (dense): Linear(in_features=1024, out_features=1024, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=1024, out_features=4096, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=4096, out_features=1024, bias=True)
+        )
+      )
+      (21): BloomBlock(
+        (input_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=1024, out_features=3072, bias=True)
+          (dense): Linear(in_features=1024, out_features=1024, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=1024, out_features=4096, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=4096, out_features=1024, bias=True)
+        )
+      )
+      (22): BloomBlock(
+        (input_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=1024, out_features=3072, bias=True)
+          (dense): Linear(in_features=1024, out_features=1024, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=1024, out_features=4096, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=4096, out_features=1024, bias=True)
+        )
+      )
+      (23): BloomBlock(
+        (input_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=1024, out_features=3072, bias=True)
+          (dense): Linear(in_features=1024, out_features=1024, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=1024, out_features=4096, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=4096, out_features=1024, bias=True)
+        )
+      )
+    )
+    (ln_f): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+  )
+  (lm_head): Linear(in_features=1024, out_features=250880, bias=False)
+)>
+Downloading model: bigscience/bloomz-1b1
+/project/gpuuva021/shared/cot/hf_cache
+Downloading (…)lve/main/config.json:   0%|          | 0.00/715 [00:00<?, ?B/s]Downloading (…)lve/main/config.json: 100%|██████████| 715/715 [00:00<00:00, 2.35MB/s]
+Downloading pytorch_model.bin:   0%|          | 0.00/2.13G [00:00<?, ?B/s]Downloading pytorch_model.bin:   0%|          | 10.5M/2.13G [00:00<02:46, 12.7MB/s]Downloading pytorch_model.bin:   1%|          | 21.0M/2.13G [00:01<01:31, 23.1MB/s]Downloading pytorch_model.bin:   1%|▏         | 31.5M/2.13G [00:01<01:14, 28.2MB/s]Downloading pytorch_model.bin:   2%|▏         | 41.9M/2.13G [00:01<01:06, 31.4MB/s]Downloading pytorch_model.bin:   2%|▏         | 52.4M/2.13G [00:01<00:56, 36.8MB/s]Downloading pytorch_model.bin:   3%|▎         | 62.9M/2.13G [00:02<00:55, 37.1MB/s]Downloading pytorch_model.bin:   3%|▎         | 73.4M/2.13G [00:02<00:54, 37.5MB/s]Downloading pytorch_model.bin:   4%|▍         | 83.9M/2.13G [00:02<00:49, 41.2MB/s]Downloading pytorch_model.bin:   4%|▍         | 94.4M/2.13G [00:02<00:50, 40.2MB/s]Downloading pytorch_model.bin:   5%|▍         | 105M/2.13G [00:02<00:46, 43.5MB/s] Downloading pytorch_model.bin:   5%|▌         | 115M/2.13G [00:03<00:48, 41.4MB/s]Downloading pytorch_model.bin:   6%|▌         | 126M/2.13G [00:03<00:49, 40.5MB/s]Downloading pytorch_model.bin:   6%|▋         | 136M/2.13G [00:03<00:46, 42.8MB/s]Downloading pytorch_model.bin:   7%|▋         | 147M/2.13G [00:04<00:48, 40.8MB/s]Downloading pytorch_model.bin:   7%|▋         | 157M/2.13G [00:04<00:49, 39.7MB/s]Downloading pytorch_model.bin:   8%|▊         | 168M/2.13G [00:04<00:50, 39.0MB/s]Downloading pytorch_model.bin:   8%|▊         | 178M/2.13G [00:04<00:50, 38.6MB/s]Downloading pytorch_model.bin:   9%|▉         | 189M/2.13G [00:05<00:50, 38.4MB/s]Downloading pytorch_model.bin:   9%|▉         | 199M/2.13G [00:05<00:46, 41.9MB/s]Downloading pytorch_model.bin:  10%|▉         | 210M/2.13G [00:05<00:47, 40.5MB/s]Downloading pytorch_model.bin:  10%|█         | 220M/2.13G [00:05<00:49, 39.0MB/s]Downloading pytorch_model.bin:  11%|█         | 231M/2.13G [00:06<00:45, 41.9MB/s]Downloading pytorch_model.bin:  11%|█▏        | 241M/2.13G [00:06<00:46, 40.3MB/s]Downloading pytorch_model.bin:  12%|█▏        | 252M/2.13G [00:06<00:47, 39.3MB/s]Downloading pytorch_model.bin:  12%|█▏        | 262M/2.13G [00:06<00:44, 41.7MB/s]Downloading pytorch_model.bin:  13%|█▎        | 273M/2.13G [00:07<00:45, 40.5MB/s]Downloading pytorch_model.bin:  13%|█▎        | 283M/2.13G [00:07<00:42, 43.6MB/s]Downloading pytorch_model.bin:  14%|█▍        | 294M/2.13G [00:07<00:43, 41.8MB/s]Downloading pytorch_model.bin:  14%|█▍        | 304M/2.13G [00:07<00:44, 40.6MB/s]Downloading pytorch_model.bin:  15%|█▍        | 315M/2.13G [00:08<00:41, 43.5MB/s]Downloading pytorch_model.bin:  15%|█▌        | 325M/2.13G [00:08<00:43, 41.9MB/s]Downloading pytorch_model.bin:  16%|█▌        | 336M/2.13G [00:08<00:40, 44.7MB/s]Downloading pytorch_model.bin:  16%|█▌        | 346M/2.13G [00:08<00:42, 42.4MB/s]Downloading pytorch_model.bin:  17%|█▋        | 357M/2.13G [00:09<00:43, 41.1MB/s]Downloading pytorch_model.bin:  17%|█▋        | 367M/2.13G [00:09<00:40, 43.7MB/s]Downloading pytorch_model.bin:  18%|█▊        | 377M/2.13G [00:09<00:42, 41.7MB/s]Downloading pytorch_model.bin:  18%|█▊        | 388M/2.13G [00:09<00:43, 40.2MB/s]Downloading pytorch_model.bin:  19%|█▊        | 398M/2.13G [00:10<00:40, 43.2MB/s]Downloading pytorch_model.bin:  19%|█▉        | 409M/2.13G [00:10<00:41, 41.5MB/s]Downloading pytorch_model.bin:  20%|█▉        | 419M/2.13G [00:10<00:38, 44.2MB/s]Downloading pytorch_model.bin:  20%|██        | 430M/2.13G [00:10<00:40, 42.2MB/s]Downloading pytorch_model.bin:  21%|██        | 440M/2.13G [00:11<00:41, 40.9MB/s]Downloading pytorch_model.bin:  21%|██        | 451M/2.13G [00:11<00:38, 43.5MB/s]Downloading pytorch_model.bin:  22%|██▏       | 461M/2.13G [00:11<00:39, 41.8MB/s]Downloading pytorch_model.bin:  22%|██▏       | 472M/2.13G [00:11<00:37, 44.7MB/s]Downloading pytorch_model.bin:  23%|██▎       | 482M/2.13G [00:12<00:38, 42.4MB/s]Downloading pytorch_model.bin:  23%|██▎       | 493M/2.13G [00:12<00:40, 40.7MB/s]Downloading pytorch_model.bin:  24%|██▎       | 503M/2.13G [00:12<00:37, 43.7MB/s]Downloading pytorch_model.bin:  24%|██▍       | 514M/2.13G [00:12<00:38, 41.9MB/s]Downloading pytorch_model.bin:  25%|██▍       | 524M/2.13G [00:13<00:39, 40.6MB/s]Downloading pytorch_model.bin:  25%|██▌       | 535M/2.13G [00:13<00:36, 43.3MB/s]Downloading pytorch_model.bin:  26%|██▌       | 545M/2.13G [00:13<00:37, 41.7MB/s]Downloading pytorch_model.bin:  26%|██▌       | 556M/2.13G [00:13<00:39, 40.3MB/s]Downloading pytorch_model.bin:  27%|██▋       | 566M/2.13G [00:14<00:36, 43.1MB/s]Downloading pytorch_model.bin:  27%|██▋       | 577M/2.13G [00:14<00:37, 41.3MB/s]Downloading pytorch_model.bin:  28%|██▊       | 587M/2.13G [00:14<00:36, 41.9MB/s]Downloading pytorch_model.bin:  28%|██▊       | 598M/2.13G [00:14<00:36, 42.3MB/s]Downloading pytorch_model.bin:  29%|██▊       | 608M/2.13G [00:15<00:37, 41.0MB/s]Downloading pytorch_model.bin:  29%|██▉       | 619M/2.13G [00:15<00:34, 43.3MB/s]Downloading pytorch_model.bin:  30%|██▉       | 629M/2.13G [00:15<00:35, 42.0MB/s]Downloading pytorch_model.bin:  30%|███       | 640M/2.13G [00:15<00:33, 45.0MB/s]Downloading pytorch_model.bin:  31%|███       | 650M/2.13G [00:16<00:34, 42.4MB/s]Downloading pytorch_model.bin:  31%|███       | 661M/2.13G [00:16<00:35, 41.3MB/s]Downloading pytorch_model.bin:  31%|███▏      | 671M/2.13G [00:16<00:32, 44.2MB/s]Downloading pytorch_model.bin:  32%|███▏      | 682M/2.13G [00:16<00:34, 42.1MB/s]Downloading pytorch_model.bin:  32%|███▏      | 692M/2.13G [00:17<00:32, 44.6MB/s]Downloading pytorch_model.bin:  33%|███▎      | 703M/2.13G [00:17<00:33, 42.2MB/s]Downloading pytorch_model.bin:  33%|███▎      | 713M/2.13G [00:17<00:34, 41.5MB/s]Downloading pytorch_model.bin:  34%|███▍      | 724M/2.13G [00:17<00:32, 43.2MB/s]Downloading pytorch_model.bin:  34%|███▍      | 734M/2.13G [00:18<00:32, 42.5MB/s]Downloading pytorch_model.bin:  35%|███▍      | 744M/2.13G [00:18<00:31, 44.2MB/s]Downloading pytorch_model.bin:  35%|███▌      | 755M/2.13G [00:18<00:32, 42.0MB/s]Downloading pytorch_model.bin:  36%|███▌      | 765M/2.13G [00:18<00:32, 41.7MB/s]Downloading pytorch_model.bin:  36%|███▋      | 776M/2.13G [00:19<00:31, 43.0MB/s]Downloading pytorch_model.bin:  37%|███▋      | 786M/2.13G [00:19<00:31, 42.8MB/s]Downloading pytorch_model.bin:  37%|███▋      | 797M/2.13G [00:19<00:30, 43.9MB/s]Downloading pytorch_model.bin:  38%|███▊      | 807M/2.13G [00:19<00:31, 42.0MB/s]Downloading pytorch_model.bin:  38%|███▊      | 818M/2.13G [00:20<00:31, 42.0MB/s]Downloading pytorch_model.bin:  39%|███▉      | 828M/2.13G [00:20<00:30, 43.3MB/s]Downloading pytorch_model.bin:  39%|███▉      | 839M/2.13G [00:20<00:30, 42.9MB/s]Downloading pytorch_model.bin:  40%|███▉      | 849M/2.13G [00:20<00:29, 43.6MB/s]Downloading pytorch_model.bin:  40%|████      | 860M/2.13G [00:21<00:30, 41.9MB/s]Downloading pytorch_model.bin:  41%|████      | 870M/2.13G [00:21<00:30, 41.8MB/s]Downloading pytorch_model.bin:  41%|████▏     | 881M/2.13G [00:21<00:28, 43.1MB/s]Downloading pytorch_model.bin:  42%|████▏     | 891M/2.13G [00:21<00:28, 42.9MB/s]Downloading pytorch_model.bin:  42%|████▏     | 902M/2.13G [00:21<00:28, 43.8MB/s]Downloading pytorch_model.bin:  43%|████▎     | 912M/2.13G [00:22<00:29, 41.9MB/s]Downloading pytorch_model.bin:  43%|████▎     | 923M/2.13G [00:22<00:28, 42.3MB/s]Downloading pytorch_model.bin:  44%|████▍     | 933M/2.13G [00:22<00:27, 43.2MB/s]Downloading pytorch_model.bin:  44%|████▍     | 944M/2.13G [00:22<00:27, 43.1MB/s]Downloading pytorch_model.bin:  45%|████▍     | 954M/2.13G [00:23<00:26, 44.0MB/s]Downloading pytorch_model.bin:  45%|████▌     | 965M/2.13G [00:23<00:27, 42.2MB/s]Downloading pytorch_model.bin:  46%|████▌     | 975M/2.13G [00:23<00:27, 42.4MB/s]Downloading pytorch_model.bin:  46%|████▋     | 986M/2.13G [00:23<00:26, 43.2MB/s]Downloading pytorch_model.bin:  47%|████▋     | 996M/2.13G [00:24<00:26, 43.3MB/s]Downloading pytorch_model.bin:  47%|████▋     | 1.01G/2.13G [00:24<00:25, 43.8MB/s]Downloading pytorch_model.bin:  48%|████▊     | 1.02G/2.13G [00:24<00:26, 41.9MB/s]Downloading pytorch_model.bin:  48%|████▊     | 1.03G/2.13G [00:24<00:24, 44.8MB/s]Downloading pytorch_model.bin:  49%|████▊     | 1.04G/2.13G [00:25<00:25, 42.6MB/s]Downloading pytorch_model.bin:  49%|████▉     | 1.05G/2.13G [00:25<00:25, 43.1MB/s]Downloading pytorch_model.bin:  50%|████▉     | 1.06G/2.13G [00:25<00:24, 43.6MB/s]Downloading pytorch_model.bin:  50%|█████     | 1.07G/2.13G [00:25<00:24, 43.8MB/s]Downloading pytorch_model.bin:  51%|█████     | 1.08G/2.13G [00:26<00:23, 44.0MB/s]Downloading pytorch_model.bin:  51%|█████     | 1.09G/2.13G [00:26<00:24, 42.0MB/s]Downloading pytorch_model.bin:  52%|█████▏    | 1.10G/2.13G [00:26<00:23, 43.0MB/s]Downloading pytorch_model.bin:  52%|█████▏    | 1.11G/2.13G [00:26<00:23, 43.0MB/s]Downloading pytorch_model.bin:  53%|█████▎    | 1.12G/2.13G [00:27<00:22, 44.0MB/s]Downloading pytorch_model.bin:  53%|█████▎    | 1.13G/2.13G [00:27<00:22, 43.8MB/s]Downloading pytorch_model.bin:  54%|█████▎    | 1.14G/2.13G [00:27<00:23, 41.9MB/s]Downloading pytorch_model.bin:  54%|█████▍    | 1.15G/2.13G [00:27<00:22, 42.9MB/s]Downloading pytorch_model.bin:  55%|█████▍    | 1.16G/2.13G [00:28<00:22, 43.0MB/s]Downloading pytorch_model.bin:  55%|█████▌    | 1.17G/2.13G [00:28<00:21, 43.9MB/s]Downloading pytorch_model.bin:  56%|█████▌    | 1.18G/2.13G [00:28<00:21, 43.4MB/s]Downloading pytorch_model.bin:  56%|█████▌    | 1.20G/2.13G [00:28<00:22, 41.6MB/s]Downloading pytorch_model.bin:  57%|█████▋    | 1.21G/2.13G [00:29<00:21, 42.5MB/s]Downloading pytorch_model.bin:  57%|█████▋    | 1.22G/2.13G [00:29<00:21, 42.9MB/s]Downloading pytorch_model.bin:  58%|█████▊    | 1.23G/2.13G [00:29<00:20, 43.6MB/s]Downloading pytorch_model.bin:  58%|█████▊    | 1.24G/2.13G [00:29<00:20, 43.6MB/s]Downloading pytorch_model.bin:  59%|█████▊    | 1.25G/2.13G [00:30<00:21, 41.8MB/s]Downloading pytorch_model.bin:  59%|█████▉    | 1.26G/2.13G [00:30<00:21, 40.4MB/s]Downloading pytorch_model.bin:  60%|█████▉    | 1.27G/2.13G [00:30<00:21, 39.8MB/s]Downloading pytorch_model.bin:  60%|██████    | 1.28G/2.13G [00:30<00:19, 43.0MB/s]Downloading pytorch_model.bin:  61%|██████    | 1.29G/2.13G [00:31<00:20, 41.5MB/s]Downloading pytorch_model.bin:  61%|██████    | 1.30G/2.13G [00:31<00:18, 44.6MB/s]Downloading pytorch_model.bin:  62%|██████▏   | 1.31G/2.13G [00:31<00:19, 42.1MB/s]Downloading pytorch_model.bin:  62%|██████▏   | 1.32G/2.13G [00:31<00:19, 40.9MB/s]Downloading pytorch_model.bin:  62%|██████▏   | 1.33G/2.13G [00:32<00:18, 43.3MB/s]Downloading pytorch_model.bin:  63%|██████▎   | 1.34G/2.13G [00:32<00:18, 41.8MB/s]Downloading pytorch_model.bin:  63%|██████▎   | 1.35G/2.13G [00:32<00:19, 40.7MB/s]Downloading pytorch_model.bin:  64%|██████▍   | 1.36G/2.13G [00:32<00:17, 43.7MB/s]Downloading pytorch_model.bin:  64%|██████▍   | 1.37G/2.13G [00:33<00:18, 41.7MB/s]Downloading pytorch_model.bin:  65%|██████▍   | 1.38G/2.13G [00:33<00:18, 40.4MB/s]Downloading pytorch_model.bin:  65%|██████▌   | 1.39G/2.13G [00:33<00:16, 43.5MB/s]Downloading pytorch_model.bin:  66%|██████▌   | 1.41G/2.13G [00:33<00:17, 41.6MB/s]Downloading pytorch_model.bin:  66%|██████▋   | 1.42G/2.13G [00:34<00:17, 40.5MB/s]Downloading pytorch_model.bin:  67%|██████▋   | 1.43G/2.13G [00:34<00:16, 43.7MB/s]Downloading pytorch_model.bin:  67%|██████▋   | 1.44G/2.13G [00:34<00:16, 41.7MB/s]Downloading pytorch_model.bin:  68%|██████▊   | 1.45G/2.13G [00:34<00:16, 40.5MB/s]Downloading pytorch_model.bin:  68%|██████▊   | 1.46G/2.13G [00:35<00:15, 43.6MB/s]Downloading pytorch_model.bin:  69%|██████▉   | 1.47G/2.13G [00:35<00:15, 41.5MB/s]Downloading pytorch_model.bin:  69%|██████▉   | 1.48G/2.13G [00:35<00:16, 40.3MB/s]Downloading pytorch_model.bin:  70%|██████▉   | 1.49G/2.13G [00:35<00:16, 39.4MB/s]Downloading pytorch_model.bin:  70%|███████   | 1.50G/2.13G [00:36<00:14, 42.7MB/s]Downloading pytorch_model.bin:  71%|███████   | 1.51G/2.13G [00:36<00:15, 41.0MB/s]Downloading pytorch_model.bin:  71%|███████▏  | 1.52G/2.13G [00:36<00:15, 40.0MB/s]Downloading pytorch_model.bin:  72%|███████▏  | 1.53G/2.13G [00:36<00:13, 43.2MB/s]Downloading pytorch_model.bin:  72%|███████▏  | 1.54G/2.13G [00:37<00:14, 41.7MB/s]Downloading pytorch_model.bin:  73%|███████▎  | 1.55G/2.13G [00:37<00:13, 44.4MB/s]Downloading pytorch_model.bin:  73%|███████▎  | 1.56G/2.13G [00:37<00:13, 42.2MB/s]Downloading pytorch_model.bin:  74%|███████▍  | 1.57G/2.13G [00:37<00:13, 40.8MB/s]Downloading pytorch_model.bin:  74%|███████▍  | 1.58G/2.13G [00:38<00:13, 39.7MB/s]Downloading pytorch_model.bin:  75%|███████▍  | 1.59G/2.13G [00:38<00:12, 43.0MB/s]Downloading pytorch_model.bin:  75%|███████▌  | 1.60G/2.13G [00:38<00:12, 41.3MB/s]Downloading pytorch_model.bin:  76%|███████▌  | 1.61G/2.13G [00:38<00:12, 40.2MB/s]Downloading pytorch_model.bin:  76%|███████▋  | 1.63G/2.13G [00:39<00:11, 42.8MB/s]Downloading pytorch_model.bin:  77%|███████▋  | 1.64G/2.13G [00:39<00:12, 41.0MB/s]Downloading pytorch_model.bin:  77%|███████▋  | 1.65G/2.13G [00:39<00:12, 40.2MB/s]Downloading pytorch_model.bin:  78%|███████▊  | 1.66G/2.13G [00:39<00:10, 43.3MB/s]Downloading pytorch_model.bin:  78%|███████▊  | 1.67G/2.13G [00:40<00:11, 41.7MB/s]Downloading pytorch_model.bin:  79%|███████▊  | 1.68G/2.13G [00:40<00:10, 44.8MB/s]Downloading pytorch_model.bin:  79%|███████▉  | 1.69G/2.13G [00:40<00:10, 42.2MB/s]Downloading pytorch_model.bin:  80%|███████▉  | 1.70G/2.13G [00:40<00:10, 40.7MB/s]Downloading pytorch_model.bin:  80%|████████  | 1.71G/2.13G [00:41<00:09, 43.8MB/s]Downloading pytorch_model.bin:  81%|████████  | 1.72G/2.13G [00:41<00:09, 41.8MB/s]Downloading pytorch_model.bin:  81%|████████  | 1.73G/2.13G [00:41<00:09, 40.7MB/s]Downloading pytorch_model.bin:  82%|████████▏ | 1.74G/2.13G [00:41<00:08, 43.8MB/s]Downloading pytorch_model.bin:  82%|████████▏ | 1.75G/2.13G [00:42<00:09, 41.9MB/s]Downloading pytorch_model.bin:  83%|████████▎ | 1.76G/2.13G [00:42<00:08, 44.5MB/s]Downloading pytorch_model.bin:  83%|████████▎ | 1.77G/2.13G [00:42<00:08, 42.0MB/s]Downloading pytorch_model.bin:  84%|████████▎ | 1.78G/2.13G [00:42<00:08, 40.8MB/s]Downloading pytorch_model.bin:  84%|████████▍ | 1.79G/2.13G [00:43<00:07, 43.9MB/s]Downloading pytorch_model.bin:  85%|████████▍ | 1.80G/2.13G [00:43<00:07, 42.0MB/s]Downloading pytorch_model.bin:  85%|████████▌ | 1.81G/2.13G [00:43<00:07, 40.8MB/s]Downloading pytorch_model.bin:  86%|████████▌ | 1.82G/2.13G [00:43<00:06, 43.8MB/s]Downloading pytorch_model.bin:  86%|████████▌ | 1.84G/2.13G [00:44<00:07, 41.5MB/s]Downloading pytorch_model.bin:  87%|████████▋ | 1.85G/2.13G [00:44<00:06, 44.1MB/s]Downloading pytorch_model.bin:  87%|████████▋ | 1.86G/2.13G [00:44<00:06, 42.1MB/s]Downloading pytorch_model.bin:  88%|████████▊ | 1.87G/2.13G [00:44<00:06, 41.0MB/s]Downloading pytorch_model.bin:  88%|████████▊ | 1.88G/2.13G [00:44<00:05, 43.7MB/s]Downloading pytorch_model.bin:  89%|████████▊ | 1.89G/2.13G [00:45<00:05, 42.0MB/s]Downloading pytorch_model.bin:  89%|████████▉ | 1.90G/2.13G [00:45<00:05, 44.4MB/s]Downloading pytorch_model.bin:  90%|████████▉ | 1.91G/2.13G [00:45<00:05, 42.9MB/s]Downloading pytorch_model.bin:  90%|█████████ | 1.92G/2.13G [00:46<00:05, 41.3MB/s]Downloading pytorch_model.bin:  91%|█████████ | 1.93G/2.13G [00:46<00:04, 43.7MB/s]Downloading pytorch_model.bin:  91%|█████████ | 1.94G/2.13G [00:46<00:04, 42.2MB/s]Downloading pytorch_model.bin:  92%|█████████▏| 1.95G/2.13G [00:46<00:04, 40.9MB/s]Downloading pytorch_model.bin:  92%|█████████▏| 1.96G/2.13G [00:46<00:03, 43.3MB/s]Downloading pytorch_model.bin:  93%|█████████▎| 1.97G/2.13G [00:47<00:03, 42.2MB/s]Downloading pytorch_model.bin:  93%|█████████▎| 1.98G/2.13G [00:47<00:03, 44.5MB/s]Downloading pytorch_model.bin:  94%|█████████▎| 1.99G/2.13G [00:47<00:03, 42.8MB/s]Downloading pytorch_model.bin:  94%|█████████▍| 2.00G/2.13G [00:47<00:03, 41.2MB/s]Downloading pytorch_model.bin:  94%|█████████▍| 2.01G/2.13G [00:48<00:02, 43.7MB/s]Downloading pytorch_model.bin:  95%|█████████▍| 2.02G/2.13G [00:48<00:02, 42.3MB/s]Downloading pytorch_model.bin:  95%|█████████▌| 2.03G/2.13G [00:48<00:02, 44.4MB/s]Downloading pytorch_model.bin:  96%|█████████▌| 2.04G/2.13G [00:48<00:02, 42.8MB/s]Downloading pytorch_model.bin:  96%|█████████▋| 2.06G/2.13G [00:49<00:01, 41.4MB/s]Downloading pytorch_model.bin:  97%|█████████▋| 2.07G/2.13G [00:49<00:01, 44.0MB/s]Downloading pytorch_model.bin:  97%|█████████▋| 2.08G/2.13G [00:49<00:01, 42.4MB/s]Downloading pytorch_model.bin:  98%|█████████▊| 2.09G/2.13G [00:49<00:00, 44.7MB/s]Downloading pytorch_model.bin:  98%|█████████▊| 2.10G/2.13G [00:50<00:00, 42.8MB/s]Downloading pytorch_model.bin:  99%|█████████▉| 2.11G/2.13G [00:50<00:00, 44.8MB/s]Downloading pytorch_model.bin:  99%|█████████▉| 2.12G/2.13G [00:50<00:00, 43.3MB/s]Downloading pytorch_model.bin: 100%|█████████▉| 2.13G/2.13G [00:50<00:00, 41.5MB/s]Downloading pytorch_model.bin: 100%|██████████| 2.13G/2.13G [00:50<00:00, 41.8MB/s]
+Downloading (…)okenizer_config.json:   0%|          | 0.00/222 [00:00<?, ?B/s]Downloading (…)okenizer_config.json: 100%|██████████| 222/222 [00:00<00:00, 706kB/s]
+Downloading tokenizer.json:   0%|          | 0.00/14.5M [00:00<?, ?B/s]Downloading tokenizer.json:  72%|███████▏  | 10.5M/14.5M [00:00<00:00, 42.4MB/s]Downloading tokenizer.json: 100%|██████████| 14.5M/14.5M [00:00<00:00, 55.2MB/s]
+Downloading (…)cial_tokens_map.json:   0%|          | 0.00/85.0 [00:00<?, ?B/s]Downloading (…)cial_tokens_map.json: 100%|██████████| 85.0/85.0 [00:00<00:00, 283kB/s]
+Vocab size: 250680.
+Model parameters: <bound method ModuleUtilsMixin.num_parameters of BloomForCausalLM(
+  (transformer): BloomModel(
+    (word_embeddings): Embedding(250880, 1536)
+    (word_embeddings_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+    (h): ModuleList(
+      (0): BloomBlock(
+        (input_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=1536, out_features=4608, bias=True)
+          (dense): Linear(in_features=1536, out_features=1536, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=1536, out_features=6144, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=6144, out_features=1536, bias=True)
+        )
+      )
+      (1): BloomBlock(
+        (input_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=1536, out_features=4608, bias=True)
+          (dense): Linear(in_features=1536, out_features=1536, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=1536, out_features=6144, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=6144, out_features=1536, bias=True)
+        )
+      )
+      (2): BloomBlock(
+        (input_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=1536, out_features=4608, bias=True)
+          (dense): Linear(in_features=1536, out_features=1536, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=1536, out_features=6144, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=6144, out_features=1536, bias=True)
+        )
+      )
+      (3): BloomBlock(
+        (input_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=1536, out_features=4608, bias=True)
+          (dense): Linear(in_features=1536, out_features=1536, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=1536, out_features=6144, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=6144, out_features=1536, bias=True)
+        )
+      )
+      (4): BloomBlock(
+        (input_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=1536, out_features=4608, bias=True)
+          (dense): Linear(in_features=1536, out_features=1536, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=1536, out_features=6144, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=6144, out_features=1536, bias=True)
+        )
+      )
+      (5): BloomBlock(
+        (input_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=1536, out_features=4608, bias=True)
+          (dense): Linear(in_features=1536, out_features=1536, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=1536, out_features=6144, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=6144, out_features=1536, bias=True)
+        )
+      )
+      (6): BloomBlock(
+        (input_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=1536, out_features=4608, bias=True)
+          (dense): Linear(in_features=1536, out_features=1536, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=1536, out_features=6144, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=6144, out_features=1536, bias=True)
+        )
+      )
+      (7): BloomBlock(
+        (input_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=1536, out_features=4608, bias=True)
+          (dense): Linear(in_features=1536, out_features=1536, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=1536, out_features=6144, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=6144, out_features=1536, bias=True)
+        )
+      )
+      (8): BloomBlock(
+        (input_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=1536, out_features=4608, bias=True)
+          (dense): Linear(in_features=1536, out_features=1536, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=1536, out_features=6144, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=6144, out_features=1536, bias=True)
+        )
+      )
+      (9): BloomBlock(
+        (input_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=1536, out_features=4608, bias=True)
+          (dense): Linear(in_features=1536, out_features=1536, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=1536, out_features=6144, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=6144, out_features=1536, bias=True)
+        )
+      )
+      (10): BloomBlock(
+        (input_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=1536, out_features=4608, bias=True)
+          (dense): Linear(in_features=1536, out_features=1536, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=1536, out_features=6144, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=6144, out_features=1536, bias=True)
+        )
+      )
+      (11): BloomBlock(
+        (input_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=1536, out_features=4608, bias=True)
+          (dense): Linear(in_features=1536, out_features=1536, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=1536, out_features=6144, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=6144, out_features=1536, bias=True)
+        )
+      )
+      (12): BloomBlock(
+        (input_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=1536, out_features=4608, bias=True)
+          (dense): Linear(in_features=1536, out_features=1536, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=1536, out_features=6144, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=6144, out_features=1536, bias=True)
+        )
+      )
+      (13): BloomBlock(
+        (input_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=1536, out_features=4608, bias=True)
+          (dense): Linear(in_features=1536, out_features=1536, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=1536, out_features=6144, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=6144, out_features=1536, bias=True)
+        )
+      )
+      (14): BloomBlock(
+        (input_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=1536, out_features=4608, bias=True)
+          (dense): Linear(in_features=1536, out_features=1536, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=1536, out_features=6144, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=6144, out_features=1536, bias=True)
+        )
+      )
+      (15): BloomBlock(
+        (input_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=1536, out_features=4608, bias=True)
+          (dense): Linear(in_features=1536, out_features=1536, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=1536, out_features=6144, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=6144, out_features=1536, bias=True)
+        )
+      )
+      (16): BloomBlock(
+        (input_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=1536, out_features=4608, bias=True)
+          (dense): Linear(in_features=1536, out_features=1536, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=1536, out_features=6144, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=6144, out_features=1536, bias=True)
+        )
+      )
+      (17): BloomBlock(
+        (input_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=1536, out_features=4608, bias=True)
+          (dense): Linear(in_features=1536, out_features=1536, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=1536, out_features=6144, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=6144, out_features=1536, bias=True)
+        )
+      )
+      (18): BloomBlock(
+        (input_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=1536, out_features=4608, bias=True)
+          (dense): Linear(in_features=1536, out_features=1536, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=1536, out_features=6144, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=6144, out_features=1536, bias=True)
+        )
+      )
+      (19): BloomBlock(
+        (input_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=1536, out_features=4608, bias=True)
+          (dense): Linear(in_features=1536, out_features=1536, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=1536, out_features=6144, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=6144, out_features=1536, bias=True)
+        )
+      )
+      (20): BloomBlock(
+        (input_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=1536, out_features=4608, bias=True)
+          (dense): Linear(in_features=1536, out_features=1536, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=1536, out_features=6144, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=6144, out_features=1536, bias=True)
+        )
+      )
+      (21): BloomBlock(
+        (input_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=1536, out_features=4608, bias=True)
+          (dense): Linear(in_features=1536, out_features=1536, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=1536, out_features=6144, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=6144, out_features=1536, bias=True)
+        )
+      )
+      (22): BloomBlock(
+        (input_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=1536, out_features=4608, bias=True)
+          (dense): Linear(in_features=1536, out_features=1536, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=1536, out_features=6144, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=6144, out_features=1536, bias=True)
+        )
+      )
+      (23): BloomBlock(
+        (input_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=1536, out_features=4608, bias=True)
+          (dense): Linear(in_features=1536, out_features=1536, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=1536, out_features=6144, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=6144, out_features=1536, bias=True)
+        )
+      )
+    )
+    (ln_f): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+  )
+  (lm_head): Linear(in_features=1536, out_features=250880, bias=False)
+)>
+Downloading model: bigscience/bloomz-1b7
+/project/gpuuva021/shared/cot/hf_cache
+Downloading (…)lve/main/config.json:   0%|          | 0.00/715 [00:00<?, ?B/s]Downloading (…)lve/main/config.json: 100%|██████████| 715/715 [00:00<00:00, 2.32MB/s]
+Downloading pytorch_model.bin:   0%|          | 0.00/3.44G [00:00<?, ?B/s]Downloading pytorch_model.bin:   2%|▏         | 52.4M/3.44G [00:00<00:07, 472MB/s]Downloading pytorch_model.bin:   3%|▎         | 115M/3.44G [00:00<00:06, 509MB/s] Downloading pytorch_model.bin:   5%|▌         | 178M/3.44G [00:00<00:06, 522MB/s]Downloading pytorch_model.bin:   7%|▋         | 241M/3.44G [00:00<00:06, 527MB/s]Downloading pytorch_model.bin:   9%|▉         | 304M/3.44G [00:00<00:05, 530MB/s]Downloading pytorch_model.bin:  11%|█         | 367M/3.44G [00:00<00:05, 532MB/s]Downloading pytorch_model.bin:  12%|█▏        | 430M/3.44G [00:00<00:05, 514MB/s]Downloading pytorch_model.bin:  14%|█▍        | 482M/3.44G [00:00<00:06, 483MB/s]Downloading pytorch_model.bin:  16%|█▌        | 535M/3.44G [00:01<00:05, 494MB/s]Downloading pytorch_model.bin:  17%|█▋        | 598M/3.44G [00:01<00:05, 507MB/s]Downloading pytorch_model.bin:  19%|█▉        | 650M/3.44G [00:01<00:05, 473MB/s]Downloading pytorch_model.bin:  20%|██        | 703M/3.44G [00:01<00:05, 467MB/s]Downloading pytorch_model.bin:  22%|██▏       | 755M/3.44G [00:01<00:05, 476MB/s]Downloading pytorch_model.bin:  23%|██▎       | 807M/3.44G [00:01<00:05, 473MB/s]Downloading pytorch_model.bin:  25%|██▌       | 870M/3.44G [00:01<00:05, 493MB/s]Downloading pytorch_model.bin:  27%|██▋       | 923M/3.44G [00:01<00:05, 487MB/s]Downloading pytorch_model.bin:  28%|██▊       | 975M/3.44G [00:01<00:05, 456MB/s]Downloading pytorch_model.bin:  30%|██▉       | 1.03G/3.44G [00:02<00:05, 446MB/s]Downloading pytorch_model.bin:  32%|███▏      | 1.09G/3.44G [00:02<00:04, 475MB/s]Downloading pytorch_model.bin:  33%|███▎      | 1.15G/3.44G [00:02<00:04, 496MB/s]Downloading pytorch_model.bin:  35%|███▌      | 1.22G/3.44G [00:02<00:04, 511MB/s]Downloading pytorch_model.bin:  37%|███▋      | 1.28G/3.44G [00:02<00:04, 522MB/s]Downloading pytorch_model.bin:  39%|███▉      | 1.34G/3.44G [00:02<00:03, 529MB/s]Downloading pytorch_model.bin:  41%|████      | 1.41G/3.44G [00:02<00:03, 536MB/s]Downloading pytorch_model.bin:  43%|████▎     | 1.47G/3.44G [00:02<00:03, 538MB/s]Downloading pytorch_model.bin:  44%|████▍     | 1.53G/3.44G [00:03<00:03, 543MB/s]Downloading pytorch_model.bin:  46%|████▋     | 1.59G/3.44G [00:03<00:03, 520MB/s]Downloading pytorch_model.bin:  48%|████▊     | 1.66G/3.44G [00:03<00:03, 526MB/s]Downloading pytorch_model.bin:  50%|████▉     | 1.72G/3.44G [00:03<00:03, 532MB/s]Downloading pytorch_model.bin:  52%|█████▏    | 1.78G/3.44G [00:03<00:03, 526MB/s]Downloading pytorch_model.bin:  54%|█████▎    | 1.85G/3.44G [00:03<00:03, 502MB/s]Downloading pytorch_model.bin:  55%|█████▌    | 1.90G/3.44G [00:03<00:03, 492MB/s]Downloading pytorch_model.bin:  57%|█████▋    | 1.96G/3.44G [00:03<00:02, 507MB/s]Downloading pytorch_model.bin:  59%|█████▊    | 2.02G/3.44G [00:04<00:02, 518MB/s]Downloading pytorch_model.bin:  61%|██████    | 2.09G/3.44G [00:04<00:02, 528MB/s]Downloading pytorch_model.bin:  62%|██████▏   | 2.15G/3.44G [00:04<00:02, 535MB/s]Downloading pytorch_model.bin:  64%|██████▍   | 2.21G/3.44G [00:04<00:02, 540MB/s]Downloading pytorch_model.bin:  66%|██████▌   | 2.28G/3.44G [00:04<00:02, 545MB/s]Downloading pytorch_model.bin:  68%|██████▊   | 2.34G/3.44G [00:04<00:02, 547MB/s]Downloading pytorch_model.bin:  70%|██████▉   | 2.40G/3.44G [00:04<00:01, 551MB/s]Downloading pytorch_model.bin:  72%|███████▏  | 2.46G/3.44G [00:04<00:01, 553MB/s]Downloading pytorch_model.bin:  73%|███████▎  | 2.53G/3.44G [00:04<00:01, 555MB/s]Downloading pytorch_model.bin:  75%|███████▌  | 2.59G/3.44G [00:05<00:01, 537MB/s]Downloading pytorch_model.bin:  77%|███████▋  | 2.65G/3.44G [00:05<00:01, 507MB/s]Downloading pytorch_model.bin:  79%|███████▉  | 2.72G/3.44G [00:05<00:01, 519MB/s]Downloading pytorch_model.bin:  80%|████████  | 2.77G/3.44G [00:05<00:01, 479MB/s]Downloading pytorch_model.bin:  82%|████████▏ | 2.83G/3.44G [00:05<00:01, 494MB/s]Downloading pytorch_model.bin:  84%|████████▎ | 2.88G/3.44G [00:05<00:01, 494MB/s]Downloading pytorch_model.bin:  85%|████████▌ | 2.94G/3.44G [00:05<00:01, 486MB/s]Downloading pytorch_model.bin:  87%|████████▋ | 2.99G/3.44G [00:05<00:00, 485MB/s]Downloading pytorch_model.bin:  89%|████████▊ | 3.05G/3.44G [00:05<00:00, 505MB/s]Downloading pytorch_model.bin:  90%|█████████ | 3.11G/3.44G [00:06<00:00, 520MB/s]Downloading pytorch_model.bin:  92%|█████████▏| 3.18G/3.44G [00:06<00:00, 532MB/s]Downloading pytorch_model.bin:  94%|█████████▍| 3.24G/3.44G [00:06<00:00, 541MB/s]Downloading pytorch_model.bin:  96%|█████████▌| 3.30G/3.44G [00:06<00:00, 546MB/s]Downloading pytorch_model.bin:  98%|█████████▊| 3.37G/3.44G [00:06<00:00, 550MB/s]Downloading pytorch_model.bin: 100%|█████████▉| 3.43G/3.44G [00:06<00:00, 544MB/s]Downloading pytorch_model.bin: 100%|██████████| 3.44G/3.44G [00:06<00:00, 514MB/s]
+Downloading (…)okenizer_config.json:   0%|          | 0.00/222 [00:00<?, ?B/s]Downloading (…)okenizer_config.json: 100%|██████████| 222/222 [00:00<00:00, 716kB/s]
+Downloading tokenizer.json:   0%|          | 0.00/14.5M [00:00<?, ?B/s]Downloading tokenizer.json: 100%|██████████| 14.5M/14.5M [00:00<00:00, 426MB/s]
+Downloading (…)cial_tokens_map.json:   0%|          | 0.00/85.0 [00:00<?, ?B/s]Downloading (…)cial_tokens_map.json: 100%|██████████| 85.0/85.0 [00:00<00:00, 287kB/s]
+Vocab size: 250680.
+Model parameters: <bound method ModuleUtilsMixin.num_parameters of BloomForCausalLM(
+  (transformer): BloomModel(
+    (word_embeddings): Embedding(250880, 2048)
+    (word_embeddings_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+    (h): ModuleList(
+      (0): BloomBlock(
+        (input_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2048, out_features=6144, bias=True)
+          (dense): Linear(in_features=2048, out_features=2048, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2048, out_features=8192, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=8192, out_features=2048, bias=True)
+        )
+      )
+      (1): BloomBlock(
+        (input_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2048, out_features=6144, bias=True)
+          (dense): Linear(in_features=2048, out_features=2048, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2048, out_features=8192, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=8192, out_features=2048, bias=True)
+        )
+      )
+      (2): BloomBlock(
+        (input_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2048, out_features=6144, bias=True)
+          (dense): Linear(in_features=2048, out_features=2048, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2048, out_features=8192, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=8192, out_features=2048, bias=True)
+        )
+      )
+      (3): BloomBlock(
+        (input_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2048, out_features=6144, bias=True)
+          (dense): Linear(in_features=2048, out_features=2048, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2048, out_features=8192, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=8192, out_features=2048, bias=True)
+        )
+      )
+      (4): BloomBlock(
+        (input_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2048, out_features=6144, bias=True)
+          (dense): Linear(in_features=2048, out_features=2048, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2048, out_features=8192, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=8192, out_features=2048, bias=True)
+        )
+      )
+      (5): BloomBlock(
+        (input_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2048, out_features=6144, bias=True)
+          (dense): Linear(in_features=2048, out_features=2048, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2048, out_features=8192, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=8192, out_features=2048, bias=True)
+        )
+      )
+      (6): BloomBlock(
+        (input_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2048, out_features=6144, bias=True)
+          (dense): Linear(in_features=2048, out_features=2048, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2048, out_features=8192, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=8192, out_features=2048, bias=True)
+        )
+      )
+      (7): BloomBlock(
+        (input_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2048, out_features=6144, bias=True)
+          (dense): Linear(in_features=2048, out_features=2048, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2048, out_features=8192, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=8192, out_features=2048, bias=True)
+        )
+      )
+      (8): BloomBlock(
+        (input_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2048, out_features=6144, bias=True)
+          (dense): Linear(in_features=2048, out_features=2048, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2048, out_features=8192, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=8192, out_features=2048, bias=True)
+        )
+      )
+      (9): BloomBlock(
+        (input_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2048, out_features=6144, bias=True)
+          (dense): Linear(in_features=2048, out_features=2048, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2048, out_features=8192, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=8192, out_features=2048, bias=True)
+        )
+      )
+      (10): BloomBlock(
+        (input_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2048, out_features=6144, bias=True)
+          (dense): Linear(in_features=2048, out_features=2048, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2048, out_features=8192, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=8192, out_features=2048, bias=True)
+        )
+      )
+      (11): BloomBlock(
+        (input_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2048, out_features=6144, bias=True)
+          (dense): Linear(in_features=2048, out_features=2048, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2048, out_features=8192, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=8192, out_features=2048, bias=True)
+        )
+      )
+      (12): BloomBlock(
+        (input_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2048, out_features=6144, bias=True)
+          (dense): Linear(in_features=2048, out_features=2048, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2048, out_features=8192, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=8192, out_features=2048, bias=True)
+        )
+      )
+      (13): BloomBlock(
+        (input_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2048, out_features=6144, bias=True)
+          (dense): Linear(in_features=2048, out_features=2048, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2048, out_features=8192, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=8192, out_features=2048, bias=True)
+        )
+      )
+      (14): BloomBlock(
+        (input_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2048, out_features=6144, bias=True)
+          (dense): Linear(in_features=2048, out_features=2048, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2048, out_features=8192, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=8192, out_features=2048, bias=True)
+        )
+      )
+      (15): BloomBlock(
+        (input_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2048, out_features=6144, bias=True)
+          (dense): Linear(in_features=2048, out_features=2048, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2048, out_features=8192, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=8192, out_features=2048, bias=True)
+        )
+      )
+      (16): BloomBlock(
+        (input_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2048, out_features=6144, bias=True)
+          (dense): Linear(in_features=2048, out_features=2048, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2048, out_features=8192, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=8192, out_features=2048, bias=True)
+        )
+      )
+      (17): BloomBlock(
+        (input_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2048, out_features=6144, bias=True)
+          (dense): Linear(in_features=2048, out_features=2048, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2048, out_features=8192, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=8192, out_features=2048, bias=True)
+        )
+      )
+      (18): BloomBlock(
+        (input_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2048, out_features=6144, bias=True)
+          (dense): Linear(in_features=2048, out_features=2048, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2048, out_features=8192, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=8192, out_features=2048, bias=True)
+        )
+      )
+      (19): BloomBlock(
+        (input_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2048, out_features=6144, bias=True)
+          (dense): Linear(in_features=2048, out_features=2048, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2048, out_features=8192, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=8192, out_features=2048, bias=True)
+        )
+      )
+      (20): BloomBlock(
+        (input_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2048, out_features=6144, bias=True)
+          (dense): Linear(in_features=2048, out_features=2048, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2048, out_features=8192, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=8192, out_features=2048, bias=True)
+        )
+      )
+      (21): BloomBlock(
+        (input_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2048, out_features=6144, bias=True)
+          (dense): Linear(in_features=2048, out_features=2048, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2048, out_features=8192, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=8192, out_features=2048, bias=True)
+        )
+      )
+      (22): BloomBlock(
+        (input_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2048, out_features=6144, bias=True)
+          (dense): Linear(in_features=2048, out_features=2048, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2048, out_features=8192, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=8192, out_features=2048, bias=True)
+        )
+      )
+      (23): BloomBlock(
+        (input_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+        (self_attention): BloomAttention(
+          (query_key_value): Linear(in_features=2048, out_features=6144, bias=True)
+          (dense): Linear(in_features=2048, out_features=2048, bias=True)
+          (attention_dropout): Dropout(p=0.0, inplace=False)
+        )
+        (post_attention_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+        (mlp): BloomMLP(
+          (dense_h_to_4h): Linear(in_features=2048, out_features=8192, bias=True)
+          (gelu_impl): BloomGelu()
+          (dense_4h_to_h): Linear(in_features=8192, out_features=2048, bias=True)
+        )
+      )
+    )
+    (ln_f): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
+  )
+  (lm_head): Linear(in_features=2048, out_features=250880, bias=False)
+)>
+Downloading model: bigscience/bloomz-3b
+/project/gpuuva021/shared/cot/hf_cache
+Downloading (…)lve/main/config.json:   0%|          | 0.00/715 [00:00<?, ?B/s]Downloading (…)lve/main/config.json: 100%|██████████| 715/715 [00:00<00:00, 2.28MB/s]
+Downloading pytorch_model.bin:   0%|          | 0.00/6.01G [00:00<?, ?B/s]Downloading pytorch_model.bin:   0%|          | 10.5M/6.01G [00:00<01:09, 86.6MB/s]Downloading pytorch_model.bin:   1%|          | 31.5M/6.01G [00:00<00:41, 145MB/s] Downloading pytorch_model.bin:   1%|          | 62.9M/6.01G [00:00<00:34, 171MB/s]Downloading pytorch_model.bin:   1%|▏         | 83.9M/6.01G [00:00<00:36, 161MB/s]Downloading pytorch_model.bin:   2%|▏         | 115M/6.01G [00:00<00:28, 204MB/s] Downloading pytorch_model.bin:   3%|▎         | 157M/6.01G [00:00<00:23, 245MB/s]Downloading pytorch_model.bin:   3%|▎         | 189M/6.01G [00:00<00:22, 260MB/s]Downloading pytorch_model.bin:   4%|▍         | 241M/6.01G [00:01<00:18, 309MB/s]Downloading pytorch_model.bin:   5%|▍         | 273M/6.01G [00:01<00:19, 287MB/s]Downloading pytorch_model.bin:   5%|▌         | 325M/6.01G [00:01<00:17, 329MB/s]Downloading pytorch_model.bin:   6%|▌         | 367M/6.01G [00:01<00:16, 340MB/s]Downloading pytorch_model.bin:   7%|▋         | 409M/6.01G [00:01<00:15, 352MB/s]Downloading pytorch_model.bin:   8%|▊         | 451M/6.01G [00:01<00:16, 339MB/s]Downloading pytorch_model.bin:   8%|▊         | 493M/6.01G [00:01<00:15, 353MB/s]Downloading pytorch_model.bin:   9%|▉         | 535M/6.01G [00:01<00:16, 335MB/s]Downloading pytorch_model.bin:  10%|▉         | 577M/6.01G [00:02<00:17, 314MB/s]Downloading pytorch_model.bin:  10%|█         | 619M/6.01G [00:02<00:16, 318MB/s]Downloading pytorch_model.bin:  11%|█         | 661M/6.01G [00:02<00:16, 329MB/s]Downloading pytorch_model.bin:  12%|█▏        | 703M/6.01G [00:02<00:15, 338MB/s]Downloading pytorch_model.bin:  12%|█▏        | 744M/6.01G [00:02<00:16, 328MB/s]Downloading pytorch_model.bin:  13%|█▎        | 786M/6.01G [00:02<00:14, 349MB/s]Downloading pytorch_model.bin:  14%|█▍        | 828M/6.01G [00:02<00:15, 345MB/s]Downloading pytorch_model.bin:  14%|█▍        | 870M/6.01G [00:02<00:15, 342MB/s]Downloading pytorch_model.bin:  15%|█▌        | 912M/6.01G [00:03<00:15, 328MB/s]Downloading pytorch_model.bin:  16%|█▌        | 954M/6.01G [00:03<00:15, 329MB/s]Downloading pytorch_model.bin:  17%|█▋        | 996M/6.01G [00:03<00:15, 321MB/s]Downloading pytorch_model.bin:  17%|█▋        | 1.04G/6.01G [00:03<00:17, 290MB/s]Downloading pytorch_model.bin:  18%|█▊        | 1.07G/6.01G [00:03<00:16, 291MB/s]Downloading pytorch_model.bin:  19%|█▊        | 1.11G/6.01G [00:03<00:15, 318MB/s]Downloading pytorch_model.bin:  19%|█▉        | 1.15G/6.01G [00:03<00:14, 338MB/s]Downloading pytorch_model.bin:  20%|█▉        | 1.20G/6.01G [00:03<00:14, 338MB/s]Downloading pytorch_model.bin:  21%|██        | 1.24G/6.01G [00:04<00:13, 341MB/s]Downloading pytorch_model.bin:  21%|██▏       | 1.29G/6.01G [00:04<00:12, 373MB/s]Downloading pytorch_model.bin:  22%|██▏       | 1.33G/6.01G [00:04<00:12, 374MB/s]Downloading pytorch_model.bin:  23%|██▎       | 1.37G/6.01G [00:04<00:12, 381MB/s]Downloading pytorch_model.bin:  24%|██▎       | 1.42G/6.01G [00:04<00:12, 380MB/s]Downloading pytorch_model.bin:  24%|██▍       | 1.46G/6.01G [00:04<00:13, 338MB/s]Downloading pytorch_model.bin:  25%|██▍       | 1.50G/6.01G [00:04<00:12, 350MB/s]Downloading pytorch_model.bin:  26%|██▌       | 1.54G/6.01G [00:04<00:13, 319MB/s]Downloading pytorch_model.bin:  26%|██▋       | 1.58G/6.01G [00:05<00:13, 328MB/s]Downloading pytorch_model.bin:  27%|██▋       | 1.63G/6.01G [00:05<00:12, 347MB/s]Downloading pytorch_model.bin:  28%|██▊       | 1.67G/6.01G [00:05<00:12, 354MB/s]Downloading pytorch_model.bin:  28%|██▊       | 1.71G/6.01G [00:05<00:11, 367MB/s]Downloading pytorch_model.bin:  29%|██▉       | 1.75G/6.01G [00:05<00:11, 369MB/s]Downloading pytorch_model.bin:  30%|██▉       | 1.79G/6.01G [00:05<00:11, 361MB/s]Downloading pytorch_model.bin:  31%|███       | 1.84G/6.01G [00:05<00:11, 368MB/s]Downloading pytorch_model.bin:  31%|███▏      | 1.88G/6.01G [00:05<00:10, 381MB/s]Downloading pytorch_model.bin:  32%|███▏      | 1.92G/6.01G [00:05<00:11, 363MB/s]Downloading pytorch_model.bin:  33%|███▎      | 1.96G/6.01G [00:06<00:11, 361MB/s]Downloading pytorch_model.bin:  33%|███▎      | 2.00G/6.01G [00:06<00:11, 361MB/s]Downloading pytorch_model.bin:  34%|███▍      | 2.04G/6.01G [00:06<00:10, 363MB/s]Downloading pytorch_model.bin:  35%|███▍      | 2.09G/6.01G [00:06<00:11, 349MB/s]Downloading pytorch_model.bin:  35%|███▌      | 2.13G/6.01G [00:06<00:11, 343MB/s]Downloading pytorch_model.bin:  36%|███▌      | 2.17G/6.01G [00:06<00:11, 338MB/s]Downloading pytorch_model.bin:  37%|███▋      | 2.21G/6.01G [00:06<00:10, 347MB/s]Downloading pytorch_model.bin:  38%|███▊      | 2.25G/6.01G [00:06<00:10, 343MB/s]Downloading pytorch_model.bin:  38%|███▊      | 2.30G/6.01G [00:07<00:11, 330MB/s]Downloading pytorch_model.bin:  39%|███▉      | 2.34G/6.01G [00:07<00:11, 326MB/s]Downloading pytorch_model.bin:  40%|███▉      | 2.38G/6.01G [00:07<00:10, 331MB/s]Downloading pytorch_model.bin:  40%|████      | 2.42G/6.01G [00:07<00:10, 350MB/s]Downloading pytorch_model.bin:  41%|████      | 2.46G/6.01G [00:07<00:09, 364MB/s]Downloading pytorch_model.bin:  42%|████▏     | 2.51G/6.01G [00:07<00:09, 373MB/s]Downloading pytorch_model.bin:  42%|████▏     | 2.55G/6.01G [00:07<00:09, 365MB/s]Downloading pytorch_model.bin:  43%|████▎     | 2.59G/6.01G [00:07<00:09, 376MB/s]Downloading pytorch_model.bin:  44%|████▍     | 2.63G/6.01G [00:07<00:09, 357MB/s]Downloading pytorch_model.bin:  45%|████▍     | 2.67G/6.01G [00:08<00:09, 361MB/s]Downloading pytorch_model.bin:  45%|████▌     | 2.72G/6.01G [00:08<00:09, 357MB/s]Downloading pytorch_model.bin:  46%|████▌     | 2.76G/6.01G [00:08<00:08, 366MB/s]Downloading pytorch_model.bin:  47%|████▋     | 2.80G/6.01G [00:08<00:08, 371MB/s]Downloading pytorch_model.bin:  47%|████▋     | 2.84G/6.01G [00:08<00:08, 364MB/s]Downloading pytorch_model.bin:  48%|████▊     | 2.88G/6.01G [00:08<00:09, 341MB/s]Downloading pytorch_model.bin:  49%|████▊     | 2.93G/6.01G [00:08<00:08, 349MB/s]Downloading pytorch_model.bin:  49%|████▉     | 2.97G/6.01G [00:08<00:09, 337MB/s]Downloading pytorch_model.bin:  50%|█████     | 3.01G/6.01G [00:09<00:08, 335MB/s]Downloading pytorch_model.bin:  51%|█████     | 3.05G/6.01G [00:09<00:08, 328MB/s]Downloading pytorch_model.bin:  52%|█████▏    | 3.09G/6.01G [00:09<00:09, 310MB/s]Downloading pytorch_model.bin:  52%|█████▏    | 3.14G/6.01G [00:09<00:08, 332MB/s]Downloading pytorch_model.bin:  53%|█████▎    | 3.18G/6.01G [00:09<00:08, 344MB/s]Downloading pytorch_model.bin:  54%|█████▎    | 3.22G/6.01G [00:09<00:08, 347MB/s]Downloading pytorch_model.bin:  54%|█████▍    | 3.26G/6.01G [00:09<00:07, 358MB/s]Downloading pytorch_model.bin:  55%|█████▌    | 3.30G/6.01G [00:09<00:07, 355MB/s]Downloading pytorch_model.bin:  56%|█████▌    | 3.34G/6.01G [00:09<00:07, 362MB/s]Downloading pytorch_model.bin:  56%|█████▋    | 3.39G/6.01G [00:10<00:11, 233MB/s]Downloading pytorch_model.bin:  57%|█████▋    | 3.42G/6.01G [00:10<00:15, 162MB/s]Downloading pytorch_model.bin:  57%|█████▋    | 3.45G/6.01G [00:11<00:21, 117MB/s]Downloading pytorch_model.bin:  58%|█████▊    | 3.47G/6.01G [00:11<00:21, 120MB/s]Downloading pytorch_model.bin:  58%|█████▊    | 3.50G/6.01G [00:11<00:19, 128MB/s]Downloading pytorch_model.bin:  59%|█████▊    | 3.52G/6.01G [00:11<00:21, 116MB/s]Downloading pytorch_model.bin:  59%|█████▉    | 3.54G/6.01G [00:11<00:21, 112MB/s]Downloading pytorch_model.bin:  59%|█████▉    | 3.57G/6.01G [00:12<00:29, 83.6MB/s]Downloading pytorch_model.bin:  60%|█████▉    | 3.58G/6.01G [00:12<00:32, 75.1MB/s]Downloading pytorch_model.bin:  60%|█████▉    | 3.59G/6.01G [00:12<00:32, 74.5MB/s]Downloading pytorch_model.bin:  60%|█████▉    | 3.60G/6.01G [00:12<00:34, 69.7MB/s]Downloading pytorch_model.bin:  60%|██████    | 3.63G/6.01G [00:13<00:25, 93.3MB/s]Downloading pytorch_model.bin:  61%|██████    | 3.64G/6.01G [00:13<00:28, 83.4MB/s]Downloading pytorch_model.bin:  61%|██████    | 3.65G/6.01G [00:13<00:34, 68.9MB/s]Downloading pytorch_model.bin:  61%|██████    | 3.66G/6.01G [00:13<00:36, 63.5MB/s]Downloading pytorch_model.bin:  61%|██████▏   | 3.69G/6.01G [00:13<00:23, 97.9MB/s]Downloading pytorch_model.bin:  62%|██████▏   | 3.71G/6.01G [00:14<00:20, 114MB/s] Downloading pytorch_model.bin:  63%|██████▎   | 3.75G/6.01G [00:14<00:13, 166MB/s]Downloading pytorch_model.bin:  63%|██████▎   | 3.80G/6.01G [00:14<00:10, 208MB/s]Downloading pytorch_model.bin:  64%|██████▎   | 3.83G/6.01G [00:14<00:09, 221MB/s]Downloading pytorch_model.bin:  64%|██████▍   | 3.86G/6.01G [00:14<00:14, 145MB/s]Downloading pytorch_model.bin:  65%|██████▍   | 3.88G/6.01G [00:15<00:16, 127MB/s]Downloading pytorch_model.bin:  65%|██████▍   | 3.90G/6.01G [00:15<00:24, 87.2MB/s]Downloading pytorch_model.bin:  65%|██████▌   | 3.93G/6.01G [00:15<00:18, 113MB/s] Downloading pytorch_model.bin:  66%|██████▌   | 3.96G/6.01G [00:15<00:14, 141MB/s]Downloading pytorch_model.bin:  67%|██████▋   | 4.01G/6.01G [00:15<00:11, 181MB/s]Downloading pytorch_model.bin:  67%|██████▋   | 4.04G/6.01G [00:16<00:09, 204MB/s]Downloading pytorch_model.bin:  68%|██████▊   | 4.08G/6.01G [00:16<00:07, 243MB/s]Downloading pytorch_model.bin:  69%|██████▊   | 4.12G/6.01G [00:16<00:06, 276MB/s]Downloading pytorch_model.bin:  69%|██████▉   | 4.17G/6.01G [00:16<00:06, 263MB/s]Downloading pytorch_model.bin:  70%|███████   | 4.22G/6.01G [00:16<00:06, 273MB/s]Downloading pytorch_model.bin:  71%|███████   | 4.26G/6.01G [00:16<00:05, 291MB/s]Downloading pytorch_model.bin:  72%|███████▏  | 4.30G/6.01G [00:16<00:05, 311MB/s]Downloading pytorch_model.bin:  72%|███████▏  | 4.34G/6.01G [00:16<00:05, 324MB/s]Downloading pytorch_model.bin:  73%|███████▎  | 4.38G/6.01G [00:17<00:04, 329MB/s]Downloading pytorch_model.bin:  74%|███████▎  | 4.42G/6.01G [00:17<00:06, 235MB/s]Downloading pytorch_model.bin:  75%|███████▍  | 4.48G/6.01G [00:17<00:05, 278MB/s]Downloading pytorch_model.bin:  75%|███████▌  | 4.52G/6.01G [00:17<00:04, 306MB/s]Downloading pytorch_model.bin:  76%|███████▌  | 4.56G/6.01G [00:17<00:04, 322MB/s]Downloading pytorch_model.bin:  77%|███████▋  | 4.60G/6.01G [00:17<00:04, 317MB/s]Downloading pytorch_model.bin:  77%|███████▋  | 4.65G/6.01G [00:18<00:06, 225MB/s]Downloading pytorch_model.bin:  78%|███████▊  | 4.68G/6.01G [00:18<00:09, 145MB/s]Downloading pytorch_model.bin:  78%|███████▊  | 4.71G/6.01G [00:18<00:07, 166MB/s]Downloading pytorch_model.bin:  79%|███████▉  | 4.74G/6.01G [00:18<00:07, 180MB/s]Downloading pytorch_model.bin:  80%|███████▉  | 4.78G/6.01G [00:18<00:05, 219MB/s]Downloading pytorch_model.bin:  80%|████████  | 4.82G/6.01G [00:19<00:04, 243MB/s]Downloading pytorch_model.bin:  81%|████████  | 4.87G/6.01G [00:19<00:04, 278MB/s]Downloading pytorch_model.bin:  82%|████████▏ | 4.91G/6.01G [00:19<00:03, 298MB/s]Downloading pytorch_model.bin:  82%|████████▏ | 4.95G/6.01G [00:19<00:04, 264MB/s]Downloading pytorch_model.bin:  83%|████████▎ | 4.98G/6.01G [00:19<00:03, 258MB/s]Downloading pytorch_model.bin:  84%|████████▎ | 5.02G/6.01G [00:19<00:03, 276MB/s]Downloading pytorch_model.bin:  84%|████████▍ | 5.05G/6.01G [00:19<00:03, 267MB/s]Downloading pytorch_model.bin:  85%|████████▍ | 5.10G/6.01G [00:20<00:03, 287MB/s]Downloading pytorch_model.bin:  85%|████████▌ | 5.13G/6.01G [00:20<00:03, 280MB/s]Downloading pytorch_model.bin:  86%|████████▌ | 5.17G/6.01G [00:20<00:03, 274MB/s]Downloading pytorch_model.bin:  87%|████████▋ | 5.20G/6.01G [00:20<00:02, 277MB/s]Downloading pytorch_model.bin:  87%|████████▋ | 5.24G/6.01G [00:20<00:02, 300MB/s]Downloading pytorch_model.bin:  88%|████████▊ | 5.28G/6.01G [00:20<00:02, 330MB/s]Downloading pytorch_model.bin:  89%|████████▊ | 5.33G/6.01G [00:20<00:02, 330MB/s]Downloading pytorch_model.bin:  89%|████████▉ | 5.37G/6.01G [00:20<00:01, 326MB/s]Downloading pytorch_model.bin:  90%|█████████ | 5.41G/6.01G [00:21<00:01, 331MB/s]Downloading pytorch_model.bin:  91%|█████████ | 5.45G/6.01G [00:21<00:01, 344MB/s]Downloading pytorch_model.bin:  91%|█████████▏| 5.49G/6.01G [00:21<00:01, 358MB/s]Downloading pytorch_model.bin:  92%|█████████▏| 5.54G/6.01G [00:21<00:01, 340MB/s]Downloading pytorch_model.bin:  93%|█████████▎| 5.58G/6.01G [00:21<00:01, 349MB/s]Downloading pytorch_model.bin:  94%|█████████▎| 5.62G/6.01G [00:21<00:01, 357MB/s]Downloading pytorch_model.bin:  94%|█████████▍| 5.66G/6.01G [00:21<00:00, 366MB/s]Downloading pytorch_model.bin:  95%|█████████▍| 5.70G/6.01G [00:21<00:00, 375MB/s]Downloading pytorch_model.bin:  96%|█████████▌| 5.75G/6.01G [00:21<00:00, 387MB/s]Downloading pytorch_model.bin:  96%|█████████▋| 5.79G/6.01G [00:22<00:00, 323MB/s]Downloading pytorch_model.bin:  97%|█████████▋| 5.83G/6.01G [00:22<00:00, 339MB/s]Downloading pytorch_model.bin:  98%|█████████▊| 5.87G/6.01G [00:22<00:00, 352MB/s]Downloading pytorch_model.bin:  98%|█████████▊| 5.91G/6.01G [00:22<00:00, 325MB/s]Downloading pytorch_model.bin:  99%|█████████▉| 5.96G/6.01G [00:22<00:00, 282MB/s]Downloading pytorch_model.bin: 100%|█████████▉| 6.00G/6.01G [00:22<00:00, 305MB/s]Downloading pytorch_model.bin: 100%|██████████| 6.01G/6.01G [00:22<00:00, 263MB/s]

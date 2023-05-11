@@ -1,54 +1,24 @@
-t5-small:
-  model: T5ForConditionalGeneration
-  tokenizer: T5Tokenizer
-  model_kwargs: 
-    device_map: auto
-    load_in_8bit: True
-t5-base:
-  model: T5ForConditionalGeneration
-  tokenizer: T5Tokenizer
-  model_kwargs: 
-    device_map: auto
-    load_in_8bit: True
-t5-large:
+bigscience/mt0-small:
   model: AutoModelForSeq2SeqLM
   tokenizer: AutoTokenizer
-  model_kwargs: 
-    device_map: auto
-    load_in_8bit: True
-t5-3b:
+bigscience/mt0-base:
   model: AutoModelForSeq2SeqLM
   tokenizer: AutoTokenizer
-  model_kwargs: 
-    device_map: auto
-    load_in_8bit: True
-# google/flan-t5-small:
-#   model: T5ForConditionalGeneration
-#   tokenizer: T5Tokenizer
-#   model_kwargs: 
-#     device_map: auto
-#     load_in_8bit: True
-# google/flan-t5-base:
-#   model: T5ForConditionalGeneration
-#   tokenizer: T5Tokenizer
-#   model_kwargs: 
-#     device_map: auto
-#     load_in_8bit: True
-# google/flan-t5-large:
-#   model: AutoModelForSeq2SeqLM
-#   tokenizer: AutoTokenizer
-#   model_kwargs: 
-#     device_map: auto
-#     load_in_8bit: True
-# bigscience/T0_3B:
-#   model: AutoModelForSeq2SeqLM
-#   tokenizer: AutoTokenizer
-# bigscience/T0pp:
-#   model: AutoModelForSeq2SeqLM
-#   tokenizer: AutoTokenizer
-# bigscience/bloom:
-#   model: AutoModelForCausalLM
-#   tokenizer: AutoTokenizer
-#   model_kwargs: 
-#     device_map: auto
-#     torch_dtype: auto
+bigscience/mt0-large:
+  model: AutoModelForSeq2SeqLM
+  tokenizer: AutoTokenizer
+bigscience/mt0-xl:
+  model: AutoModelForSeq2SeqLM
+  tokenizer: AutoTokenizer
+bigscience/bloomz-560m:
+  model: AutoModelForCausalLM
+  tokenizer: AutoTokenizer
+bigscience/bloomz-1b1:
+  model: AutoModelForCausalLM
+  tokenizer: AutoTokenizer
+bigscience/bloomz-1b7:
+  model: AutoModelForCausalLM
+  tokenizer: AutoTokenizer
+bigscience/bloomz-3b:
+  model: AutoModelForCausalLM
+  tokenizer: AutoTokenizer

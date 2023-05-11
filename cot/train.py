@@ -1,4 +1,4 @@
-from utils import load_model_dicts, load_model
+from cot.model_utils import load_model_dicts, load_model
 from transformers import AutoModelForCausalLM, AutoModelForSeq2SeqLM, AutoTokenizer, T5ForConditionalGeneration, T5Tokenizer
 from peft import LoraConfig, get_peft_model, prepare_model_for_int8_training, TaskType
 import argparse

@@ -1,4 +1,3 @@
-import pynvml
 import torch
 from datasets import load_dataset
 from peft import (
@@ -21,24 +20,15 @@ from transformers import (
 )
 
 
-def print_gpu_utilization():
-    pynvml.nvmlInit()
-    handle = pynvml.nvmlDeviceGetHandleByIndex(0)
-    info = pynvml.nvmlDeviceGetMemoryInfo(handle)
-    print(f"GPU memory occupied: {info.used//1024**2} MB")
+from utils import print_gpu_utilization
 
-    for dev_id in range(pynvml.nvmlDeviceGetCount()):
-        handle = pynvml.nvmlDeviceGetHandleByIndex(dev_id)
-        for proc in pynvml.nvmlDeviceGetComputeRunningProcesses(handle):
-            print(
-                "pid %d using %d MB of memory on device %d."
-                % (proc.pid, proc.usedGpuMemory // 1024**2, dev_id)
-            )
+
+
 
 
 device = "cuda"
-# model_name_or_path = "bigscience/bloomz-560m"
-# tokenizer_name_or_path = "bigscience/bloomz-560m"
+model_name_or_path = "bigscience/bloomz-560m"
+tokenizer_name_or_path = "bigscience/bloomz-560m"
 # model_name_or_path = "bigscience/bloomz-1b1"
 # tokenizer_name_or_path = "bigscience/bloomz-1b1"
 # model_name_or_path = "bigscience/bloomz-1b7"
@@ -50,8 +40,8 @@ device = "cuda"
 # model_name_or_path = "bigscience/bloomz"
 # tokenizer_name_or_path = "bigscience/bloomz"
 
-model_name_or_path = "google/flan-t5-large"
-tokenizer_name_or_path = "google/flan-t5-large"
+model_name_or_path = "google/flan-t5-small"
+tokenizer_name_or_path = "google/flan-t5-small"
 
 # peft_config = PromptTuningConfig(
 #     task_type=TaskType.CAUSAL_LM,
