@@ -15,4 +15,4 @@ module load Anaconda3/2021.05
 cd $HOME/CoT/
 source activate cot
 
-srun python -u cot/download_models.py
+srun python -u CoT/cot/download_models.py
