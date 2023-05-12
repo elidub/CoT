@@ -22,7 +22,7 @@ if __name__ == '__main__':
                 # 'model_kwargs' : {'device_map':'auto', 'load_in_8bit':True}, 
                 # 'tokenizer_kwargs' : {}
             },
-            hf_cache = '/nfs/scratch/atcs_cot1137/hf_cache/'
+            hf_cache = '/nfs/scratch/atcs_lcur1654/'
         )
 
     print_gpu_utilization()
