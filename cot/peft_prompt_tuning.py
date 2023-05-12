@@ -19,10 +19,7 @@ from transformers import (
     get_linear_schedule_with_warmup,
 )
 
-
 from utils import print_gpu_utilization
-
-
 
 
 
@@ -69,7 +66,7 @@ dataset_name = "twitter_complaints"
 checkpoint_name = f"{dataset_name}_{model_name_or_path}_{peft_config.peft_type}_{peft_config.task_type}_v1.pt".replace(
     "/", "_"
 )
-hf_cache = "/scratch/atcs_cot2"
+hf_cache = "/project/gpuuva022/shared/cot/hf_cache"
 text_column = "Tweet text"
 label_column = "text_label"
 max_length = 1024
