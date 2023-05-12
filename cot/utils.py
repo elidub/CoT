@@ -1,13 +1,10 @@
-from transformers import AutoModelForCausalLM, AutoModelForSeq2SeqLM, AutoTokenizer, T5ForConditionalGeneration, T5Tokenizer
-import yaml
+import pynvml
 
-transformer_dict = {
-    'AutoModelForCausalLM' : AutoModelForCausalLM,
-    'AutoModelForSeq2SeqLM' : AutoModelForSeq2SeqLM,
-    'AutoTokenizer' : AutoTokenizer,
-    'T5ForConditionalGeneration' : T5ForConditionalGeneration,
-    'T5Tokenizer' : T5Tokenizer
-}
+def print_gpu_utilization():
+    pynvml.nvmlInit()
+    handle = pynvml.nvmlDeviceGetHandleByIndex(0)
+    info = pynvml.nvmlDeviceGetMemoryInfo(handle)
+    print(f"GPU memory occupied: {info.used//1024**2} MB")
 
 def load_model_dicts(models_yml = "CoT/models.yml"):
     with open("CoT/models.yml") as f:

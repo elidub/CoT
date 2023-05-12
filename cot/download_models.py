@@ -1,4 +1,4 @@
-from utils import load_model_dicts, load_model
+from model_utils import load_model_dicts, load_model
 
 
 
@@ -11,11 +11,9 @@ if __name__ == '__main__':
 
         print(f'Downloading model: {m_id}')
 
-        # Don't download it with all the settings
-        if 'model_kwargs' in m_dict:
-            del m_dict['model_kwargs'] 
-
-        model, tokenizer = load_model(m_id, m_dict)
+        model, tokenizer = load_model(m_id, m_dict,
+            model_kwargs = {}, # Empty such that it can be downloaded with CPU
+        )
 
         print(f'Vocab size: {tokenizer.vocab_size}.')
         print(f'Model parameters: {model.num_parameters}')

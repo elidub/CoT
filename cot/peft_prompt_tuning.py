@@ -1,31 +1,32 @@
-from transformers import AutoModelForCausalLM, AutoTokenizer
-from peft import get_peft_config, get_peft_model, PromptTuningInit, PromptTuningConfig, TaskType, PeftType, LoraConfig
 import torch
 from datasets import load_dataset
-import pynvml
-from datasets import load_dataset
-from tqdm import tqdm
-
-
+from peft import (
+    LoraConfig,
+    PeftType,
+    PromptTuningConfig,
+    PromptTuningInit,
+    TaskType,
+    get_peft_config,
+    get_peft_model,
+)
 from torch.utils.data import DataLoader
-from transformers import default_data_collator, get_linear_schedule_with_warmup
-
-def print_gpu_utilization():
-    pynvml.nvmlInit()
-    handle = pynvml.nvmlDeviceGetHandleByIndex(0)
-    info = pynvml.nvmlDeviceGetMemoryInfo(handle)
-    print(f"GPU memory occupied: {info.used//1024**2} MB")
-
-    for dev_id in range(pynvml.nvmlDeviceGetCount()):
-        handle = pynvml.nvmlDeviceGetHandleByIndex(dev_id)
-        for proc in pynvml.nvmlDeviceGetComputeRunningProcesses(handle):
-            print(
-                "pid %d using %d MB of memory on device %d."
-                % (proc.pid, proc.usedGpuMemory//1024**2, dev_id)
-            )
+from tqdm import tqdm
+from transformers import (
+    AutoModelForCausalLM,
+    AutoModelForSeq2SeqLM,
+    AutoTokenizer,
+    default_data_collator,
+    get_linear_schedule_with_warmup,
+)
 
 
-device = "cuda:0"
+from utils import print_gpu_utilization
+
+
+
+
+
+device = "cuda"
 model_name_or_path = "bigscience/bloomz-560m"
 tokenizer_name_or_path = "bigscience/bloomz-560m"
 # model_name_or_path = "bigscience/bloomz-1b1"
@@ -46,25 +47,40 @@ tokenizer_name_or_path = "bigscience/bloomz-560m"
 #     tokenizer_name_or_path=model_name_or_path,
 # )
 
+
+# peft_config = LoraConfig(
+#     task_type=TaskType.CAUSAL_LM, inference_mode=False, r=1, lora_alpha=32, lora_dropout=0.1
+# peft_config = AdaLoraConfig(
+#     task_type=TaskType.CAUSAL_LM,
+#     inference_mode=False,
+#     target_r=32,
+#     initial_r=64
+# )
+
 peft_config = LoraConfig(
-    task_type=TaskType.CAUSAL_LM, inference_mode=False, r=1, lora_alpha=32, lora_dropout=0.1
+    task_type=TaskType.CAUSAL_LM,
+    inference_mode=False,
+    r=8,
+    lora_alpha=32,
+    lora_dropout=0.1
 )
 
 dataset_name = "twitter_complaints"
 checkpoint_name = f"{dataset_name}_{model_name_or_path}_{peft_config.peft_type}_{peft_config.task_type}_v1.pt".replace(
     "/", "_"
 )
-hf_cache = '/scratch/atcs_lcur1654'
+hf_cache = "/scratch/atcs_cot2"
 text_column = "Tweet text"
 label_column = "text_label"
-max_length = 64
+max_length = 1024
 lr = 3e-2
-num_epochs = 50
-batch_size = 8
+num_epochs = 1
+batch_size = 1
 
-model_kwargs = {'device_map':'auto', 'load_in_8bit':False}
+model_kwargs = {"device_map": "auto", "load_in_8bit": True}
 
 ######################
+from datasets import load_dataset
 
 dataset = load_dataset("ought/raft", dataset_name, cache_dir=hf_cache)
 

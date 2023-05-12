@@ -1,20 +1,15 @@
-from utils import load_model_dicts, load_model
-from transformers import AutoModelForCausalLM, AutoModelForSeq2SeqLM, AutoTokenizer, T5ForConditionalGeneration, T5Tokenizer
-from peft import LoraConfig, get_peft_model, prepare_model_for_int8_training, TaskType
+from model_utils import load_model_dicts, load_model
+from datasets import load_from_disk
+import os
+from datasets import load_dataset
 
+# adapted from https://github.com/philschmid/deep-learning-pytorch-huggingface/blob/main/training/peft-flan-t5-int8-summarization.ipynb
 
+def prep_data(tokenizer, data_dir = '/project/gpuuva021/shared/cot/data/test', hf_cache = '/project/gpuuva021/shared/cot/hf_cache'):
 
-def run():
-    m_dicts = load_model_dicts()
-    [print(m_id) for m_id, _ in m_dicts.items()];
-
-    m_id = 'google/flan-t5-small'
-    model, tokenizer = load_model(m_id, m_dicts[m_id], hf_cache = '/nfs/scratch/atcs_cot/hf_cache_dev/')
-
-    from datasets import load_dataset
 
     # Load dataset from the hub
-    dataset = load_dataset("samsum")
+    dataset = load_dataset('samsum', cache_dir=hf_cache)
 
     print(f"Train dataset size: {len(dataset['train'])}")
     print(f"Test dataset size: {len(dataset['test'])}")
@@ -65,71 +60,5 @@ def run():
     print(f"Keys of tokenized dataset: {list(tokenized_dataset['train'].features)}")
 
     # save datasets to disk for later easy loading
-    tokenized_dataset["train"].save_to_disk("data/train")
-    tokenized_dataset["test"].save_to_disk("data/eval")
-
-    # Define LoRA Config 
-    lora_config = LoraConfig(
-    r=16, 
-    lora_alpha=32,
-    target_modules=["q", "v"],
-    lora_dropout=0.05,
-    bias="none",
-    task_type=TaskType.SEQ_2_SEQ_LM
-    )
-    # prepare int-8 model for training
-    model = prepare_model_for_int8_training(model)
-
-    # add LoRA adaptor
-    model = get_peft_model(model, lora_config)
-    model.print_trainable_parameters()
-
-
-
-    from transformers import DataCollatorForSeq2Seq
-
-    # we want to ignore tokenizer pad token in the loss
-    label_pad_token_id = -100
-    # Data collator
-    data_collator = DataCollatorForSeq2Seq(
-        tokenizer,
-        model=model,
-        label_pad_token_id=label_pad_token_id,
-        pad_to_multiple_of=8
-    )
-
-
-
-    from transformers import Seq2SeqTrainer, Seq2SeqTrainingArguments
-
-    output_dir="google-flan-t5-small"
-
-    # Define training args
-    training_args = Seq2SeqTrainingArguments(
-        output_dir=output_dir,
-            auto_find_batch_size=True,
-        learning_rate=1e-3, # higher learning rate
-        num_train_epochs=5,
-        logging_dir=f"{output_dir}/logs",
-        logging_strategy="steps",
-        logging_steps=500,
-        save_strategy="no",
-        report_to="tensorboard",
-    )
-
-    # Create Trainer instance
-    trainer = Seq2SeqTrainer(
-        model=model,
-        args=training_args,
-        data_collator=data_collator,
-        train_dataset=tokenized_dataset["train"],
-    )
-    model.config.use_cache = False  # silence the warnings. Please re-enable for inference!
-
-
-    # train model
-    trainer.train()
-
-
-if __name__ == '__main__':
-    run()
+    tokenized_dataset["train"].save_to_disk(os.path.join(data_dir, 'train'))
+    tokenized_dataset["test"].save_to_disk(os.path.join(data_dir, 'eval'))
