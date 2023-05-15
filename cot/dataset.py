@@ -1,5 +1,7 @@
 import os
 import torch
+import json
+
 from datasets import load_from_disk
 from datasets import get_dataset_config_names, load_dataset
 from transformers import AutoTokenizer
@@ -9,12 +11,41 @@ from transformers import AutoTokenizer
 # os.system('pip install git+https://github.com/google/BIG-bench.git')
 # os.system('pip install datasets')
 
+#parse a handtuned explanations json file
+def parse_handtuned(file_path):
+
+    with open(file_path, 'r') as file:
+        data = json.load(file)
+        for key in ["hand_tuned_fewshot_explanations_0", "hand_tuned_fewshot_explanations_1", "hand_tuned_fewshot_explanations_2"]:
+            if key in data:
+                string = data[key]
+
+    q_list = []
+    a_list = []
+    explanation_list = []
+
+    substrings = string.split("Q: ")[1:]  # Split the string and discard the first element
+
+    for substring in substrings:
+        q, a_explanation = substring.split("\nA: ", 1)  # Split each substring into question and remaining part
+        a, explanation = a_explanation.split("\nExplanation: ", 1)  # Split the remaining part into answer and explanation
+
+        q_list.append("Q: " + q.strip() + "\n")  # Add "Q: " prefix and strip any leading/trailing whitespaces
+        a_list.append("A: " + a.strip() + "\n")  # Add "A: " prefix and strip any leading/trailing whitespaces
+        explanation_list.append("Explanation: " + explanation.strip() + "\n")  # Add "Explanation: " prefix and strip any leading/trailing whitespaces
+
+    return q_list, a_list, explanation_list
+
+# Example usage
+# path = "../../bigben/handtuned/arithmetic_3_digit_division.json"     
+# q_list, a_list, explanation_list = parse_handtuned(path)
+
 config = {
     "raw_data_path": None,
     "cot_path": None,
     "preprocessed_dir": None,
     "bigbench_task_name": None,
-    "bigbench_explanations_directory": None,
+    "bigbench_explanations_path": None,
     "tokenizer_name": None,
 
     "rebuild_cache": False,
@@ -27,6 +58,7 @@ class CoTDataset(torch.utils.data.Dataset):
     def __init__(self, config):
         self.config = config
 
+        #this will probably be given as a hyperparameter
         self.tokenizer = None
 
         # If necessary, download, tokenize dataset and save to disk
@@ -53,16 +85,20 @@ class CoTDataset(torch.utils.data.Dataset):
     
 
         # Load dataset from disk
+        # TODO
 
         # Tokenize cot's
+        questions, answers, explanations = parse_handtuned(config.bigbench_explanations_path)
+        # tokenized_explanations = [self.tokenizer(questions[i] + answers[i] + explanations[i]) for i in range(len(questions))]
+        
 
         # Store cot's
         self.cots = [{
             "id": None,
-            "tokenized_explanation" : None,
-            "explanation": None,
+            "tokenized_explanation" : self.tokenizer(questions[i] + answers[i] + explanations[i]),
+            "explanation": questions[i] + answers[i] + explanations[i],
             "label": None,
-        }]
+        } for i in range(len(questions)) ]
 
         pass
 
