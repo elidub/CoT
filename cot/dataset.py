@@ -150,8 +150,7 @@ class CoTDataset(torch.utils.data.Dataset):
 
         #0-shot
         else:
-            x = self.data[idx]
-            y = self.labels[idx]
+
             x = {
                 'input_ids': self.data[idx]["input_ids"],
                 'attention_mask': self.data[idx]["attention_mask"],
