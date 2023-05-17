@@ -7,9 +7,7 @@ from transformers import DataCollatorForSeq2Seq, Seq2SeqTrainer, Seq2SeqTraining
 
 # adapted from https://github.com/philschmid/deep-learning-pytorch-huggingface/blob/main/training/peft-flan-t5-int8-summarization.ipynb
 
-def train_model(model, tokenizer, data_dir = '/project/gpuuva021/shared/cot/data/test'):
-    tokenized_dataset = {}
-    tokenized_dataset['train'] = load_from_disk(os.path.join(data_dir, 'train'))
+def train_model(model, tokenizer, tokenized_dataset):
 
     # Define LoRA Config 
     lora_config = LoraConfig(

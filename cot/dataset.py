@@ -3,10 +3,10 @@ import torch
 import random
 import json
 import pickle
-
+import nltk
+from pathlib import Path
 from datasets import load_from_disk
 from datasets import get_dataset_config_names, load_dataset
-from transformers import AutoTokenizer
 
 
 # SETUP
@@ -42,82 +42,65 @@ def parse_handtuned(file_path):
 # path = "../../bigben/handtuned/arithmetic_3_digit_division.json"     
 # q_list, a_list, explanation_list = parse_handtuned(path)
 
-config = {
-    "raw_data_path": None,
-    "cot_path": None,
-    "preprocessed_dir": None,
-    "bigbench_task_name": None,
-    "bigbench_explanations_path": None,
-    "tokenizer_name": None,
-    "rebuild_cache": False,
-    "n_shot": 0,
-    "split": None,
-    "shuffle" : False,
-
-
-}
 
 class CoTDataset(torch.utils.data.Dataset):
-    def __init__(self, config):
+    def __init__(self, config, tokenizer, split="train"):
         self.config = config
-
-        #this will probably be given as a hyperparameter
-        self.tokenizer = None
+        self.split = split
+        self.tokenizer = tokenizer
 
         # If necessary, download, tokenize dataset and save to disk
-        preprocessed_path = self.config["preprocessed_dir"] + "/" + self.preprocessed_filename()
-        if config["rebuild_cache"] or os.path.exists(preprocessed_path):
+        preprocessed_path = Path(self.config.preprocessed_dir) / self.preprocessed_filename()
+        if self.config.rebuild_cache or not preprocessed_path.exists():
             # TODO: Look at notebook
             # https://colab.research.google.com/drive/1MKdLdF7oqrSQCeavAcsEnPdI85kD0LzU?usp=sharing#scrollTo=UqoBR0ujfEkl
 
-            dt = load_dataset('bigbench', self.config["bigbench_task_name"], split=config.split)
+            dt = load_dataset('tasksource/bigbench', self.config.bigbench_task_name, split=self.split, cache_dir=self.config.hf_cache_dir)
             tokenized_dataset = {}
-            for split in dt:
-                tokenized_dataset[split] = {}
-                if split=="default" and "train" in dt:
-                    continue
-                
-                # Tokenize
-                # (Some tasks might require task-dependent formatting)
-                tokenized_dataset[split]["inputs"] = [self.tokenizer(sample["inputs"]) for sample in dt[split]]
-                tokenized_dataset[split]["targets"] = [self.tokenizer(sample["targets"]) for sample in dt[split]]
-                
-                # Save to disk
-                split_file_path = os.path.join(preprocessed_path, f"{split}.pkl")
-                with open(split_file_path, "wb") as file:
-                    pickle.dump(tokenized_dataset[split], file)
+            
+            # Tokenize
+            # (Some tasks might require task-dependent formatting)
+            tokenized_dataset["inputs_untokenized"] = [sample["inputs"] for sample in dt]
+            tokenized_dataset["labels_untokenized"] = [sample["targets"] for sample in dt]
+            tokenized_dataset["inputs"] = [self.tokenizer(sample["inputs"]) for sample in dt]
+            tokenized_dataset["targets"] = [self.tokenizer(sample["targets"]) for sample in dt]
+            
+            # Save to disk
+            os.makedirs(self.config.preprocessed_dir, exist_ok=True)
+            with open(preprocessed_path, "wb") as file:
+                pickle.dump(tokenized_dataset, file)
                     
         else:
             # Load dataset from disk
             tokenized_dataset = {}
-            split_file_path = os.path.join(preprocessed_path, f"{config.split}.pkl")
-            with open(split_file_path, "rb") as file:
-                tokenized_dataset[config.split] = pickle.load(file)
+            with open(preprocessed_path, "rb") as file:
+                tokenized_dataset = pickle.load(file)
 
-        self.data = tokenized_dataset[config.split]["inputs"]
-        self.labels = tokenized_dataset[config.split]["targets"]
+        self.untok_data = tokenized_dataset["inputs_untokenized"]
+        self.untok_labels = tokenized_dataset["labels_untokenized"]
+        self.data = tokenized_dataset["inputs"]
+        self.labels = tokenized_dataset["targets"]
 
         # Tokenize cot's
-        questions, answers, explanations = parse_handtuned(config.bigbench_explanations_path)
+        handtuned_file_path = Path(self.config.bigbench_explanations_path) / "handtuned" / (self.config.bigbench_task_name + ".json")
+        questions, answers, explanations = parse_handtuned(handtuned_file_path)
         # tokenized_explanations = [self.tokenizer(questions[i] + answers[i] + explanations[i]) for i in range(len(questions))]
         
 
         # Store cot's
         self.cots = [{
             "id": None,
-            "tokenized_explanation" : self.tokenizer(questions[i] + answers[i] + explanations[i]),
-            "explanation": questions[i] + answers[i] + explanations[i],
+            "tokenized_example" : self.tokenizer(questions[i] + answers[i] + explanations[i]),
+            "example": questions[i] + answers[i] + explanations[i],
             "label": None,
         } for i in range(len(questions)) ]
 
-        pass
-
     def preprocessed_filename(self):
-        return ""
+        return self.config.bigbench_task_name + "_" + self.split + ".json"
 
     def __getitem__(self, idx):
         # Select CoT's (includes shuffling if dynamic)
-        n = self.config['n_shot'] if self.config['n_shot'] <= 5 else 5
+        n = self.config.n_shot if self.config.n_shot <= 5 else 5
 
         if n > 0:
             if self.config.shuffle:
@@ -127,17 +110,20 @@ class CoTDataset(torch.utils.data.Dataset):
 
             concatenated_input_ids = []
             concatenated_attention_mask = []
+            concatenated_untokenized_string = []
 
             for i in cot_idx:
-                concatenated_input_ids += self.cots[i]['tokenized_explanation']["input_ids"]
-                concatenated_attention_mask += self.cots[i]['tokenized_explanation']["attention_mask"]
+                concatenated_untokenized_string += self.cots[i]['example']
+                concatenated_input_ids += self.cots[i]['tokenized_example']["input_ids"]
+                concatenated_attention_mask += self.cots[i]['tokenized_example']["attention_mask"]
 
             # Concatenate
             item = self.data[idx]
 
             #do we even need attention mask?
-            concatenated_input_ids = item["input_ids"] + concatenated_input_ids
-            concatenated_attention_mask = item["attention_mask"] + concatenated_attention_mask
+            concatenated_untokenized_string += self.untok_data[idx]
+            concatenated_input_ids += item["input_ids"]
+            concatenated_attention_mask += item["attention_mask"]
 
 
             # Return x and y
@@ -171,6 +157,3 @@ class CoTDataLoader(torch.utils.data.DataLoader):
     def collate(self, batch):
         pass
 
-
-# Testing
-test_ds = CoTDataset(config)
