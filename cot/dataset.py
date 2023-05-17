@@ -157,3 +157,24 @@ class CoTDataLoader(torch.utils.data.DataLoader):
     def collate(self, batch):
         pass
 
+
+# import argparse
+# from model_utils import load_model_dicts, load_model
+
+# args = argparse.Namespace()
+# args.model_id = "bigscience/mt0-small"
+# args.hf_cache_dir = r"C:\Development\ATCS\Tuning Chain of Thought\CoT\datadump\hf"
+# args.preprocessed_dir = r"C:\Development\ATCS\Tuning Chain of Thought\CoT\datadump\preprocessed"
+# args.bigbench_task_name = "odd_one_out"
+# args.bigbench_explanations_path = "data/bigbench-explanations/"
+# args.rebuild_cache = True
+# args.shuffle = True
+# args.n_shot = 5
+
+
+# model_id = args.model_id
+# m_dicts = load_model_dicts()
+# model, tokenizer = load_model(model_id, m_dicts[model_id])
+# ds = CoTDataset(args, tokenizer, "train")
+# item = next(iter(ds))
+# print("Done!")
