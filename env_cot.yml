@@ -25,7 +25,13 @@ dependencies:
     - seaborn>=0.11.2
     - ipywidgets>=7.6.5
     - datasets>=2.11.0
+    - transformers>=4.28.1 # instead of 4.28.3 ?
+    - accelerate>=0.18.0
+    - bitsandbytes>=0.38.1   # For load_in_8bit
+    - sentencepiece>=0.1.99  # For T5Tokenize
+    - peft>=0.2.0
 
 # To add:
-# - transformers>=4.28.3
-# - accelerate>=0.18.0
+# (These are later installed with `pip install <package>`)
+# - <package>=<version>
+# - pip install py7zr
