@@ -41,9 +41,9 @@ if __name__ == "__main__":
     if debug:
         args = argparse.Namespace()
         args.model_id = "bigscience/mt0-small"
-        args.hf_cache_dir = "/project/gpuuva021/shared/cot/hf_cache"
-        args.preprocessed_dir = "/project/gpuuva021/shared/cot/data/preprocessed"
-        args.bigbench_task_name = "truthful_qa"
+        args.hf_cache_dir = "datadump/hf"
+        args.preprocessed_dir = "datadump/preprocessed"
+        args.bigbench_task_name = "odd_one_out"
         args.bigbench_explanations_path = "data/bigbench-explanations/"
         args.rebuild_cache = False
         args.shuffle_cots = False

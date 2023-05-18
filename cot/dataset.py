@@ -153,8 +153,8 @@ class CoTDataset(torch.utils.data.Dataset):
 
 # args = argparse.Namespace()
 # args.model_id = "bigscience/mt0-small"
-# args.hf_cache_dir = r"C:\Development\ATCS\Tuning Chain of Thought\CoT\datadump\hf"
-# args.preprocessed_dir = r"C:\Development\ATCS\Tuning Chain of Thought\CoT\datadump\preprocessed"
+# args.hf_cache_dir = "datadump/hf"
+# args.preprocessed_dir = "datadump/preprocessed"
 # args.bigbench_task_name = "odd_one_out"
 # args.bigbench_explanations_path = "data/bigbench-explanations/"
 # args.rebuild_cache = True
