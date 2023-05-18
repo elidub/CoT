@@ -102,7 +102,7 @@ class CoTDataset(torch.utils.data.Dataset):
         n = self.config.n_shot if self.config.n_shot <= 5 else 5
 
         if n > 0:
-            if self.config.shuffle:
+            if self.config.shuffle_cots:
                 cot_idx = random.sample(range(5), n)
             else:
                 cot_idx = list(range(n))
@@ -158,7 +158,7 @@ class CoTDataset(torch.utils.data.Dataset):
 # args.bigbench_task_name = "odd_one_out"
 # args.bigbench_explanations_path = "data/bigbench-explanations/"
 # args.rebuild_cache = True
-# args.shuffle = True
+# args.shuffle_cots = False
 # args.n_shot = 5
 
 

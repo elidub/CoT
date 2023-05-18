@@ -19,6 +19,7 @@ def parse_option():
     parser.add_argument('--bigbench_explanations_path', default = 'data/bigbench-explanations/', type=str, help='Path to the bigbench explanations from Lampinen et al.')
     parser.add_argument('--n_shot', default = False, type=int, help='How many examples to show in-context')
     parser.add_argument('--rebuild_cache', default = False, type=bool, help='Whether to rebuild the cached preprocessed datasets')
+    parser.add_argument('--shuffle_cots', default = False, type=bool, help='Whether to randomly select the available CoTs and their order. If False, the first n_shot CoTs are chosen.')
     args = parser.parse_args()
     return args
 
@@ -45,7 +46,7 @@ if __name__ == "__main__":
         args.bigbench_task_name = "truthful_qa"
         args.bigbench_explanations_path = "data/bigbench-explanations/"
         args.rebuild_cache = False
-        args.shuffle = True
+        args.shuffle_cots = False
         args.n_shot = 5
     else:
         args = parse_option()
