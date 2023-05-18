@@ -148,15 +148,6 @@ class CoTDataset(torch.utils.data.Dataset):
         return len(self.data.labels)
 
 
-class CoTDataLoader(torch.utils.data.DataLoader):
-
-    def __init__(self, dataset):
-        self.dataset = dataset
-
-    def collate(self, batch):
-        pass
-
-
 # import argparse
 # from model_utils import load_model_dicts, load_model
 
