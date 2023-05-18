@@ -75,8 +75,18 @@ class CoTDataset(torch.utils.data.Dataset):
             with open(preprocessed_path, "rb") as file:
                 tokenized_dataset = pickle.load(file)
 
+
         self.data = tokenized_dataset["inputs"]
         self.labels = tokenized_dataset["targets"]
+
+        # self.data = torch.Tensor(tokenized_dataset["inputs"])
+        # self.labels = torch.Tensor(tokenized_dataset["targets"]['input_ids'])
+
+
+        # print("Types of data and labels")
+        # print(type(self.data))
+        # print(type(self.labels))
+        
         # self.untok_data = tokenized_dataset["inputs_untokenized"]
         # self.untok_labels = tokenized_dataset["labels_untokenized"]
 
@@ -127,25 +137,24 @@ class CoTDataset(torch.utils.data.Dataset):
 
             # Return x and y
             x = {
-                'input_ids': concatenated_input_ids,
-                'attention_mask': concatenated_attention_mask,
-                'labels': self.labels[idx]
+                'input_ids':  torch.Tensor(concatenated_input_ids).long(),
+                'attention_mask':  torch.Tensor(concatenated_attention_mask).long(),
+                'labels':  torch.Tensor(self.labels[idx]["input_ids"]).long().squeeze()
             }
-            y = self.labels[idx]
 
         #0-shot
         else:
 
             x = {
-                'input_ids': self.data[idx]["input_ids"],
-                'attention_mask': self.data[idx]["attention_mask"],
-                'labels': self.labels[idx]
+                'input_ids': torch.Tensor(self.data[idx]["input_ids"]).long(),
+                'attention_mask': torch.Tensor(self.data[idx]["attention_mask"]).long(),
+                'labels':  torch.Tensor(self.labels[idx]["input_ids"]).long().squeeze()
             }
 
-        return (x,y)
+        return x
 
     def __len__(self):
-        return len(self.data.labels)
+        return len(self.labels)
 
 
 # import argparse
