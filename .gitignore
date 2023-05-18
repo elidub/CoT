@@ -1,5 +1,4 @@
 /__pycache__
-data/
 logs/
 cot/__pycache__
 cot/explore_elias.py
