@@ -59,11 +59,10 @@ class CoTDataset(torch.utils.data.Dataset):
             tokenized_dataset = {}
             
             # Tokenize
-            # (Some tasks might require task-dependent formatting)
-            tokenized_dataset["inputs_untokenized"] = [sample["inputs"] for sample in dt]
-            tokenized_dataset["labels_untokenized"] = [sample["targets"] for sample in dt]
             tokenized_dataset["inputs"] = [self.tokenizer(sample["inputs"]) for sample in dt]
             tokenized_dataset["targets"] = [self.tokenizer(sample["targets"]) for sample in dt]
+            # tokenized_dataset["inputs_untokenized"] = [sample["inputs"] for sample in dt]
+            # tokenized_dataset["labels_untokenized"] = [sample["targets"] for sample in dt]
             
             # Save to disk
             os.makedirs(self.config.preprocessed_dir, exist_ok=True)
@@ -76,10 +75,10 @@ class CoTDataset(torch.utils.data.Dataset):
             with open(preprocessed_path, "rb") as file:
                 tokenized_dataset = pickle.load(file)
 
-        self.untok_data = tokenized_dataset["inputs_untokenized"]
-        self.untok_labels = tokenized_dataset["labels_untokenized"]
         self.data = tokenized_dataset["inputs"]
         self.labels = tokenized_dataset["targets"]
+        # self.untok_data = tokenized_dataset["inputs_untokenized"]
+        # self.untok_labels = tokenized_dataset["labels_untokenized"]
 
         # Tokenize cot's
         handtuned_file_path = Path(self.config.bigbench_explanations_path) / "handtuned" / (self.config.bigbench_task_name + ".json")
@@ -110,20 +109,20 @@ class CoTDataset(torch.utils.data.Dataset):
 
             concatenated_input_ids = []
             concatenated_attention_mask = []
-            concatenated_untokenized_string = []
+            # concatenated_untokenized_string = []
 
             for i in cot_idx:
-                concatenated_untokenized_string += self.cots[i]['example']
                 concatenated_input_ids += self.cots[i]['tokenized_example']["input_ids"]
                 concatenated_attention_mask += self.cots[i]['tokenized_example']["attention_mask"]
+                # concatenated_untokenized_string += self.cots[i]['example']
 
             # Concatenate
             item = self.data[idx]
 
             #do we even need attention mask?
-            concatenated_untokenized_string += self.untok_data[idx]
             concatenated_input_ids += item["input_ids"]
             concatenated_attention_mask += item["attention_mask"]
+            # concatenated_untokenized_string += self.untok_data[idx]
 
 
             # Return x and y
