@@ -1,0 +1,17 @@
+{"idx":0,"inputs":"Q: Pick the odd word out: mouth, white, arm, head, nail\nA:","targets":["white"],"multiple_choice_targets":["mouth","white","arm","head","nail"],"multiple_choice_scores":[0,1,0,0,0]}
+{"idx":1,"inputs":"Q: Pick the odd word out: Spain, France, German, England, Singapore\nA:","targets":["German"],"multiple_choice_targets":["Spain","France","German","England","Singapore"],"multiple_choice_scores":[0,0,1,0,0]}
+{"idx":2,"inputs":"Q: Pick the odd word out: box, trombone, tuba, harp, oboe, triangle\nA:","targets":["box"],"multiple_choice_targets":["box","trombone","tuba","harp","oboe","triangle"],"multiple_choice_scores":[1,0,0,0,0,0]}
+{"idx":3,"inputs":"Q: Pick the odd word out: nice, odd, strong, house\nA:","targets":["house"],"multiple_choice_targets":["nice","odd","strong","house"],"multiple_choice_scores":[0,0,0,1]}
+{"idx":4,"inputs":"Q: Pick the odd word out: skirt, dress, pen, jacket\nA:","targets":["pen"],"multiple_choice_targets":["skirt","dress","pen","jacket"],"multiple_choice_scores":[0,0,1,0]}
+{"idx":5,"inputs":"Q: Pick the odd word out: I, me, him, her, them\nA:","targets":["I"],"multiple_choice_targets":["I","me","him","her","them"],"multiple_choice_scores":[1,0,0,0,0]}
+{"idx":6,"inputs":"Q: Pick the odd word out: cat, giraffe, dog, hamster, turtle\nA:","targets":["giraffe"],"multiple_choice_targets":["cat","giraffe","dog","hamster","turtle"],"multiple_choice_scores":[0,1,0,0,0]}
+{"idx":7,"inputs":"Q: Pick the odd word out: rose, daisy, lily, computer, tulip\nA:","targets":["computer"],"multiple_choice_targets":["rose","daisy","lily","computer","tulip"],"multiple_choice_scores":[0,0,0,1,0]}
+{"idx":8,"inputs":"Q: Pick the odd word out: word, ball, teddy, doll\nA:","targets":["word"],"multiple_choice_targets":["word","ball","teddy","doll"],"multiple_choice_scores":[1,0,0,0]}
+{"idx":9,"inputs":"Q: Pick the odd word out: milk, pink, coffee, tea, beer\nA:","targets":["pink"],"multiple_choice_targets":["milk","pink","coffee","tea","beer"],"multiple_choice_scores":[0,1,0,0,0]}
+{"idx":10,"inputs":"Q: Pick the odd word out: glue, scissors, black, paper, pen\nA:","targets":["black"],"multiple_choice_targets":["glue","scissors","black","paper","pen"],"multiple_choice_scores":[0,0,1,0,0]}
+{"idx":11,"inputs":"Q: Pick the odd word out: helicopter, square, car, tram\nA:","targets":["square"],"multiple_choice_targets":["helicopter","square","car","tram"],"multiple_choice_scores":[0,1,0,0]}
+{"idx":12,"inputs":"Q: Pick the odd word out: cathedral, church, glove, abbey, convent\nA:","targets":["glove"],"multiple_choice_targets":["cathedral","church","glove","abbey","convent"],"multiple_choice_scores":[0,0,1,0,0]}
+{"idx":13,"inputs":"Q: Pick the odd word out: muffin, cupcake, picture, bun, loaf, croissant\nA:","targets":["picture"],"multiple_choice_targets":["muffin","cupcake","picture","bun","loaf","croissant"],"multiple_choice_scores":[0,0,1,0,0,0]}
+{"idx":14,"inputs":"Q: Pick the odd word out: green, kitchen, bathroom, dining room, garage\nA:","targets":["green"],"multiple_choice_targets":["green","kitchen","bathroom","dining room","garage"],"multiple_choice_scores":[1,0,0,0,0]}
+{"idx":15,"inputs":"Q: Pick the odd word out: bus, three, plane, train, boat, car\nA:","targets":["three"],"multiple_choice_targets":["bus","three","plane","train","boat","car"],"multiple_choice_scores":[0,1,0,0,0,0]}
+{"idx":16,"inputs":"Q: Pick the odd word out: in, circle, on, at, by\nA:","targets":["circle"],"multiple_choice_targets":["in","circle","on","at","by"],"multiple_choice_scores":[0,1,0,0,0]}
