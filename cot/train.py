@@ -18,7 +18,7 @@ def parse_option():
 
     # Dataset args
     parser.add_argument('--preprocessed_dir', default = '/project/gpuuva021/shared/cot/data/preprocessed', type=str, help='Directory for storing the preprocessed datasets')
-    parser.add_argument('--bigbench_task_name', default = 'truthful_qa', type=str, help='The name of the bigbench task on which to train and evaluate')
+    parser.add_argument('--bigbench_task_name', default = 'odd_one_out', type=str, help='The name of the bigbench task on which to train and evaluate')
     parser.add_argument('--bigbench_explanations_path', default = 'data/bigbench-explanations/', type=str, help='Path to the bigbench explanations from Lampinen et al.')
     parser.add_argument('--n_shot', default = 5, type=int, help='How many examples to show in-context')
     parser.add_argument('--rebuild_cache', default = False, type=bool, help='Whether to rebuild the cached preprocessed datasets')
