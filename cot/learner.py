@@ -45,7 +45,6 @@ def train_model(model, tokenizer, tokenized_dataset, args):
     # Define training args
     training_args = Seq2SeqTrainingArguments(
         output_dir=output_dir,
-        auto_find_batch_size=args.batch_size is None,
         per_device_train_batch_size=args.batch_size,
         per_device_eval_batch_size=args.batch_size,
         learning_rate=args.lr, # higher learning rate

@@ -27,7 +27,7 @@ def parse_option():
     # Training args
     parser.add_argument('--lr', default = 1e-3, type=float, help='Learning rate')
     parser.add_argument('--max_epochs', default = 100, type=int, help='Maximum number of epochs to train')
-    parser.add_argument('--batch_size', required=False, type=int, help='Batch size (optional). If not specified, auto_find_batch_size is used')
+    parser.add_argument('--batch_size', default = 8, type=int, help='Batch size')
     parser.add_argument('--seed', default=666, type=int, help="The seed for reproducibility")
 
     # Training args (lora)
@@ -68,7 +68,7 @@ if __name__ == "__main__":
 
         args.lr = 1e-3
         args.max_epochs = 100
-        args.batch_size = None
+        args.batch_size = 8
         args.seed = 666
 
         args.lora_r = 8
