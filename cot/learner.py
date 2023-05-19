@@ -50,8 +50,8 @@ def train_model(model, tokenizer, tokenized_dataset, args):
         learning_rate=args.lr, # higher learning rate
         num_train_epochs=args.max_epochs,
         logging_dir=f"{output_dir}/logs",
-        logging_strategy="steps",
-        logging_steps=500,
+        logging_strategy="epoch",
+        evaluation_strategy="epoch",
         save_strategy="no",
         report_to="wandb",
         seed=args.seed,
