@@ -63,6 +63,7 @@ def train_model(model, tokenizer, tokenized_dataset, args):
         args=training_args,
         data_collator=data_collator,
         train_dataset=tokenized_dataset["train"],
+        eval_dataset=tokenized_dataset["validation"],
     )
     model.config.use_cache = False  # silence the warnings. Please re-enable for inference!
 
