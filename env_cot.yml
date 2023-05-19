@@ -30,6 +30,7 @@ dependencies:
     - bitsandbytes>=0.38.1   # For load_in_8bit
     - sentencepiece>=0.1.99  # For T5Tokenize
     - peft>=0.2.0
+    - wandb==0.15.3
 
 # To add:
 # (These are later installed with `pip install <package>`)

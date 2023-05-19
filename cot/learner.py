@@ -4,6 +4,7 @@ from datasets import load_dataset
 from transformers import AutoModelForCausalLM, AutoModelForSeq2SeqLM, AutoTokenizer, T5ForConditionalGeneration, T5Tokenizer
 from peft import LoraConfig, get_peft_model, prepare_model_for_int8_training, TaskType
 from transformers import DataCollatorForSeq2Seq, Seq2SeqTrainer, Seq2SeqTrainingArguments
+import wandb
 
 # adapted from https://github.com/philschmid/deep-learning-pytorch-huggingface/blob/main/training/peft-flan-t5-int8-summarization.ipynb
 
@@ -38,6 +39,9 @@ def train_model(model, tokenizer, tokenized_dataset):
 
     output_dir="."
 
+    # wandb
+    wandb.init(project="cot-instruction-tuning-v0")
+
     # Define training args
     training_args = Seq2SeqTrainingArguments(
         output_dir=output_dir,
@@ -48,7 +52,7 @@ def train_model(model, tokenizer, tokenized_dataset):
         logging_strategy="steps",
         logging_steps=500,
         save_strategy="no",
-        report_to="tensorboard",
+        report_to="wandb",
     )
 
     # Create Trainer instance
