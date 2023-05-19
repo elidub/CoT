@@ -11,13 +11,16 @@ from dataset import CoTDataset
 
 def parse_option():
     parser = argparse.ArgumentParser(description="Testing various models")
+
+    # General args
     parser.add_argument('--model_id', default = 'bigscience/mt0-small', type=str, help='Model type')
     parser.add_argument('--hf_cache_dir', default = '/project/gpuuva021/shared/cot/hf_cache', type=str, help='Directory for HuggingFace cache')
 
+    # Dataset args
     parser.add_argument('--preprocessed_dir', default = '/project/gpuuva021/shared/cot/data/preprocessed', type=str, help='Directory for storing the preprocessed datasets')
     parser.add_argument('--bigbench_task_name', default = 'truthful_qa', type=str, help='The name of the bigbench task on which to train and evaluate')
     parser.add_argument('--bigbench_explanations_path', default = 'data/bigbench-explanations/', type=str, help='Path to the bigbench explanations from Lampinen et al.')
-    parser.add_argument('--n_shot', default = False, type=int, help='How many examples to show in-context')
+    parser.add_argument('--n_shot', default = 5, type=int, help='How many examples to show in-context')
     parser.add_argument('--rebuild_cache', default = False, type=bool, help='Whether to rebuild the cached preprocessed datasets')
     parser.add_argument('--shuffle_cots', default = False, type=bool, help='Whether to randomly select the available CoTs and their order. If False, the first n_shot CoTs are chosen.')
     args = parser.parse_args()
@@ -37,7 +40,7 @@ def main(args):
 
 
 if __name__ == "__main__":
-    debug = True
+    debug = False
     if debug:
         args = argparse.Namespace()
         args.model_id = "bigscience/mt0-small"

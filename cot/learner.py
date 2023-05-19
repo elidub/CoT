@@ -8,16 +8,16 @@ import wandb
 
 # adapted from https://github.com/philschmid/deep-learning-pytorch-huggingface/blob/main/training/peft-flan-t5-int8-summarization.ipynb
 
-def train_model(model, tokenizer, tokenized_dataset):
+def train_model(model, tokenizer, tokenized_dataset, args):
 
     # Define LoRA Config 
     lora_config = LoraConfig(
-    r=16, 
-    lora_alpha=32,
-    target_modules=["q", "v"],
-    lora_dropout=0.05,
-    bias="none",
-    task_type=TaskType.SEQ_2_SEQ_LM
+        r=16,
+        lora_alpha=32,
+        target_modules=["q", "v"],
+        lora_dropout=0.05,
+        bias="none",
+        task_type=TaskType.SEQ_2_SEQ_LM
     )
     # prepare int-8 model for training
     model = prepare_model_for_int8_training(model)
