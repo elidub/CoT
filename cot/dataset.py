@@ -3,7 +3,6 @@ import torch
 import random
 import json
 import pickle
-import nltk
 from pathlib import Path
 from datasets import load_from_disk
 from datasets import get_dataset_config_names, load_dataset
