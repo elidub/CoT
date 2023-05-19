@@ -5,7 +5,7 @@
 #SBATCH --partition=gpu_titanrtx_shared_course
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=3
-#SBATCH --time=00:05:00
+#SBATCH --time=05:00:00
 #SBATCH --mem=32000M
 #SBATCH --output=jobs/slurm_output/test-training-models_%A.out
 
