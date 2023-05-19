@@ -51,7 +51,7 @@ def load_bigbench_dataset(dataset_name, directory, remap_names=True):
         "presuppositions_as_nli",
     ]:
         train_path = Path(directory) / dataset_name / "train.jsonl"
-        validation_path = Path(directory) / dataset_name / "train.jsonl"
+        validation_path = Path(directory) / dataset_name / "validation.jsonl"
         dataset = load_dataset(
             "json",
             data_files={"train": str(train_path), "validation": str(validation_path)},
@@ -59,14 +59,20 @@ def load_bigbench_dataset(dataset_name, directory, remap_names=True):
     elif dataset_name == "truthful_qa":
         dataset = load_dataset("truthful_qa", "generation")
         # truthful_qa only contains validation, so i renamed it to train for consistency
-        print("truthful_qa only contains split validation, so i renamed it to train for consistency and removed validation")
-        dataset["train"] = dataset["validation"]
-        del dataset["validation"]
+        print("truthful_qa only contains split validation, use the validation as train and split it")
+        dataset = dataset['validation'].train_test_split(test_size=0.3)
+        # rename test to validation
+        dataset['validation'] = dataset.pop('test')
+
     else:
         raise NotImplementedError(f"no dataset available with name: {dataset_name}")
 
     if remap_names:
-        dataset["train"].map(rename_keys).map(add_question_prompt)
+        dataset["train"] = dataset["train"].map(rename_keys).map(add_question_prompt)
+        try:
+            dataset["validation"] = dataset["validation"].map(rename_keys).map(add_question_prompt)
+        except KeyError:
+            pass
 
     return dataset
 

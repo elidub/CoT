@@ -7,7 +7,7 @@ import nltk
 from pathlib import Path
 from datasets import load_from_disk
 from datasets import get_dataset_config_names, load_dataset
-
+from bigbench_utils import load_bigbench_dataset
 
 # SETUP
 # os.system('pip install git+https://github.com/google/BIG-bench.git')
@@ -55,8 +55,16 @@ class CoTDataset(torch.utils.data.Dataset):
             # TODO: Look at notebook
             # https://colab.research.google.com/drive/1MKdLdF7oqrSQCeavAcsEnPdI85kD0LzU?usp=sharing#scrollTo=UqoBR0ujfEkl
 
-            dt = load_dataset('tasksource/bigbench', self.config.bigbench_task_name, split=self.split, cache_dir=self.config.hf_cache_dir)
+            try:
+                # local variant that contains truthful_qa
+                dt = load_bigbench_dataset(self.config.bigbench_task_name, 'data/bigbench')[split]
+            except NotImplementedError as e:
+                # try the HF version if we don't have it locally, also this source only contains 50k samples per dataset max
+                dt = load_dataset('tasksource/bigbench', self.config.bigbench_task_name, split=self.split, cache_dir=self.config.hf_cache_dir)
+
+
             tokenized_dataset = {}
+            print(next(iter(dt)))
             
             # Tokenize
             tokenized_dataset["inputs"] = [self.tokenizer(sample["inputs"]) for sample in dt]

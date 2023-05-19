@@ -2,5 +2,6 @@
 logs/
 cot/__pycache__
 cot/explore_elias.py
+wandb/
 
 !data/bigbench/*

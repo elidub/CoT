@@ -43,7 +43,7 @@ def main(args):
     model_id = args.model_id
 
     m_dicts = load_model_dicts()
-    model, tokenizer = load_model(model_id, m_dicts[model_id])
+    model, tokenizer = load_model(model_id, m_dicts[model_id], hf_cache=args.hf_cache_dir)
 
     tokenized_dataset = {}
     for split in ["train", "validation"]:
