@@ -12,11 +12,11 @@ def train_model(model, tokenizer, tokenized_dataset, args):
 
     # Define LoRA Config 
     lora_config = LoraConfig(
-        r=16,
-        lora_alpha=32,
+        r=args.lora_r,
+        lora_alpha=args.lora_alpha,
         target_modules=["q", "v"],
-        lora_dropout=0.05,
-        bias="none",
+        lora_dropout=args.lora_dropout,
+        bias=args.lora_bias,
         task_type=TaskType.SEQ_2_SEQ_LM
     )
     # prepare int-8 model for training
@@ -40,14 +40,16 @@ def train_model(model, tokenizer, tokenized_dataset, args):
     output_dir="."
 
     # wandb
-    wandb.init(project="cot-instruction-tuning-v0")
+    wandb.init(project="cot-instruction-tuning-v0", config=args)
 
     # Define training args
     training_args = Seq2SeqTrainingArguments(
         output_dir=output_dir,
-            auto_find_batch_size=True,
-        learning_rate=1e-3, # higher learning rate
-        num_train_epochs=5,
+        auto_find_batch_size=args.batch_size is None,
+        per_device_train_batch_size=args.batch_size,
+        per_device_eval_batch_size=args.batch_size,
+        learning_rate=args.lr, # higher learning rate
+        num_train_epochs=args.max_epochs,
         logging_dir=f"{output_dir}/logs",
         logging_strategy="steps",
         logging_steps=500,
