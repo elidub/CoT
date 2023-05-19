@@ -55,6 +55,8 @@ def train_model(model, tokenizer, tokenized_dataset, args):
         logging_steps=500,
         save_strategy="no",
         report_to="wandb",
+        seed=args.seed,
+        full_determinism=True,
     )
 
     # Create Trainer instance
