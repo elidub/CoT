@@ -46,7 +46,7 @@ def main(args):
     for split in ["train", "validation"]:
         tokenized_dataset[split] = CoTDataset(args, tokenizer, split)
 
-    train_model(model, tokenizer, tokenized_dataset)
+    train_model(model, tokenizer, tokenized_dataset, args)
 
 
 if __name__ == "__main__":
