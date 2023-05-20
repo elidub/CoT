@@ -51,25 +51,40 @@ class CoTDataset(torch.utils.data.Dataset):
         # If necessary, download, tokenize dataset and save to disk
         preprocessed_path = Path(self.config.preprocessed_dir) / self.preprocessed_filename()
         if self.config.rebuild_cache or not preprocessed_path.exists():
-            # TODO: Look at notebook
-            # https://colab.research.google.com/drive/1MKdLdF7oqrSQCeavAcsEnPdI85kD0LzU?usp=sharing#scrollTo=UqoBR0ujfEkl
 
-            try:
-                # local variant that contains truthful_qa
-                dt = load_bigbench_dataset(self.config.bigbench_task_name, 'data/bigbench')[split]
-            except NotImplementedError as e:
-                # try the HF version if we don't have it locally, also this source only contains 50k samples per dataset max
-                dt = load_dataset('tasksource/bigbench', self.config.bigbench_task_name, split=self.split, cache_dir=self.config.hf_cache_dir)
+            # Load dataset for fine-tuning
+            if self.config.dataset_is_bigbench:
+                try:
+                    # local variant that contains truthful_qa
+                    dt = load_bigbench_dataset(self.config.dataset_name, 'data/bigbench')[split]
+                except NotImplementedError as e:
+                    # try the HF version if we don't have it locally, also this source only contains 50k samples per dataset max
+                    dt = load_dataset('tasksource/bigbench', self.config.dataset_name, split=self.split, cache_dir=self.config.hf_cache_dir)
+            else:
+                if self.config.dataset_name == "squad":
+                    # Use reduced dataset if debugging
+                    split_str = self.split + ("[:5000]" if self.debug else "")
+                    squad = load_dataset("squad", split=split_str)
+                    squad = squad.train_test_split(test_size=self.config.val_split)
+                    squad = squad[self.split]
 
+                    # Bring it in the expected format
+                    dt = []
+                    for example in squad:
+                        example_formatted = {}
+                        example_formatted["inputs"] = "Q: " + example['question'] + "\nA: "
+                        example_formatted["targets"] = example["answers"]["text"]
+                        dt += [example_formatted]
 
             tokenized_dataset = {}
-            print(next(iter(dt)))
             
             # Tokenize
             tokenized_dataset["inputs"] = [self.tokenizer(sample["inputs"]) for sample in dt]
             tokenized_dataset["targets"] = [self.tokenizer(sample["targets"]) for sample in dt]
-            # tokenized_dataset["inputs_untokenized"] = [sample["inputs"] for sample in dt]
-            # tokenized_dataset["labels_untokenized"] = [sample["targets"] for sample in dt]
+            if self.config.debug:
+                print(next(iter(dt)))
+                tokenized_dataset["inputs_untokenized"] = [sample["inputs"] for sample in dt]
+                tokenized_dataset["labels_untokenized"] = [sample["targets"] for sample in dt]
             
             # Save to disk
             os.makedirs(self.config.preprocessed_dir, exist_ok=True)
@@ -112,7 +127,7 @@ class CoTDataset(torch.utils.data.Dataset):
         } for i in range(len(questions)) ]
 
     def preprocessed_filename(self):
-        return self.config.bigbench_task_name + "_" + self.split + ".json"
+        return self.config.dataset_name + "_" + self.split + ("_debug" if self.config.debug else "") + ".json"
 
     def __getitem__(self, idx):
         # Select CoT's (includes shuffling if dynamic)
@@ -126,12 +141,10 @@ class CoTDataset(torch.utils.data.Dataset):
 
             concatenated_input_ids = []
             concatenated_attention_mask = []
-            # concatenated_untokenized_string = []
 
             for i in cot_idx:
                 concatenated_input_ids += self.cots[i]['tokenized_example']["input_ids"]
                 concatenated_attention_mask += self.cots[i]['tokenized_example']["attention_mask"]
-                # concatenated_untokenized_string += self.cots[i]['example']
 
             # Concatenate
             item = self.data[idx]
@@ -139,7 +152,6 @@ class CoTDataset(torch.utils.data.Dataset):
             #do we even need attention mask?
             concatenated_input_ids += item["input_ids"]
             concatenated_attention_mask += item["attention_mask"]
-            # concatenated_untokenized_string += self.untok_data[idx]
 
 
             # Return x and y
@@ -149,6 +161,15 @@ class CoTDataset(torch.utils.data.Dataset):
                 'labels':  torch.Tensor(self.labels[idx]["input_ids"]).long().squeeze()
             }
 
+            # When debugging, additionally store untokenized data
+            if self.config.debug:
+                concatenated_untokenized_string = ""
+                for i in cot_idx:
+                    concatenated_untokenized_string += self.cots[i]['example']
+                concatenated_untokenized_string += self.untok_data[idx]
+                x["untokenized_inputs"] = concatenated_untokenized_string
+                x["untokenized_labels"] = self.untok_labels[idx]
+
         #0-shot
         else:
 
@@ -157,6 +178,11 @@ class CoTDataset(torch.utils.data.Dataset):
                 'attention_mask': torch.Tensor(self.data[idx]["attention_mask"]).long(),
                 'labels':  torch.Tensor(self.labels[idx]["input_ids"]).long().squeeze()
             }
+
+            # When debugging, additionally store untokenized data
+            if self.config.debug:
+                x["untokenized_inputs"] = self.untok_data[idx]
+                x["untokenized_labels"] = self.untok_labels[idx]
 
         return x
 
@@ -170,6 +196,8 @@ class CoTDataset(torch.utils.data.Dataset):
 # args = argparse.Namespace()
 # args.model_id = "bigscience/mt0-small"
 # args.hf_cache_dir = "datadump/hf"
+# args.debug = True
+
 # args.preprocessed_dir = "datadump/preprocessed"
 # args.bigbench_task_name = "odd_one_out"
 # args.bigbench_explanations_path = "data/bigbench-explanations/"

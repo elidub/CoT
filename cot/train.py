@@ -15,6 +15,7 @@ def parse_option():
     # General args
     parser.add_argument('--model_id', default = 'bigscience/mt0-small', type=str, help='Model type')
     parser.add_argument('--hf_cache_dir', default = '/project/gpuuva021/shared/cot/hf_cache', type=str, help='Directory for HuggingFace cache')
+    parser.add_argument('--debug', default = False, type=str, help='Use smaller datasets and store more info for debugging')
 
     # Dataset args
     parser.add_argument('--preprocessed_dir', default = '/project/gpuuva021/shared/cot/data/preprocessed', type=str, help='Directory for storing the preprocessed datasets')
@@ -58,6 +59,7 @@ if __name__ == "__main__":
         args = argparse.Namespace()
         args.model_id = "bigscience/mt0-small"
         args.hf_cache_dir = "datadump/hf"
+        args.debug = True
 
         args.preprocessed_dir = "datadump/preprocessed"
         args.bigbench_task_name = "odd_one_out"
