@@ -15,17 +15,17 @@ def parse_option():
     # General args
     parser.add_argument('--model_id', default = 'bigscience/mt0-small', type=str, help='Model type')
     parser.add_argument('--hf_cache_dir', default = '/project/gpuuva021/shared/cot/hf_cache', type=str, help='Directory for HuggingFace cache')
-    parser.add_argument('--debug', default = False, type=str, help='Use smaller datasets and store more info for debugging')
+    parser.add_argument('--debug', action='store_true', help='Use smaller datasets and store more info for debugging')
 
     # Dataset args
     parser.add_argument('--preprocessed_dir', default = '/project/gpuuva021/shared/cot/data/preprocessed', type=str, help='Directory for storing the preprocessed datasets')
     parser.add_argument('--dataset_name', default = 'squad', type=str, help='The name of the dataset on huggingface on which models are fine-tuned and evaluated.')
-    parser.add_argument('--dataset_is_bigbench', default = False, type=bool, help='Whether the dataset specified by dataset_name is part of the bigbench collection.')
+    parser.add_argument('--dataset_is_bigbench', action='store_true', help='Use this flag if the dataset specified by dataset_name is part of the bigbench collection.')
     parser.add_argument('--bigbench_explanations_dataset', default = 'truthful_qa', type=str, help='The name of the bigbench task from which the CoTs are taken.')
     parser.add_argument('--bigbench_explanations_type', default = 'handtuned', type=str, help='Type of explanations from Lampinen et al. One of "handtuned", "selected", "untuned".')
     parser.add_argument('--bigbench_explanations_path', default = 'data/bigbench-explanations/', type=str, help='Path to the bigbench explanations from Lampinen et al.')
     parser.add_argument('--n_shot', default = 5, type=int, help='How many examples to show in-context')
-    parser.add_argument('--rebuild_cache', default = False, type=bool, help='Whether to rebuild the cached preprocessed datasets')
+    parser.add_argument('--rebuild_cache', action='store_true', help='Whether to rebuild the cached preprocessed datasets')
     parser.add_argument('--shuffle_cots', default = False, type=bool, help='Whether to randomly select the available CoTs and their order. If False, the first n_shot CoTs are chosen.')
 
     # Training args
