@@ -1,5 +1,4 @@
 from pathlib import Path
-from google_drive_downloader import GoogleDriveDownloader as gdd
 import os
 from datasets import load_dataset
 
@@ -10,6 +9,7 @@ def download_bigbench_drive(target_dir):
     Args:
         target_dir (str): path to cache directory
     """
+    from google_drive_downloader import GoogleDriveDownloader as gdd
     # url to my google drive
     gdd.download_file_from_google_drive(file_id='1m6sIfgb7hUMMjOmeT1uJp',
                                     dest_path='./bigbench.zip',
@@ -28,7 +28,7 @@ def download_hf_datasets(target_dir):
 
 
 def download_datasets(target_dir):
-    download_bigbench_drive(target_dir)
+    # download_bigbench_drive(target_dir)
     download_hf_datasets(target_dir)
 
 
