@@ -33,8 +33,11 @@ def download_datasets(target_dir):
 
 
 def rename_keys(example):
-    example["inputs"] = example["question"]
-    example["targets"] = example["best_answer"]
+    inputs_key = [key for key in example.keys() if key in ["inputs", "question"]][0]
+    example["inputs"] = example[inputs_key]
+
+    targets_key = [key for key in example.keys() if key in ["targets", "best_answer"]][0]
+    example["targets"] = example[targets_key]
     return example
 
 
