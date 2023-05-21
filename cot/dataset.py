@@ -153,13 +153,19 @@ class CoTDataset(torch.utils.data.Dataset):
             concatenated_input_ids += item["input_ids"]
             concatenated_attention_mask += item["attention_mask"]
 
-
-            # Return x and y
-            x = {
-                'input_ids':  torch.Tensor(concatenated_input_ids).long(),
-                'attention_mask':  torch.Tensor(concatenated_attention_mask).long(),
-                'labels':  torch.Tensor(self.labels[idx]["input_ids"]).long().squeeze()
-            }
+            if self.split == 'validation' and self.config.dataset_name == 'squad':
+                x = {
+                    'input_ids':  torch.Tensor(concatenated_input_ids).long(),
+                    'attention_mask':  torch.Tensor(concatenated_attention_mask).long(),
+                    'labels':  torch.Tensor(self.labels[idx]["input_ids"][0]).long().squeeze()
+                }
+            else:
+                # Return x and y
+                x = {
+                    'input_ids':  torch.Tensor(concatenated_input_ids).long(),
+                    'attention_mask':  torch.Tensor(concatenated_attention_mask).long(),
+                    'labels':  torch.Tensor(self.labels[idx]["input_ids"]).long().squeeze()
+                }
 
             # When debugging, additionally store untokenized data
             if self.config.debug:
