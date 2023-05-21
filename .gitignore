@@ -1,7 +1,9 @@
 /__pycache__
 logs/
 cot/__pycache__
-cot/explore_elias.py
 wandb/
-
 !data/bigbench/*
+
+# Elias files
+cot/dev_elias.ipynb
+cot/models.yml
