@@ -7,14 +7,26 @@ from transformers import DataCollatorForSeq2Seq, Seq2SeqTrainer, Seq2SeqTraining
 import wandb
 
 # adapted from https://github.com/philschmid/deep-learning-pytorch-huggingface/blob/main/training/peft-flan-t5-int8-summarization.ipynb
+TARGET_MODULES = {"t0": ["q", "v"], "bloom": ["query_key_value"], "t5": ["q", "v"], "mt5": ["q", "v"]}
 
 def train_model(model, tokenizer, tokenized_dataset, args):
+    # see TRANSFORMERS_MODELS_TO_LORA_TARGET_MODULES_MAPPING ub peft/utils/other.py
+    if "mt0" in args.model_id:
+        target_modules = TARGET_MODULES["mt0"]
+    elif "bloom-" in args.model_id:
+        target_modules = TARGET_MODULES["bloom"]
+    elif "mt5" in args.model_id:
+        target_modules = TARGET_MODULES["mt5"]
+    elif "t5" in args.model_id:
+        target_modules = TARGET_MODULES["t5"]
+    else:
+        raise NotImplementedError(f"no target modules specified for {args.model_id}")
 
     # Define LoRA Config 
     lora_config = LoraConfig(
         r=args.lora_r,
         lora_alpha=args.lora_alpha,
-        target_modules=["q", "v"],
+        target_modules=target_modules,
         lora_dropout=args.lora_dropout,
         bias=args.lora_bias,
         task_type=TaskType.SEQ_2_SEQ_LM
@@ -71,3 +83,4 @@ def train_model(model, tokenizer, tokenized_dataset, args):
 
     # train model
     trainer.train()
+    trainer.evaluate()
