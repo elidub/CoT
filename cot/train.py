@@ -49,11 +49,11 @@ def main(args):
     m_dicts = load_model_dicts()
     model, tokenizer = load_model(model_id, m_dicts[model_id], hf_cache=args.hf_cache_dir)
 
-    tokenized_dataset = {}
+    tokenized_datasets = {}
     for split in ["train", "validation"]:
-        tokenized_dataset[split] = CoTDataset(args, tokenizer, split)
+        tokenized_datasets[split] = CoTDataset(args, tokenizer, split)
 
-    train_model(model, tokenizer, tokenized_dataset, args)
+    train_model(model, tokenizer, tokenized_datasets, args)
 
 
 if __name__ == "__main__":
