@@ -63,7 +63,9 @@ def load_bigbench_dataset(dataset_name, directory, remap_names=True):
         dataset = load_dataset("truthful_qa", "generation")
         # truthful_qa only contains validation, so i renamed it to train for consistency
         print("truthful_qa only contains split validation, use the validation as train and split it")
-        dataset = dataset['validation'].train_test_split(test_size=0.3)
+        # split with fixed seed so the split should always be the same. 
+        # COT dataset is called twice so the dataset is constructed twice, but if the seed stays the same that's fine
+        dataset = dataset['validation'].train_test_split(test_size=0.3, seed=42)
         # rename test to validation
         dataset['validation'] = dataset.pop('test')
 
