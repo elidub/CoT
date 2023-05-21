@@ -7,7 +7,7 @@ from transformers import DataCollatorForSeq2Seq, Seq2SeqTrainer, Seq2SeqTraining
 import wandb
 
 # adapted from https://github.com/philschmid/deep-learning-pytorch-huggingface/blob/main/training/peft-flan-t5-int8-summarization.ipynb
-TARGET_MODULES = {"t0": ["q", "v"], "bloom": ["query_key_value"], "t5": ["q", "v"], "mt5": ["q", "v"]}
+TARGET_MODULES = {"mt0": ["q", "v"], "bloom": ["query_key_value"], "t5": ["q", "v"], "mt5": ["q", "v"]}
 
 def train_model(model, tokenizer, tokenized_dataset, args):
     # see TRANSFORMERS_MODELS_TO_LORA_TARGET_MODULES_MAPPING ub peft/utils/other.py
