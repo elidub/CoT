@@ -3,6 +3,8 @@ logs/
 cot/__pycache__
 wandb/
 !data/bigbench/*
+datadump
+trained_models/*
 
 # Elias files
 cot/dev_elias.ipynb

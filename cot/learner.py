@@ -81,6 +81,9 @@ def train_model(model, tokenizer, tokenized_dataset, args):
     model.config.use_cache = False  # silence the warnings. Please re-enable for inference!
 
 
+    run_name = wandb.run.name
+
     # train model
     trainer.train()
     trainer.evaluate()
+    trainer.save_model(os.path.join("trained_models", run_name))
