@@ -81,9 +81,11 @@ def train_model(model, tokenizer, tokenized_dataset, args):
     model.config.use_cache = False  # silence the warnings. Please re-enable for inference!
 
 
-    run_name = wandb.run.name
 
     # train model
     trainer.train()
     trainer.evaluate()
-    trainer.save_model(os.path.join("trained_models", run_name))
+    
+    save_dir = os.path.join("trained_models", wandb.run.name)
+    trainer.save_model(save_dir)
+    trainer.model.config.to_json_file(os.path.join(save_dir, "config.json")) # This should be done automatically by trainer.save_model !?!?
