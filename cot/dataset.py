@@ -3,7 +3,6 @@ import torch
 import random
 import json
 import pickle
-import nltk
 from pathlib import Path
 from datasets import load_from_disk
 from datasets import get_dataset_config_names, load_dataset
@@ -14,27 +13,38 @@ from bigbench_utils import load_bigbench_dataset
 # os.system('pip install datasets')
 
 #parse a handtuned explanations json file
-def parse_handtuned(file_path):
+def parse_handtuned(file_path, bigbench_explanations_dataset):
 
     with open(file_path, 'r') as file:
         data = json.load(file)
         for key in ["hand_tuned_fewshot_explanations_0", "hand_tuned_fewshot_explanations_1", "hand_tuned_fewshot_explanations_2"]:
             if key in data:
-                string = data[key]
+                full_string = data[key]
 
     q_list = []
     a_list = []
     explanation_list = []
 
-    substrings = string.split("Q: ")[1:]  # Split the string and discard the first element
+    # Identify how questions, explanations, and answers are introduced in this dataset
+    if bigbench_explanations_dataset == "presuppositions_as_nli":
+        sample_prefix = "Sentence 1: "
+        answer_prefix = "The answer is: "
+        explanation_prefix = "Explanation: "
+    else:
+        sample_prefix = "Q: "
+        answer_prefix = "A: "
+        explanation_prefix = "Explanation: "
 
+    assert full_string.count(sample_prefix) == full_string.count(answer_prefix) == full_string.count(explanation_prefix) == 5, "Unexpected formatting of CoTs"
+
+    substrings = full_string.split(sample_prefix)[1:]  # Split the string and discard the first element
     for substring in substrings:
-        q, a_explanation = substring.split("\nA: ", 1)  # Split each substring into question and remaining part
-        a, explanation = a_explanation.split("\nExplanation: ", 1)  # Split the remaining part into answer and explanation
+        q, a_explanation = substring.split("\n" + answer_prefix, 1)  # Split each substring into question and remaining part
+        a, explanation = a_explanation.split("\n" + explanation_prefix, 1)  # Split the remaining part into answer and explanation
 
-        q_list.append("Q: " + q.strip() + "\n")  # Add "Q: " prefix and strip any leading/trailing whitespaces
-        a_list.append("A: " + a.strip() + "\n")  # Add "A: " prefix and strip any leading/trailing whitespaces
-        explanation_list.append("Explanation: " + explanation.strip() + "\n")  # Add "Explanation: " prefix and strip any leading/trailing whitespaces
+        q_list.append(sample_prefix + q.strip() + "\n")  # Add "Q: " prefix and strip any leading/trailing whitespaces
+        a_list.append(answer_prefix + a.strip() + "\n")  # Add "A: " prefix and strip any leading/trailing whitespaces
+        explanation_list.append(explanation_prefix + explanation.strip() + "\n")  # Add "Explanation: " prefix and strip any leading/trailing whitespaces
 
     return q_list, a_list, explanation_list
 
@@ -52,25 +62,38 @@ class CoTDataset(torch.utils.data.Dataset):
         # If necessary, download, tokenize dataset and save to disk
         preprocessed_path = Path(self.config.preprocessed_dir) / self.preprocessed_filename()
         if self.config.rebuild_cache or not preprocessed_path.exists():
-            # TODO: Look at notebook
-            # https://colab.research.google.com/drive/1MKdLdF7oqrSQCeavAcsEnPdI85kD0LzU?usp=sharing#scrollTo=UqoBR0ujfEkl
 
-            try:
-                # local variant that contains truthful_qa
-                dt = load_bigbench_dataset(self.config.bigbench_task_name, 'data/bigbench')[split]
-            except NotImplementedError as e:
-                # try the HF version if we don't have it locally, also this source only contains 50k samples per dataset max
-                dt = load_dataset('tasksource/bigbench', self.config.bigbench_task_name, split=self.split, cache_dir=self.config.hf_cache_dir)
+            # Load dataset for fine-tuning
+            if self.config.dataset_is_bigbench:
+                try:
+                    # local variant that contains truthful_qa
+                    dt = load_bigbench_dataset(self.config.dataset_name, 'data/bigbench')[split]
+                except NotImplementedError as e:
+                    # try the HF version if we don't have it locally, also this source only contains 50k samples per dataset max
+                    dt = load_dataset('tasksource/bigbench', self.config.dataset_name, split=self.split, cache_dir=self.config.hf_cache_dir)
+            else:
+                if self.config.dataset_name == "squad":
+                    # Use reduced dataset if debugging
+                    split_str = self.split + ("[:5000]" if self.config.debug else "")
+                    squad = load_dataset("squad", split=split_str)
 
+                    # Bring it in the expected format
+                    dt = []
+                    for example in squad:
+                        example_formatted = {}
+                        example_formatted["inputs"] = "Q: " + example['question'] + "\nA: "
+                        example_formatted["targets"] = example["answers"]["text"]
+                        dt += [example_formatted]
 
             tokenized_dataset = {}
-            print(next(iter(dt)))
             
             # Tokenize
             tokenized_dataset["inputs"] = [self.tokenizer(sample["inputs"]) for sample in dt]
             tokenized_dataset["targets"] = [self.tokenizer(sample["targets"]) for sample in dt]
-            # tokenized_dataset["inputs_untokenized"] = [sample["inputs"] for sample in dt]
-            # tokenized_dataset["labels_untokenized"] = [sample["targets"] for sample in dt]
+            if self.config.debug:
+                print(next(iter(dt)))
+                tokenized_dataset["inputs_untokenized"] = [sample["inputs"] for sample in dt]
+                tokenized_dataset["labels_untokenized"] = [sample["targets"] for sample in dt]
             
             # Save to disk
             os.makedirs(self.config.preprocessed_dir, exist_ok=True)
@@ -83,27 +106,18 @@ class CoTDataset(torch.utils.data.Dataset):
             with open(preprocessed_path, "rb") as file:
                 tokenized_dataset = pickle.load(file)
 
-
         self.data = tokenized_dataset["inputs"]
         self.labels = tokenized_dataset["targets"]
-
-        # self.data = torch.Tensor(tokenized_dataset["inputs"])
-        # self.labels = torch.Tensor(tokenized_dataset["targets"]['input_ids'])
-
-
-        # print("Types of data and labels")
-        # print(type(self.data))
-        # print(type(self.labels))
         
-        # self.untok_data = tokenized_dataset["inputs_untokenized"]
-        # self.untok_labels = tokenized_dataset["labels_untokenized"]
+        if self.config.debug:
+            self.untok_data = tokenized_dataset["inputs_untokenized"]
+            self.untok_labels = tokenized_dataset["labels_untokenized"]
 
         # Tokenize cot's
-        handtuned_file_path = Path(self.config.bigbench_explanations_path) / "handtuned" / (self.config.bigbench_task_name + ".json")
-        questions, answers, explanations = parse_handtuned(handtuned_file_path)
+        handtuned_file_path = Path(self.config.bigbench_explanations_path) / self.config.bigbench_explanations_type / (self.config.bigbench_explanations_dataset + ".json")
+        questions, answers, explanations = parse_handtuned(handtuned_file_path, self.config.bigbench_explanations_dataset)
         # tokenized_explanations = [self.tokenizer(questions[i] + answers[i] + explanations[i]) for i in range(len(questions))]
         
-
         # Store cot's
         self.cots = [{
             "id": None,
@@ -113,7 +127,7 @@ class CoTDataset(torch.utils.data.Dataset):
         } for i in range(len(questions)) ]
 
     def preprocessed_filename(self):
-        return self.config.bigbench_task_name + "_" + self.split + ".json"
+        return self.config.dataset_name + "_" + self.split + ("_debug" if self.config.debug else "") + ".json"
 
     def __getitem__(self, idx):
         # Select CoT's (includes shuffling if dynamic)
@@ -127,12 +141,10 @@ class CoTDataset(torch.utils.data.Dataset):
 
             concatenated_input_ids = []
             concatenated_attention_mask = []
-            # concatenated_untokenized_string = []
 
             for i in cot_idx:
                 concatenated_input_ids += self.cots[i]['tokenized_example']["input_ids"]
                 concatenated_attention_mask += self.cots[i]['tokenized_example']["attention_mask"]
-                # concatenated_untokenized_string += self.cots[i]['example']
 
             # Concatenate
             item = self.data[idx]
@@ -140,7 +152,6 @@ class CoTDataset(torch.utils.data.Dataset):
             #do we even need attention mask?
             concatenated_input_ids += item["input_ids"]
             concatenated_attention_mask += item["attention_mask"]
-            # concatenated_untokenized_string += self.untok_data[idx]
 
 
             # Return x and y
@@ -150,6 +161,15 @@ class CoTDataset(torch.utils.data.Dataset):
                 'labels':  torch.Tensor(self.labels[idx]["input_ids"]).long().squeeze()
             }
 
+            # When debugging, additionally store untokenized data
+            if self.config.debug:
+                concatenated_untokenized_string = ""
+                for i in cot_idx:
+                    concatenated_untokenized_string += self.cots[i]['example']
+                concatenated_untokenized_string += self.untok_data[idx]
+                x["untokenized_inputs"] = concatenated_untokenized_string
+                x["untokenized_labels"] = self.untok_labels[idx]
+
         #0-shot
         else:
 
@@ -158,6 +178,11 @@ class CoTDataset(torch.utils.data.Dataset):
                 'attention_mask': torch.Tensor(self.data[idx]["attention_mask"]).long(),
                 'labels':  torch.Tensor(self.labels[idx]["input_ids"]).long().squeeze()
             }
+
+            # When debugging, additionally store untokenized data
+            if self.config.debug:
+                x["untokenized_inputs"] = self.untok_data[idx]
+                x["untokenized_labels"] = self.untok_labels[idx]
 
         return x
 
@@ -171,13 +196,41 @@ class CoTDataset(torch.utils.data.Dataset):
 # args = argparse.Namespace()
 # args.model_id = "bigscience/mt0-small"
 # args.hf_cache_dir = "datadump/hf"
+# args.debug = True
+
 # args.preprocessed_dir = "datadump/preprocessed"
-# args.bigbench_task_name = "odd_one_out"
+
+# # Example 1 for fine-tuning on bigbench:
+# args.dataset_name = "presuppositions_as_nli"
+# args.dataset_is_bigbench = True
+# args.bigbench_explanations_dataset = "presuppositions_as_nli"
+
+# Example 2 for fine-tuning on bigbench:
+# args.dataset_name = "truthful_qa"
+# args.dataset_is_bigbench = True
+# args.bigbench_explanations_dataset = "truthful_qa"
+
+# # Example for fine-tuning on squad:
+# args.dataset_name = "squad"
+# args.dataset_is_bigbench = False
+# args.bigbench_explanations_dataset = "truthful_qa"
+
+
+# args.bigbench_explanations_type = "handtuned"
 # args.bigbench_explanations_path = "data/bigbench-explanations/"
 # args.rebuild_cache = True
 # args.shuffle_cots = False
 # args.n_shot = 5
 
+# args.lr = 1e-3
+# args.max_epochs = 100
+# args.batch_size = 8
+# args.seed = 666
+
+# args.lora_r = 8
+# args.lora_alpha = 32
+# args.lora_dropout = 0.05
+# args.lora_bias = "none"
 
 # model_id = args.model_id
 # m_dicts = load_model_dicts()
