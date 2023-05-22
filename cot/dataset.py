@@ -135,7 +135,8 @@ class CoTDataset(torch.utils.data.Dataset):
         if self.config.debug:
             print(f"Computing longest required context for {self.split}...")
             longest_sample = max(self, key=lambda x: len(x['input_ids']) + len(x['labels']))
-            print(f"Longest sample ({len(longest_sample['input_ids']) + len(longest_sample['labels'])} tokens): {longest_sample} longest required context for {self.split}...")
+            max_tokens = len(longest_sample['input_ids']) + len(longest_sample['labels'])
+            print(f"Longest sample ({max_tokens} tokens): {longest_sample}...")
 
     def preprocessed_filename(self):
         return self.config.dataset_name + "_" + self.split + ("_debug" if self.config.debug else "") + ".json"
