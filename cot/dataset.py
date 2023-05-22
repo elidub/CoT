@@ -92,6 +92,7 @@ class CoTDataset(torch.utils.data.Dataset):
             tokenized_dataset["inputs"] = [self.tokenizer(sample["inputs"]) for sample in dt]
             tokenized_dataset["targets"] = [self.tokenizer(sample["targets"]) for sample in dt]
             if self.config.debug:
+                print("First unprocessed sample:")
                 print(next(iter(dt)))
                 tokenized_dataset["inputs_untokenized"] = [sample["inputs"] for sample in dt]
                 tokenized_dataset["labels_untokenized"] = [sample["targets"] for sample in dt]
@@ -129,8 +130,9 @@ class CoTDataset(torch.utils.data.Dataset):
         } for i in range(len(questions)) ]
 
         # Print some information about the dataset
-        first_sample = self[0]
-        print(f"{first_sample=}")
+        if self.config.debug:
+            first_sample = self[0]
+            print(f"First preprocessed sample: {first_sample=}")
 
         if self.config.debug:
             print(f"Computing longest required context for {self.split}...")
