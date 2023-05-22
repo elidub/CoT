@@ -91,10 +91,11 @@ class CoTDataset(torch.utils.data.Dataset):
             tokenized_dataset["inputs"] = [self.tokenizer(sample["inputs"]) for sample in dt]
             tokenized_dataset["targets"] = [self.tokenizer(sample["targets"]) for sample in dt]
             if self.config.debug:
-                print(next(iter(dt)))
                 tokenized_dataset["inputs_untokenized"] = [sample["inputs"] for sample in dt]
                 tokenized_dataset["labels_untokenized"] = [sample["targets"] for sample in dt]
             
+            print(next(iter(dt)))
+
             # Save to disk
             os.makedirs(self.config.preprocessed_dir, exist_ok=True)
             with open(preprocessed_path, "wb") as file:
