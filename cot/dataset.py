@@ -4,6 +4,7 @@ import random
 import json
 import pickle
 from pathlib import Path
+from tqdm import tqdm
 from datasets import load_from_disk
 from datasets import get_dataset_config_names, load_dataset
 from bigbench_utils import load_bigbench_dataset
@@ -91,10 +92,10 @@ class CoTDataset(torch.utils.data.Dataset):
             tokenized_dataset["inputs"] = [self.tokenizer(sample["inputs"]) for sample in dt]
             tokenized_dataset["targets"] = [self.tokenizer(sample["targets"]) for sample in dt]
             if self.config.debug:
+                print(next(iter(dt)))
                 tokenized_dataset["inputs_untokenized"] = [sample["inputs"] for sample in dt]
                 tokenized_dataset["labels_untokenized"] = [sample["targets"] for sample in dt]
             
-            print(next(iter(dt)))
 
             # Save to disk
             os.makedirs(self.config.preprocessed_dir, exist_ok=True)
@@ -126,6 +127,15 @@ class CoTDataset(torch.utils.data.Dataset):
             "example": questions[i] + answers[i] + explanations[i],
             "label": None,
         } for i in range(len(questions)) ]
+
+        # Print some information about the dataset
+        first_sample = self[0]
+        print(f"{first_sample=}")
+
+        if self.config.debug:
+            print(f"Computing longest required context for {self.split}...")
+            longest_sample = max(self, key=lambda x: len(x['input_ids']) + len(x['labels']))
+            print(f"Longest sample ({len(longest_sample['input_ids']) + len(longest_sample['labels'])} tokens): {longest_sample} longest required context for {self.split}...")
 
     def preprocessed_filename(self):
         return self.config.dataset_name + "_" + self.split + ("_debug" if self.config.debug else "") + ".json"
