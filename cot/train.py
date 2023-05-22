@@ -16,6 +16,7 @@ def parse_option():
     parser.add_argument('--model_id', default = 'bigscience/mt0-small', type=str, help='Model type')
     parser.add_argument('--hf_cache_dir', default = '/project/gpuuva021/shared/cot/hf_cache', type=str, help='Directory for HuggingFace cache')
     parser.add_argument('--debug', action='store_true', help='Use smaller datasets and store more info for debugging')
+    parser.add_argument('--model_max_length', default = None, required=False, type=int, help='Longest context the model/tokenizer is expected to support')
 
     # Dataset args
     parser.add_argument('--preprocessed_dir', default = '/project/gpuuva021/shared/cot/data/preprocessed', type=str, help='Directory for storing the preprocessed datasets')
@@ -44,10 +45,8 @@ def parse_option():
     return args
 
 def main(args):
-    model_id = args.model_id
-
     m_dicts = load_model_dicts()
-    model, tokenizer = load_model(model_id, m_dicts[model_id], hf_cache=args.hf_cache_dir)
+    model, tokenizer = load_model(args.model_id, m_dicts[args.model_id], hf_cache=args.hf_cache_dir, model_max_length=args.model_max_length)
 
     tokenized_datasets = {}
     for split in ["train", "validation"]:
@@ -63,6 +62,7 @@ if __name__ == "__main__":
         args.model_id = "bigscience/mt0-small"
         args.hf_cache_dir = "datadump/hf"
         args.debug = True
+        args.model_max_length = None
 
         args.preprocessed_dir = "datadump/preprocessed"
 

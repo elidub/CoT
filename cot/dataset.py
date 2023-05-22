@@ -215,6 +215,7 @@ class CoTDataset(torch.utils.data.Dataset):
 # args.model_id = "bigscience/mt0-small"
 # args.hf_cache_dir = "datadump/hf"
 # args.debug = True
+# args.model_max_length = None
 
 # args.preprocessed_dir = "datadump/preprocessed"
 
@@ -222,6 +223,7 @@ class CoTDataset(torch.utils.data.Dataset):
 # args.dataset_name = "presuppositions_as_nli"
 # args.dataset_is_bigbench = True
 # args.bigbench_explanations_dataset = "presuppositions_as_nli"
+# args.model_max_length = 1015  # Length for 5-shot
 
 # Example 2 for fine-tuning on bigbench:
 # args.dataset_name = "truthful_qa"
@@ -252,7 +254,7 @@ class CoTDataset(torch.utils.data.Dataset):
 
 # model_id = args.model_id
 # m_dicts = load_model_dicts()
-# model, tokenizer = load_model(model_id, m_dicts[model_id])
+# model, tokenizer = load_model(model_id, m_dicts[model_id], model_max_length=args.model_max_length)
 # ds = CoTDataset(args, tokenizer, "train")
 # item = next(iter(ds))
 # print("Done!")

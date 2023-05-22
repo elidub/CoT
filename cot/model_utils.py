@@ -28,7 +28,8 @@ def load_model(
             'device_map' : 'auto',
             'load_in_8bit' : True,
             'torch_dtype' : torch.float16 # Overriding torch_dtype=None with `torch_dtype=torch.float16` due to requirements of `bitsandbytes` to enable model loading in mixed int8. Either pass torch_dtype=torch.float16 or don't pass this argument at all to remove this warning.
-        }
+        },
+        model_max_length = None,
     ):
 
     print(hf_cache)
@@ -36,5 +37,5 @@ def load_model(
         model_id, 
         **model_kwargs,
     )
-    tokenizer = model_dict['tokenizer'].from_pretrained(model_id, cache_dir = hf_cache)
+    tokenizer = model_dict['tokenizer'].from_pretrained(model_id, cache_dir = hf_cache, model_max_length=model_max_length)
     return model, tokenizer
