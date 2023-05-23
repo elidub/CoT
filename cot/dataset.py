@@ -66,12 +66,17 @@ class CoTDataset(torch.utils.data.Dataset):
 
             # Load dataset for fine-tuning
             if self.config.dataset_is_bigbench:
+                # Train and validation overlap, so we load train set and extract required split
                 try:
                     # local variant that contains truthful_qa
-                    dt = load_bigbench_dataset(self.config.dataset_name, 'data/bigbench')[split]
+                    dt = load_bigbench_dataset(self.config.dataset_name, 'data/bigbench')["train"]
                 except NotImplementedError as e:
                     # try the HF version if we don't have it locally, also this source only contains 50k samples per dataset max
-                    dt = load_dataset('tasksource/bigbench', self.config.dataset_name, split=self.split, cache_dir=self.config.hf_cache_dir)
+                    dt = load_dataset('tasksource/bigbench', self.config.dataset_name, split="train", cache_dir=self.config.hf_cache_dir)
+
+                split_key = "test" if self.split=="validation" else self.split
+                dt = dt.train_test_split(test_size=0.3)[split_key]
+
             else:
                 if self.config.dataset_name == "squad":
                     # Use reduced dataset if debugging
