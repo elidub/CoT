@@ -8,4 +8,5 @@ trained_models/*
 
 # Elias files
 cot/dev_elias.ipynb
+cot/dev_elias_2.ipynb
 cot/models.yml
