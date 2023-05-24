@@ -102,8 +102,8 @@ class CoTDataset(torch.utils.data.Dataset):
             tokenized_dataset["inputs"] = [self.tokenizer(sample["inputs"]) for sample in dt]
             tokenized_dataset["targets"] = [self.tokenizer(sample["targets"]) for sample in dt]
             if self.config.debug:
-                print("First unprocessed sample:")
-                print(next(iter(dt)))
+                # print("First unprocessed sample:")
+                # print(next(iter(dt)))
                 tokenized_dataset["inputs_untokenized"] = [sample["inputs"] for sample in dt]
                 tokenized_dataset["labels_untokenized"] = [sample["targets"] for sample in dt]
             
@@ -142,13 +142,13 @@ class CoTDataset(torch.utils.data.Dataset):
         # Print some information about the dataset
         if self.config.debug:
             first_sample = self[0]
-            print(f"First preprocessed sample: {first_sample=}")
+            # print(f"First preprocessed sample: {first_sample=}")
 
         if self.config.debug:
-            print(f"Computing longest required context for {self.split}...")
+            # print(f"Computing longest required context for {self.split}...")
             longest_sample = max(self, key=lambda x: len(x['input_ids']) + len(x['labels']))
             max_tokens = len(longest_sample['input_ids']) + len(longest_sample['labels'])
-            print(f"Longest sample ({max_tokens} tokens): {longest_sample}...")
+            # print(f"Longest sample ({max_tokens} tokens): {longest_sample}...")
 
     def preprocessed_filename(self):
         return self.config.dataset_name + "_" + self.split + ("_debug" if self.config.debug else "") + ".json"

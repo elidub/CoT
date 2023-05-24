@@ -7,36 +7,58 @@ from transformers import DataCollatorForSeq2Seq, Seq2SeqTrainer, Seq2SeqTraining
 import wandb
 
 # adapted from https://github.com/philschmid/deep-learning-pytorch-huggingface/blob/main/training/peft-flan-t5-int8-summarization.ipynb
-TARGET_MODULES = {"mt0": ["q", "v"], "bloom": ["query_key_value"], "t5": ["q", "v"], "mt5": ["q", "v"]}
-
-def train_model(model, tokenizer, tokenized_dataset, args):
+def prep_lora_model(
+        model,
+        train,
+        args,
+        target_modules = {"mt0": ["q", "v"], "bloom": ["query_key_value"], "t5": ["q", "v"], "mt5": ["q", "v"]}
+):
     # see TRANSFORMERS_MODELS_TO_LORA_TARGET_MODULES_MAPPING ub peft/utils/other.py
     if "mt0" in args.model_id:
-        target_modules = TARGET_MODULES["mt0"]
+        target_modules = target_modules["mt0"]
     elif "bloom-" in args.model_id:
-        target_modules = TARGET_MODULES["bloom"]
+        target_modules = target_modules["bloom"]
     elif "mt5" in args.model_id:
-        target_modules = TARGET_MODULES["mt5"]
+        target_modules = target_modules["mt5"]
     elif "t5" in args.model_id:
-        target_modules = TARGET_MODULES["t5"]
+        target_modules = target_modules["t5"]
     else:
         raise NotImplementedError(f"no target modules specified for {args.model_id}")
-
+    
     # Define LoRA Config 
-    lora_config = LoraConfig(
-        r=args.lora_r,
-        lora_alpha=args.lora_alpha,
-        target_modules=target_modules,
-        lora_dropout=args.lora_dropout,
-        bias=args.lora_bias,
-        task_type=TaskType.SEQ_2_SEQ_LM
-    )
-    # prepare int-8 model for training
-    model = prepare_model_for_int8_training(model)
+    if train is True:
+        print('Setting up LoRA!')
+        lora_config = LoraConfig(
+            r=args.lora_r,
+            lora_alpha=args.lora_alpha,
+            target_modules=target_modules,
+            lora_dropout=args.lora_dropout,
+            bias=args.lora_bias,
+            task_type=TaskType.SEQ_2_SEQ_LM
+        )
+        # prepare int-8 model for training
+        model = prepare_model_for_int8_training(model)
+
+    else:
+        print('Loading trained LoRA!')
+        save_dir = os.path.join("trained_models", args.wandb_run)
+        lora_config = LoraConfig.from_pretrained(save_dir)
 
     # add LoRA adaptor
     model = get_peft_model(model, lora_config)
     model.print_trainable_parameters()
+    
+    return model
+    
+
+
+def run_model(model, tokenizer, tokenized_dataset, args):
+
+    train = True if args.wandb_run is None else False
+    print(f'Train: {train}')
+
+
+    model = prep_lora_model(model, train, args)
 
     # we want to ignore tokenizer pad token in the loss
     label_pad_token_id = -100
@@ -48,11 +70,12 @@ def train_model(model, tokenizer, tokenized_dataset, args):
         pad_to_multiple_of=8
     )
 
-
     output_dir="."
 
     # wandb
-    wandb.init(project="cot-instruction-tuning-v0", config=args)
+    if train is True:
+        wandb.init(project="cot-instruction-tuning-v0", config=args)
+    report_to = "wandb" if train else None
 
     # Define training args
     training_args = Seq2SeqTrainingArguments(
@@ -65,7 +88,7 @@ def train_model(model, tokenizer, tokenized_dataset, args):
         logging_strategy="epoch",
         evaluation_strategy="epoch",
         save_strategy="no",
-        report_to="wandb",
+        report_to=report_to,
         seed=args.seed,
         full_determinism=True,
     )
@@ -78,14 +101,27 @@ def train_model(model, tokenizer, tokenized_dataset, args):
         train_dataset=tokenized_dataset["train"],
         eval_dataset=tokenized_dataset["validation"],
     )
+
     model.config.use_cache = False  # silence the warnings. Please re-enable for inference!
 
 
+    # Train model
+    if train is True:
+        print('Training!')
+        trainer.train()
 
-    # train model
-    trainer.train()
+        # Save model
+        save_dir = os.path.join("trained_models", wandb.run.name)
+        model.save_pretrained(save_dir)
+
+
+
+    # Evaluate model
+    print('Evaluating!')
     trainer.evaluate()
-    
-    save_dir = os.path.join("trained_models", wandb.run.name)
-    trainer.save_model(save_dir)
-    trainer.model.config.to_json_file(os.path.join(save_dir, "config.json")) # This should be done automatically by trainer.save_model !?!?
+
+    #     # save_dir = os.path.join("trained_models", wandb.run.name)
+    #     model.save_pretrained('./lora_pretrained')
+    #     trainer.save_model('./lora_pretrained_2')
+    #     # trainer.save_model(save_dir)
+        # trainer.model.config.to_json_file(os.path.join(save_dir, "config.json")) # This should be done automatically by trainer.save_model !?!?

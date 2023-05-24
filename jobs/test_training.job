@@ -5,7 +5,7 @@
 #SBATCH --partition=gpu_titanrtx_shared_course
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=3
-#SBATCH --time=05:00:00
+#SBATCH --time=20:00:00
 #SBATCH --mem=32000M
 #SBATCH --output=jobs/slurm_output/test-training-models_%A.out
 
@@ -19,4 +19,4 @@ cd $HOME/CoT/
 source activate cot
 
 # srun python -u cot/peft_prompt_tuning.py
-srun python -u cot/train.py
+srun python -u cot/train.py --model_id bigscience/mt0-base
