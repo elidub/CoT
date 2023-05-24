@@ -5,6 +5,9 @@ from transformers import AutoModelForCausalLM, AutoModelForSeq2SeqLM, AutoTokeni
 from peft import LoraConfig, get_peft_model, prepare_model_for_int8_training, TaskType
 from transformers import DataCollatorForSeq2Seq, Seq2SeqTrainer, Seq2SeqTrainingArguments
 import wandb
+import evaluate
+import numpy as np
+import torch
 
 # adapted from https://github.com/philschmid/deep-learning-pytorch-huggingface/blob/main/training/peft-flan-t5-int8-summarization.ipynb
 def prep_lora_model(
@@ -80,6 +83,25 @@ def run_model(model, tokenizer, tokenized_dataset, args):
         wandb.init(mode="disabled") # Turned off wandb for evaluation
         report_to = None
 
+    metric = evaluate.load('accuracy')
+
+    def compute_metrics(eval_preds):
+        logits, labels = eval_preds # logits is a tuple of 2 tensors, we think first is prediction, second is last layer or smth    
+        # print()
+        # print()
+        # print()
+        # print('len(logits)', len(logits))
+        # print('logits[0]', logits[0].shape)
+        # print('logits[1]', logits[1].shape)
+        # print('labels', labels.shape)
+
+        predictions = np.argmax(logits[0], axis=2).astype(np.int32)
+
+        print('predictions', predictions.shape)
+        print('labels', labels.shape)
+
+        return metric.compute(predictions=predictions, references=labels)
+
     output_dir="."
     # Define training args
     training_args = Seq2SeqTrainingArguments(
@@ -104,6 +126,7 @@ def run_model(model, tokenizer, tokenized_dataset, args):
         data_collator=data_collator,
         train_dataset=tokenized_dataset["train"],
         eval_dataset=tokenized_dataset["validation"],
+        # compute_metrics=compute_metrics # commented because it doesn't work yet
     )
 
     model.config.use_cache = False  # silence the warnings. Please re-enable for inference!
