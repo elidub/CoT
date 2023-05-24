@@ -1,6 +1,7 @@
 from pathlib import Path
 import os
 from datasets import load_dataset
+from torch.utils.data import Subset
 
 
 def download_bigbench_drive(target_dir):
@@ -81,6 +82,12 @@ def load_bigbench_dataset(dataset_name, directory, remap_names=True):
 
     return dataset
 
+def filter_arithmetic_tasks(dataset, task):
+    assert len(dataset) == 12019, f"Expected bigbench arithmetic dataset with 12019 samples, but got one with {len(dataset)} samples instead. Did you specify it correctly? First sample is {dataset[0]=}"
+    if task == "3_digit_division":
+        return Subset(dataset, range(3618, 4019))
+    else:
+        raise NotImplementedError(f"Unknown arithmetic task: {task}.")
 
 if __name__ == "__main__":
     cache_dir = "/tmp/bigbench"

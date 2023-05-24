@@ -7,7 +7,8 @@ from pathlib import Path
 from tqdm import tqdm
 from datasets import load_from_disk
 from datasets import get_dataset_config_names, load_dataset
-from bigbench_utils import load_bigbench_dataset
+from bigbench_utils import load_bigbench_dataset, filter_arithmetic_tasks
+from sklearn.model_selection import train_test_split
 
 # SETUP
 # os.system('pip install git+https://github.com/google/BIG-bench.git')
@@ -74,8 +75,12 @@ class CoTDataset(torch.utils.data.Dataset):
                     # try the HF version if we don't have it locally, also this source only contains 50k samples per dataset max
                     dt = load_dataset('tasksource/bigbench', self.config.dataset_name, split="train", cache_dir=self.config.hf_cache_dir)
 
-                split_key = "test" if self.split=="validation" else self.split
-                dt = dt.train_test_split(test_size=0.3)[split_key]
+                # If specified, arithmetic datasets can be filtered to one specific operation
+                if self.config.dataset_name == "arithmetic" and self.config.arithmetic_task_name:
+                    dt = filter_arithmetic_tasks(dt, self.config.arithmetic_task_name)
+
+                train, val = train_test_split(dt, test_size=0.3, random_state=self.config.seed)
+                dt = val if self.split=="validation" else train
 
             else:
                 if self.config.dataset_name == "squad":
@@ -237,6 +242,12 @@ class CoTDataset(torch.utils.data.Dataset):
 # args.dataset_is_bigbench = True
 # args.bigbench_explanations_dataset = "truthful_qa"
 
+# # Example 3 for fine-tuning on bigbench:
+# args.dataset_name = "arithmetic"
+# args.arithmetic_task_name = "3_digit_division"
+# args.dataset_is_bigbench = True
+# args.bigbench_explanations_dataset = "arithmetic_3_digit_division"
+
 # # Example for fine-tuning on squad:
 # args.dataset_name = "squad"
 # args.dataset_is_bigbench = False
@@ -262,6 +273,6 @@ class CoTDataset(torch.utils.data.Dataset):
 # model_id = args.model_id
 # m_dicts = load_model_dicts()
 # model, tokenizer = load_model(model_id, m_dicts[model_id], model_max_length=args.model_max_length)
-# ds = CoTDataset(args, tokenizer, "train")
+# ds = CoTDataset(args, tokenizer, "validation")
 # item = next(iter(ds))
 # print("Done!")
