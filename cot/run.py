@@ -83,7 +83,6 @@ def debug_parse_option():
 
 def main(args):
     m_dicts = load_model_dicts()
-    print(args.model_id)
     model, tokenizer = load_model(args.model_id, m_dicts[args.model_id], hf_cache=args.hf_cache_dir, model_max_length=args.model_max_length)
 
     tokenized_datasets = {}

@@ -49,17 +49,8 @@ def prep_lora_model(
     model.print_trainable_parameters()
     
     return model
-    
 
-
-def run_model(model, tokenizer, tokenized_dataset, args):
-
-    train = True if args.wandb_run is None else False
-    print(f'Train: {train}')
-
-
-    model = prep_lora_model(model, train, args)
-
+def get_data_collator(model, tokenizer):
     # we want to ignore tokenizer pad token in the loss
     label_pad_token_id = -100
     # Data collator
@@ -69,14 +60,27 @@ def run_model(model, tokenizer, tokenized_dataset, args):
         label_pad_token_id=label_pad_token_id,
         pad_to_multiple_of=8
     )
+    return data_collator
+    
 
-    output_dir="."
 
-    # wandb
+def run_model(model, tokenizer, tokenized_dataset, args):
+
+    # We are going to train if no wandb run is specified, otherwise we are going to evaluate that wandb run
+    train = True if args.wandb_run is None else False
+
+    model = prep_lora_model(model, train, args)
+    data_collator = get_data_collator(model, tokenizer)
+
+    # wandb settings
     if train is True:
         wandb.init(project="cot-instruction-tuning-v0", config=args)
-    report_to = "wandb" if train else None
+        report_to = "wandb"
+    else:
+        wandb.init(mode="disabled") # Turned off wandb for evaluation
+        report_to = None
 
+    output_dir="."
     # Define training args
     training_args = Seq2SeqTrainingArguments(
         output_dir=output_dir,
@@ -104,9 +108,8 @@ def run_model(model, tokenizer, tokenized_dataset, args):
 
     model.config.use_cache = False  # silence the warnings. Please re-enable for inference!
 
-
-    # Train model
     if train is True:
+        # Train model
         print('Training!')
         trainer.train()
 
@@ -114,14 +117,9 @@ def run_model(model, tokenizer, tokenized_dataset, args):
         save_dir = os.path.join("trained_models", wandb.run.name)
         model.save_pretrained(save_dir)
 
-
-
     # Evaluate model
     print('Evaluating!')
-    trainer.evaluate()
+    eval = trainer.evaluate()
 
-    #     # save_dir = os.path.join("trained_models", wandb.run.name)
-    #     model.save_pretrained('./lora_pretrained')
-    #     trainer.save_model('./lora_pretrained_2')
-    #     # trainer.save_model(save_dir)
-        # trainer.model.config.to_json_file(os.path.join(save_dir, "config.json")) # This should be done automatically by trainer.save_model !?!?
+    if train is False:
+        print(eval)
