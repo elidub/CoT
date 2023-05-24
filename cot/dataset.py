@@ -97,16 +97,27 @@ class CoTDataset(torch.utils.data.Dataset):
                         dt += [example_formatted]
 
             tokenized_dataset = {}
-            
-            # Tokenize
-            tokenized_dataset["inputs"] = [self.tokenizer(sample["inputs"]) for sample in dt]
-            tokenized_dataset["targets"] = [self.tokenizer(sample["targets"]) for sample in dt]
-            if self.config.debug:
-                # print("First unprocessed sample:")
-                # print(next(iter(dt)))
-                tokenized_dataset["inputs_untokenized"] = [sample["inputs"] for sample in dt]
-                tokenized_dataset["labels_untokenized"] = [sample["targets"] for sample in dt]
-            
+
+            # print(split)
+            # print(dt['inputs'][0])
+            # print(dt['targets'][0])
+
+            if type(dt) == list:
+                # Tokenize
+                tokenized_dataset["inputs"] = [self.tokenizer(sample["inputs"]) for sample in dt]
+                tokenized_dataset["targets"] = [self.tokenizer(sample["targets"]) for sample in dt]
+                if self.config.debug:
+                    tokenized_dataset["inputs_untokenized"] = [sample["inputs"] for sample in dt]
+                    tokenized_dataset["labels_untokenized"] = [sample["targets"] for sample in dt]
+            elif type(dt) == dict:
+                # Tokenize
+                tokenized_dataset["inputs"] = [self.tokenizer(sample) for sample in dt["inputs"]]
+                tokenized_dataset["targets"] = [self.tokenizer(sample) for sample in dt["inputs"]]
+                if self.config.debug:
+                    tokenized_dataset["inputs_untokenized"] = [sample for sample in dt["inputs"]]
+                    tokenized_dataset["labels_untokenized"] = [sample for sample in dt["inputs"]]
+            else:
+                raise NotImplementedError("Unknown type of dataset")
 
             # Save to disk
             os.makedirs(self.config.preprocessed_dir, exist_ok=True)
@@ -130,6 +141,17 @@ class CoTDataset(torch.utils.data.Dataset):
         handtuned_file_path = Path(self.config.bigbench_explanations_path) / self.config.bigbench_explanations_type / (self.config.bigbench_explanations_dataset + ".json")
         questions, answers, explanations = parse_handtuned(handtuned_file_path, self.config.bigbench_explanations_dataset)
         # tokenized_explanations = [self.tokenizer(questions[i] + answers[i] + explanations[i]) for i in range(len(questions))]
+
+        # In zero-shot CoT setting we have the option to append "Let's think this step by step"
+        if self.config.step_by_step and self.config.n_shot == 0:
+            self.step_by_step = self.tokenizer("Let's think this step by step.")
+
+            # Append the tokenized step_by_step string BEFORE A:
+            for item in self.data:
+                item["input_ids"] = item["input_ids"][:-3] + self.step_by_step["input_ids"] + item["input_ids"][-3:-1]
+                item["attention_mask"] = item["attention_mask"][:-3] + self.step_by_step["attention_mask"] + item["attention_mask"][-3:-1]
+                # item["token_type_ids"] = item["token_type_ids"][:-3] + self.step_by_step["token_type_ids"] + item["token_type_ids"][-3:-1]
+
         
         # Store cot's
         self.cots = [{
@@ -202,10 +224,9 @@ class CoTDataset(torch.utils.data.Dataset):
 
         #0-shot
         else:
-
             x = {
-                'input_ids': torch.Tensor(self.data[idx]["input_ids"]).long(),
-                'attention_mask': torch.Tensor(self.data[idx]["attention_mask"]).long(),
+                'input_ids':  torch.Tensor(item["input_ids"]).long(),
+                'attention_mask':  torch.Tensor(item["attention_mask"]).long(),
                 'labels':  torch.Tensor(self.labels[idx]["input_ids"]).long().squeeze()
             }
 

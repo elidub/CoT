@@ -29,6 +29,7 @@ def parse_option():
     parser.add_argument('--n_shot', default = 3, type=int, help='How many examples to show in-context')
     parser.add_argument('--rebuild_cache', action='store_true', help='Whether to rebuild the cached preprocessed datasets')
     parser.add_argument('--shuffle_cots', default = False, type=bool, help='Whether to randomly select the available CoTs and their order. If False, the first n_shot CoTs are chosen.')
+    parser.add_argument('--step_by_step', action='store_true', help='Whether to append Lets think this step by step')
 
     # Training args
     parser.add_argument('--lr', default = 1e-3, type=float, help='Learning rate')
@@ -57,14 +58,15 @@ def debug_parse_option():
 
     # Dataset args
     parser.add_argument('--preprocessed_dir', default = 'datadump/preprocessed', type=str, help='Directory for storing the preprocessed datasets')
-    parser.add_argument('--dataset_name', default = 'disambiguation_qa', type=str, help='The name of the dataset on huggingface on which models are fine-tuned and evaluated.')
+    parser.add_argument('--dataset_name', default = 'odd_one_out', type=str, help='The name of the dataset on huggingface on which models are fine-tuned and evaluated.')
     parser.add_argument('--dataset_is_bigbench', default = True, help='Use this flag if the dataset specified by dataset_name is part of the bigbench collection.')
-    parser.add_argument('--bigbench_explanations_dataset', default = 'truthful_qa', type=str, help='The name of the bigbench task from which the CoTs are taken.')
+    parser.add_argument('--bigbench_explanations_dataset', default = 'odd_one_out', type=str, help='The name of the bigbench task from which the CoTs are taken.')
     parser.add_argument('--bigbench_explanations_type', default = 'handtuned', type=str, help='Type of explanations from Lampinen et al. One of "handtuned", "selected", "untuned".')
     parser.add_argument('--bigbench_explanations_path', default = 'data/bigbench-explanations/', type=str, help='Path to the bigbench explanations from Lampinen et al.')
     parser.add_argument('--n_shot', default = 1, type=int, help='How many examples to show in-context')
     parser.add_argument('--rebuild_cache', default = False, help='Whether to rebuild the cached preprocessed datasets')
     parser.add_argument('--shuffle_cots', default = False, type=bool, help='Whether to randomly select the available CoTs and their order. If False, the first n_shot CoTs are chosen.')
+    parser.add_argument('--step_by_step', action='store_true', help='Whether to append Lets think this step by step')
 
     # Training args
     parser.add_argument('--lr', default = 1e-3, type=float, help='Learning rate')
