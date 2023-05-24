@@ -145,8 +145,13 @@ class CoTDataset(torch.utils.data.Dataset):
         # In zero-shot CoT setting we have the option to append "Let's think this step by step"
         if self.config.step_by_step and self.config.n_shot == 0:
             self.step_by_step = self.tokenizer("Let's think this step by step.")
-        else:
-            self.step_by_step = self.tokenizer("")
+
+            # Append the tokenized step_by_step string BEFORE A:
+            for item in self.data:
+                item["input_ids"] = item["input_ids"][:-3] + self.step_by_step["input_ids"] + item["input_ids"][-3:-1]
+                item["attention_mask"] = item["attention_mask"][:-3] + self.step_by_step["attention_mask"] + item["attention_mask"][-3:-1]
+                # item["token_type_ids"] = item["token_type_ids"][:-3] + self.step_by_step["token_type_ids"] + item["token_type_ids"][-3:-1]
+
         
         # Store cot's
         self.cots = [{
@@ -219,17 +224,9 @@ class CoTDataset(torch.utils.data.Dataset):
 
         #0-shot
         else:
-
-            item = self.data[idx]
-            concatenated_input_ids = item["input_ids"] + self.step_by_step["input_ids"]
-            concatenated_attention_mask = item["attention_mask"] + self.step_by_step["attention_mask"]
-            # print("config step by step", self.config.step_by_step)
-            # print(concatenated_input_ids)
-            # print(concatenated_attention_mask)
-
             x = {
-                'input_ids':  torch.Tensor(concatenated_input_ids).long(),
-                'attention_mask':  torch.Tensor(concatenated_attention_mask).long(),
+                'input_ids':  torch.Tensor(item["input_ids"]).long(),
+                'attention_mask':  torch.Tensor(item["attention_mask"]).long(),
                 'labels':  torch.Tensor(self.labels[idx]["input_ids"]).long().squeeze()
             }
 
