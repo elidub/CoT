@@ -15,7 +15,7 @@ goal_tensor = torch.tensor([
 ])
 
 
-def process_tensor(input_tensor: torch.Tensor, E: int, A: int, S: int, P: int) -> torch.Tensor:
+def transform_outputs(input_tensor: torch.Tensor, E: int, A: int, S: int, P: int) -> torch.Tensor:
 
     assert P < 0
 

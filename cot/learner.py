@@ -8,6 +8,7 @@ import wandb
 import evaluate
 import numpy as np
 import torch
+from torch import nn
 
 # adapted from https://github.com/philschmid/deep-learning-pytorch-huggingface/blob/main/training/peft-flan-t5-int8-summarization.ipynb
 def prep_lora_model(
@@ -76,12 +77,12 @@ def run_model(model, tokenizer, tokenized_dataset, args):
     data_collator = get_data_collator(model, tokenizer)
 
     # wandb settings
-    if train is True:
-        wandb.init(project="cot-instruction-tuning-v0", config=args)
-        report_to = "wandb"
-    else:
-        wandb.init(mode="disabled") # Turned off wandb for evaluation
-        report_to = None
+    # if train is True:
+    #     wandb.init(project="cot-instruction-tuning-v0", config=args)
+    #     report_to = "wandb"
+    # else:
+    wandb.init(mode="disabled") # Turned off wandb for evaluation
+    report_to = None
 
     metric = evaluate.load('accuracy')
 
@@ -119,8 +120,35 @@ def run_model(model, tokenizer, tokenized_dataset, args):
         full_determinism=True,
     )
 
+    class CustomSeq2SeqTrainer(Seq2SeqTrainer):
+
+        def remove_prepending_explanation(self, inputs):
+
+            # apply here the function that is currently in tranform_outputs.py
+
+            print(inputs)
+
+            return inputs
+
+        # def compute_loss(self, model, inputs, return_outputs=False):
+        #     """ According to documentation: https://github.com/huggingface/transformers/blob/3d7baef1141e22520901310593c106b15493e6a9/examples/legacy/seq2seq/seq2seq_trainer.py#L170
+        #     This function should work, but it's not (yet)
+        #     """
+        #     labels = inputs.get("labels")
+
+        #     inputs = self.remove_prepending_explanation(inputs)
+
+        #     # forward pass
+        #     outputs = model(**inputs, use_cache=False)
+        #     logits = outputs.get("logits")
+
+        #     loss_fct = nn.CrossEntropyLoss(ignore_index=tokenizer.pad_token_id)
+
+        #     loss = loss_fct(logits.view(-1, logits.shape[-1]), labels.view(-1))
+        #     return (loss, outputs) if return_outputs else loss
+
     # Create Trainer instance
-    trainer = Seq2SeqTrainer(
+    trainer = CustomSeq2SeqTrainer(
         model=model,
         args=training_args,
         data_collator=data_collator,
