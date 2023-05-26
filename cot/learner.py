@@ -9,6 +9,10 @@ import evaluate
 import numpy as np
 import torch
 from torch import nn
+from undecorated import undecorated
+from types import MethodType
+
+from transform_outputs import transform_outputs
 
 # adapted from https://github.com/philschmid/deep-learning-pytorch-huggingface/blob/main/training/peft-flan-t5-int8-summarization.ipynb
 def prep_lora_model(
@@ -52,6 +56,11 @@ def prep_lora_model(
     model = get_peft_model(model, lora_config)
     model.print_trainable_parameters()
     
+    # create method for generating text without teacher forcing but with gradients
+    # this is achieved by removing the "no grad" decorator from the base_model of the peft
+    generate_with_grad = undecorated(model.base_model.generate)
+    model.base_model.generate = MethodType(generate_with_grad, model)
+
     return model
 
 def get_data_collator(model, tokenizer):
@@ -128,31 +137,27 @@ def run_model(model, tokenizer, tokenized_dataset, args):
     )
 
     class CustomSeq2SeqTrainer(Seq2SeqTrainer):
+        def compute_loss(self, model, inputs, return_outputs=False):
+            kwargs = {
+                "input_ids": inputs["input_ids"], 
+                "return_dict_in_generate": True, 
+                "output_scores": True
+            }
+            outputs = model.generate(**kwargs)
+            logits = torch.concatenate(outputs.scores)
+            # TODO: Extract answer and compute crossentropy
+            print(f"{outputs=}")
+            answer_seq, answer_index = transform_outputs(outputs.token_ids)
 
-        def remove_prepending_explanation(self, inputs):
+            # If no answer was found, we dismiss this sample by returning 0 loss
+            if answer_index == -1:
+                print(f"Dismissing the sample because no answer could be extracted from {answer_seq=}")
+                loss = torch.tensor([0.0], requires_grad=True)
+                return loss
 
-            # apply here the function that is currently in tranform_outputs.py
-
-            # print(inputs)
-
-            return inputs
-
-        # def compute_loss(self, model, inputs, return_outputs=False):
-        #     """ According to documentation: https://github.com/huggingface/transformers/blob/3d7baef1141e22520901310593c106b15493e6a9/examples/legacy/seq2seq/seq2seq_trainer.py#L170
-        #     This function should work, but it's not (yet)
-        #     """
-        #     labels = inputs.get("labels")
-
-        #     inputs = self.remove_prepending_explanation(inputs)
-
-        #     # forward pass
-        #     outputs = model(**inputs, use_cache=False)
-        #     logits = outputs.get("logits")
-
-        #     loss_fct = nn.CrossEntropyLoss(ignore_index=tokenizer.pad_token_id)
-
-        #     loss = loss_fct(logits.view(-1, logits.shape[-1]), labels.view(-1))
-        #     return (loss, outputs) if return_outputs else loss
+            loss_fct = nn.CrossEntropyLoss(ignore_index=tokenizer.pad_token_id)
+            loss = loss_fct(logits.view(-1, logits.shape[-1]), inputs["labels"].view(-1))
+            return (loss, outputs) if return_outputs else loss
 
     # Create Trainer instance
     trainer = CustomSeq2SeqTrainer(

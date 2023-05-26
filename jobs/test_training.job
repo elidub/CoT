@@ -19,4 +19,4 @@ cd $HOME/CoT/
 source activate cot
 
 # srun python -u cot/peft_prompt_tuning.py
-srun python -u cot/train.py --model_id bigscience/mt0-base
+srun python -u cot/run.py #--model_id t5-small
