@@ -17,7 +17,7 @@ def parse_option():
     parser.add_argument('--model_id', default = 'bigscience/mt0-small', type=str, help='Model type')
     parser.add_argument('--hf_cache_dir', default = '/project/gpuuva021/shared/cot/hf_cache', type=str, help='Directory for HuggingFace cache')
     parser.add_argument('--debug', action='store_true', help='Use smaller datasets and store more info for debugging')
-    parser.add_argument('--model_max_length', default = None, required=False, type=int, help='Longest context the model/tokenizer is expected to support')
+    parser.add_argument('--model_max_length', default = 512, type=int, help='Longest context the model/tokenizer is expected to support')
 
     # Dataset args
     parser.add_argument('--preprocessed_dir', default = '/project/gpuuva021/shared/cot/data/preprocessed', type=str, help='Directory for storing the preprocessed datasets')
@@ -55,7 +55,7 @@ def debug_parse_option():
     parser.add_argument('--model_id', default = 'bigscience/mt0-small', type=str, help='Model type')
     parser.add_argument('--hf_cache_dir', default = 'datadump/hf', type=str, help='Directory for HuggingFace cache')
     parser.add_argument('--debug', default = True, help='Use smaller datasets and store more info for debugging')
-    parser.add_argument('--model_max_length', default = None, required=False, type=int, help='Longest context the model/tokenizer is expected to support')
+    parser.add_argument('--model_max_length', default = 512, type=int, help='Longest context the model/tokenizer is expected to support')
 
     # Dataset args
     parser.add_argument('--preprocessed_dir', default = 'datadump/preprocessed', type=str, help='Directory for storing the preprocessed datasets')
