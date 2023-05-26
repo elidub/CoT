@@ -30,6 +30,7 @@ def parse_option():
     parser.add_argument('--rebuild_cache', action='store_true', help='Whether to rebuild the cached preprocessed datasets')
     parser.add_argument('--shuffle_cots', default = False, type=bool, help='Whether to randomly select the available CoTs and their order. If False, the first n_shot CoTs are chosen.')
     parser.add_argument('--step_by_step', action='store_true', help='Whether to append Lets think this step by step')
+    parser.add_argument('--qae', action='store_true', help='If True, the answer comes before the explanation')
 
     # Training args
     parser.add_argument('--lr', default = 1e-3, type=float, help='Learning rate')
@@ -67,6 +68,7 @@ def debug_parse_option():
     parser.add_argument('--rebuild_cache', default = False, help='Whether to rebuild the cached preprocessed datasets')
     parser.add_argument('--shuffle_cots', default = False, type=bool, help='Whether to randomly select the available CoTs and their order. If False, the first n_shot CoTs are chosen.')
     parser.add_argument('--step_by_step', action='store_true', help='Whether to append Lets think this step by step')
+    parser.add_argument('--qae', action='store_true', help='If True, the answer comes before the explanation')
 
     # Training args
     parser.add_argument('--lr', default = 1e-3, type=float, help='Learning rate')

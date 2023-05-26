@@ -82,24 +82,23 @@ class CoTDataset(torch.utils.data.Dataset):
                 train, val = train_test_split(dt, test_size=0.3, random_state=self.config.seed)
                 dt = val if self.split=="validation" else train
 
-            else:
-                if self.config.dataset_name == "squad":
-                    # Use reduced dataset if debugging
-                    split_str = self.split + ("[:5000]" if self.config.debug else "")
-                    squad = load_dataset("squad", split=split_str)
-
-                    # Bring it in the expected format
-                    dt = []
-                    for example in squad:
-                        example_formatted = {}
-                        example_formatted["inputs"] = "Q: " + example['question'] + "\nExplanation: "
-                        example_formatted["targets"] = example["answers"]["text"]
-                        dt += [example_formatted]
             
-            # print(split)
-            print(dt['inputs'][0])
-            print(dt['targets'][0])
+            #qea
+            # Remove 'A:' from the end of the question and append 'Explanation: '
+            if self.config.qae:
+                if dt['inputs'][0][-2:] == "A:":
+                    for sample in range(len(dt['inputs'])):
+                        dt['inputs'][sample] = dt['inputs'][sample][:-2] + "Explanation: "
 
+                elif dt['inputs'][0][-3:] == "A: ":
+                    for sample in range(len(dt['inputs'])):
+                        dt['inputs'][sample] = dt['inputs'][sample][:-3] + "Explanation: "
+                
+                elif not dt['inputs'][0].endswith("Explanation:") or not dt['inputs'][0].endswith("Explanation: "):
+                    for sample in range(len(dt['inputs'])):
+                        dt['inputs'][sample] = dt['inputs'][sample] + "Explanation: "
+                
+        
 
             tokenized_dataset = {}
             
@@ -113,10 +112,10 @@ class CoTDataset(torch.utils.data.Dataset):
             elif type(dt) == dict:
                 # Tokenize
                 tokenized_dataset["inputs"] = [self.tokenizer(sample) for sample in dt["inputs"]]
-                tokenized_dataset["targets"] = [self.tokenizer(sample) for sample in dt["inputs"]]
+                tokenized_dataset["targets"] = [self.tokenizer(sample) for sample in dt["targets"]]
                 if self.config.debug:
                     tokenized_dataset["inputs_untokenized"] = [sample for sample in dt["inputs"]]
-                    tokenized_dataset["labels_untokenized"] = [sample for sample in dt["inputs"]]
+                    tokenized_dataset["labels_untokenized"] = [sample for sample in dt["targets"]]
             else:
                 raise NotImplementedError("Unknown type of dataset")
 
@@ -133,15 +132,27 @@ class CoTDataset(torch.utils.data.Dataset):
 
         self.data = tokenized_dataset["inputs"]
         self.labels = tokenized_dataset["targets"]
+
+        # print(tokenized_dataset['inputs'][0])
+        # print(tokenized_dataset['targets'][0])
+
+
         
         if self.config.debug:
             self.untok_data = tokenized_dataset["inputs_untokenized"]
             self.untok_labels = tokenized_dataset["labels_untokenized"]
+            # print("AAAAAAAAAAAAAAAAAAAAAAa")
+            # print(tokenized_dataset['inputs_untokenized'][0])
+            # print(tokenized_dataset['labels_untokenized'][0])
 
         # Tokenize cot's
         handtuned_file_path = Path(self.config.bigbench_explanations_path) / self.config.bigbench_explanations_type / (self.config.bigbench_explanations_dataset + ".json")
         questions, answers, explanations = parse_handtuned(handtuned_file_path, self.config.bigbench_explanations_dataset)
         # tokenized_explanations = [self.tokenizer(questions[i] + answers[i] + explanations[i]) for i in range(len(questions))]
+
+
+
+        #TODO! CHECK IF CONFIG.QAE IS TRUE WHEN APPENDING STEP BY STEP
 
         # In zero-shot CoT setting we have the option to append "Let's think this step by step"
         if self.config.step_by_step and self.config.n_shot == 0:
@@ -155,12 +166,22 @@ class CoTDataset(torch.utils.data.Dataset):
 
         
         # Store cot's
-        self.cots = [{
-            "id": None,
-            "tokenized_example" : self.tokenizer(questions[i] + explanations[i] + answers[i]),
-            "example": questions[i] + explanations[i] + answers[i],
-            "label": None,
-        } for i in range(len(questions)) ]
+        if self.config.qae:
+            self.cots = [{
+                "id": None,
+                "tokenized_example" : self.tokenizer(questions[i] + answers[i] + explanations[i]),
+                "example": questions[i] + answers[i] + explanations[i],
+                "label": None,
+            } for i in range(len(questions)) ]
+            
+        else:
+            self.cots = [{
+                "id": None,
+                "tokenized_example" : self.tokenizer(questions[i] + explanations[i] + answers[i]),
+                "example": questions[i] + explanations[i] + answers[i],
+                "label": None,
+            } for i in range(len(questions)) ]
+
 
         # Print some information about the dataset
         if self.config.debug:
