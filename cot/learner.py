@@ -105,6 +105,9 @@ def run_model(model, tokenizer, tokenized_dataset, args):
 
         predictions = np.argmax(logits[0], axis=2).astype(np.int32)
 
+        # Remove the explanation and only retain the answer
+        predictions = transform_outputs(predictions)
+
         # print('predictions', predictions.shape)
         # print('labels', labels.shape)
 
