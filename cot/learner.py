@@ -11,6 +11,7 @@ import torch
 from torch import nn
 from undecorated import undecorated
 from types import MethodType
+from transform_outputs import transform_outputs
 
 from transform_outputs import transform_outputs
 
@@ -143,11 +144,30 @@ def run_model(model, tokenizer, tokenized_dataset, args):
                 "return_dict_in_generate": True, 
                 "output_scores": True
             }
+
+            print(f"{inputs=}")
+
             outputs = model.generate(**kwargs)
             logits = torch.concatenate(outputs.scores)
             # TODO: Extract answer and compute crossentropy
-            print(f"{outputs=}")
-            answer_seq, answer_index = transform_outputs(outputs.token_ids)
+            print(outputs.keys())
+            
+            # print(f"{outputs=}")
+            print(f"{outputs.sequences=}")
+
+            P = tokenizer.pad_token_id
+            token_id_A = tokenizer.convert_tokens_to_ids("a")
+            print(tokenizer.convert_tokens_to_ids("A"))
+
+            print('token id A:', token_id_A)
+            print('P', P)
+
+            to_tokenize = outputs.sequences[0]
+            print(tokenizer.decode(to_tokenize))
+
+            answer_seq, answer_index = transform_outputs(outputs.sequences, A_seq=token_id_A, P = P, return_indices=True)
+
+            print(answer_index)
 
             # If no answer was found, we dismiss this sample by returning 0 loss
             if answer_index == -1:

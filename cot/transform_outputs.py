@@ -4,20 +4,21 @@ def transform_outputs(input_tensor: torch.Tensor, A_seq: int, P: int, return_ind
 
     B, L = input_tensor.size() # Batch, Length of sentence
 
-    assert P < 0
-    assert len(A_seq) == 2
+    # assert P <= 0
+    # assert len(A_seq) == 1
 
-    A0, A1 = A_seq
+    # A0, A1 = A_seq
+    A0 = A_seq
 
     # Get the mask where the tokens are A
     mask_A0 = (input_tensor == A0)
-    mask_A1 = (input_tensor == A1)
+    # mask_A1 = (input_tensor == A1)
 
     mask_after_A0 = (mask_A0.cumsum(dim=1) == 1).int()
-    mask_after_A1 = (mask_A1.cumsum(dim=1) == 1).int()
+    # mask_after_A1 = (mask_A1.cumsum(dim=1) == 1).int()
 
     # Cumulative sum on mask, tokens after the first A will have value 1
-    mask_after_A = mask_after_A0 + mask_after_A1
+    mask_after_A = mask_after_A0 #+ mask_after_A1
     # mask_after_A = (mask_A.cumsum(dim=1) == 1).int()
 
     # Finding the index of first non-A token after the first A for each row
@@ -25,14 +26,14 @@ def transform_outputs(input_tensor: torch.Tensor, A_seq: int, P: int, return_ind
 
     # If there are no A_seq token, pad the sentence
     indices_mask = torch.where(indices == 0, L, indices)
-    indices_ret = torch.where(indices == 0, -1, indices)
+    indices_ret = torch.where(indices  == 0, -1, indices)
 
     # Mask the explanation
     mask_fill_P = (torch.arange(input_tensor.size(1)).unsqueeze(0).to(input_tensor.device) > indices_mask.unsqueeze(-1)).expand_as(input_tensor)
     output_tensor = torch.where(mask_fill_P, input_tensor, P)
 
     # Where the answer 1, assuming thaat all tokens are >= 0
-    positive_mask = output_tensor >= 0
+    positive_mask = output_tensor > 0
 
     # Lengths of the answers
     lengths = torch.sum(positive_mask, dim = 1)
