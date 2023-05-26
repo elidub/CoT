@@ -92,16 +92,17 @@ class CoTDataset(torch.utils.data.Dataset):
                     dt = []
                     for example in squad:
                         example_formatted = {}
-                        example_formatted["inputs"] = "Q: " + example['question'] + "\nA: "
+                        example_formatted["inputs"] = "Q: " + example['question'] + "\nExplanation: "
                         example_formatted["targets"] = example["answers"]["text"]
                         dt += [example_formatted]
+            
+            # print(split)
+            print(dt['inputs'][0])
+            print(dt['targets'][0])
+
 
             tokenized_dataset = {}
-
-            # print(split)
-            # print(dt['inputs'][0])
-            # print(dt['targets'][0])
-
+            
             if type(dt) == list:
                 # Tokenize
                 tokenized_dataset["inputs"] = [self.tokenizer(sample["inputs"]) for sample in dt]
@@ -156,8 +157,8 @@ class CoTDataset(torch.utils.data.Dataset):
         # Store cot's
         self.cots = [{
             "id": None,
-            "tokenized_example" : self.tokenizer(questions[i] + answers[i] + explanations[i]),
-            "example": questions[i] + answers[i] + explanations[i],
+            "tokenized_example" : self.tokenizer(questions[i] + explanations[i] + answers[i]),
+            "example": questions[i] + explanations[i] + answers[i],
             "label": None,
         } for i in range(len(questions)) ]
 
