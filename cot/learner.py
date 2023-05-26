@@ -84,13 +84,11 @@ def run_model(model, tokenizer, tokenized_dataset, args):
     wandb.init(mode="disabled") # Turned off wandb for evaluation
     report_to = None
 
-    metric = evaluate.load('accuracy')
+    # metric = evaluate.load('accuracy')
 
     def compute_metrics(eval_preds):
         logits, labels = eval_preds # logits is a tuple of 2 tensors, we think first is prediction, second is last layer or smth    
-        # print()
-        # print()
-        # print()
+
         # print('len(logits)', len(logits))
         # print('logits[0]', logits[0].shape)
         # print('logits[1]', logits[1].shape)
@@ -98,10 +96,19 @@ def run_model(model, tokenizer, tokenized_dataset, args):
 
         predictions = np.argmax(logits[0], axis=2).astype(np.int32)
 
-        print('predictions', predictions.shape)
-        print('labels', labels.shape)
+        # print('predictions', predictions.shape)
+        # print('labels', labels.shape)
 
-        return metric.compute(predictions=predictions, references=labels)
+        # print('predictions[0]', predictions[0])
+        # print('labels[0]', labels[0])
+
+        # predictions[-1] = labels[-1] # set last prediction to label only for testing!!!
+        # labels[0] = np.array([-100] * labels.shape[1]) # set first label to -100 only for testing!!!
+
+        accuracy = np.all(np.logical_or(predictions == labels, labels == -100), axis=1).mean()
+        # print(np.all(predictions == labels, axis=1))
+        # print('accuracy', accuracy)
+        return {"accuracy": accuracy}
 
     output_dir="."
     # Define training args
@@ -126,7 +133,7 @@ def run_model(model, tokenizer, tokenized_dataset, args):
 
             # apply here the function that is currently in tranform_outputs.py
 
-            print(inputs)
+            # print(inputs)
 
             return inputs
 
@@ -154,7 +161,7 @@ def run_model(model, tokenizer, tokenized_dataset, args):
         data_collator=data_collator,
         train_dataset=tokenized_dataset["train"],
         eval_dataset=tokenized_dataset["validation"],
-        # compute_metrics=compute_metrics # commented because it doesn't work yet
+        compute_metrics=compute_metrics # commented because it doesn't work yet
     )
 
     model.config.use_cache = False  # silence the warnings. Please re-enable for inference!
