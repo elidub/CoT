@@ -152,7 +152,6 @@ def run_model(model, tokenizer, tokenized_dataset, args):
 
             outputs = model.generate(**kwargs)
             logits = torch.concatenate(outputs.scores)
-            # TODO: Extract answer and compute crossentropy
             print(outputs.keys())
             
             # print(f"{outputs=}")
@@ -168,18 +167,25 @@ def run_model(model, tokenizer, tokenized_dataset, args):
             to_tokenize = outputs.sequences[0]
             print(tokenizer.decode(to_tokenize))
 
-            answer_seq, answer_index = transform_outputs(outputs.sequences, A_seq=token_id_A, P = P, return_indices=True)
+            answer_seqs, answer_indexes = transform_outputs(outputs.sequences, A_seq=token_id_A, P = P, return_indices=True)
 
-            print(answer_index)
+            print(answer_indexes)
 
             # If no answer was found, we dismiss this sample by returning 0 loss
-            if answer_index == -1:
-                print(f"Dismissing the sample because no answer could be extracted from {answer_seq=}")
-                loss = torch.tensor([0.0], requires_grad=True)
-                return loss
+            # TODO: Compute crossentropy (below code is buggy)
+            # for now just return something that's backpropable
+            return logits.mean()
+
+            # Ignore samples for which no answer was found 
+            valid_samples_mask = torch.tensor(answer_indexes != -1)
+            for i in torch.arange(logits.shape[0])[not valid_samples_mask]:
+                print(f"Dismissing the sample because no answer could be extracted from {answer_seqs[i]=}")
+
+            logits = logits[valid_samples_mask]
+            labels = inputs["labels"][valid_samples_mask]
 
             loss_fct = nn.CrossEntropyLoss(ignore_index=tokenizer.pad_token_id)
-            loss = loss_fct(logits.view(-1, logits.shape[-1]), inputs["labels"].view(-1))
+            loss = loss_fct(logits.view(-1, logits.shape[-1]), labels.view(-1))
             return (loss, outputs) if return_outputs else loss
 
     # Create Trainer instance
