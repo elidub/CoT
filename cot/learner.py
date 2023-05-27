@@ -145,18 +145,37 @@ def run_model(model, tokenizer, tokenized_dataset, args):
             kwargs = {
                 "input_ids": inputs["input_ids"], 
                 "return_dict_in_generate": True, 
-                "output_scores": True
+                "output_scores": True,
+                "max_new_tokens": 250,
             }
-
-            print(f"{inputs=}")
-
+            
             outputs = model.generate(**kwargs)
             logits = torch.concatenate(outputs.scores)
             print(outputs.keys())
             
+            # Prints for debugging and checking if the output looks good
+            # print(f"{inputs=}")
+            # print(f"{inputs['input_ids'][0]=}")
+            # print(f"{inputs['labels'][0]=}")
+            print(f"{tokenizer.decode(inputs['input_ids'][0])=}")
+            print(f"{tokenizer.decode(inputs['labels'][0])=}")
             # print(f"{outputs=}")
             print(f"{outputs.sequences=}")
+            sample_output_decoded = tokenizer.decode(outputs.sequences[0])
+            print(f"{sample_output_decoded=}")
 
+            # Approach: 
+            # Decode all the samples
+            # find the position of the answer
+            # throw away all logits except the answer logits
+            # Throw away all logits longer than the label
+            # Compute loss by computing crossentropy of the logits that are left, and the corresponding label 
+            # Return loss
+            
+            # The code below may or may not be helpful for that, but 
+            # for now, to enable debugging, we just return something that's backpropable
+            return logits.mean()
+        
             P = tokenizer.pad_token_id
             token_id_A = tokenizer.convert_tokens_to_ids("a")
             print(tokenizer.convert_tokens_to_ids("A"))
@@ -173,8 +192,7 @@ def run_model(model, tokenizer, tokenized_dataset, args):
 
             # If no answer was found, we dismiss this sample by returning 0 loss
             # TODO: Compute crossentropy (below code is buggy)
-            # for now just return something that's backpropable
-            return logits.mean()
+
 
             # Ignore samples for which no answer was found 
             valid_samples_mask = torch.tensor(answer_indexes != -1)
