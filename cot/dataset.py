@@ -14,41 +14,6 @@ from sklearn.model_selection import train_test_split
 # os.system('pip install git+https://github.com/google/BIG-bench.git')
 # os.system('pip install datasets')
 
-#parse a handtuned explanations json file
-def parse_handtuned(file_path, bigbench_explanations_dataset):
-
-    with open(file_path, 'r') as file:
-        data = json.load(file)
-        for key in ["hand_tuned_fewshot_explanations_0", "hand_tuned_fewshot_explanations_1", "hand_tuned_fewshot_explanations_2"]:
-            if key in data:
-                full_string = data[key]
-
-    q_list = []
-    a_list = []
-    explanation_list = []
-
-    # Identify how questions, explanations, and answers are introduced in this dataset
-    if bigbench_explanations_dataset == "presuppositions_as_nli":
-        sample_prefix = "Sentence 1: "
-        answer_prefix = "The answer is: "
-        explanation_prefix = "Explanation: "
-    else:
-        sample_prefix = "Q: "
-        answer_prefix = "A: "
-        explanation_prefix = "Explanation: "
-
-    assert full_string.count(sample_prefix) == full_string.count(answer_prefix) == full_string.count(explanation_prefix) == 5, "Unexpected formatting of CoTs"
-
-    substrings = full_string.split(sample_prefix)[1:]  # Split the string and discard the first element
-    for substring in substrings:
-        q, a_explanation = substring.split("\n" + answer_prefix, 1)  # Split each substring into question and remaining part
-        a, explanation = a_explanation.split("\n" + explanation_prefix, 1)  # Split the remaining part into answer and explanation
-
-        q_list.append(sample_prefix + q.strip() + "\n")  # Add "Q: " prefix and strip any leading/trailing whitespaces
-        a_list.append(answer_prefix + a.strip() + "\n")  # Add "A: " prefix and strip any leading/trailing whitespaces
-        explanation_list.append(explanation_prefix + explanation.strip() + "\n")  # Add "Explanation: " prefix and strip any leading/trailing whitespaces
-
-    return q_list, a_list, explanation_list
 
 # Example usage
 # path = "../../bigben/handtuned/arithmetic_3_digit_division.json"     
@@ -60,6 +25,16 @@ class CoTDataset(torch.utils.data.Dataset):
         self.config = config
         self.split = split
         self.tokenizer = tokenizer
+
+        # Identify how questions, explanations, and answers are introduced in this dataset
+        if self.config.bigbench_explanations_dataset == "presuppositions_as_nli":
+            self.sample_prefix = "Sentence 1:"
+            self.answer_prefix = "The answer is:"
+            self.explanation_prefix = "Explanation:"
+        else:
+            self.sample_prefix = "Q: "
+            self.answer_prefix = "A: "
+            self.explanation_prefix = "Explanation: "
 
         # If necessary, download, tokenize dataset and save to disk
         preprocessed_path = Path(self.config.preprocessed_dir) / self.preprocessed_filename()
@@ -85,20 +60,23 @@ class CoTDataset(torch.utils.data.Dataset):
             
             #qea
             # Remove 'A:' from the end of the question and append 'Explanation: '
-            if self.config.qae:
-                if dt['inputs'][0][-2:] == "A:":
-                    for sample in range(len(dt['inputs'])):
-                        dt['inputs'][sample] = dt['inputs'][sample][:-2] + "Explanation: "
-
-                elif dt['inputs'][0][-3:] == "A: ":
-                    for sample in range(len(dt['inputs'])):
-                        dt['inputs'][sample] = dt['inputs'][sample][:-3] + "Explanation: "
-                
-                elif not dt['inputs'][0].endswith("Explanation:") or not dt['inputs'][0].endswith("Explanation: "):
-                    for sample in range(len(dt['inputs'])):
-                        dt['inputs'][sample] = dt['inputs'][sample] + "Explanation: "
-                
-        
+            if not self.config.qae:
+                # print("Sample before bringing it in QEA shape: ")
+                # print(f"{dt['inputs'][0]=}")        
+                # print(f"{dt['inputs'][1]=}")        
+                # print(f"{dt['inputs'][2]=}")        
+                # print(f"{dt['inputs'][3]=}")        
+                # print(f"{dt['inputs'][4]=}")        
+                for i in range(len(dt['inputs'])):
+                    answer_prefix_index = dt['inputs'][i].rfind(self.answer_prefix)
+                    sample_without_answer_prefix = dt['inputs'][i][:answer_prefix_index]
+                    dt['inputs'][i] = sample_without_answer_prefix + self.explanation_prefix
+                # print("Sample after bringing it in QEA shape: ")
+                # print(f"{dt['inputs'][0]=}")        
+                # print(f"{dt['inputs'][1]=}")        
+                # print(f"{dt['inputs'][2]=}")        
+                # print(f"{dt['inputs'][3]=}")        
+                # print(f"{dt['inputs'][4]=}")        
 
             tokenized_dataset = {}
             
@@ -147,10 +125,8 @@ class CoTDataset(torch.utils.data.Dataset):
 
         # Tokenize cot's
         handtuned_file_path = Path(self.config.bigbench_explanations_path) / self.config.bigbench_explanations_type / (self.config.bigbench_explanations_dataset + ".json")
-        questions, answers, explanations = parse_handtuned(handtuned_file_path, self.config.bigbench_explanations_dataset)
+        questions, answers, explanations = self.parse_handtuned(handtuned_file_path)
         # tokenized_explanations = [self.tokenizer(questions[i] + answers[i] + explanations[i]) for i in range(len(questions))]
-
-
 
         #TODO! CHECK IF CONFIG.QAE IS TRUE WHEN APPENDING STEP BY STEP
 
@@ -197,6 +173,33 @@ class CoTDataset(torch.utils.data.Dataset):
     def preprocessed_filename(self):
         return self.config.dataset_name + "_" + self.split + ("_debug" if self.config.debug else "") + ".json"
 
+    #parse a handtuned explanations json file
+    def parse_handtuned(self, file_path):
+
+        with open(file_path, 'r') as file:
+            data = json.load(file)
+            for key in ["hand_tuned_fewshot_explanations_0", "hand_tuned_fewshot_explanations_1", "hand_tuned_fewshot_explanations_2"]:
+                if key in data:
+                    full_string = data[key]
+
+        q_list = []
+        a_list = []
+        explanation_list = []
+
+
+        assert full_string.count(self.sample_prefix) == full_string.count(self.answer_prefix) == full_string.count(self.explanation_prefix) == 5, "Unexpected formatting of CoTs"
+
+        substrings = full_string.split(self.sample_prefix)[1:]  # Split the string and discard the first element
+        for substring in substrings:
+            q, a_explanation = substring.split("\n" + self.answer_prefix, 1)  # Split each substring into question and remaining part
+            a, explanation = a_explanation.split("\n" + self.explanation_prefix, 1)  # Split the remaining part into answer and explanation
+
+            q_list.append(self.sample_prefix + q.strip() + "\n")  # Add "Q: " prefix and strip any leading/trailing whitespaces
+            a_list.append(self.answer_prefix + a.strip() + "\n")  # Add "A: " prefix and strip any leading/trailing whitespaces
+            explanation_list.append(self.explanation_prefix + explanation.strip() + "\n")  # Add "Explanation: " prefix and strip any leading/trailing whitespaces
+
+        return q_list, a_list, explanation_list
+
     def __getitem__(self, idx):
         # Select CoT's (includes shuffling if dynamic)
         n = self.config.n_shot if self.config.n_shot <= 5 else 5
@@ -207,57 +210,81 @@ class CoTDataset(torch.utils.data.Dataset):
             else:
                 cot_idx = list(range(n))
 
-            concatenated_input_ids = []
-            concatenated_attention_mask = []
-
+            full_untokenized_sample = ""
             for i in cot_idx:
-                concatenated_input_ids += self.cots[i]['tokenized_example']["input_ids"]
-                concatenated_attention_mask += self.cots[i]['tokenized_example']["attention_mask"]
+                full_untokenized_sample += self.cots[i]['example']
 
-            # Concatenate
-            item = self.data[idx]
+            full_untokenized_sample += self.untok_data[idx]
+            full_tokenized_sample = self.tokenizer(full_untokenized_sample)["input_ids"]
+            full_tokenized_label = self.tokenizer(self.untok_labels[idx][0])["input_ids"]
 
-            #do we even need attention mask?
-            concatenated_input_ids += item["input_ids"]
-            concatenated_attention_mask += item["attention_mask"]
+            # print(f"{self.untok_labels[idx][0]=}")
+            # print(f"During getitem: {full_untokenized_sample=}")
+            # print(f"{full_tokenized_sample=}")
+            # print(f"{full_tokenized_label=}")
 
-            if self.split == 'validation' and self.config.dataset_name == 'squad':
-                x = {
-                    'input_ids':  torch.Tensor(concatenated_input_ids).long(),
-                    'attention_mask':  torch.Tensor(concatenated_attention_mask).long(),
-                    'labels':  torch.Tensor(self.labels[idx]["input_ids"][0]).long().squeeze()
-                }
-            else:
-                # Return x and y
-                x = {
-                    'input_ids':  torch.Tensor(concatenated_input_ids).long(),
-                    'attention_mask':  torch.Tensor(concatenated_attention_mask).long(),
-                    'labels':  torch.Tensor(self.labels[idx]["input_ids"]).long().squeeze()
-                }
-
-            # When debugging, additionally store untokenized data
-            if self.config.debug:
-                concatenated_untokenized_string = ""
-                for i in cot_idx:
-                    concatenated_untokenized_string += self.cots[i]['example']
-                concatenated_untokenized_string += self.untok_data[idx]
-                x["untokenized_inputs"] = concatenated_untokenized_string
-                x["untokenized_labels"] = self.untok_labels[idx]
-
-        #0-shot
-        else:
             x = {
-                'input_ids':  torch.Tensor(item["input_ids"]).long(),
-                'attention_mask':  torch.Tensor(item["attention_mask"]).long(),
-                'labels':  torch.Tensor(self.labels[idx]["input_ids"]).long().squeeze()
-            }
+                    'input_ids':  torch.tensor(full_tokenized_sample).long(),
+                    'labels':  torch.tensor(full_tokenized_label).long().squeeze(),
+                    'untokenized_sample': full_untokenized_sample,
+                    'labels_untokenized': self.untok_labels[idx]
+                }
+            # print(f"{x=}")
+            return x
+            
+    #         concatenated_input_ids = []
+    #         concatenated_attention_mask = []
 
-            # When debugging, additionally store untokenized data
-            if self.config.debug:
-                x["untokenized_inputs"] = self.untok_data[idx]
-                x["untokenized_labels"] = self.untok_labels[idx]
+    #         for i in cot_idx:
+    #             concatenated_input_ids += self.cots[i]['tokenized_example']["input_ids"]
+    #             concatenated_attention_mask += self.cots[i]['tokenized_example']["attention_mask"]
 
-        return x
+    #         # Concatenate
+    #         item = self.data[idx]
+
+    #         #do we even need attention mask?
+    #         # print(f"Raw input decoded:")
+    #         # print(f"{self.tokenizer.decode(item['input_ids'])=}")
+    #         concatenated_input_ids += item["input_ids"]
+    #         concatenated_attention_mask += item["attention_mask"]
+
+    #         if self.split == 'validation' and self.config.dataset_name == 'squad':
+    #             x = {
+    #                 'input_ids':  torch.Tensor(concatenated_input_ids).long(),
+    #                 'attention_mask':  torch.Tensor(concatenated_attention_mask).long(),
+    #                 'labels':  torch.Tensor(self.labels[idx]["input_ids"][0]).long().squeeze()
+    #             }
+    #         else:
+    #             # Return x and y
+    #             x = {
+    #                 'input_ids':  torch.Tensor(concatenated_input_ids).long(),
+    #                 'attention_mask':  torch.Tensor(concatenated_attention_mask).long(),
+    #                 'labels':  torch.Tensor(self.labels[idx]["input_ids"]).long().squeeze()
+    #             }
+
+    #         # When debugging, additionally store untokenized data
+    #         if self.config.debug:
+    #             concatenated_untokenized_string = ""
+    #             for i in cot_idx:
+    #                 concatenated_untokenized_string += self.cots[i]['example']
+    #             concatenated_untokenized_string += self.untok_data[idx]
+    #             x["untokenized_inputs"] = concatenated_untokenized_string
+    #             x["untokenized_labels"] = self.untok_labels[idx]
+
+    #     #0-shot
+    #     else:
+    #         x = {
+    #             'input_ids':  torch.Tensor(item["input_ids"]).long(),
+    #             'attention_mask':  torch.Tensor(item["attention_mask"]).long(),
+    #             'labels':  torch.Tensor(self.labels[idx]["input_ids"]).long().squeeze()
+    #         }
+
+    #         # When debugging, additionally store untokenized data
+    #         if self.config.debug:
+    #             x["untokenized_inputs"] = self.untok_data[idx]
+    #             x["untokenized_labels"] = self.untok_labels[idx]
+
+    #     return x
 
     def __len__(self):
         return len(self.labels)
