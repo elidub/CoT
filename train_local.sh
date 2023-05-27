@@ -1,0 +1,17 @@
+python -u cot/train.py \
+    --model_id bigscience/bloom-560m \
+    --hf_cache_dir /mnt/mass_storage/ai_projects/cot \
+    --preprocessed_dir /mnt/mass_storage/ai_projects/cot/preprocessed \
+    --bigbench_task_name truthful_qa \
+    --bigbench_explanations_path data/bigbench-explanations/ \
+    --n_shot 5 \
+    --rebuild_cache False \
+    --shuffle_cots False \
+    --lr 1e-3 \
+    --max_epochs 100 \
+    --batch_size 8 \
+    --seed 666 \
+    --lora_r 8 \
+    --lora_alpha 32 \
+    --lora_dropout 0.05 \
+    --lora_bias "none" 

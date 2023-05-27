@@ -43,7 +43,7 @@ def prep_lora_model(
             target_modules=target_modules,
             lora_dropout=args.lora_dropout,
             bias=args.lora_bias,
-            task_type=TaskType.SEQ_2_SEQ_LM
+            task_type=TaskType.CAUSAL_LM
         )
         # prepare int-8 model for training
         model = prepare_model_for_int8_training(model)
@@ -59,8 +59,9 @@ def prep_lora_model(
     
     # create method for generating text without teacher forcing but with gradients
     # this is achieved by removing the "no grad" decorator from the base_model of the peft
-    generate_with_grad = undecorated(model.base_model.generate)
-    model.base_model.generate = MethodType(generate_with_grad, model)
+
+    unwrapped = model.base_model.generate.__wrapped__
+    model.generate = MethodType(unwrapped, model.base_model)
 
     return model
 
@@ -146,23 +147,66 @@ def run_model(model, tokenizer, tokenized_dataset, args):
                 "input_ids": inputs["input_ids"], 
                 "return_dict_in_generate": True, 
                 "output_scores": True,
-                "max_new_tokens": 250,
+                "max_new_tokens": 24,
             }
             
             outputs = model.generate(**kwargs)
-            logits = torch.concatenate(outputs.scores)
-            print(outputs.keys())
+            logits = torch.stack(outputs.scores, dim=1)
+            vocab_size = logits.shape[-1]
+            # print(outputs.keys())
             
             # Prints for debugging and checking if the output looks good
             # print(f"{inputs=}")
             # print(f"{inputs['input_ids'][0]=}")
             # print(f"{inputs['labels'][0]=}")
-            print(f"{tokenizer.decode(inputs['input_ids'][0])=}")
-            print(f"{tokenizer.decode(inputs['labels'][0])=}")
+            # print(f"{tokenizer.decode(inputs['input_ids'][0])=}")
+            # print(f"{tokenizer.decode(inputs['labels'][0])=}")
+            
+            # get length from first input
+            input_length = len(inputs['input_ids'][0])
             # print(f"{outputs=}")
-            print(f"{outputs.sequences=}")
+            # print(f"{outputs.sequences=}")
             sample_output_decoded = tokenizer.decode(outputs.sequences[0])
-            print(f"{sample_output_decoded=}")
+
+            # A: is only 1 token it seems
+            a_seq = torch.tensor([3000], device=outputs.sequences.device)
+            answer_length = 2
+
+            generated_sequences = outputs.sequences[:, input_length:]
+            
+            # try to find answer tokens in the input length
+            tokens_padded, indices = transform_outputs(generated_sequences, a_seq, 3)
+            
+            batch_size = len(inputs['input_ids'])
+            batch_answer = torch.zeros(batch_size, answer_length, device=outputs.sequences.device)
+            for i in range(batch_size):
+                batch_answer[i] = torch.tensor([3000, inputs['labels'][i][-1]])
+            batch_answer = batch_answer.long()
+
+            batch_output = torch.zeros((batch_size, answer_length, vocab_size), device=outputs.sequences.device)
+            
+            # if no answers were generated pass a all unknown batch (all zeros) is passed instead
+            if indices.nelement() != 0:
+                # otherwise we just get the 
+                batch_output = torch.zeros(batch_size, answer_length, vocab_size, device=outputs.sequences.device)
+                for i in range(batch_size):
+                    try:
+                        batch_output[i] = logits[i][indices[i]:indices[i] + answer_length]
+                    
+                        print("found answer: ", tokenizer.decode(generated_sequences[i][indices[i]:indices[i] + answer_length]))
+                        print("actual answer: ", tokenizer.decode(batch_answer[i]))
+                    # if only some of the elements in the batch have an answer
+                    except RuntimeError:
+                        pass
+
+            batch_output = batch_output.view(batch_size * answer_length, -1)
+            batch_answer = batch_answer.view(-1)
+            loss = nn.functional.cross_entropy(batch_output, batch_answer)
+            print("loss: ", loss)
+            print("-" * 50)
+            return loss
+                
+            # print(f"{sample_output_decoded=}")
 
             # Approach: 
             # Decode all the samples
@@ -174,7 +218,7 @@ def run_model(model, tokenizer, tokenized_dataset, args):
             
             # The code below may or may not be helpful for that, but 
             # for now, to enable debugging, we just return something that's backpropable
-            return logits.mean()
+            # return logits.mean()
         
             P = tokenizer.pad_token_id
             token_id_A = tokenizer.convert_tokens_to_ids("a")

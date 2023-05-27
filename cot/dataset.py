@@ -229,7 +229,7 @@ class CoTDataset(torch.utils.data.Dataset):
 
             x = {
                     'input_ids':  torch.tensor(full_tokenized_sample).long(),
-                    'labels':  torch.tensor(full_tokenized_label).long().squeeze(),
+                    'labels':  torch.tensor(full_tokenized_label).long(),
                     'untokenized_sample': full_untokenized_sample,
                     'labels_untokenized': self.untok_labels[idx]
                 }
