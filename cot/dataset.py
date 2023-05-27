@@ -9,6 +9,7 @@ from datasets import load_from_disk
 from datasets import get_dataset_config_names, load_dataset
 from bigbench_utils import load_bigbench_dataset, filter_arithmetic_tasks
 from sklearn.model_selection import train_test_split
+from torch.utils.data import Subset
 
 # SETUP
 # os.system('pip install git+https://github.com/google/BIG-bench.git')
@@ -53,7 +54,10 @@ class CoTDataset(torch.utils.data.Dataset):
                 # If specified, arithmetic datasets can be filtered to one specific operation
                 if self.config.dataset_name == "arithmetic" and self.config.arithmetic_task_name:
                     dt = filter_arithmetic_tasks(dt, self.config.arithmetic_task_name)
-
+                else:
+                    # Transform into subset even when it's not necessary, just to keep the code below consistent
+                    # Is it dirty? Yes. Does it work? I hope so.
+                    dt = Subset(dt, range(len(dt)))
                 train, val = train_test_split(dt, test_size=0.3, random_state=self.config.seed)
                 dt = val if self.split=="validation" else train
 
@@ -62,21 +66,21 @@ class CoTDataset(torch.utils.data.Dataset):
             # Remove 'A:' from the end of the question and append 'Explanation: '
             if not self.config.qae:
                 # print("Sample before bringing it in QEA shape: ")
-                # print(f"{dt['inputs'][0]=}")        
-                # print(f"{dt['inputs'][1]=}")        
-                # print(f"{dt['inputs'][2]=}")        
-                # print(f"{dt['inputs'][3]=}")        
-                # print(f"{dt['inputs'][4]=}")        
-                for i in range(len(dt['inputs'])):
-                    answer_prefix_index = dt['inputs'][i].rfind(self.answer_prefix)
-                    sample_without_answer_prefix = dt['inputs'][i][:answer_prefix_index]
-                    dt['inputs'][i] = sample_without_answer_prefix + self.explanation_prefix
+                # print(f"{dt[0]['inputs']=}")        
+                # print(f"{dt[1]['inputs']=}")        
+                # print(f"{dt[2]['inputs']=}")        
+                # print(f"{dt[3]['inputs']=}")        
+                # print(f"{dt[4]['inputs']=}")        
+                for i in range(len(dt)):
+                    answer_prefix_index = dt[i]['inputs'].rfind(self.answer_prefix)
+                    sample_without_answer_prefix = dt[i]['inputs'][:answer_prefix_index]
+                    dt[i]['inputs'] = sample_without_answer_prefix + self.explanation_prefix
                 # print("Sample after bringing it in QEA shape: ")
-                # print(f"{dt['inputs'][0]=}")        
-                # print(f"{dt['inputs'][1]=}")        
-                # print(f"{dt['inputs'][2]=}")        
-                # print(f"{dt['inputs'][3]=}")        
-                # print(f"{dt['inputs'][4]=}")        
+                # print(f"{dt[0]['inputs']=}")        
+                # print(f"{dt[1]['inputs']=}")        
+                # print(f"{dt[2]['inputs']=}")        
+                # print(f"{dt[3]['inputs']=}")        
+                # print(f"{dt[4]['inputs']=}")        
 
             tokenized_dataset = {}
             
