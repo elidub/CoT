@@ -66,7 +66,7 @@ def prep_lora_model(
 
 def get_data_collator(model, tokenizer):
     # we want to ignore tokenizer pad token in the loss
-    label_pad_token_id = -100
+    label_pad_token_id = 0 # T5 pad token is 0
     # Data collator
     data_collator = DataCollatorForSeq2Seq(
         tokenizer,
