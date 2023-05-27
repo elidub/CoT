@@ -33,9 +33,9 @@ class CoTDataset(torch.utils.data.Dataset):
             self.answer_prefix = "The answer is:"
             self.explanation_prefix = "Explanation:"
         else:
-            self.sample_prefix = "Q: "
-            self.answer_prefix = "A: "
-            self.explanation_prefix = "Explanation: "
+            self.sample_prefix = "Q:"
+            self.answer_prefix = "A:"
+            self.explanation_prefix = "Explanation:"
 
         # If necessary, download, tokenize dataset and save to disk
         preprocessed_path = Path(self.config.preprocessed_dir) / self.preprocessed_filename()
