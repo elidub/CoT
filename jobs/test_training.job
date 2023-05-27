@@ -5,7 +5,7 @@
 #SBATCH --partition=gpu_titanrtx_shared_course
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=3
-#SBATCH --time=20:00:00
+#SBATCH --time=00:05:00
 #SBATCH --mem=32000M
 #SBATCH --output=jobs/slurm_output/test-training-models_%A.out
 
@@ -18,5 +18,7 @@ export WANDB_API_KEY=6b6f51f692ebb5799c9e3ee77ff79b3622fc9370
 cd $HOME/CoT/
 source activate cot
 
-# srun python -u cot/peft_prompt_tuning.py
-srun python -u cot/run.py #--model_id t5-small
+srun python -u cot/run.py --model_id bigscience/bloom-1b1\
+    --dataset_name arithmetic --arithmetic_task_name 3_digit_division --bigbench_explanations_dataset arithmetic_3_digit_division --dataset_is_bigbench
+    # Replace the line above with the one below to try the nli dataset
+    # --dataset_name presuppositions_as_nli --bigbench_explanations_dataset presuppositions_as_nli --dataset_is_bigbench --model_max_length 1015

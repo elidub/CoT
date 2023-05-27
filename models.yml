@@ -28,3 +28,27 @@ t5-3b:
   model_kwargs: 
     device_map: auto
     load_in_8bit: True
+bigscience/bloom-560m:
+  model: AutoModelForCausalLM
+  tokenizer: AutoTokenizer
+  model_kwargs: 
+    device_map: auto
+    load_in_8bit: True
+bigscience/bloom-1b1:
+  model: AutoModelForCausalLM
+  tokenizer: AutoTokenizer
+  model_kwargs: 
+    device_map: auto
+    load_in_8bit: True
+bigscience/bloom-1b7:
+  model: AutoModelForCausalLM
+  tokenizer: AutoTokenizer
+  model_kwargs: 
+    device_map: auto
+    load_in_8bit: True
+bigscience/bloom-3b:
+  model: AutoModelForCausalLM
+  tokenizer: AutoTokenizer
+  model_kwargs: 
+    device_map: auto
+    load_in_8bit: True
