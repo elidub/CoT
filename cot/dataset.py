@@ -88,16 +88,14 @@ class CoTDataset(torch.utils.data.Dataset):
                 # Tokenize
                 tokenized_dataset["inputs"] = [self.tokenizer(sample["inputs"]) for sample in dt]
                 tokenized_dataset["targets"] = [self.tokenizer(sample["targets"]) for sample in dt]
-                if self.config.debug:
-                    tokenized_dataset["inputs_untokenized"] = [sample["inputs"] for sample in dt]
-                    tokenized_dataset["labels_untokenized"] = [sample["targets"] for sample in dt]
+                tokenized_dataset["inputs_untokenized"] = [sample["inputs"] for sample in dt]
+                tokenized_dataset["labels_untokenized"] = [sample["targets"] for sample in dt]
             elif type(dt) == dict:
                 # Tokenize
                 tokenized_dataset["inputs"] = [self.tokenizer(sample) for sample in dt["inputs"]]
                 tokenized_dataset["targets"] = [self.tokenizer(sample) for sample in dt["targets"]]
-                if self.config.debug:
-                    tokenized_dataset["inputs_untokenized"] = [sample for sample in dt["inputs"]]
-                    tokenized_dataset["labels_untokenized"] = [sample for sample in dt["targets"]]
+                tokenized_dataset["inputs_untokenized"] = [sample for sample in dt["inputs"]]
+                tokenized_dataset["labels_untokenized"] = [sample for sample in dt["targets"]]
             else:
                 raise NotImplementedError("Unknown type of dataset")
 
@@ -120,9 +118,8 @@ class CoTDataset(torch.utils.data.Dataset):
 
 
         
-        if self.config.debug:
-            self.untok_data = tokenized_dataset["inputs_untokenized"]
-            self.untok_labels = tokenized_dataset["labels_untokenized"]
+        self.untok_data = tokenized_dataset["inputs_untokenized"]
+        self.untok_labels = tokenized_dataset["labels_untokenized"]
             # print("AAAAAAAAAAAAAAAAAAAAAAa")
             # print(tokenized_dataset['inputs_untokenized'][0])
             # print(tokenized_dataset['labels_untokenized'][0])
@@ -155,6 +152,11 @@ class CoTDataset(torch.utils.data.Dataset):
             } for i in range(len(questions)) ]
             
         else:
+            # print(f"Example cot in qea:")
+            # print(f"{questions[0]=}")
+            # print(f"{answers[0]=}")
+            # print(f"{explanations[0]=}")
+
             self.cots = [{
                 "id": None,
                 "tokenized_example" : self.tokenizer(questions[i] + explanations[i] + answers[i]),
