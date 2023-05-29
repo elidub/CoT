@@ -7,9 +7,12 @@ from pathlib import Path
 from tqdm import tqdm
 from datasets import load_from_disk
 from datasets import get_dataset_config_names, load_dataset
-from bigbench_utils import load_bigbench_dataset, filter_arithmetic_tasks
-from sklearn.model_selection import train_test_split
 from torch.utils.data import Subset
+from sklearn.model_selection import train_test_split
+
+import sys
+sys.path.insert(1, sys.path[0] + '/../')
+from cot.bigbench_utils import load_bigbench_dataset, filter_arithmetic_tasks
 
 # SETUP
 # os.system('pip install git+https://github.com/google/BIG-bench.git')

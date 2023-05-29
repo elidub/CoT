@@ -1,3 +1,5 @@
+
+
 from datasets import load_from_disk
 import os
 from datasets import load_dataset
@@ -11,9 +13,11 @@ import torch
 from torch import nn
 from undecorated import undecorated
 from types import MethodType
-from transform_outputs import transform_outputs
 
-from transform_outputs import transform_outputs
+import sys
+sys.path.insert(1, sys.path[0] + '/../')
+
+from cot.transform_outputs import transform_outputs
 
 # adapted from https://github.com/philschmid/deep-learning-pytorch-huggingface/blob/main/training/peft-flan-t5-int8-summarization.ipynb
 def prep_lora_model(
@@ -33,6 +37,10 @@ def prep_lora_model(
         target_modules = target_modules["t5"]
     else:
         raise NotImplementedError(f"no target modules specified for {args.model_id}")
+    
+    if train is False and args.wandb_run is None:
+        print('No finetuning or evaluation run specified, this is an ablation run, not using LoRA!')
+        return model
     
     # Define LoRA Config 
     if train is True:
