@@ -30,16 +30,6 @@ class CoTDataset(torch.utils.data.Dataset):
         self.split = split
         self.tokenizer = tokenizer
 
-        # Identify how questions, explanations, and answers are introduced in this dataset
-        if self.config.bigbench_explanations_dataset == "presuppositions_as_nli":
-            self.sample_prefix = "Sentence 1:"
-            self.answer_prefix = "The answer is:"
-            self.explanation_prefix = "Explanation:"
-        else:
-            self.sample_prefix = "Q:"
-            self.answer_prefix = "A:"
-            self.explanation_prefix = "Explanation:"
-
         # If necessary, download, tokenize dataset and save to disk
         preprocessed_path = Path(self.config.preprocessed_dir) / self.preprocessed_filename()
         if self.config.rebuild_cache or not preprocessed_path.exists():
@@ -70,6 +60,19 @@ class CoTDataset(torch.utils.data.Dataset):
                 dt = val if self.split=="validation" else train
 
             
+            self.sample_prefix = "Q:"
+            self.answer_prefix = "A:"
+            self.explanation_prefix = "Explanation:"
+
+            # Identify how questions, explanations, and answers are introduced in this dataset
+            if self.config.bigbench_explanations_dataset == "presuppositions_as_nli":
+                self.sample_prefix = "Sentence 1:"
+                for i in range(len(dt)):
+                    dt[i]['inputs'] = dt[i]['inputs'].replace("A:", "1:")
+                    dt[i]['inputs'] = dt[i]['inputs'].replace("B:", "2:")
+                    dt[i]['inputs'] = dt[i]['inputs'].replace("The answer is:", "A:")
+            
+                
             #qea
             # Remove 'A:' from the end of the question and append 'Explanation: '
             if not self.config.qae:
@@ -83,12 +86,25 @@ class CoTDataset(torch.utils.data.Dataset):
                     answer_prefix_index = dt[i]['inputs'].rfind(self.answer_prefix)
                     sample_without_answer_prefix = dt[i]['inputs'][:answer_prefix_index]
                     dt[i]['inputs'] = sample_without_answer_prefix + self.explanation_prefix
+
                 # print("Sample after bringing it in QEA shape: ")
                 # print(f"{dt[0]['inputs']=}")        
                 # print(f"{dt[1]['inputs']=}")        
                 # print(f"{dt[2]['inputs']=}")        
                 # print(f"{dt[3]['inputs']=}")        
-                # print(f"{dt[4]['inputs']=}")        
+                # print(f"{dt[4]['inputs']=}")
+
+            #In nli, reposition the task explanation string
+            if self.config.bigbench_explanations_dataset == "presuppositions_as_nli":
+                task_string = 'Q: This is a natural language inference task. There are two sentences in English. The answer is "entailment" if the first sentence entails the second, "contradiction" if the second sentence contradicts the first, and "neutral" if neither is of those two cases holds.\n\n\n'
+                for i in range(len(dt)):
+                    dt[i]['inputs'] = dt[i]['inputs'].replace(task_string, "")
+
+                    # #if we want to put the string at the top
+                    # index = dt[i]['inputs'].find(task_string)
+                    # if index != -1:
+                    #     dt[i]['inputs'] = task_string + dt[i]['inputs'][:index] + dt[i]['inputs'][index + len(task_string):] 
+
 
             tokenized_dataset = {}
             
@@ -106,6 +122,7 @@ class CoTDataset(torch.utils.data.Dataset):
                 tokenized_dataset["labels_untokenized"] = [sample for sample in dt["targets"]]
             else:
                 raise NotImplementedError("Unknown type of dataset")
+            
 
             # Save to disk
             os.makedirs(self.config.preprocessed_dir, exist_ok=True)
@@ -128,6 +145,7 @@ class CoTDataset(torch.utils.data.Dataset):
         
         self.untok_data = tokenized_dataset["inputs_untokenized"]
         self.untok_labels = tokenized_dataset["labels_untokenized"]
+
             # print("AAAAAAAAAAAAAAAAAAAAAAa")
             # print(tokenized_dataset['inputs_untokenized'][0])
             # print(tokenized_dataset['labels_untokenized'][0])
@@ -196,10 +214,15 @@ class CoTDataset(torch.utils.data.Dataset):
                 if key in data:
                     full_string = data[key]
 
+        full_string = full_string.replace("A:", "1:")
+        full_string = full_string.replace("B:", "2:")
+
+        if self.config.bigbench_explanations_dataset == "presuppositions_as_nli":
+            full_string = full_string.replace("The answer is:", "A:")
+
         q_list = []
         a_list = []
         explanation_list = []
-
 
         assert full_string.count(self.sample_prefix) == full_string.count(self.answer_prefix) == full_string.count(self.explanation_prefix) == 5, "Unexpected formatting of CoTs"
 
@@ -232,13 +255,15 @@ class CoTDataset(torch.utils.data.Dataset):
             full_tokenized_sample = self.tokenizer(full_untokenized_sample)["input_ids"]
             full_tokenized_label = self.tokenizer(self.untok_labels[idx][0])["input_ids"]
 
+            if len(full_tokenized_label) < 3:
+                full_tokenized_label.extend([-100] * (3 - len(full_tokenized_label)))
+
+
+
             # print(f"{self.untok_labels[idx][0]=}")
             # print(f"During getitem: {full_untokenized_sample=}")
             # print(f"{full_tokenized_sample=}")
             # print(f"{full_tokenized_label=}")
-
-            if len(full_tokenized_label) < 3:
-                full_tokenized_label.extend([-100] * (3 - len(full_tokenized_label)))
 
             x = {
                     'input_ids':  torch.tensor(full_tokenized_sample).long(),
