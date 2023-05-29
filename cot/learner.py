@@ -232,7 +232,7 @@ def run_model(model, tokenizer, tokenized_dataset, args):
             forward_out = model.forward(full_correct_sequences, labels=labels_formatted, attention_mask=attention_mask)
 
             if (start_of_answer_indices == -1).any():
-                print(f"No answer found in this batch.")
+                print(f"No answer found at least once in this batch.")
             if (start_of_answer_indices == -1).all():
                 print(f"No answer found anywhere in this batch.")
 
