@@ -5,7 +5,7 @@ import os
 from datasets import load_dataset
 from transformers import AutoModelForCausalLM, AutoModelForSeq2SeqLM, AutoTokenizer, T5ForConditionalGeneration, T5Tokenizer
 from peft import LoraConfig, get_peft_model, prepare_model_for_int8_training, TaskType
-from transformers import DataCollatorForSeq2Seq, Seq2SeqTrainer, Seq2SeqTrainingArguments, Trainer, TrainingArguments, DataCollator, DataCollatorWithPadding, DataCollatorForLanguageModeling
+from transformers import DataCollatorForSeq2Seq, Seq2SeqTrainer, Seq2SeqTrainingArguments, TrainingArguments, DataCollator, DataCollatorWithPadding, DataCollatorForLanguageModeling
 import wandb
 import evaluate
 import numpy as np
@@ -13,11 +13,13 @@ import torch
 from torch import nn
 from undecorated import undecorated
 from types import MethodType
+from transformers import Trainer
 
 import sys
 sys.path.insert(1, sys.path[0] + '/../')
 
 from cot.transform_outputs import transform_outputs
+# from cot.hf_trainer import Trainer
 
 # adapted from https://github.com/philschmid/deep-learning-pytorch-huggingface/blob/main/training/peft-flan-t5-int8-summarization.ipynb
 def prep_lora_model(
@@ -77,6 +79,7 @@ def get_data_collator(model, tokenizer):
     # Data collator
     data_collator = DataCollatorWithPadding(
         tokenizer,
+        # label_pad_token_id=-100,
     )
     return data_collator
     
@@ -101,7 +104,16 @@ def run_model(model, tokenizer, tokenized_dataset, args):
     # metric = evaluate.load('accuracy')
 
     def compute_metrics(eval_preds):
+
+
         logits, labels = eval_preds # logits is a tuple of 2 tensors, we think first is prediction, second is last layer or smth    
+
+        # print(f"{labels.shape=}")
+        # print(f"{logits.shape=}")
+
+        # # save logits and labels for later analysis
+        # np.save('logits.npy', logits)
+        # np.save('labels.npy', labels)
 
         logits_argmax = np.argmax(logits, axis=2)
         assert logits_argmax.shape == labels.shape
@@ -131,110 +143,82 @@ def run_model(model, tokenizer, tokenized_dataset, args):
     # class CustomSeq2SeqTrainer(Seq2SeqTrainer):
     class CustomSeq2SeqTrainer(Trainer):
         def compute_loss(self, model, inputs, return_outputs=False):
-            with torch.no_grad():
-                # TODO: Currently samples are being padded left and right, which is probably not good. See the warning:
-                #   A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
-                # TODO: Check if we need to add logs ourselves
+            # TODO: Currently samples are being padded left and right, which is probably not good. See the warning:
+            #   A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
+            # TODO: Check if we need to add logs ourselves
 
-                # Alternative approach
-                # Advantages:
-                # - Less memory used 
-                #       with logits we crash at: --model_id bigscience/bloom-560m --batch_size 2 --n_shot 4, "max_new_tokens": 32
-                #       without logits we can generate: --model_id bigscience/bloom-1b1 --batch_size 4 --n_shot 4, "max_new_tokens": 32
-                # - We might get teacher-forcing for the answer (maybe not needed)
-                # - We don't need to check for different answer lengths manually (tokenizer(contradiction) is [7337, 326, 8156])
-                # - Guarantee that there's no funky shit going on with cumulative gradients, where outputs of the explanation affect logits of the answer
+            # Alternative approach
+            # Advantages:
+            # - Less memory used 
+            #       with logits we crash at: --model_id bigscience/bloom-560m --batch_size 2 --n_shot 4, "max_new_tokens": 32
+            #       without logits we can generate: --model_id bigscience/bloom-1b1 --batch_size 4 --n_shot 4, "max_new_tokens": 32
+            # - We might get teacher-forcing for the answer (maybe not needed)
+            # - We don't need to check for different answer lengths manually (tokenizer(contradiction) is [7337, 326, 8156])
+            # - Guarantee that there's no funky shit going on with cumulative gradients, where outputs of the explanation affect logits of the answer
 
-                # 0.: Some useful variables for later on
-                device = inputs["input_ids"].device
-                labels = inputs["labels"]
-                a_seq = torch.tensor([3000], device=device)           # "A:"
-                # a_seq = torch.tensor([3000, 210], device=inputs["input_ids"].device)      # "A: "
-                batch_size = inputs["input_ids"].shape[0]
+            # 0.: Some useful variables for later on
+            device = inputs["input_ids"].device
+            labels = inputs["labels"]
+            a_seq = torch.tensor([3000], device=device)           # "A:"
+            # a_seq = torch.tensor([3000, 210], device=inputs["input_ids"].device)      # "A: "
+            batch_size = inputs["input_ids"].shape[0]
 
-                # 1. Generate outputs without grad
-                kwargs = {
-                    "input_ids": inputs["input_ids"], 
-                    "max_new_tokens": 32,
-                }
-                outputs = model.generate(**kwargs)
+            # 1. Generate outputs without grad
+            kwargs = {
+                "input_ids": inputs["input_ids"], 
+                "max_new_tokens": 32,
+            }
+            outputs = model.generate(**kwargs)
 
-                # 2. Compute input_with_explanations as the entire output where the answer itself is replaced by padding tokens
-                # 2.1. Generate mask_hiding_non_inputs
-                mask_hiding_non_inputs = inputs['attention_mask'].bool() # inputs['attention_mask'] hides all non-input tokens
-                # Now the mask needs to be extended to the output size with True values, as the new output should not be hidden
-                mask_hiding_non_inputs_extension = torch.zeros((batch_size, outputs.shape[1] - mask_hiding_non_inputs.shape[1]), dtype=torch.bool, device = device)
-                mask_hiding_non_inputs = torch.concatenate((mask_hiding_non_inputs, mask_hiding_non_inputs_extension), axis=1)
+            # 2. Compute input_with_explanations as the entire output where the answer itself is replaced by padding tokens
+            # 2.1. Generate mask_hiding_non_inputs
+            mask_hiding_non_inputs = inputs['attention_mask'].bool() # inputs['attention_mask'] hides all non-input tokens
+            # Now the mask needs to be extended to the output size with True values, as the new output should not be hidden
+            mask_hiding_non_inputs_extension = torch.zeros((batch_size, outputs.shape[1] - mask_hiding_non_inputs.shape[1]), dtype=torch.bool, device = device)
+            mask_hiding_non_inputs = torch.concatenate((mask_hiding_non_inputs, mask_hiding_non_inputs_extension), axis=1)
 
-                # 2.2. Get indices in the output where the model's answer starts
-                # Overwrite all the inputs with padding tokens, so we do not find answer tokens from the support in the next step
-                outputs_without_inputs = outputs.detach().clone()
-                outputs_without_inputs[mask_hiding_non_inputs] = tokenizer.pad_token_id
-                # Find the indices of the first answer token in the output generated by the model
-                _, start_of_answer_indices = transform_outputs(outputs_without_inputs, a_seq, P=tokenizer.pad_token_id)
+            # 2.2. Get indices in the output where the model's answer starts
+            # Overwrite all the inputs with padding tokens, so we do not find answer tokens from the support in the next step
+            outputs_without_inputs = outputs.detach().clone()
+            outputs_without_inputs[mask_hiding_non_inputs] = tokenizer.pad_token_id
+            # Find the indices of the first answer token in the output generated by the model
+            _, start_of_answer_indices = transform_outputs(outputs_without_inputs, a_seq, P=tokenizer.pad_token_id)
 
-                # sample_idx_without_answer = torch.arange(len(outputs), device=device)[start_of_answer_indices == -1]
-                # for i in sample_idx_without_answer:
-                #     print(f"No answer found in the {i}-ith sample:")
-                #     input = tokenizer.decode(inputs["input_ids"][i])
-                #     print(f"{input=}")
-                #     # print(f"{outputs[i]=}")
-                #     print(f"{tokenizer.decode(outputs[i])=}")
+            # 2.3. Get outputs_without_answers as the outputs until the indices we have found
+            outputs_without_answers = outputs.detach().clone()
+            mask_hiding_answer_and_beyond = torch.arange(outputs.shape[1], device=device).repeat((batch_size,1)) > start_of_answer_indices[:, None]
+            outputs_without_answers[mask_hiding_answer_and_beyond] = tokenizer.pad_token_id
 
+            # Block of debug prints
+            # print(f"{tokenizer.decode(inputs['input_ids'][0])=}")
+            # print(f"{tokenizer.decode(outputs[0])=}")
+            # print(f"{tokenizer.decode(outputs_without_inputs[0])=}")
+            # print(f"{tokenizer.decode(outputs_without_answers[0])=}") # ends in "...\nA:<pad><pad>...<pad>"
 
-                # 2.3. Get outputs_without_answers as the outputs until the indices we have found
-                outputs_without_answers = outputs.detach().clone()
-                mask_hiding_answer_and_beyond = torch.arange(outputs.shape[1], device=device).repeat((batch_size,1)) > start_of_answer_indices[:, None]
-                outputs_without_answers[mask_hiding_answer_and_beyond] = tokenizer.pad_token_id
+            # 3. TODO: Check if nan for loss is OK for cases when no a_seq is found (we want to dismiss the sample/batch then)
 
-                # Block of debug prints
-                # print(f"{tokenizer.decode(inputs['input_ids'][0])=}")
-                # print(f"{tokenizer.decode(outputs[0])=}")
-                # print(f"{tokenizer.decode(outputs_without_inputs[0])=}")
-                # print(f"{tokenizer.decode(outputs_without_answers[0])=}") # ends in "...\nA:<pad><pad>...<pad>"
+            # 4. Call model.forward()
+            # See https://huggingface.co/docs/transformers/model_doc/bloom#transformers.BloomForCausalLM.forward
+            # and https://github.com/huggingface/transformers/blob/v4.29.1/src/transformers/models/bloom/modeling_bloom.py#L881
+            # Create full_correct_sequence by adding the labels in the correct places, and
+            # Create labels_formatted in the same shape, but everything except the label is -100 because we do not want loss for those tokens 
+            full_correct_sequences = outputs_without_answers
+            labels_formatted = torch.zeros_like(full_correct_sequences) - 100
 
-                # 3. TODO: Check if nan for loss is OK for cases when no a_seq is found (we want to dismiss the sample/batch then)
+            for i, label in enumerate(labels):
+                start_of_answer_index = start_of_answer_indices[i] + len(a_seq)
+                full_correct_sequences[i, start_of_answer_index:start_of_answer_index+len(label)] = label
+                labels_formatted[i, start_of_answer_index:start_of_answer_index+len(label)] = label
 
-                # 4. Call model.forward()
-                # See https://huggingface.co/docs/transformers/model_doc/bloom#transformers.BloomForCausalLM.forward
-                # and https://github.com/huggingface/transformers/blob/v4.29.1/src/transformers/models/bloom/modeling_bloom.py#L881
-                # Create full_correct_sequence by adding the labels in the correct places, and
-                # Create labels_formatted in the same shape, but everything except the label is -100 because we do not want loss for those tokens 
-                full_correct_sequences = outputs_without_answers
-                labels_formatted = torch.zeros_like(full_correct_sequences) - 100
-                for i, label in enumerate(labels):
-                    start_of_answer_index = start_of_answer_indices[i] + len(a_seq)
-                    full_correct_sequences[i, start_of_answer_index:start_of_answer_index+len(label)] = label
-                    
+            # Create attention_mask with 0s for padding tokens and the label, as the model should not attend to them
+            attention_mask = torch.ones_like(full_correct_sequences)
+            attention_mask[outputs_without_answers == tokenizer.pad_token_id] = 0
 
-                    if start_of_answer_indices[i] == -1:
-                        # If no answer was found, we ignore the entire sample by providing a label with -100 everywhere
-                        continue
-                    else:
-                        # Give loss for the "A:" part
-                        labels_formatted[i][start_of_answer_index-len(a_seq): start_of_answer_index] = a_seq
-                        # Give loss for the correct label
-                        labels_formatted[i, start_of_answer_index:start_of_answer_index+len(label)] = label
-
-                    # # Prints to confirm that labels and inputs are aligned (confirmed)
-                    # print(f"{tokenizer.decode(full_correct_sequences[i][start_of_answer_index-len(a_seq) : start_of_answer_index+len(label)])=}")
-                    # print(f"{tokenizer.decode(labels_formatted[i][start_of_answer_index-len(a_seq) : start_of_answer_index+len(label)])=}")
-
-
-                # Create attention_mask with 0s for padding tokens and the label, as the model should not attend to them
-                attention_mask = torch.ones_like(full_correct_sequences)
-                attention_mask[outputs_without_answers == tokenizer.pad_token_id] = 0
-
-                # for i in range(len(labels)):
-                #     print(f"{tokenizer.decode(full_correct_sequences[i])=}")
+            # for i in range(len(labels)):
+            #     print(f"{tokenizer.decode(full_correct_sequences[i])=}")
 
             # Call forward!
             forward_out = model.forward(full_correct_sequences, labels=labels_formatted, attention_mask=attention_mask)
-
-            if (start_of_answer_indices == -1).any():
-                print(f"No answer found in this batch.")
-            if (start_of_answer_indices == -1).all():
-                print(f"No answer found anywhere in this batch.")
 
             loss, outputs = forward_out.loss, forward_out.logits
 
@@ -246,13 +230,26 @@ def run_model(model, tokenizer, tokenized_dataset, args):
                 answer_logit = outputs[i][start_of_answer_index : start_of_answer_index+len(label)][0] # TODO: FIX THIS: WITH [0] WE ASSUME THAT THE ANSWER IS ONLY ONE TOKEN LONG
                 answer_logits.append(answer_logit)
             answer_logits = torch.stack(answer_logits).unsqueeze(1)
-            
-            
-            answer_logits = torch.cat((torch.zeros_like(answer_logits[0]).unsqueeze(0), answer_logits)) # For this https://github.com/huggingface/transformers/blob/17a55534f5e5df10ac4804d4270bf6b8cc24998d/src/transformers/trainer.py#L3526
-            
-            print(f"{loss.loss=}")
-            return (loss, answer_logits) if return_outputs else loss
 
+            if (start_of_answer_indices == -1).any():
+                print(f"No answer found at least once in this batch.")
+            if (start_of_answer_indices == -1).all():
+                print(f"No answer found anywhere in this batch.")
+
+            # outputs_with_answer = some_function(outputs, start_of_answer_index)
+
+            # print(f"{loss=}")
+            # print(f"{outputs.shape=}")
+            # print(f"{labels.shape=}")
+
+            # torch.save(answer_logits, "answer_logits.pt")
+            # torch.save(outputs, "outputs.pt")
+            # torch.save(labels, "labels.pt")
+
+            answer_logits = torch.cat((torch.zeros_like(answer_logits[0]).unsqueeze(0), answer_logits)) # For this https://github.com/huggingface/transformers/blob/17a55534f5e5df10ac4804d4270bf6b8cc24998d/src/transformers/trainer.py#L3526
+
+            return (loss, answer_logits) if return_outputs else loss
+            # return loss
 
 
             # # # Approach 2: Without labels in forward pass (surely no teacher-forcing)
@@ -397,14 +394,14 @@ def run_model(model, tokenizer, tokenized_dataset, args):
 
     model.config.use_cache = False  # silence the warnings. Please re-enable for inference!
 
-    if train is True:
-        # Train model
-        print('Training!')
-        trainer.train()
+    # if train is True:
+    #     # Train model
+    #     print('Training!')
+    #     trainer.train()
 
-        # Save model
-        save_dir = os.path.join("trained_models", wandb.run.name)
-        model.save_pretrained(save_dir)
+    #     # Save model
+    #     save_dir = os.path.join("trained_models", wandb.run.name)
+    #     model.save_pretrained(save_dir)
 
     # Evaluate model
     print('Evaluating!')
