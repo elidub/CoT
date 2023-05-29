@@ -205,7 +205,21 @@ def run_model(model, tokenizer, tokenized_dataset, args):
             for i, label in enumerate(labels):
                 start_of_answer_index = start_of_answer_indices[i] + len(a_seq)
                 full_correct_sequences[i, start_of_answer_index:start_of_answer_index+len(label)] = label
-                labels_formatted[i, start_of_answer_index:start_of_answer_index+len(label)] = label
+                
+
+                if start_of_answer_indices[i] == -1:
+                    # If no answer was found, we ignore the entire sample by providing a label with -100 everywhere
+                    continue
+                else:
+                    # Give loss for the "A:" part
+                    labels_formatted[i][start_of_answer_index-len(a_seq): start_of_answer_index] = a_seq
+                    # Give loss for the correct label
+                    labels_formatted[i, start_of_answer_index:start_of_answer_index+len(label)] = label
+
+                # # Prints to confirm that labels and inputs are aligned (confirmed)
+                # print(f"{tokenizer.decode(full_correct_sequences[i][start_of_answer_index-len(a_seq) : start_of_answer_index+len(label)])=}")
+                # print(f"{tokenizer.decode(labels_formatted[i][start_of_answer_index-len(a_seq) : start_of_answer_index+len(label)])=}")
+
 
             # Create attention_mask with 0s for padding tokens and the label, as the model should not attend to them
             attention_mask = torch.ones_like(full_correct_sequences)
