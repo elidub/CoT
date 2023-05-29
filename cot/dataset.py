@@ -237,9 +237,12 @@ class CoTDataset(torch.utils.data.Dataset):
             # print(f"{full_tokenized_sample=}")
             # print(f"{full_tokenized_label=}")
 
+            if len(full_tokenized_label) < 3:
+                full_tokenized_label.extend([-100] * (3 - len(full_tokenized_label)))
+
             x = {
                     'input_ids':  torch.tensor(full_tokenized_sample).long(),
-                    'labels':  torch.tensor(full_tokenized_label[:1]).long(), #TODO: fix this [:1]
+                    'labels':  torch.tensor(full_tokenized_label).long(),
                     'untokenized_sample': full_untokenized_sample,
                     'labels_untokenized': self.untok_labels[idx]
                 }
