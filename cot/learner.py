@@ -250,7 +250,7 @@ def run_model(model, tokenizer, tokenized_dataset, args):
             
             answer_logits = torch.cat((torch.zeros_like(answer_logits[0]).unsqueeze(0), answer_logits)) # For this https://github.com/huggingface/transformers/blob/17a55534f5e5df10ac4804d4270bf6b8cc24998d/src/transformers/trainer.py#L3526
             
-            print(f"{loss.loss=}")
+            print(f"loss {loss}")
             return (loss, answer_logits) if return_outputs else loss
 
 
