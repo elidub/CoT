@@ -61,6 +61,11 @@ class CoTDataset(torch.utils.data.Dataset):
                     # Transform into subset even when it's not necessary, just to keep the code below consistent
                     # Is it dirty? Yes. Does it work? I hope so.
                     dt = Subset(dt, range(len(dt)))
+
+                ## Uncomment for small dataset for debugging
+                # print('Making a subset of the dataset')
+                # dt = Subset(dt, range(20))
+
                 train, val = train_test_split(dt, test_size=0.3, random_state=self.config.seed)
                 dt = val if self.split=="validation" else train
 
@@ -234,7 +239,7 @@ class CoTDataset(torch.utils.data.Dataset):
 
             x = {
                     'input_ids':  torch.tensor(full_tokenized_sample).long(),
-                    'labels':  torch.tensor(full_tokenized_label).long(),
+                    'labels':  torch.tensor(full_tokenized_label[:1]).long(), #TODO: fix this [:1]
                     'untokenized_sample': full_untokenized_sample,
                     'labels_untokenized': self.untok_labels[idx]
                 }
