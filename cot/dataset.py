@@ -95,9 +95,11 @@ class CoTDataset(torch.utils.data.Dataset):
             if self.args.bigbench_explanations_dataset == "presuppositions_as_nli":
                 task_string = 'Q: This is a natural language inference task. There are two sentences in English. The answer is "entailment" if the first sentence entails the second, "contradiction" if the second sentence contradicts the first, and "neutral" if neither is of those two cases holds.\n\n\n'
                 for i in range(len(dt)):
+                    
+                    #if we want to remove the task string
                     dt[i]['inputs'] = dt[i]['inputs'].replace(task_string, "")
 
-                    # #if we want to put the string at the top
+                    # #if we want to put the task string at the top
                     # index = dt[i]['inputs'].find(task_string)
                     # if index != -1:
                     #     dt[i]['inputs'] = task_string + dt[i]['inputs'][:index] + dt[i]['inputs'][index + len(task_string):] 
@@ -209,6 +211,9 @@ class CoTDataset(torch.utils.data.Dataset):
         full_untokenized_sample += self.untok_data[idx]
         full_tokenized_sample = self.tokenizer(full_untokenized_sample)["input_ids"]
         full_tokenized_label = self.tokenizer(self.untok_labels[idx][0])["input_ids"]
+
+        # print(full_untokenized_sample)
+        # print(full_tokenized_label)
 
         if len(full_tokenized_label) < 3:
             full_tokenized_label.extend([-100] * (3 - len(full_tokenized_label)))

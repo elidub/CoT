@@ -275,7 +275,92 @@ def run_model(model, tokenizer, tokenized_dataset, args):
 
 
 
-            # # # Approach 2: Without labels in forward pass (surely no teacher-forcing)
+
+    class AblationTrainer(Trainer):
+        def compute_loss(self, model, inputs, return_outputs=False):
+            # Call forward!
+            device = inputs["input_ids"].device
+            labels = inputs["labels"]
+            batch_size = inputs["input_ids"].shape[0]
+
+            # print(inputs.keys())
+
+            print(f"{inputs['input_ids'].shape=}")
+            print(f"{inputs['labels'].shape=}")
+            print(f"{inputs['attention_mask'].shape=}")
+
+            forward_out = model.forward(inputs["input_ids"], labels=inputs["labels"], attention_mask=inputs['attention_mask'])
+
+            # Compute logits for answers if necessary
+            if return_outputs:
+                # initialize answer_logits as a zeros tensor of shape (B, max_label_length, V)
+                max_label_length = max([len(label) for label in labels])
+                vocab_size = forward_out.logits.shape[-1]
+                answer_logits = torch.zeros((batch_size, max_label_length, vocab_size), device=device)
+                for i, label in enumerate(labels):
+                    start_of_answer_content_index = 0
+                    # Determine sample_answer_logits for this sample
+                    sample_answer_logits = forward_out.logits[i][start_of_answer_content_index : start_of_answer_content_index+len(label)]
+
+                    # Print confirming that we have sliced the correct indices
+                    # print("The following is only the answer content: ")
+                    # print(f"{tokenizer.decode(outputs[i][start_of_answer_content_index : start_of_answer_content_index+len(label)])}")  # prints e.g. "57" for arithmetic
+
+                    # Fill in this sample's logits into answer_logits.
+                    # If this label is shorter than max_label_length, leave zeros for the remaining tokens unchanged.
+                    # These zeros will later be ignored because the label is -100 there.
+                    answer_logits[i,:len(label), :] = sample_answer_logits
+
+                answer_logits = torch.cat((torch.zeros_like(answer_logits[0]).unsqueeze(0), answer_logits)) # For this https://github.com/huggingface/transformers/blob/17a55534f5e5df10ac4804d4270bf6b8cc24998d/src/transformers/trainer.py#L3526
+
+            print(f"{forward_out.loss=}")
+            return (forward_out.loss, answer_logits) if return_outputs else forward_out.loss
+
+    if args.n_shot > 0 and not args.no_explanation:
+        # Create Trainer instance
+        print("Using CoTTrainer")
+        trainer = CustomSeq2SeqTrainer(
+            model=model,
+            args=training_args,
+            data_collator=data_collator,
+            train_dataset=tokenized_dataset["train"],
+            eval_dataset=tokenized_dataset["validation"],
+            compute_metrics=compute_metrics # commented because it doesn't work yet
+        )
+    else:
+        print("Using AblationTrainer")
+        trainer = AblationTrainer(
+            model=model,
+            args=training_args,
+            data_collator=data_collator,
+            train_dataset=tokenized_dataset["train"],
+            eval_dataset=tokenized_dataset["validation"],
+            compute_metrics=compute_metrics # commented because it doesn't work yet
+        )
+
+    model.config.use_cache = False  # silence the warnings. Please re-enable for inference!
+
+    if train is True:
+        # Train model
+        print('Training!')
+        trainer.train()
+
+        # Save model
+        save_dir = os.path.join("trained_models", wandb.run.name)
+        model.save_pretrained(save_dir)
+
+    # Evaluate model
+    print('Evaluating!')
+    eval = trainer.evaluate()
+
+    if train is False:
+        print(eval)
+
+
+
+
+
+# # # Approach 2: Without labels in forward pass (surely no teacher-forcing)
             # forward_out = model.forward(outputs_without_answers, attention_mask=mask_hiding_answer_and_beyond)
             # print("Approach 2:")
             # print(f"{forward_out.keys()=}")
@@ -404,31 +489,3 @@ def run_model(model, tokenizer, tokenized_dataset, args):
             # loss_fct = nn.CrossEntropyLoss(ignore_index=tokenizer.pad_token_id)
             # loss = loss_fct(logits.view(-1, logits.shape[-1]), labels.view(-1))
             # return (loss, outputs) if return_outputs else loss
-
-    # Create Trainer instance
-    trainer = CustomSeq2SeqTrainer(
-        model=model,
-        args=training_args,
-        data_collator=data_collator,
-        train_dataset=tokenized_dataset["train"],
-        eval_dataset=tokenized_dataset["validation"],
-        compute_metrics=compute_metrics # commented because it doesn't work yet
-    )
-
-    model.config.use_cache = False  # silence the warnings. Please re-enable for inference!
-
-    if train is True:
-        # Train model
-        print('Training!')
-        trainer.train()
-
-        # Save model
-        save_dir = os.path.join("trained_models", wandb.run.name)
-        model.save_pretrained(save_dir)
-
-    # Evaluate model
-    print('Evaluating!')
-    eval = trainer.evaluate()
-
-    if train is False:
-        print(eval)
