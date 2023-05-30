@@ -212,8 +212,11 @@ def run_model(model, tokenizer, tokenized_dataset, args):
                 start_of_answer_indices[start_of_answer_indices >= outputs_without_inputs.shape[-1] - labels.shape[1]] = -1
 
                 # 2.3. Get outputs_without_answers as the outputs until the indices we have found
+                tmp_start_of_answer_indices = start_of_answer_indices.clone()
+                tmp_start_of_answer_indices[tmp_start_of_answer_indices == -1] = 100000 # hide nothing if label is invalid
+                mask_hiding_answer_and_beyond = (torch.arange(outputs.shape[1], device=device).repeat((batch_size, 1)) >= tmp_start_of_answer_indices[:, None] + len(a_seq))
+
                 outputs_without_answers = outputs.detach().clone()
-                mask_hiding_answer_and_beyond = torch.arange(outputs.shape[1], device=device).repeat((batch_size,1)) > start_of_answer_indices[:, None]
                 outputs_without_answers[mask_hiding_answer_and_beyond] = tokenizer.pad_token_id
 
                 # Block of debug prints
