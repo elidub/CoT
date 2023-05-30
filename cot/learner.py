@@ -138,10 +138,6 @@ def run_model(model, tokenizer, tokenized_dataset, args):
     class CustomSeq2SeqTrainer(Trainer):
         def compute_loss(self, model, inputs, return_outputs=False):
             with torch.no_grad():
-                # TODO: Currently samples are being padded left and right, which is probably not good. See the warning:
-                #   A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.
-                # TODO: Check if we need to add logs ourselves
-
                 # Alternative approach
                 # Advantages:
                 # - Less memory used 
@@ -150,7 +146,6 @@ def run_model(model, tokenizer, tokenized_dataset, args):
                 # - We might get teacher-forcing for the answer (maybe not needed)
                 # - We don't need to check for different answer lengths manually (tokenizer(contradiction) is [7337, 326, 8156])
                 # - Guarantee that there's no funky shit going on with cumulative gradients, where outputs of the explanation affect logits of the answer
-
                 # 0.: Some useful variables for later on
                 device = inputs["input_ids"].device
                 labels = inputs["labels"]
@@ -159,10 +154,20 @@ def run_model(model, tokenizer, tokenized_dataset, args):
                 batch_size = inputs["input_ids"].shape[0]
 
                 # 1. Generate outputs without grad
+                # We do beam search with repetition penalty to avoid the model getting stuck repeating itself.
+                repetition_penalty = 2.0
+                num_beams = 3
                 kwargs = {
                     "input_ids": inputs["input_ids"], 
                     "max_new_tokens": 32,
+
+                    # Beam search params
+                    "do_sample": True,
+                    "num_beams": num_beams,
+                    "repetition_penalty": repetition_penalty,
                 }
+                print(f"{num_beams=}")
+                print(f"{repetition_penalty=}")
                 outputs = model.generate(**kwargs)
 
                 # 2. Compute input_with_explanations as the entire output where the answer itself is replaced by padding tokens
