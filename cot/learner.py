@@ -108,7 +108,13 @@ def run_model(model, tokenizer, tokenized_dataset, args):
         accuracy = np.logical_or(logits_argmax == labels, labels == -100).mean() #TODO: np.all now not yet, because it's hardcoded that label is len(1)
 
         # accuracy = np.all(np.logical_or(predictions == labels, labels == -100), axis=1).mean()
-        return {"accuracy": accuracy}
+
+        # Compute samples_without_answer_fraction
+        # Checking whether logits are zero, first for all words in vocab, then for all tokens in sequence
+        samples_without_answer_mask = (logits == 0).all(dim=2).all(dim=1)
+        samples_without_answer = torch.sum(samples_without_answer_mask).item()
+        samples_without_answer_fraction = samples_without_answer / len(labels)
+        return {"accuracy": accuracy, "invalid": samples_without_answer_fraction}
 
     output_dir="."
     # Define training args
