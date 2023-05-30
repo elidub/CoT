@@ -19,6 +19,6 @@ cd $HOME/CoT/
 source activate cot
 
 srun python -u cot/run.py --model_id bigscience/bloom-1b1 --lr 0.0001\
-    --dataset_name arithmetic --arithmetic_task_name 3_digit_division --bigbench_explanations_dataset arithmetic_3_digit_division
+    --dataset_name arithmetic --arithmetic_task_name 3_digit_division --bigbench_explanations_dataset arithmetic_3_digit_division --train
     # Replace the line above with the one below to try the nli dataset
     # --dataset_name presuppositions_as_nli --bigbench_explanations_dataset presuppositions_as_nli --model_max_length 1015

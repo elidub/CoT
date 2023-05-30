@@ -21,6 +21,6 @@ source activate cot
 # srun python -u cot/peft_prompt_tuning.py
 srun python -u cot/run.py --model_id bigscience/bloom-3b\
     --batch_size 4 --n_shot 4 --max_epochs 50  --lr 0.0001\
-    --dataset_name presuppositions_as_nli --dataset_is_bigbench --bigbench_explanations_dataset presuppositions_as_nli \
-    --n_shot 5 --model_max_length 1015 --rebuild_cache
+    --dataset_name presuppositions_as_nli --bigbench_explanations_dataset presuppositions_as_nli \
+    --n_shot 5 --model_max_length 1015 --train
     
