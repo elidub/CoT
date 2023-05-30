@@ -52,9 +52,9 @@ class CoTDataset(torch.utils.data.Dataset):
                     # Is it dirty? Yes. Does it work? I hope so.
                     dt = Subset(dt, range(len(dt)))
 
-                # Uncomment for small dataset for debugging
-                print('Making a subset of the dataset')
-                dt = Subset(dt, range(20))
+                # # Uncomment for small dataset for debugging
+                # print('Making a subset of the dataset')
+                # dt = Subset(dt, range(100))
 
                 train, val = train_test_split(dt, test_size=0.3, random_state=self.args.seed)
                 dt = val if self.split=="validation" else train
