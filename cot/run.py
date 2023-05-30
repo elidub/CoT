@@ -20,6 +20,7 @@ def parse_option():
     parser = argparse.ArgumentParser(description="Testing various models")
 
     # General args
+    parser.add_argument('--train', action = 'store_false', help='If True, train the model. If False, evaluate the model.')
     parser.add_argument('--wandb_run', default = None, help='WandB run ID, if None, a new run is created')
     parser.add_argument('--model_id', default = 'bigscience/mt0-small', type=str, help='Model type')
     parser.add_argument('--hf_cache_dir', default = '/project/gpuuva021/shared/cot/hf_cache', type=str, help='Directory for HuggingFace cache')
@@ -38,6 +39,7 @@ def parse_option():
     parser.add_argument('--rebuild_cache', default = True, type=bool, help='Whether to rebuild the cached preprocessed datasets')
     parser.add_argument('--shuffle_cots', default = False, type=bool, help='Whether to randomly select the available CoTs and their order. If False, the first n_shot CoTs are chosen.')
     parser.add_argument('--step_by_step', action='store_true', help='Whether to append Lets think this step by step')
+    parser.add_argument('--no_explanation', action='store_true', help='No explanations in the prefix')
     parser.add_argument('--qae', action='store_true', help='If True, the answer comes before the explanation')
 
     # Training args
@@ -59,6 +61,7 @@ def debug_parse_option(notebook = False):
     parser = argparse.ArgumentParser(description="Testing various models")
 
     # General args
+    parser.add_argument('--train', action = 'store_false', help='If True, train the model. If False, evaluate the model.')
     parser.add_argument('--wandb_run', default = None, help='WandB run ID, if None, a new run is created')
     parser.add_argument('--model_id', default = 'bigscience/bloom-1b1', type=str, help='Model type')
     parser.add_argument('--hf_cache_dir', default = 'datadump/hf', type=str, help='Directory for HuggingFace cache')
@@ -73,10 +76,11 @@ def debug_parse_option(notebook = False):
     parser.add_argument('--bigbench_explanations_dataset', default = 'arithmetic_3_digit_division', type=str, help='The name of the bigbench task from which the CoTs are taken.')
     parser.add_argument('--bigbench_explanations_type', default = 'handtuned', type=str, help='Type of explanations from Lampinen et al. One of "handtuned", "selected", "untuned".')
     parser.add_argument('--bigbench_explanations_path', default = 'data/bigbench-explanations/', type=str, help='Path to the bigbench explanations from Lampinen et al.')
-    parser.add_argument('--n_shot', default = 1, type=int, help='How many examples to show in-context')
+    parser.add_argument('--n_shot', default = 0, type=int, help='How many examples to show in-context')
     parser.add_argument('--rebuild_cache', default = True, type=bool, help='Whether to rebuild the cached preprocessed datasets')
     parser.add_argument('--shuffle_cots', action='store_true', help='Whether to randomly select the available CoTs and their order. If False, the first n_shot CoTs are chosen.')
-    parser.add_argument('--step_by_step', action='store_true', help='Whether to append Lets think this step by step')
+    parser.add_argument('--step_by_step', action='store_true', help='Append Lets think this step by step')
+    parser.add_argument('--no_explanation', action='store_true', help='No explanations in the prefix')
     parser.add_argument('--qae', action='store_true', help='If True, the answer comes before the explanation')
 
     # Training args

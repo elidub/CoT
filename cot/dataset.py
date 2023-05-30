@@ -52,9 +52,9 @@ class CoTDataset(torch.utils.data.Dataset):
                     # Is it dirty? Yes. Does it work? I hope so.
                     dt = Subset(dt, range(len(dt)))
 
-                ## Uncomment for small dataset for debugging
-                # print('Making a subset of the dataset')
-                # dt = Subset(dt, range(20))
+                # Uncomment for small dataset for debugging
+                print('Making a subset of the dataset')
+                dt = Subset(dt, range(20))
 
                 train, val = train_test_split(dt, test_size=0.3, random_state=self.config.seed)
                 dt = val if self.split=="validation" else train
@@ -85,7 +85,9 @@ class CoTDataset(torch.utils.data.Dataset):
                 for i in range(len(dt)):
                     answer_prefix_index = dt[i]['inputs'].rfind(self.answer_prefix)
                     sample_without_answer_prefix = dt[i]['inputs'][:answer_prefix_index]
-                    dt[i]['inputs'] = sample_without_answer_prefix + self.explanation_prefix
+                    dt[i]['inputs'] = sample_without_answer_prefix 
+                    if config.n_shot > 0: # Don't ad explanation_prefix is n_shot is 0
+                        dt[i]['inputs'] += self.explanation_prefix
 
                 # print("Sample after bringing it in QEA shape: ")
                 # print(f"{dt[0]['inputs']=}")        
@@ -146,6 +148,7 @@ class CoTDataset(torch.utils.data.Dataset):
         self.untok_data = tokenized_dataset["inputs_untokenized"]
         self.untok_labels = tokenized_dataset["labels_untokenized"]
 
+
             # print("AAAAAAAAAAAAAAAAAAAAAAa")
             # print(tokenized_dataset['inputs_untokenized'][0])
             # print(tokenized_dataset['labels_untokenized'][0])
@@ -168,29 +171,24 @@ class CoTDataset(torch.utils.data.Dataset):
                 # item["token_type_ids"] = item["token_type_ids"][:-3] + self.step_by_step["token_type_ids"] + item["token_type_ids"][-3:-1]
 
         
+
+        def example(i):
+            assert not (self.config.qae and self.config.no_explanation)
+            if self.config.qae:
+                return questions[i] + answers[i] + explanations[i]
+            if self.config.no_explanation:
+                return questions[i] + answers[i]
+            else:
+                return questions[i] + explanations[i] + answers[i]
+
         # Store cot's
-        if self.config.qae:
-            self.cots = [{
-                "id": None,
-                "tokenized_example" : self.tokenizer(questions[i] + answers[i] + explanations[i]),
-                "example": questions[i] + answers[i] + explanations[i],
-                "label": None,
-            } for i in range(len(questions)) ]
+        self.cots = [{
+            "id": None,
+            "tokenized_example" : self.tokenizer(example(i)),
+            "example": example(i),
+            "label": None,
+        } for i in range(len(questions)) ]
             
-        else:
-            # print(f"Example cot in qea:")
-            # print(f"{questions[0]=}")
-            # print(f"{answers[0]=}")
-            # print(f"{explanations[0]=}")
-
-            self.cots = [{
-                "id": None,
-                "tokenized_example" : self.tokenizer(questions[i] + explanations[i] + answers[i]),
-                "example": questions[i] + explanations[i] + answers[i],
-                "label": None,
-            } for i in range(len(questions)) ]
-
-
         # Print some information about the dataset
         if self.config.debug:
             first_sample = self[0]
@@ -214,10 +212,9 @@ class CoTDataset(torch.utils.data.Dataset):
                 if key in data:
                     full_string = data[key]
 
-        full_string = full_string.replace("A:", "1:")
-        full_string = full_string.replace("B:", "2:")
-
         if self.config.bigbench_explanations_dataset == "presuppositions_as_nli":
+            full_string = full_string.replace("A:", "1:")
+            full_string = full_string.replace("B:", "2:")
             full_string = full_string.replace("The answer is:", "A:")
 
         q_list = []
@@ -233,6 +230,7 @@ class CoTDataset(torch.utils.data.Dataset):
 
             q_list.append(self.sample_prefix + q.strip() + "\n")  # Add "Q: " prefix and strip any leading/trailing whitespaces
             a_list.append(self.answer_prefix + a.strip() + "\n")  # Add "A: " prefix and strip any leading/trailing whitespaces
+
             explanation_list.append(self.explanation_prefix + explanation.strip() + "\n")  # Add "Explanation: " prefix and strip any leading/trailing whitespaces
 
         return q_list, a_list, explanation_list
@@ -241,38 +239,38 @@ class CoTDataset(torch.utils.data.Dataset):
         # Select CoT's (includes shuffling if dynamic)
         n = self.config.n_shot if self.config.n_shot <= 5 else 5
 
-        if n > 0:
-            if self.config.shuffle_cots:
-                cot_idx = random.sample(range(5), n)
-            else:
-                cot_idx = list(range(n))
+            
+        cot_idx = random.sample(range(5), n) if self.config.shuffle_cots else list(range(n))
 
-            full_untokenized_sample = ""
-            for i in cot_idx:
-                full_untokenized_sample += self.cots[i]['example']
+        full_untokenized_sample = ""
+        
+        # Prepending CoTs
+        for i in cot_idx:
+            full_untokenized_sample += self.cots[i]['example']
 
-            full_untokenized_sample += self.untok_data[idx]
-            full_tokenized_sample = self.tokenizer(full_untokenized_sample)["input_ids"]
-            full_tokenized_label = self.tokenizer(self.untok_labels[idx][0])["input_ids"]
+        full_untokenized_sample += self.untok_data[idx]
+        full_tokenized_sample = self.tokenizer(full_untokenized_sample)["input_ids"]
+        full_tokenized_label = self.tokenizer(self.untok_labels[idx][0])["input_ids"]
 
-            if len(full_tokenized_label) < 3:
-                full_tokenized_label.extend([-100] * (3 - len(full_tokenized_label)))
+        if len(full_tokenized_label) < 3:
+            full_tokenized_label.extend([-100] * (3 - len(full_tokenized_label)))
 
+        print(full_untokenized_sample)
 
+        print(self.untok_labels[idx])
 
-            # print(f"{self.untok_labels[idx][0]=}")
-            # print(f"During getitem: {full_untokenized_sample=}")
-            # print(f"{full_tokenized_sample=}")
-            # print(f"{full_tokenized_label=}")
+        # print(f"{self.untok_labels[idx][0]=}")
+        # print(f"During getitem: {full_untokenized_sample=}")
+        # print(f"{full_tokenized_sample=}")
+        # print(f"{full_tokenized_label=}")
 
-            x = {
-                    'input_ids':  torch.tensor(full_tokenized_sample).long(),
-                    'labels':  torch.tensor(full_tokenized_label).long(),
-                    'untokenized_sample': full_untokenized_sample,
-                    'labels_untokenized': self.untok_labels[idx]
-                }
-            # print(f"{x=}")
-            return x
+        x = {
+                'input_ids':  torch.tensor(full_tokenized_sample).long(),
+                'labels':  torch.tensor(full_tokenized_label).long(),
+                'untokenized_sample': full_untokenized_sample,
+                'labels_untokenized': self.untok_labels[idx]
+            }
+        return x
             
     #         concatenated_input_ids = []
     #         concatenated_attention_mask = []

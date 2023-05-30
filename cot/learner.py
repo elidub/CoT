@@ -84,8 +84,8 @@ def get_data_collator(model, tokenizer):
 
 def run_model(model, tokenizer, tokenized_dataset, args):
 
-    # We are going to train if no wandb run is specified, otherwise we are going to evaluate that wandb run
-    train = True if args.wandb_run is None else False
+    train = args.train
+    assert (train is True) or (train is False)
 
     model = prep_lora_model(model, train, args)
     data_collator = get_data_collator(model, tokenizer)
