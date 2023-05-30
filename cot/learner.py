@@ -116,6 +116,16 @@ def run_model(model, tokenizer, tokenized_dataset, args):
         samples_without_answer_fraction = samples_without_answer / len(labels)
         return {"accuracy": accuracy, "invalid": samples_without_answer_fraction}
 
+
+    def compute_ablation_metrics(eval_preds):
+
+        preds, labels = eval_preds
+
+        assert preds.shape == labels.shape
+        accuracy = np.all(np.logical_or(preds == labels, labels == -100), 1).mean()
+
+        return {"accuracy": accuracy}
+
     output_dir="."
     # Define training args
     # training_args = Seq2SeqTrainingArguments(
@@ -279,42 +289,36 @@ def run_model(model, tokenizer, tokenized_dataset, args):
     class AblationTrainer(Trainer):
         def compute_loss(self, model, inputs, return_outputs=False):
             # Call forward!
-            device = inputs["input_ids"].device
+            # device = inputs["input_ids"].device
+            input_ids = inputs["input_ids"]
             labels = inputs["labels"]
-            batch_size = inputs["input_ids"].shape[0]
+            # batch_size = inputs["input_ids"].shape[0]
 
-            # print(inputs.keys())
+            # Generate without gradients
+            outputs = model.generate(input_ids = input_ids, max_new_tokens = 32)
 
-            # print(f"{inputs['input_ids'].shape=}")
-            # print(f"{inputs['labels'].shape=}")
-            # print(f"{inputs['attention_mask'].shape=}")
+            # We are interested in the labels that don't have ignore index
+            labels_unpadded = [labels != -100][0]
 
-            forward_out = model.forward(inputs["input_ids"], attention_mask=inputs['attention_mask'])
+            # The output is evertyhing the that comes after the input indices
+            outputs_answers = outputs[:, input_ids.shape[-1]:]
 
-            # Compute logits for answers if necessary
-            if return_outputs:
-                # initialize answer_logits as a zeros tensor of shape (B, max_label_length, V)
-                max_label_length = max([len(label) for label in labels])
-                vocab_size = forward_out.logits.shape[-1]
-                answer_logits = torch.zeros((batch_size, max_label_length, vocab_size), device=device)
-                for i, label in enumerate(labels):
-                    start_of_answer_content_index = 0
-                    # Determine sample_answer_logits for this sample
-                    sample_answer_logits = forward_out.logits[i][start_of_answer_content_index : start_of_answer_content_index+len(label)]
+            # Take only the part of the output that corresponds to the shape of the labels
+            outputs_answers = outputs_answers[:, :labels_unpadded.shape[-1]]
 
-                    # Print confirming that we have sliced the correct indices
-                    # print("The following is only the answer content: ")
-                    # print(f"{tokenizer.decode(outputs[i][start_of_answer_content_index : start_of_answer_content_index+len(label)])}")  # prints e.g. "57" for arithmetic
+            # Take the output that is not ignored  in the labels
+            outputs_answers = torch.where(labels_unpadded, outputs_answers, -100)
 
-                    # Fill in this sample's logits into answer_logits.
-                    # If this label is shorter than max_label_length, leave zeros for the remaining tokens unchanged.
-                    # These zeros will later be ignored because the label is -100 there.
-                    answer_logits[i,:len(label), :] = sample_answer_logits
+            # Compute loss
+            dummy_loss = torch.tensor(0.0, device=input_ids.device)
 
-                answer_logits = torch.cat((torch.zeros_like(answer_logits[0]).unsqueeze(0), answer_logits)) # For this https://github.com/huggingface/transformers/blob/17a55534f5e5df10ac4804d4270bf6b8cc24998d/src/transformers/trainer.py#L3526
+            if not return_outputs:
+                raise NotImplementedError("Ablations can't compute loss yet!")
+            
+            # For this https://github.com/huggingface/transformers/blob/17a55534f5e5df10ac4804d4270bf6b8cc24998d/src/transformers/trainer.py#L3526
+            outputs_answers = torch.cat((torch.zeros_like(outputs_answers[0]).unsqueeze(0), outputs_answers)) 
 
-            # print(f"{forward_out.loss=}")
-            return (forward_out.loss['logits'], answer_logits) if return_outputs else forward_out.loss['logits']
+            return dummy_loss, outputs_answers
 
     if args.n_shot > 0 and not args.no_explanation:
         # Create Trainer instance
@@ -335,7 +339,7 @@ def run_model(model, tokenizer, tokenized_dataset, args):
             data_collator=data_collator,
             train_dataset=tokenized_dataset["train"],
             eval_dataset=tokenized_dataset["validation"],
-            compute_metrics=compute_metrics # commented because it doesn't work yet
+            compute_metrics=compute_ablation_metrics # commented because it doesn't work yet
         )
 
     model.config.use_cache = False  # silence the warnings. Please re-enable for inference!
