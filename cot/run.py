@@ -30,7 +30,7 @@ def parse_option():
     # Dataset args
     parser.add_argument('--preprocessed_dir', default = '/project/gpuuva021/shared/cot/data/preprocessed', type=str, help='Directory for storing the preprocessed datasets')
     parser.add_argument('--dataset_name', default = 'squad', type=str, help='The name of the dataset on huggingface on which models are fine-tuned and evaluated.')
-    parser.add_argument('--dataset_is_bigbench', action='store_true', help='Use this flag if the dataset specified by dataset_name is part of the bigbench collection.')
+    parser.add_argument('--dataset_is_bigbench', default = True, help='Use this flag if the dataset specified by dataset_name is part of the bigbench collection.')
     parser.add_argument('--arithmetic_task_name', required=False, default = None, type=str, help='If the dataset_name is arithmetic, then this arg can be used to filter to a specific arithmetic task.')
     parser.add_argument('--bigbench_explanations_dataset', default = 'odd_one_out', type=str, help='The name of the bigbench task from which the CoTs are taken.')
     parser.add_argument('--bigbench_explanations_type', default = 'handtuned', type=str, help='Type of explanations from Lampinen et al. One of "handtuned", "selected", "untuned".')
