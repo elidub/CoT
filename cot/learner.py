@@ -208,6 +208,9 @@ def run_model(model, tokenizer, tokenized_dataset, args):
                     print(f"No answer found in the {i}-ith sample and it could not be fixed:")
                     print(f"{tokenizer.decode(outputs[i])=}")
 
+                # Answer sequences at the very end, when there's not enough space for the real answer, do not count
+                start_of_answer_indices[start_of_answer_indices >= outputs_without_inputs.shape[-1] - labels.shape[1]] = -1
+
                 # 2.3. Get outputs_without_answers as the outputs until the indices we have found
                 outputs_without_answers = outputs.detach().clone()
                 mask_hiding_answer_and_beyond = torch.arange(outputs.shape[1], device=device).repeat((batch_size,1)) > start_of_answer_indices[:, None]
