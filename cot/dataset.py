@@ -25,28 +25,28 @@ from cot.bigbench_utils import load_bigbench_dataset, filter_arithmetic_tasks
 
 
 class CoTDataset(torch.utils.data.Dataset):
-    def __init__(self, config, tokenizer, split="train"):
-        self.config = config
-        self.split = split
+    def __init__(self, args, tokenizer, split="train"):
+        self.args = args
         self.tokenizer = tokenizer
+        self.split = split
 
         # If necessary, download, tokenize dataset and save to disk
-        preprocessed_path = Path(self.config.preprocessed_dir) / self.preprocessed_filename()
-        if self.config.rebuild_cache or not preprocessed_path.exists():
+        preprocessed_path = Path(self.args.preprocessed_dir) / self.preprocessed_filename()
+        if self.args.rebuild_cache or not preprocessed_path.exists():
 
             # Load dataset for fine-tuning
-            if self.config.dataset_is_bigbench:
+            if self.args.dataset_is_bigbench:
                 # Train and validation overlap, so we load train set and extract required split
                 try:
                     # local variant that contains truthful_qa
-                    dt = load_bigbench_dataset(self.config.dataset_name, 'data/bigbench')["train"]
+                    dt = load_bigbench_dataset(self.args.dataset_name, 'data/bigbench')["train"]
                 except NotImplementedError as e:
                     # try the HF version if we don't have it locally, also this source only contains 50k samples per dataset max
-                    dt = load_dataset('tasksource/bigbench', self.config.dataset_name, split="train", cache_dir=self.config.hf_cache_dir)
+                    dt = load_dataset('tasksource/bigbench', self.args.dataset_name, split="train", cache_dir=self.args.hf_cache_dir)
 
                 # If specified, arithmetic datasets can be filtered to one specific operation
-                if self.config.dataset_name == "arithmetic" and self.config.arithmetic_task_name:
-                    dt = filter_arithmetic_tasks(dt, self.config.arithmetic_task_name)
+                if self.args.dataset_name == "arithmetic" and self.args.arithmetic_task_name:
+                    dt = filter_arithmetic_tasks(dt, self.args.arithmetic_task_name)
                 else:
                     # Transform into subset even when it's not necessary, just to keep the code below consistent
                     # Is it dirty? Yes. Does it work? I hope so.
@@ -56,7 +56,7 @@ class CoTDataset(torch.utils.data.Dataset):
                 print('Making a subset of the dataset')
                 dt = Subset(dt, range(20))
 
-                train, val = train_test_split(dt, test_size=0.3, random_state=self.config.seed)
+                train, val = train_test_split(dt, test_size=0.3, random_state=self.args.seed)
                 dt = val if self.split=="validation" else train
 
             
@@ -65,39 +65,34 @@ class CoTDataset(torch.utils.data.Dataset):
             self.explanation_prefix = "Explanation:"
 
             # Identify how questions, explanations, and answers are introduced in this dataset
-            if self.config.bigbench_explanations_dataset == "presuppositions_as_nli":
+            if self.args.bigbench_explanations_dataset == "presuppositions_as_nli":
                 self.sample_prefix = "Sentence 1:"
                 for i in range(len(dt)):
                     dt[i]['inputs'] = dt[i]['inputs'].replace("A:", "1:")
                     dt[i]['inputs'] = dt[i]['inputs'].replace("B:", "2:")
-                    dt[i]['inputs'] = dt[i]['inputs'].replace("The answer is:", "A:")
+                    dt[i]['inputs'] = dt[i]['inputs'].replace("\nThe answer is:", "A:")
+
+            if args.step_by_step:
+                assert self.args.n_shot == 0, "Step by step is not compatible with n_shot > 0"
             
                 
-            #qea
-            # Remove 'A:' from the end of the question and append 'Explanation: '
-            if not self.config.qae:
-                # print("Sample before bringing it in QEA shape: ")
-                # print(f"{dt[0]['inputs']=}")        
-                # print(f"{dt[1]['inputs']=}")        
-                # print(f"{dt[2]['inputs']=}")        
-                # print(f"{dt[3]['inputs']=}")        
-                # print(f"{dt[4]['inputs']=}")        
-                for i in range(len(dt)):
-                    answer_prefix_index = dt[i]['inputs'].rfind(self.answer_prefix)
-                    sample_without_answer_prefix = dt[i]['inputs'][:answer_prefix_index]
-                    dt[i]['inputs'] = sample_without_answer_prefix 
-                    if config.n_shot > 0: # Don't ad explanation_prefix is n_shot is 0
+            if self.args.qae:
+                raise NotImplementedError("QAE is not implemented yet!")
+            else:
+                if self.args.n_shot > 0 and not self.args.no_explanation:
+                    for i in range(len(dt)):
+                        answer_prefix_index = dt[i]['inputs'].rfind(self.answer_prefix)
+                        dt[i]['inputs'] = dt[i]['inputs'][:answer_prefix_index] # sample_without_answer_prefix
                         dt[i]['inputs'] += self.explanation_prefix
 
-                # print("Sample after bringing it in QEA shape: ")
-                # print(f"{dt[0]['inputs']=}")        
-                # print(f"{dt[1]['inputs']=}")        
-                # print(f"{dt[2]['inputs']=}")        
-                # print(f"{dt[3]['inputs']=}")        
-                # print(f"{dt[4]['inputs']=}")
+                if self.args.step_by_step:
+                    for i in range(len(dt)):
+                        answer_prefix_index = dt[i]['inputs'].rfind(self.answer_prefix)
+                        dt[i]['inputs'] = dt[i]['inputs'][:answer_prefix_index] + "Let's think step by step.\n" + dt[i]['inputs'][answer_prefix_index:]
+
 
             #In nli, reposition the task explanation string
-            if self.config.bigbench_explanations_dataset == "presuppositions_as_nli":
+            if self.args.bigbench_explanations_dataset == "presuppositions_as_nli":
                 task_string = 'Q: This is a natural language inference task. There are two sentences in English. The answer is "entailment" if the first sentence entails the second, "contradiction" if the second sentence contradicts the first, and "neutral" if neither is of those two cases holds.\n\n\n'
                 for i in range(len(dt)):
                     dt[i]['inputs'] = dt[i]['inputs'].replace(task_string, "")
@@ -127,7 +122,7 @@ class CoTDataset(torch.utils.data.Dataset):
             
 
             # Save to disk
-            os.makedirs(self.config.preprocessed_dir, exist_ok=True)
+            os.makedirs(self.args.preprocessed_dir, exist_ok=True)
             with open(preprocessed_path, "wb") as file:
                 pickle.dump(tokenized_dataset, file)
                     
@@ -144,29 +139,14 @@ class CoTDataset(torch.utils.data.Dataset):
 
 
         # Tokenize cot's
-        handtuned_file_path = Path(self.config.bigbench_explanations_path) / self.config.bigbench_explanations_type / (self.config.bigbench_explanations_dataset + ".json")
+        handtuned_file_path = Path(self.args.bigbench_explanations_path) / self.args.bigbench_explanations_type / (self.args.bigbench_explanations_dataset + ".json")
         questions, answers, explanations = self.parse_handtuned(handtuned_file_path)
-        # tokenized_explanations = [self.tokenizer(questions[i] + answers[i] + explanations[i]) for i in range(len(questions))]
-
-        #TODO! CHECK IF CONFIG.QAE IS TRUE WHEN APPENDING STEP BY STEP
-
-        # In zero-shot CoT setting we have the option to append "Let's think this step by step"
-        if self.config.step_by_step and self.config.n_shot == 0:
-            self.step_by_step = self.tokenizer("Let's think this step by step.")
-
-            # Append the tokenized step_by_step string BEFORE A:
-            for item in self.data:
-                item["input_ids"] = item["input_ids"][:-3] + self.step_by_step["input_ids"] + item["input_ids"][-3:-1]
-                item["attention_mask"] = item["attention_mask"][:-3] + self.step_by_step["attention_mask"] + item["attention_mask"][-3:-1]
-                # item["token_type_ids"] = item["token_type_ids"][:-3] + self.step_by_step["token_type_ids"] + item["token_type_ids"][-3:-1]
-
-        
 
         def example(i):
-            assert not (self.config.qae and self.config.no_explanation)
-            if self.config.qae:
+            assert not (self.args.qae and self.args.no_explanation)
+            if self.args.qae:
                 return questions[i] + answers[i] + explanations[i]
-            if self.config.no_explanation:
+            if self.args.no_explanation:
                 return questions[i] + answers[i]
             else:
                 return questions[i] + explanations[i] + answers[i]
@@ -179,19 +159,8 @@ class CoTDataset(torch.utils.data.Dataset):
             "label": None,
         } for i in range(len(questions)) ]
             
-        # Print some information about the dataset
-        if self.config.debug:
-            first_sample = self[0]
-            # print(f"First preprocessed sample: {first_sample=}")
-
-        # if self.config.debug:
-        #     # print(f"Computing longest required context for {self.split}...")
-        #     longest_sample = max(self, key=lambda x: len(x['input_ids']) + len(x['labels']))
-        #     max_tokens = len(longest_sample['input_ids']) + len(longest_sample['labels'])
-        #     # print(f"Longest sample ({max_tokens} tokens): {longest_sample}...")
-
     def preprocessed_filename(self):
-        return self.config.dataset_name + "_" + self.split + ("_debug" if self.config.debug else "") + ".json"
+        return self.args.dataset_name + "_" + self.split + ("_debug" if self.args.debug else "") + ".json"
 
     #parse a handtuned explanations json file
     def parse_handtuned(self, file_path):
@@ -202,7 +171,7 @@ class CoTDataset(torch.utils.data.Dataset):
                 if key in data:
                     full_string = data[key]
 
-        if self.config.bigbench_explanations_dataset == "presuppositions_as_nli":
+        if self.args.bigbench_explanations_dataset == "presuppositions_as_nli":
             full_string = full_string.replace("A:", "1:")
             full_string = full_string.replace("B:", "2:")
             full_string = full_string.replace("The answer is:", "A:")
@@ -227,9 +196,9 @@ class CoTDataset(torch.utils.data.Dataset):
 
     def __getitem__(self, idx):
         # Select CoT's (includes shuffling if dynamic)
-        n = self.config.n_shot if self.config.n_shot <= 5 else 5
+        n = self.args.n_shot if self.args.n_shot <= 5 else 5
 
-        cot_idx = random.sample(range(5), n) if self.config.shuffle_cots else list(range(n))
+        cot_idx = random.sample(range(5), n) if self.args.shuffle_cots else list(range(n))
 
         full_untokenized_sample = ""
         
@@ -244,128 +213,14 @@ class CoTDataset(torch.utils.data.Dataset):
         if len(full_tokenized_label) < 3:
             full_tokenized_label.extend([-100] * (3 - len(full_tokenized_label)))
 
-        print(full_untokenized_sample)
-        print(self.untok_labels[idx])
-
         x = {
-                'input_ids':  torch.tensor(full_tokenized_sample).long(),
-                'labels':  torch.tensor(full_tokenized_label).long(),
+                'input_ids':          torch.tensor(full_tokenized_sample).long(),
+                'labels':             torch.tensor(full_tokenized_label).long(),
                 'untokenized_sample': full_untokenized_sample,
                 'labels_untokenized': self.untok_labels[idx]
             }
         return x
             
-    #         concatenated_input_ids = []
-    #         concatenated_attention_mask = []
-
-    #         for i in cot_idx:
-    #             concatenated_input_ids += self.cots[i]['tokenized_example']["input_ids"]
-    #             concatenated_attention_mask += self.cots[i]['tokenized_example']["attention_mask"]
-
-    #         # Concatenate
-    #         item = self.data[idx]
-
-    #         #do we even need attention mask?
-    #         # print(f"Raw input decoded:")
-    #         # print(f"{self.tokenizer.decode(item['input_ids'])=}")
-    #         concatenated_input_ids += item["input_ids"]
-    #         concatenated_attention_mask += item["attention_mask"]
-
-    #         if self.split == 'validation' and self.config.dataset_name == 'squad':
-    #             x = {
-    #                 'input_ids':  torch.Tensor(concatenated_input_ids).long(),
-    #                 'attention_mask':  torch.Tensor(concatenated_attention_mask).long(),
-    #                 'labels':  torch.Tensor(self.labels[idx]["input_ids"][0]).long().squeeze()
-    #             }
-    #         else:
-    #             # Return x and y
-    #             x = {
-    #                 'input_ids':  torch.Tensor(concatenated_input_ids).long(),
-    #                 'attention_mask':  torch.Tensor(concatenated_attention_mask).long(),
-    #                 'labels':  torch.Tensor(self.labels[idx]["input_ids"]).long().squeeze()
-    #             }
-
-    #         # When debugging, additionally store untokenized data
-    #         if self.config.debug:
-    #             concatenated_untokenized_string = ""
-    #             for i in cot_idx:
-    #                 concatenated_untokenized_string += self.cots[i]['example']
-    #             concatenated_untokenized_string += self.untok_data[idx]
-    #             x["untokenized_inputs"] = concatenated_untokenized_string
-    #             x["untokenized_labels"] = self.untok_labels[idx]
-
-    #     #0-shot
-    #     else:
-    #         x = {
-    #             'input_ids':  torch.Tensor(item["input_ids"]).long(),
-    #             'attention_mask':  torch.Tensor(item["attention_mask"]).long(),
-    #             'labels':  torch.Tensor(self.labels[idx]["input_ids"]).long().squeeze()
-    #         }
-
-    #         # When debugging, additionally store untokenized data
-    #         if self.config.debug:
-    #             x["untokenized_inputs"] = self.untok_data[idx]
-    #             x["untokenized_labels"] = self.untok_labels[idx]
-
-    #     return x
-
     def __len__(self):
         return len(self.labels)
 
-
-# import argparse
-# from model_utils import load_model_dicts, load_model
-
-# args = argparse.Namespace()
-# args.model_id = "bigscience/mt0-small"
-# args.hf_cache_dir = "datadump/hf"
-# args.debug = True
-# args.model_max_length = None
-
-# args.preprocessed_dir = "datadump/preprocessed"
-
-# # Example 1 for fine-tuning on bigbench:
-# args.dataset_name = "presuppositions_as_nli"
-# args.dataset_is_bigbench = True
-# args.bigbench_explanations_dataset = "presuppositions_as_nli"
-# args.model_max_length = 1015  # Length for 5-shot
-
-# Example 2 for fine-tuning on bigbench:
-# args.dataset_name = "truthful_qa"
-# args.dataset_is_bigbench = True
-# args.bigbench_explanations_dataset = "truthful_qa"
-
-# # Example 3 for fine-tuning on bigbench:
-# args.dataset_name = "arithmetic"
-# args.arithmetic_task_name = "3_digit_division"
-# args.dataset_is_bigbench = True
-# args.bigbench_explanations_dataset = "arithmetic_3_digit_division"
-
-# # Example for fine-tuning on squad:
-# args.dataset_name = "squad"
-# args.dataset_is_bigbench = False
-# args.bigbench_explanations_dataset = "truthful_qa"
-
-
-# args.bigbench_explanations_type = "handtuned"
-# args.bigbench_explanations_path = "data/bigbench-explanations/"
-# args.rebuild_cache = True
-# args.shuffle_cots = False
-# args.n_shot = 5
-
-# args.lr = 1e-3
-# args.max_epochs = 100
-# args.batch_size = 8
-# args.seed = 666
-
-# args.lora_r = 8
-# args.lora_alpha = 32
-# args.lora_dropout = 0.05
-# args.lora_bias = "none"
-
-# model_id = args.model_id
-# m_dicts = load_model_dicts()
-# model, tokenizer = load_model(model_id, m_dicts[model_id], model_max_length=args.model_max_length)
-# ds = CoTDataset(args, tokenizer, "validation")
-# item = next(iter(ds))
-# print("Done!")
