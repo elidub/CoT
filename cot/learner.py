@@ -1,5 +1,3 @@
-
-
 from datasets import load_from_disk
 import os
 from datasets import load_dataset
@@ -18,60 +16,9 @@ import sys
 sys.path.insert(1, sys.path[0] + '/../')
 
 from cot.transform_outputs import transform_outputs
-
-# adapted from https://github.com/philschmid/deep-learning-pytorch-huggingface/blob/main/training/peft-flan-t5-int8-summarization.ipynb
-def prep_lora_model(
-        model,
-        train,
-        args,
-        target_modules = {"mt0": ["q", "v"], "bloom": ["query_key_value"], "t5": ["q", "v"], "mt5": ["q", "v"]}
-):
-    # see TRANSFORMERS_MODELS_TO_LORA_TARGET_MODULES_MAPPING ub peft/utils/other.py
-    if "mt0" in args.model_id:
-        target_modules = target_modules["mt0"]
-    elif "bloom-" in args.model_id:
-        target_modules = target_modules["bloom"]
-    elif "mt5" in args.model_id:
-        target_modules = target_modules["mt5"]
-    elif "t5" in args.model_id:
-        target_modules = target_modules["t5"]
-    else:
-        raise NotImplementedError(f"no target modules specified for {args.model_id}")
-    
-    if train is False and args.wandb_run is None:
-        print('No finetuning or evaluation run specified, this is an ablation run, not using LoRA!')
-        return model
-    
-    # Define LoRA Config 
-    if train is True:
-        print('Setting up LoRA!')
-        lora_config = LoraConfig(
-            r=args.lora_r,
-            lora_alpha=args.lora_alpha,
-            target_modules=target_modules,
-            lora_dropout=args.lora_dropout,
-            bias=args.lora_bias,
-            task_type=TaskType.CAUSAL_LM
-        )
-        # prepare int-8 model for training
-        model = prepare_model_for_int8_training(model)
-
-    else:
-        print('Loading trained LoRA!')
-        save_dir = os.path.join("trained_models", args.wandb_run)
-        lora_config = LoraConfig.from_pretrained(save_dir)
-
-    # add LoRA adaptor
-    model = get_peft_model(model, lora_config)
-    model.print_trainable_parameters()
-    
-    # create method for generating text without teacher forcing but with gradients
-    # this is achieved by removing the "no grad" decorator from the base_model of the peft
-
-    # unwrapped = model.base_model.generate.__wrapped__
-    # model.generate = MethodType(unwrapped, model.base_model)
-
-    return model
+from cot.model_utils import prep_lora_model
+from cot.metrics import custom_compute_metrics, compute_ablation_metrics
+from cot.trainer import AblationTrainer
 
 def get_data_collator(model, tokenizer):
     # Data collator
@@ -85,7 +32,6 @@ def get_data_collator(model, tokenizer):
 def run_model(model, tokenizer, tokenized_dataset, args):
 
     train = args.train
-    assert (train is True) or (train is False)
 
     model = prep_lora_model(model, train, args)
     data_collator = get_data_collator(model, tokenizer)
@@ -98,27 +44,8 @@ def run_model(model, tokenizer, tokenized_dataset, args):
         wandb.init(mode="disabled") # Turned off wandb for evaluation
         report_to = None
 
-    # metric = evaluate.load('accuracy')
-
-    def compute_metrics(eval_preds):
-        logits, labels = eval_preds # logits is a tuple of 2 tensors, we think first is prediction, second is last layer or smth    
-
-        logits_argmax = np.argmax(logits, axis=2)
-        assert logits_argmax.shape == labels.shape
-        accuracy = np.logical_or(logits_argmax == labels, labels == -100).mean() #TODO: np.all now not yet, because it's hardcoded that label is len(1)
-
-        # accuracy = np.all(np.logical_or(predictions == labels, labels == -100), axis=1).mean()
-
-        # Compute samples_without_answer_fraction
-        # Checking whether logits are zero, first for all words in vocab, then for all tokens in sequence
-        samples_without_answer_mask = np.all(logits == 0, axis=(1,2))
-        samples_without_answer = np.sum(samples_without_answer_mask)
-        samples_without_answer_fraction = samples_without_answer / len(labels)
-        return {"accuracy": accuracy, "invalid": samples_without_answer_fraction}
-
     output_dir="."
     # Define training args
-    # training_args = Seq2SeqTrainingArguments(
     training_args = TrainingArguments(
         output_dir=output_dir,
         per_device_train_batch_size=args.batch_size,
@@ -431,8 +358,18 @@ def run_model(model, tokenizer, tokenized_dataset, args):
             # loss = loss_fct(logits.view(-1, logits.shape[-1]), labels.view(-1))
             # return (loss, outputs) if return_outputs else loss
 
+
+    if args.n_shot > 0 and not args.no_explanation:
+        print("Using CoTTrainer")
+        CustomTrainer = CustomSeq2SeqTrainer
+        compute_metrics = custom_compute_metrics
+    else:
+        print("Using AblationTrainer")
+        CustomTrainer = AblationTrainer
+        compute_metrics = compute_ablation_metrics
+
     # Create Trainer instance
-    trainer = CustomSeq2SeqTrainer(
+    trainer = CustomTrainer(
         model=model,
         args=training_args,
         data_collator=data_collator,
