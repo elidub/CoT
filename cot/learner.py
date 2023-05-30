@@ -236,22 +236,35 @@ def run_model(model, tokenizer, tokenized_dataset, args):
             if (start_of_answer_indices == -1).all():
                 print(f"No answer found anywhere in this batch.")
 
-            loss, outputs = forward_out.loss, forward_out.logits
+            # Compute logits for answers if necessary
+            if return_outputs:
+                # initialize answer_logits as a zeros tensor of shape (B, max_label_length, V)
+                max_label_length = max([len(label) for label in labels])
+                vocab_size = forward_out.logits.shape[-1]
+                answer_logits = torch.zeros((batch_size, max_label_length, vocab_size), device=device)
+                for i, label in enumerate(labels):
+                    if start_of_answer_indices[i] == -1:
+                        # If no answer was found, we leave the answer_logits as zeros.
+                        # This indicates that no answer was given by the model at all.
+                        continue
+                    else:
+                        start_of_answer_content_index = 0 if start_of_answer_indices[i] == -1 else start_of_answer_indices[i] + len(a_seq)
+                        # Determine sample_answer_logits for this sample
+                        sample_answer_logits = forward_out.logits[i][start_of_answer_content_index : start_of_answer_content_index+len(label)]
 
-            answer_logits = []
-            for i, label in enumerate(labels):
-                start_of_answer_index = start_of_answer_indices[i] # + len(a_seq) #TODO: Last part commented because yeah idk but it works (for now)
-                start_of_answer_index = 0 if start_of_answer_index == -1 else start_of_answer_index # TODO: This will probably break a few things to
-                # print(i, start_of_answer_index)
-                answer_logit = outputs[i][start_of_answer_index : start_of_answer_index+len(label)][0] # TODO: FIX THIS: WITH [0] WE ASSUME THAT THE ANSWER IS ONLY ONE TOKEN LONG
-                answer_logits.append(answer_logit)
-            answer_logits = torch.stack(answer_logits).unsqueeze(1)
-            
-            
-            answer_logits = torch.cat((torch.zeros_like(answer_logits[0]).unsqueeze(0), answer_logits)) # For this https://github.com/huggingface/transformers/blob/17a55534f5e5df10ac4804d4270bf6b8cc24998d/src/transformers/trainer.py#L3526
-            
-            print(f"{loss.loss=}")
-            return (loss, answer_logits) if return_outputs else loss
+                        # Print confirming that we have sliced the correct indices
+                        # print("The following is only the answer content: ")
+                        # print(f"{tokenizer.decode(outputs[i][start_of_answer_content_index : start_of_answer_content_index+len(label)])}")  # prints e.g. "57" for arithmetic
+
+                        # Fill in this sample's logits into answer_logits.
+                        # If this label is shorter than max_label_length, leave zeros for the remaining tokens unchanged.
+                        # These zeros will later be ignored because the label is -100 there.
+                        answer_logits[i,:len(label), :] = sample_answer_logits
+
+                answer_logits = torch.cat((torch.zeros_like(answer_logits[0]).unsqueeze(0), answer_logits)) # For this https://github.com/huggingface/transformers/blob/17a55534f5e5df10ac4804d4270bf6b8cc24998d/src/transformers/trainer.py#L3526
+
+            print(f"{forward_out.loss=}")
+            return (forward_out.loss, answer_logits) if return_outputs else forward_out.loss
 
 
 
