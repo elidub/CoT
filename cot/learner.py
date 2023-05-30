@@ -182,6 +182,8 @@ def run_model(model, tokenizer, tokenized_dataset, args):
                                 print(f"target: {tokenizer.decode(unpadded_label)}, generated (idx={start_of_answer_indices[b]}): {tokenizer.decode(pred[:unpadded_label.shape[0]])}")
                             acc = int(torch.equal(unpadded_label, pred))
                         batch_accuracies.append(acc)
+                    else:
+                        batch_accuracies.append(0)
 
                     batch_acc = sum(batch_accuracies) / batch_size
                     self.accuracies.append(batch_acc)
