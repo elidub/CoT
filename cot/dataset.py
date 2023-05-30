@@ -137,21 +137,11 @@ class CoTDataset(torch.utils.data.Dataset):
             with open(preprocessed_path, "rb") as file:
                 tokenized_dataset = pickle.load(file)
 
-        self.data = tokenized_dataset["inputs"]
+        # self.data = tokenized_dataset["inputs"] # Commenting out because we should use the untokenized data
         self.labels = tokenized_dataset["targets"]
-
-        # print(tokenized_dataset['inputs'][0])
-        # print(tokenized_dataset['targets'][0])
-
-
-        
         self.untok_data = tokenized_dataset["inputs_untokenized"]
         self.untok_labels = tokenized_dataset["labels_untokenized"]
 
-
-            # print("AAAAAAAAAAAAAAAAAAAAAAa")
-            # print(tokenized_dataset['inputs_untokenized'][0])
-            # print(tokenized_dataset['labels_untokenized'][0])
 
         # Tokenize cot's
         handtuned_file_path = Path(self.config.bigbench_explanations_path) / self.config.bigbench_explanations_type / (self.config.bigbench_explanations_dataset + ".json")
@@ -239,12 +229,11 @@ class CoTDataset(torch.utils.data.Dataset):
         # Select CoT's (includes shuffling if dynamic)
         n = self.config.n_shot if self.config.n_shot <= 5 else 5
 
-            
         cot_idx = random.sample(range(5), n) if self.config.shuffle_cots else list(range(n))
 
         full_untokenized_sample = ""
         
-        # Prepending CoTs
+        # Prepending CoTs, also works if n_shot == 0
         for i in cot_idx:
             full_untokenized_sample += self.cots[i]['example']
 
@@ -256,13 +245,7 @@ class CoTDataset(torch.utils.data.Dataset):
             full_tokenized_label.extend([-100] * (3 - len(full_tokenized_label)))
 
         print(full_untokenized_sample)
-
         print(self.untok_labels[idx])
-
-        # print(f"{self.untok_labels[idx][0]=}")
-        # print(f"During getitem: {full_untokenized_sample=}")
-        # print(f"{full_tokenized_sample=}")
-        # print(f"{full_tokenized_label=}")
 
         x = {
                 'input_ids':  torch.tensor(full_tokenized_sample).long(),
