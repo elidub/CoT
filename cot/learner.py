@@ -209,8 +209,9 @@ def run_model(model, tokenizer, tokenized_dataset, args):
                 full_correct_sequences = outputs_without_answers
                 labels_formatted = torch.zeros_like(full_correct_sequences) - 100
                 for i, label in enumerate(labels):
+                    label_unpadded = label[label != -100]
                     start_of_answer_index = start_of_answer_indices[i] + len(a_seq)
-                    full_correct_sequences[i, start_of_answer_index:start_of_answer_index+len(label)] = label
+                    full_correct_sequences[i, start_of_answer_index:start_of_answer_index+len(label_unpadded)] = label_unpadded
                     
 
                     if start_of_answer_indices[i] == -1:
@@ -220,7 +221,7 @@ def run_model(model, tokenizer, tokenized_dataset, args):
                         # Give loss for the "A:" part
                         labels_formatted[i][start_of_answer_index-len(a_seq): start_of_answer_index] = a_seq
                         # Give loss for the correct label
-                        labels_formatted[i, start_of_answer_index:start_of_answer_index+len(label)] = label
+                        labels_formatted[i, start_of_answer_index:start_of_answer_index+len(label_unpadded)] = label_unpadded
 
                     # # Prints to confirm that labels and inputs are aligned (confirmed)
                     # print(f"{tokenizer.decode(full_correct_sequences[i][start_of_answer_index-len(a_seq) : start_of_answer_index+len(label)])=}")
