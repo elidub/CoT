@@ -285,11 +285,11 @@ def run_model(model, tokenizer, tokenized_dataset, args):
 
             # print(inputs.keys())
 
-            print(f"{inputs['input_ids'].shape=}")
-            print(f"{inputs['labels'].shape=}")
-            print(f"{inputs['attention_mask'].shape=}")
+            # print(f"{inputs['input_ids'].shape=}")
+            # print(f"{inputs['labels'].shape=}")
+            # print(f"{inputs['attention_mask'].shape=}")
 
-            forward_out = model.forward(inputs["input_ids"], labels=inputs["labels"], attention_mask=inputs['attention_mask'])
+            forward_out = model.forward(inputs["input_ids"], attention_mask=inputs['attention_mask'])
 
             # Compute logits for answers if necessary
             if return_outputs:
@@ -313,8 +313,8 @@ def run_model(model, tokenizer, tokenized_dataset, args):
 
                 answer_logits = torch.cat((torch.zeros_like(answer_logits[0]).unsqueeze(0), answer_logits)) # For this https://github.com/huggingface/transformers/blob/17a55534f5e5df10ac4804d4270bf6b8cc24998d/src/transformers/trainer.py#L3526
 
-            print(f"{forward_out.loss=}")
-            return (forward_out.loss, answer_logits) if return_outputs else forward_out.loss
+            # print(f"{forward_out.loss=}")
+            return (forward_out.loss['logits'], answer_logits) if return_outputs else forward_out.loss['logits']
 
     if args.n_shot > 0 and not args.no_explanation:
         # Create Trainer instance
