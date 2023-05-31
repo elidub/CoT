@@ -23,7 +23,7 @@ def parse_option():
     parser.add_argument('--train', action = 'store_true', help='If True, train the model. If False, evaluate the model.')
     parser.add_argument('--save_name', default = 'debug', help='Name to save the model in results.json')
     parser.add_argument('--wandb_run', default = None, help='WandB run ID, if None, a new run is created')
-    parser.add_argument('--model_id', default = 'bigscience/mt0-small', type=str, help='Model type')
+    parser.add_argument('--model_id', default = 'bigscience/bloom-3b', type=str, help='Model type')
     parser.add_argument('--hf_cache_dir', default = '/project/gpuuva021/shared/cot/hf_cache', type=str, help='Directory for HuggingFace cache')
     parser.add_argument('--debug', action='store_true', help='Use smaller datasets and store more info for debugging')
     parser.add_argument('--model_max_length', default = 512, type=int, help='Longest context the model/tokenizer is expected to support')
@@ -36,7 +36,7 @@ def parse_option():
     parser.add_argument('--bigbench_explanations_dataset', default = 'odd_one_out', type=str, help='The name of the bigbench task from which the CoTs are taken.')
     parser.add_argument('--bigbench_explanations_type', default = 'handtuned', type=str, help='Type of explanations from Lampinen et al. One of "handtuned", "selected", "untuned".')
     parser.add_argument('--bigbench_explanations_path', default = 'data/bigbench-explanations/', type=str, help='Path to the bigbench explanations from Lampinen et al.')
-    parser.add_argument('--n_shot', default = 3, type=int, help='How many examples to show in-context')
+    parser.add_argument('--n_shot', default = 5, type=int, help='How many examples to show in-context')
     parser.add_argument('--rebuild_cache', default = True, type=bool, help='Whether to rebuild the cached preprocessed datasets')
     parser.add_argument('--shuffle_cots', default = False, type=bool, help='Whether to randomly select the available CoTs and their order. If False, the first n_shot CoTs are chosen.')
     parser.add_argument('--step_by_step', action='store_true', help='Whether to append Lets think this step by step')
@@ -46,7 +46,7 @@ def parse_option():
     # Training args
     parser.add_argument('--lr', default = 1e-3, type=float, help='Learning rate')
     parser.add_argument('--max_epochs', default = 10, type=int, help='Maximum number of epochs to train')
-    parser.add_argument('--batch_size', default = 32, type=int, help='Batch size')
+    parser.add_argument('--batch_size', default = 4, type=int, help='Batch size')
     parser.add_argument('--seed', default=666, type=int, help="The seed for reproducibility")
     parser.add_argument('--num_beams', default = None, required=False, type=int, help='The number of beams to use when generating explanations.')
     parser.add_argument('--reward_succesful_explanations', action = 'store_true', help='If an explanation led to the correct answer, it will be treated as ground-truth during training.')
@@ -120,7 +120,7 @@ def main(args):
 
 
 if __name__ == "__main__":
-    debug = True
+    debug = False
     args = debug_parse_option () if debug else parse_option()
     print(args)
     main(args)
