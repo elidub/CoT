@@ -61,6 +61,7 @@ def run_model(model, tokenizer, tokenized_dataset, args):
         report_to=report_to,
         seed=args.seed,
         full_determinism=False, # otherwise the forward pass gives RuntimeError: cumsum_cuda_kernel does not have a deterministic implementation
+        dataloader_drop_last=True # Otherwise eval crashes on the last iteration requiring 28TB Memory
     )
 
     # class CustomSeq2SeqTrainer(Seq2SeqTrainer):
