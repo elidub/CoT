@@ -18,9 +18,8 @@ export WANDB_API_KEY=6b6f51f692ebb5799c9e3ee77ff79b3622fc9370
 cd $HOME/CoT/
 source activate cot
 
-# srun python -u cot/peft_prompt_tuning.py
 srun python -u cot/run.py --model_id bigscience/bloom-3b\
     --batch_size 4 --n_shot 4 --max_epochs 50  --lr 0.0001\
-    --dataset_name presuppositions_as_nli --bigbench_explanations_dataset presuppositions_as_nli \
-    --n_shot 5 --model_max_length 1015 --train
+    --num_beams 3 --reward_succesful_explanations --allow_answer_at_eos \
+    --dataset_name presuppositions_as_nli --bigbench_explanations_dataset presuppositions_as_nli --n_shot 5 --model_max_length 1015 --train
     
