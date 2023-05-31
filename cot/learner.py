@@ -11,6 +11,7 @@ import torch
 from torch import nn
 from undecorated import undecorated
 from types import MethodType
+import wandb
 
 import sys
 sys.path.insert(1, sys.path[0] + '/../')
@@ -77,6 +78,8 @@ def run_model(model, tokenizer, tokenized_dataset, args):
                 # 0.: Some useful variables for later on
                 device = inputs["input_ids"].device
                 debug = True
+                log_excessively = True
+                log_prefix = "train_" if self.is_in_train else "val_"
                 labels = inputs["labels"]
                 a_seq = torch.tensor([3000], device=device)           # "A:"
                 # a_seq = torch.tensor([3000, 210], device=inputs["input_ids"].device)      # "A: "
@@ -94,6 +97,10 @@ def run_model(model, tokenizer, tokenized_dataset, args):
                     kwargs["repetition_penalty"] = 2.0
                     print(f"Generating with beams using {kwargs}")
                 outputs = model.generate(**kwargs)
+
+                if log_excessively and self.is_in_train:
+                    unique_tokens_per_sample = len(outputs.unique()) / batch_size
+                    wandb.log({log_prefix + "unique_tokens_per_sample" : unique_tokens_per_sample}, commit=False)
 
                 # 2. Compute input_with_explanations as the entire output where the answer itself is replaced by padding tokens
                 # 2.1. Generate mask_hiding_non_inputs
@@ -115,6 +122,7 @@ def run_model(model, tokenizer, tokenized_dataset, args):
                     print(f"{args.num_beams=}")
 
                 sample_idx_without_answer = torch.arange(len(outputs), device=device)[start_of_answer_indices == -1]
+                n_samples_fixed_by_eos_replacement = 0
                 for i in sample_idx_without_answer:
                     print(f"No answer found in the {i}-ith sample")
                     if args.allow_answer_at_eos:
@@ -127,10 +135,13 @@ def run_model(model, tokenizer, tokenized_dataset, args):
                             if eos_idx + len(a_seq) + labels.shape[1] < outputs.shape[1]:
                                 start_of_answer_indices[i] = eos_idx
                                 outputs[i, eos_idx:eos_idx + len(a_seq)] = a_seq
+                                n_samples_fixed_by_eos_replacement += 1
                                 # print(f"{tokenizer.decode(outputs[i])=}")
                                 continue
                             print(f"No answer found in the {i}-ith sample and it could not be fixed:")
                             print(f"{tokenizer.decode(outputs[i])=}")
+                if log_excessively:
+                    wandb.log({log_prefix + "n_samples_fixed_by_eos_replacement" : n_samples_fixed_by_eos_replacement}, commit=False)
 
                 # Answer sequences at the very end, when there's not enough space for the real answer, do not count
                 start_of_answer_indices[start_of_answer_indices >= outputs_without_inputs.shape[-1] - labels.shape[1]] = -1
@@ -142,6 +153,11 @@ def run_model(model, tokenizer, tokenized_dataset, args):
 
                 outputs_without_answers = outputs.detach().clone()
                 outputs_without_answers[mask_hiding_answer_and_beyond] = tokenizer.pad_token_id
+
+                if log_excessively:
+                    mask_hiding_everything_but_explanation = torch.logical_and(mask_hiding_answer_and_beyond, ~mask_hiding_non_inputs)
+                    average_explanation_length = mask_hiding_everything_but_explanation.sum() / batch_size
+                    wandb.log({log_prefix + "average_explanation_length" : average_explanation_length}, commit=True) # Commit as this is the last call of log
 
                 # Block of debug prints
                 n_samples_contained_answer = torch.sum(start_of_answer_indices != -1)

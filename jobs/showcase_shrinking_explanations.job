@@ -1,0 +1,33 @@
+#!/bin/bash
+
+#SBATCH --gres=gpu:1
+#SBATCH --job-name=Shrinking
+#SBATCH --partition=gpu_titanrtx_shared_course
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=3
+#SBATCH --time=01:30:00
+#SBATCH --mem=32000M
+#SBATCH --output=jobs/slurm_output/test-training-models_%A.out
+
+module purge
+module load 2021
+module load Anaconda3/2021.05
+
+export WANDB_API_KEY=6b6f51f692ebb5799c9e3ee77ff79b3622fc9370
+
+cd $HOME/CoT/
+source activate cot
+
+srun python -u cot/run.py --model_id bigscience/bloom-3b  --train\
+    --batch_size 4 --lr 0.0001 --n_shot 5 --max_epochs 5 \
+    --dataset_name arithmetic --arithmetic_task_name 3_digit_division --bigbench_explanations_dataset arithmetic_3_digit_division
+
+srun python -u cot/run.py --model_id bigscience/bloom-3b  --train\
+    --batch_size 4 --lr 0.0001 --n_shot 5 --max_epochs 5 \
+    --dataset_name arithmetic --arithmetic_task_name 3_digit_division --bigbench_explanations_dataset arithmetic_3_digit_division\
+    --reward_succesful_explanations
+
+
+    # --dataset_name presuppositions_as_nli --bigbench_explanations_dataset presuppositions_as_nli --model_max_length 1015
+    # --num_beams 3 --reward_succesful_explanations --allow_answer_at_eos \
+    # Replace the line above with the one below to try the nli dataset
