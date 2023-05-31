@@ -1,4 +1,5 @@
 import pynvml
+import json
 
 def print_gpu_utilization():
     pynvml.nvmlInit()
@@ -21,3 +22,16 @@ def load_model(model_id, model_dict, hf_cache = '/nfs/scratch/atcs_lcur1654/'):
     model = model_dict['model'].from_pretrained(model_id, **model_dict.get('model_kwargs', {}), cache_dir = hf_cache)
     tokenizer = model_dict['tokenizer'].from_pretrained(model_id, **model_dict.get('tokenizer_kwargs', {}), cache_dir = hf_cache)
     return model, tokenizer
+
+
+def update_results(results = 'store/results.json', evals = None, args = None):
+    # open store/results.json
+    with open(results, 'r') as f:
+        results_dict = json.load(f)
+
+    results_dict.update({args.save_name : {'evals': evals, 'args': vars(args), 'wandb': args.wandb_run}})
+
+    # save store/results.json
+    with open(results, 'w') as f:
+        json.dump(results_dict, f)
+

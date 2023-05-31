@@ -19,6 +19,7 @@ from cot.transform_outputs import transform_outputs
 from cot.model_utils import prep_lora_model
 from cot.metrics import custom_compute_metrics, compute_ablation_metrics
 from cot.trainer import AblationTrainer
+from cot.utils import update_results
 
 def get_data_collator(model, tokenizer):
     # Data collator
@@ -331,7 +332,10 @@ def run_model(model, tokenizer, tokenized_dataset, args):
 
     # Evaluate model
     print('Evaluating!')
-    eval = trainer.evaluate()
+    evals = trainer.evaluate()
 
     if train is False:
-        print(eval)
+        print(evals)
+
+    # update results
+    update_results(results = 'store/results.json', evals = evals, args = args)
