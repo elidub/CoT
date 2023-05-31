@@ -47,6 +47,9 @@ def parse_option():
     parser.add_argument('--max_epochs', default = 10, type=int, help='Maximum number of epochs to train')
     parser.add_argument('--batch_size', default = 32, type=int, help='Batch size')
     parser.add_argument('--seed', default=666, type=int, help="The seed for reproducibility")
+    parser.add_argument('--num_beams', default = None, required=False, type=int, help='The number of beams to use when generating explanations.')
+    parser.add_argument('--reward_succesful_explanations', action = 'store_true', help='If an explanation led to the correct answer, it will be treated as ground-truth during training.')
+    parser.add_argument('--allow_answer_at_eos', action = 'store_true', help='If the model generates an explanation with EOS-token but without answer marker, replace the EOS-token with the marker to prevent invalidation.')
 
     # Training args (lora)
     parser.add_argument('--lora_r', default = 8, type=int, help='Rank of LoRa')
@@ -88,6 +91,11 @@ def debug_parse_option(notebook = False):
     parser.add_argument('--max_epochs', default = 1, type=int, help='Maximum number of epochs to train')
     parser.add_argument('--batch_size', default = 8, type=int, help='Batch size')
     parser.add_argument('--seed', default=666, type=int, help="The seed for reproducibility")
+    parser.add_argument('--num_beams', default = None, required=False, type=int, help='The number of beams to use when generating explanations.')
+    parser.add_argument('--reward_succesful_explanations', action = 'store_true', help='If an explanation led to the correct answer, it will be treated as ground-truth during training.')
+    parser.add_argument('--allow_answer_at_eos', action = 'store_true', help='If the model generates an explanation with EOS-token but without answer marker, replace the EOS-token with the marker to prevent invalidation.')
+
+
 
     # Training args (lora)
     parser.add_argument('--lora_r', default = 8, type=int, help='Rank of LoRa')

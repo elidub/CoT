@@ -82,19 +82,16 @@ def run_model(model, tokenizer, tokenized_dataset, args):
                 batch_size = inputs["input_ids"].shape[0]
 
                 # 1. Generate outputs without grad
-                # We do beam search with repetition penalty to avoid the model getting stuck repeating itself.
-                repetition_penalty = 2.0
-                num_beams = 3
-                explanation_accepted_chance = 1.0
                 kwargs = {
                     "input_ids": inputs["input_ids"], 
-                    "max_new_tokens": 32,
-
-                    # Beam search params
-                    "do_sample": True,
-                    "num_beams": num_beams,
-                    "repetition_penalty": repetition_penalty,
+                    "max_new_tokens": 50,
                 }
+                # If specified, we do beam search with repetition penalty to avoid the model getting stuck repeating itself.
+                if args.num_beams:
+                    kwargs["do_sample"] = True
+                    kwargs["num_beams"] = args.num_beams
+                    kwargs["repetition_penalty"] = 2.0
+                    print(f"Generating with beams using {kwargs}")
                 outputs = model.generate(**kwargs)
 
                 # 2. Compute input_with_explanations as the entire output where the answer itself is replaced by padding tokens
@@ -114,24 +111,25 @@ def run_model(model, tokenizer, tokenized_dataset, args):
 
                 if debug: 
                     print("=" * 20 + " summary of batch results " + "=" * 20)
-                    print(f"{num_beams=}")
-                    print(f"{repetition_penalty=}")
+                    print(f"{args.num_beams=}")
 
                 sample_idx_without_answer = torch.arange(len(outputs), device=device)[start_of_answer_indices == -1]
                 for i in sample_idx_without_answer:
-                    print(f"No answer found in the {i}-ith sample, looking for posible replacements..")
-                    # If there's no a_seq, but the sequence ends in a </s> with enough free space in the end, we replace the </s> token with the a_seq
-                    # Example motivating this: tokenizer.decode(outputs[i])='<pad><pad><pad>Q:What is 842 divided by 1?\n  choice: 456\n  choice: 842\n  choice: house\n  choice: 14513\n  choice: 1\n  choice: banana\n  choice: 820\nExplanation:Dividing any number by 1 does not change it, so 842 / 1 = 842.\nA:842\nQ:What is 355 divided by 71?\n  choice: 5\n  choice: banana\n  choice: 807\n  choice: 7\n  choice: house\n  choice: 6\nExplanation:355 is close to 400, and 71 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:5\nQ:What is 705 divided by 5?\n  choice: 445\n  choice: 113\n  choice: 141\n  choice: banana\n  choice: house\n  choice: 73442\n  choice: 2\nExplanation:705 / 5 = (700 / 5) + (5 / 5) = 140 + 1 = 141.\nA:141\nQ: What is 321 divided by 3?\n  choice: 107\n  choice: 12944\n  choice: banana\n  choice: 6\n  choice: 852\n  choice: 759\n  choice: house\nExplanation:321 / 3 = (320 / 3) + (3 / 3) = 108 + 1 = 109.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad>'
-                    eos_indices = (outputs[i] == tokenizer.eos_token_id).nonzero(as_tuple=True)[0]
-                    if len(eos_indices) > 0:
-                        eos_idx = eos_indices[0].item()
-                        if eos_idx + len(a_seq) + labels.shape[1] < outputs.shape[1]:
-                            start_of_answer_indices[i] = eos_idx
-                            outputs[i, eos_idx:eos_idx + len(a_seq)] = a_seq
-                            # print(f"{tokenizer.decode(outputs[i])=}")
-                            continue
-                    print(f"No answer found in the {i}-ith sample and it could not be fixed:")
-                    print(f"{tokenizer.decode(outputs[i])=}")
+                    print(f"No answer found in the {i}-ith sample")
+                    if args.allow_answer_at_eos:
+                        print("Looking for possible replacements..")
+                        # If there's no a_seq, but the sequence ends in a </s> with enough free space in the end, we replace the </s> token with the a_seq
+                        # Example motivating this: tokenizer.decode(outputs[i])='<pad><pad><pad>Q:What is 842 divided by 1?\n  choice: 456\n  choice: 842\n  choice: house\n  choice: 14513\n  choice: 1\n  choice: banana\n  choice: 820\nExplanation:Dividing any number by 1 does not change it, so 842 / 1 = 842.\nA:842\nQ:What is 355 divided by 71?\n  choice: 5\n  choice: banana\n  choice: 807\n  choice: 7\n  choice: house\n  choice: 6\nExplanation:355 is close to 400, and 71 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:5\nQ:What is 705 divided by 5?\n  choice: 445\n  choice: 113\n  choice: 141\n  choice: banana\n  choice: house\n  choice: 73442\n  choice: 2\nExplanation:705 / 5 = (700 / 5) + (5 / 5) = 140 + 1 = 141.\nA:141\nQ: What is 321 divided by 3?\n  choice: 107\n  choice: 12944\n  choice: banana\n  choice: 6\n  choice: 852\n  choice: 759\n  choice: house\nExplanation:321 / 3 = (320 / 3) + (3 / 3) = 108 + 1 = 109.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad>'
+                        eos_indices = (outputs[i] == tokenizer.eos_token_id).nonzero(as_tuple=True)[0]
+                        if len(eos_indices) > 0:
+                            eos_idx = eos_indices[0].item()
+                            if eos_idx + len(a_seq) + labels.shape[1] < outputs.shape[1]:
+                                start_of_answer_indices[i] = eos_idx
+                                outputs[i, eos_idx:eos_idx + len(a_seq)] = a_seq
+                                # print(f"{tokenizer.decode(outputs[i])=}")
+                                continue
+                            print(f"No answer found in the {i}-ith sample and it could not be fixed:")
+                            print(f"{tokenizer.decode(outputs[i])=}")
 
                 # Answer sequences at the very end, when there's not enough space for the real answer, do not count
                 start_of_answer_indices[start_of_answer_indices >= outputs_without_inputs.shape[-1] - labels.shape[1]] = -1
@@ -197,8 +195,6 @@ def run_model(model, tokenizer, tokenized_dataset, args):
                     )
                     print("-" * 50)
 
-                # 3. TODO: Check if nan for loss is OK for cases when no a_seq is found (we want to dismiss the sample/batch then)
-
                 # 4. Call model.forward()
                 # See https://huggingface.co/docs/transformers/model_doc/bloom#transformers.BloomForCausalLM.forward
                 # and https://github.com/huggingface/transformers/blob/v4.29.1/src/transformers/models/bloom/modeling_bloom.py#L881
@@ -222,14 +218,13 @@ def run_model(model, tokenizer, tokenized_dataset, args):
                         labels_formatted[i, start_of_answer_index:start_of_answer_index+len(label_unpadded)] = label_unpadded
 
                         # the model will also use the generated cot for loss if the answer was correct.
-                        if batch_accuracies[i] == 1:
-                            if torch.rand(1) <= explanation_accepted_chance:
-                                if debug:
-                                    print(f"model will approve of this explanation (sample={i})")
-                                start_from = inputs['input_ids'][0].shape[0]
-                                until = start_of_answer_index  # approve also of everything up to start index
-                                print(fr"'{tokenizer.decode(full_correct_sequences[i, start_from:until])}'")
-                                labels_formatted[i, start_from:until] = full_correct_sequences[i, start_from:until]
+                        if args.reward_succesful_explanations and batch_accuracies[i] == 1:
+                            if debug:
+                                print(f"model will approve of this explanation (sample={i})")
+                            start_from = inputs['input_ids'][0].shape[0]
+                            until = start_of_answer_index  # approve also of everything up to start index
+                            print(fr"'{tokenizer.decode(full_correct_sequences[i, start_from:until])}'")
+                            labels_formatted[i, start_from:until] = full_correct_sequences[i, start_from:until]
 
 
                     # # Prints to confirm that labels and inputs are aligned (confirmed)
