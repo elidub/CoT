@@ -29,7 +29,11 @@ def update_results(results = 'store/results.json', evals = None, args = None):
     with open(results, 'r') as f:
         results_dict = json.load(f)
 
-    results_dict.update({args.save_name : {'evals': evals, 'args': vars(args), 'wandb': args.wandb_run}})
+    args = vars(args)
+    args['accuracy'] = evals['eval_accuracy']
+    args['loss']     = evals['eval_loss']
+
+    results_dict.update({args['save_name'] : args})
 
     # save store/results.json
     with open(results, 'w') as f:
