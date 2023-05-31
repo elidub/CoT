@@ -15,9 +15,8 @@ def custom_compute_metrics(eval_preds):
 
     logits_argmax = np.argmax(logits, axis=2)
     assert logits_argmax.shape == labels.shape
-    accuracy = np.logical_or(logits_argmax == labels, labels == -100).mean() #TODO: np.all now not yet, because it's hardcoded that label is len(1)
 
-    # accuracy = np.all(np.logical_or(predictions == labels, labels == -100), axis=1).mean()
+    accuracy = np.all(np.logical_or(logits_argmax == labels, labels == -100), axis=1).mean()
 
     # Compute samples_without_answer_fraction
     # Checking whether logits are zero, first for all words in vocab, then for all tokens in sequence
