@@ -162,17 +162,20 @@ def run_model(model, tokenizer, tokenized_dataset, args):
                 # Block of debug prints
                 n_samples_contained_answer = torch.sum(start_of_answer_indices != -1)
                 if debug:
-                    print(f"{n_samples_contained_answer} / {batch_size}, samples contained an answer!")
-                    print("")
-                    print(f"input for the model:\n ", repr(tokenizer.decode(inputs["input_ids"][0])))  # ends in "...\nA:<pad><pad>...<pad>"
-                    print("-" * 50)
-                    print(
-                        f"generated answer (sample=0):\n", repr(tokenizer.decode(outputs_without_inputs[0][outputs_without_inputs[0] != 3]))
-                    )
-                    print(
-                        f"generated answer (sample=1):\n", repr(tokenizer.decode(outputs_without_inputs[1][outputs_without_inputs[0] != 3]))
-                    )
-                    print("-" * 50)
+                    try:
+                        print(f"{n_samples_contained_answer} / {batch_size}, samples contained an answer!")
+                        print("")
+                        print(f"input for the model:\n ", repr(tokenizer.decode(inputs["input_ids"][0])))  # ends in "...\nA:<pad><pad>...<pad>"
+                        print("-" * 50)
+                        print(
+                            f"generated answer (sample=0):\n", repr(tokenizer.decode(outputs_without_inputs[0][outputs_without_inputs[0] != 3]))
+                        )
+                        print(
+                            f"generated answer (sample=1):\n", repr(tokenizer.decode(outputs_without_inputs[1][outputs_without_inputs[0] != 3]))
+                        )
+                        print("-" * 50)
+                    except:
+                        pass
 
                 labels_for_decoding = inputs["labels"].clone()
                 actual_answer = tokenizer.decode(labels_for_decoding[0][labels_for_decoding[0] != -100])
