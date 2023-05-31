@@ -1,0 +1,24 @@
+#!/bin/bash
+
+#SBATCH --gres=gpu:1
+#SBATCH --job-name=AblationEval
+#SBATCH --partition=gpu_titanrtx_shared_course
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=3
+#SBATCH --time=00:05:00
+#SBATCH --mem=32000M
+#SBATCH --array=1-14%2
+#SBATCH --output=jobs/slurm_output/ablation_eval_%A_%a.out
+
+module purge
+module load 2021
+module load Anaconda3/2021.05
+
+ARRAY_FILE=$HOME/CoT/jobs/ablation_eval.txt
+
+export WANDB_API_KEY=6b6f51f692ebb5799c9e3ee77ff79b3622fc9370
+
+cd $HOME/CoT/
+source activate cot
+
+srun python -u cot/run.py $(head -$SLURM_ARRAY_TASK_ID $ARRAY_FILE | tail -1)
