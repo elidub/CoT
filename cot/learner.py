@@ -75,6 +75,7 @@ def run_model(model, tokenizer, tokenized_dataset, args):
                 # - Guarantee that there's no funky shit going on with cumulative gradients, where outputs of the explanation affect logits of the answer
                 # 0.: Some useful variables for later on
                 device = inputs["input_ids"].device
+                debug = True
                 labels = inputs["labels"]
                 a_seq = torch.tensor([3000], device=device)           # "A:"
                 # a_seq = torch.tensor([3000, 210], device=inputs["input_ids"].device)      # "A: "
@@ -84,6 +85,7 @@ def run_model(model, tokenizer, tokenized_dataset, args):
                 # We do beam search with repetition penalty to avoid the model getting stuck repeating itself.
                 repetition_penalty = 2.0
                 num_beams = 3
+                explanation_accepted_chance = 1.0
                 kwargs = {
                     "input_ids": inputs["input_ids"], 
                     "max_new_tokens": 32,
@@ -93,8 +95,6 @@ def run_model(model, tokenizer, tokenized_dataset, args):
                     "num_beams": num_beams,
                     "repetition_penalty": repetition_penalty,
                 }
-                print(f"{num_beams=}")
-                print(f"{repetition_penalty=}")
                 outputs = model.generate(**kwargs)
 
                 # 2. Compute input_with_explanations as the entire output where the answer itself is replaced by padding tokens
@@ -112,16 +112,14 @@ def run_model(model, tokenizer, tokenized_dataset, args):
                 _, start_of_answer_indices = transform_outputs(outputs_without_inputs, a_seq, P=tokenizer.pad_token_id)
 
 
+                if debug: 
+                    print("=" * 20 + " summary of batch results " + "=" * 20)
+                    print(f"{num_beams=}")
+                    print(f"{repetition_penalty=}")
 
                 sample_idx_without_answer = torch.arange(len(outputs), device=device)[start_of_answer_indices == -1]
                 for i in sample_idx_without_answer:
-                    # print(f"No answer found in the {i}-ith sample:")
-                    # input = tokenizer.decode(inputs["input_ids"][i])
-                    # print(f"{input=}")
-                    # print(f"{outputs[i]=}")
-                    # print(f"{outputs[i]=}")
-                    # print(f"{tokenizer.decode(outputs[i])=}")
-
+                    print(f"No answer found in the {i}-ith sample, looking for posible replacements..")
                     # If there's no a_seq, but the sequence ends in a </s> with enough free space in the end, we replace the </s> token with the a_seq
                     # Example motivating this: tokenizer.decode(outputs[i])='<pad><pad><pad>Q:What is 842 divided by 1?\n  choice: 456\n  choice: 842\n  choice: house\n  choice: 14513\n  choice: 1\n  choice: banana\n  choice: 820\nExplanation:Dividing any number by 1 does not change it, so 842 / 1 = 842.\nA:842\nQ:What is 355 divided by 71?\n  choice: 5\n  choice: banana\n  choice: 807\n  choice: 7\n  choice: house\n  choice: 6\nExplanation:355 is close to 400, and 71 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:5\nQ:What is 705 divided by 5?\n  choice: 445\n  choice: 113\n  choice: 141\n  choice: banana\n  choice: house\n  choice: 73442\n  choice: 2\nExplanation:705 / 5 = (700 / 5) + (5 / 5) = 140 + 1 = 141.\nA:141\nQ: What is 321 divided by 3?\n  choice: 107\n  choice: 12944\n  choice: banana\n  choice: 6\n  choice: 852\n  choice: 759\n  choice: house\nExplanation:321 / 3 = (320 / 3) + (3 / 3) = 108 + 1 = 109.</s><pad><pad><pad><pad><pad><pad><pad><pad><pad>'
                     eos_indices = (outputs[i] == tokenizer.eos_token_id).nonzero(as_tuple=True)[0]
@@ -147,10 +145,57 @@ def run_model(model, tokenizer, tokenized_dataset, args):
                 outputs_without_answers[mask_hiding_answer_and_beyond] = tokenizer.pad_token_id
 
                 # Block of debug prints
-                # print(f"{tokenizer.decode(inputs['input_ids'][0])=}")
-                # print(f"{tokenizer.decode(outputs[0])=}")
-                # print(f"{tokenizer.decode(outputs_without_inputs[0])=}")
-                # print(f"{tokenizer.decode(outputs_without_answers[0])=}") # ends in "...\nA:<pad><pad>...<pad>"
+                n_samples_contained_answer = torch.sum(start_of_answer_indices != -1)
+                if debug:
+                    print(f"{n_samples_contained_answer} / {batch_size}, samples contained an answer!")
+                    print("")
+                    print(f"input for the model:\n ", repr(tokenizer.decode(inputs["input_ids"][0])))  # ends in "...\nA:<pad><pad>...<pad>"
+                    print("-" * 50)
+                    print(
+                        f"generated answer (sample=0):\n", repr(tokenizer.decode(outputs_without_inputs[0][outputs_without_inputs[0] != 3]))
+                    )
+                    print(
+                        f"generated answer (sample=1):\n", repr(tokenizer.decode(outputs_without_inputs[1][outputs_without_inputs[0] != 3]))
+                    )
+                    print("-" * 50)
+
+                labels_for_decoding = inputs["labels"].clone()
+                actual_answer = tokenizer.decode(labels_for_decoding[0][labels_for_decoding[0] != -100])
+                if not hasattr(self, "accuracies"):
+                    self.accuracies = []
+
+                batch_accuracies = []
+                for b in range(batch_size):
+
+                    if start_of_answer_indices[b] != -1:
+                        generated_answer = outputs[
+                            b, start_of_answer_indices[b]: start_of_answer_indices[b] + len(a_seq) + labels.shape[1]
+                        ]
+                        if len(generated_answer) == 0:
+                            acc = 0
+                        else:
+                            unpadded_label = inputs["labels"][b][inputs["labels"][b] != -100]
+                            # print(f"predicted answer: {tokenizer.decode(generated_answer[1:unpadded_label.shape[0]+1])}")
+                            # skip answer token
+                            pred = generated_answer[1:unpadded_label.shape[0]+1]
+                            if debug:
+                                print(f"target: {tokenizer.decode(unpadded_label)}, generated (idx={start_of_answer_indices[b]}): {tokenizer.decode(pred[:unpadded_label.shape[0]])}")
+                            acc = int(torch.equal(unpadded_label, pred))
+                        batch_accuracies.append(acc)
+                    else:
+                        batch_accuracies.append(0)
+
+                    batch_acc = sum(batch_accuracies) / batch_size
+                    self.accuracies.append(batch_acc)
+                else:
+                    print(f"no answer token predicted at index {b}!")
+
+                    print(f"actual answer:    {actual_answer}")
+                    n_running_mean_accuracy = 20
+                    print(
+                        f"average accuracy of the last {n_running_mean_accuracy} batches: {sum(self.accuracies[-n_running_mean_accuracy:]) / n_running_mean_accuracy}"
+                    )
+                    print("-" * 50)
 
                 # 3. TODO: Check if nan for loss is OK for cases when no a_seq is found (we want to dismiss the sample/batch then)
 
@@ -176,25 +221,53 @@ def run_model(model, tokenizer, tokenized_dataset, args):
                         # Give loss for the correct label
                         labels_formatted[i, start_of_answer_index:start_of_answer_index+len(label_unpadded)] = label_unpadded
 
-                    # # Prints to confirm that labels and inputs are aligned (confirmed)
-                    # print(f"{tokenizer.decode(full_correct_sequences[i][start_of_answer_index-len(a_seq) : start_of_answer_index+len(label)])=}")
-                    # print(f"{tokenizer.decode(labels_formatted[i][start_of_answer_index-len(a_seq) : start_of_answer_index+len(label)])=}")
+                        # the model will also use the generated cot for loss if the answer was correct.
+                        if batch_accuracies[i] == 1:
+                            if torch.rand(1) <= explanation_accepted_chance:
+                                if debug:
+                                    print(f"model will approve of this explanation (sample={i})")
+                                start_from = inputs['input_ids'][0].shape[0]
+                                until = start_of_answer_index  # approve also of everything up to start index
+                                print(fr"'{tokenizer.decode(full_correct_sequences[i, start_from:until])}'")
+                                labels_formatted[i, start_from:until] = full_correct_sequences[i, start_from:until]
 
+
+                    # # Prints to confirm that labels and inputs are aligned (confirmed)
 
                 # Create attention_mask with 0s for padding tokens and the label, as the model should not attend to them
                 attention_mask = torch.ones_like(full_correct_sequences)
                 attention_mask[outputs_without_answers == tokenizer.pad_token_id] = 0
 
-                # for i in range(len(labels)):
-                #     print(f"{tokenizer.decode(full_correct_sequences[i])=}")
+                 # ================= answer loss ========================
+                # for each element in the batch that did not predict a label, we pass as label
+                # the answer token + the actual label at the end of the context
+                desired_answer_index = outputs_without_inputs[0].shape[-1] -1 - labels.shape[1] - a_seq.shape[0]
+                desired_label_index = desired_answer_index + a_seq.shape[0]
+
+                # adding it for any sample in a batch if its missing results in the 
+                # model learning that it just can output A:<answer>, only use it as a last resort
+                if n_samples_contained_answer == 0:
+                    if debug:
+                        print("answer loss triggered!")
+                    for i, soa_idx in enumerate(start_of_answer_indices):
+                        if soa_idx == -1:
+                            label = labels[i]
+                            label_unpadded = label[label != -100]
+                            if debug:
+                                print(f"sample {i} from batch received label {tokenizer.decode(label_unpadded)}")
+                            labels_formatted[i][desired_answer_index: desired_answer_index + a_seq.shape[0]] = a_seq
+                            labels_formatted[i, desired_label_index:desired_label_index+len(label_unpadded)] = label_unpadded
 
             # Call forward!
             forward_out = model.forward(full_correct_sequences, labels=labels_formatted, attention_mask=attention_mask)
 
             if (start_of_answer_indices == -1).any():
-                print(f"No answer found at least once in this batch.")
+                print(f"At least one sample was missing an answer in this batch.")
             if (start_of_answer_indices == -1).all():
                 print(f"No answer found anywhere in this batch.")
+                # returning nan skips this skep, see line 1936 in transformers/trainer.py (inner loop)
+                forward_out.loss = torch.nan
+                # forward_out.loss = torch.log(forward_out.loss + 1)
 
             # Compute logits for answers if necessary
             if return_outputs:
@@ -223,141 +296,8 @@ def run_model(model, tokenizer, tokenized_dataset, args):
 
                 answer_logits = torch.cat((torch.zeros_like(answer_logits[0]).unsqueeze(0), answer_logits)) # For this https://github.com/huggingface/transformers/blob/17a55534f5e5df10ac4804d4270bf6b8cc24998d/src/transformers/trainer.py#L3526
 
-            print(f"{forward_out.loss=}")
+            print(f"loss: {forward_out.loss}")
             return (forward_out.loss, answer_logits) if return_outputs else forward_out.loss
-
-
-
-            # # # Approach 2: Without labels in forward pass (surely no teacher-forcing)
-            # forward_out = model.forward(outputs_without_answers, attention_mask=mask_hiding_answer_and_beyond)
-            # print("Approach 2:")
-            # print(f"{forward_out.keys()=}")
-            # print(f"{padded_outputs_without_answers.shape=}")
-            # print(f"{forward_out.logits.shape=}")
-
-
-            # print(f"{inputs['attention_mask']=}")
-            # print(f"{outputs.shape=}")
-            # print(f"{outputs[0]=}")
-            # print(f"{outputs[inputs['attention_mask']].shape=}")
-            # print(f"{outputs[inputs['attention_mask']][0]=}")
-            # print(f"{tokenizer.decode(outputs[inputs['attention_mask']][0])=}")
-            # END Alternative approach
-
-            # kwargs = {
-            #     "input_ids": inputs["input_ids"], 
-            #     "return_dict_in_generate": True, 
-            #     "output_scores": True,
-            #     "max_new_tokens": 32,
-            # }
-            # outputs = model.generate(**kwargs)
-            # print(outputs.keys())
-            # logits = torch.stack(outputs.scores, dim=1)
-            # vocab_size = logits.shape[-1]
-            
-            # # Prints for debugging and checking if the output looks good
-            # # print(f"{inputs=}")
-            # # print(f"{inputs['input_ids'][0]=}")
-            # # print(f"{inputs['labels'][0]=}")
-            # print(f"{tokenizer.decode(inputs['input_ids'][0])=}")
-            # print(f"{tokenizer.decode(inputs['labels'][0])=}")
-            
-            # # get length from first input
-            # input_length = len(inputs['input_ids'][0])
-            # # print(f"{outputs=}")
-            # # print(f"{outputs.sequences=}")
-            # print(f"{tokenizer.decode(outputs.sequences[0])=}")
-            # print(f"{logits.shape=}")
-            # print(f"{logits}")
-            # # A: is only 1 token it seems
-            # a_seq = torch.tensor([3000], device=outputs.sequences.device)           # "A:"
-            # # a_seq = torch.tensor([3000, 210], device=outputs.sequences.device)      # "A: "
-            # answer_length = 2
-
-            # generated_sequences = outputs.sequences[:, input_length:]
-            
-            # # try to find answer tokens in the input length
-            # tokens_padded, start_of_answer_indices = transform_outputs(generated_sequences, a_seq, P=tokenizer.pad_token_id)
-            
-            # # print(f"{tokens_padded[0]=}")
-            # print(f"{tokenizer.decode(tokens_padded[0])=}")
-            # print(f"{start_of_answer_indices=}")
-
-            # batch_size = len(inputs['input_ids'])
-            # batch_answer = torch.zeros(batch_size, answer_length, device=outputs.sequences.device)
-            # for i in range(batch_size):
-            #     batch_answer[i] = torch.tensor([3000, inputs['labels'][i][-1]])
-            # batch_answer = batch_answer.long()
-
-            # batch_output = torch.zeros((batch_size, answer_length, vocab_size), device=outputs.sequences.device)
-            
-            # # if no answers were generated pass a all unknown batch (all zeros) is passed instead
-            # if start_of_answer_indices.nelement() != 0:
-            #     # otherwise we just get the 
-            #     batch_output = torch.zeros(batch_size, answer_length, vocab_size, device=outputs.sequences.device)
-            #     for i in range(batch_size):
-            #         try:
-            #             batch_output[i] = logits[i][start_of_answer_indices[i]:start_of_answer_indices[i] + answer_length]
-                    
-            #             print("found answer: ", tokenizer.decode(generated_sequences[i][start_of_answer_indices[i]:start_of_answer_indices[i] + answer_length]))
-            #             print("actual answer: ", tokenizer.decode(batch_answer[i]))
-            #         # if only some of the elements in the batch have an answer
-            #         except RuntimeError:
-            #             print(f"No answer found in ")
-            #             pass
-
-
-            # batch_output = batch_output.view(batch_size * answer_length, -1)
-            # batch_answer = batch_answer.view(-1)
-            # loss = nn.functional.cross_entropy(batch_output, batch_answer)
-            # print("loss: ", loss)
-            # print("-" * 50)
-            # return loss
-                
-            # # print(f"{sample_output_decoded=}")
-
-            # # Approach: 
-            # # Decode all the samples
-            # # find the position of the answer
-            # # throw away all logits except the answer logits
-            # # Throw away all logits longer than the label
-            # # Compute loss by computing crossentropy of the logits that are left, and the corresponding label 
-            # # Return loss
-            
-            # # The code below may or may not be helpful for that, but 
-            # # for now, to enable debugging, we just return something that's backpropable
-            # # return logits.mean()
-        
-            # P = tokenizer.pad_token_id
-            # token_id_A = tokenizer.convert_tokens_to_ids("a")
-            # print(tokenizer.convert_tokens_to_ids("A"))
-
-            # print('token id A:', token_id_A)
-            # print('P', P)
-
-            # to_tokenize = outputs.sequences[0]
-            # print(tokenizer.decode(to_tokenize))
-
-            # answer_seqs, answer_indexes = transform_outputs(outputs.sequences, A_seq=token_id_A, P = P, return_indices=True)
-
-            # print(answer_indexes)
-
-            # # If no answer was found, we dismiss this sample by returning 0 loss
-            # # TODO: Compute crossentropy (below code is buggy)
-
-
-            # # Ignore samples for which no answer was found 
-            # valid_samples_mask = torch.tensor(answer_indexes != -1)
-            # for i in torch.arange(logits.shape[0])[not valid_samples_mask]:
-            #     print(f"Dismissing the sample because no answer could be extracted from {answer_seqs[i]=}")
-
-            # logits = logits[valid_samples_mask]
-            # labels = inputs["labels"][valid_samples_mask]
-
-            # loss_fct = nn.CrossEntropyLoss(ignore_index=tokenizer.pad_token_id)
-            # loss = loss_fct(logits.view(-1, logits.shape[-1]), labels.view(-1))
-            # return (loss, outputs) if return_outputs else loss
-
 
     if args.n_shot > 0 and not args.no_explanation:
         print("Using CoTTrainer")
