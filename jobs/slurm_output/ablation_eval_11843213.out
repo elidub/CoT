@@ -1,0 +1,180 @@
+
+===================================BUG REPORT===================================
+Welcome to bitsandbytes. For bug reports, please run
+
+python -m bitsandbytes
+
+ and submit this information together with your error trace to: https://github.com/TimDettmers/bitsandbytes/issues
+================================================================================
+bin /home/lcur1112/.conda/envs/cot/lib/python3.10/site-packages/bitsandbytes/libbitsandbytes_cuda117.so
+CUDA SETUP: CUDA runtime path found: /home/lcur1112/.conda/envs/cot/lib/libcudart.so.11.0
+CUDA SETUP: Highest compute capability among GPUs detected: 7.5
+CUDA SETUP: Detected CUDA version 117
+CUDA SETUP: Loading binary /home/lcur1112/.conda/envs/cot/lib/python3.10/site-packages/bitsandbytes/libbitsandbytes_cuda117.so...
+Namespace(train=False, wandb_run=None, model_id='bigscience/bloom-1b1', hf_cache_dir='/project/gpuuva021/shared/cot/hf_cache', debug=False, model_max_length=512, preprocessed_dir='/project/gpuuva021/shared/cot/data/preprocessed', dataset_name='arithmetic', dataset_is_bigbench=True, arithmetic_task_name='3_digit_division', bigbench_explanations_dataset='arithmetic_3_digit_division', bigbench_explanations_type='handtuned', bigbench_explanations_path='data/bigbench-explanations/', n_shot=0, rebuild_cache=True, shuffle_cots=False, step_by_step=False, no_explanation=False, qae=False, lr=0.001, max_epochs=10, batch_size=32, seed=666, lora_r=8, lora_alpha=32, lora_dropout=0.05, lora_bias='none')
+/project/gpuuva021/shared/cot/hf_cache
+Found cached dataset bigbench (/project/gpuuva021/shared/cot/hf_cache/tasksource___bigbench/arithmetic/1.0.0/c5da5ac497141c7435da10444495b8577405d4ed01e524265b144a7063718c0c)
+Found cached dataset bigbench (/project/gpuuva021/shared/cot/hf_cache/tasksource___bigbench/arithmetic/1.0.0/c5da5ac497141c7435da10444495b8577405d4ed01e524265b144a7063718c0c)
+No finetuning or evaluation run specified, this is an ablation run, not using LoRA!
+Using AblationTrainer
+Evaluating!
+You're using a BloomTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+/home/lcur1112/.conda/envs/cot/lib/python3.10/site-packages/transformers/generation/utils.py:1255: UserWarning: You have modified the pretrained model configuration to control generation. This is a deprecated strategy to control generation and will be removed soon, in a future version. Please use a generation configuration file (see https://huggingface.co/docs/transformers/main_classes/text_generation)
+  warnings.warn(
+  0%|          | 0/4 [00:00<?, ?it/s] 50%|█████     | 2/4 [00:04<00:04,  2.14s/it] 75%|███████▌  | 3/4 [00:08<00:03,  3.02s/it]100%|██████████| 4/4 [00:12<00:00,  3.33s/it]100%|██████████| 4/4 [00:12<00:00,  3.10s/it]
+{'eval_loss': 0.0, 'eval_accuracy': 0.0, 'eval_runtime': 17.4453, 'eval_samples_per_second': 6.936, 'eval_steps_per_second': 0.229}
+
+===================================BUG REPORT===================================
+Welcome to bitsandbytes. For bug reports, please run
+
+python -m bitsandbytes
+
+ and submit this information together with your error trace to: https://github.com/TimDettmers/bitsandbytes/issues
+================================================================================
+bin /home/lcur1112/.conda/envs/cot/lib/python3.10/site-packages/bitsandbytes/libbitsandbytes_cuda117.so
+CUDA SETUP: CUDA runtime path found: /home/lcur1112/.conda/envs/cot/lib/libcudart.so.11.0
+CUDA SETUP: Highest compute capability among GPUs detected: 7.5
+CUDA SETUP: Detected CUDA version 117
+CUDA SETUP: Loading binary /home/lcur1112/.conda/envs/cot/lib/python3.10/site-packages/bitsandbytes/libbitsandbytes_cuda117.so...
+Namespace(train=False, wandb_run=None, model_id='bigscience/bloom-1b1', hf_cache_dir='/project/gpuuva021/shared/cot/hf_cache', debug=False, model_max_length=512, preprocessed_dir='/project/gpuuva021/shared/cot/data/preprocessed', dataset_name='arithmetic', dataset_is_bigbench=True, arithmetic_task_name='3_digit_division', bigbench_explanations_dataset='arithmetic_3_digit_division', bigbench_explanations_type='handtuned', bigbench_explanations_path='data/bigbench-explanations/', n_shot=0, rebuild_cache=True, shuffle_cots=False, step_by_step=True, no_explanation=False, qae=False, lr=0.001, max_epochs=10, batch_size=32, seed=666, lora_r=8, lora_alpha=32, lora_dropout=0.05, lora_bias='none')
+/project/gpuuva021/shared/cot/hf_cache
+Found cached dataset bigbench (/project/gpuuva021/shared/cot/hf_cache/tasksource___bigbench/arithmetic/1.0.0/c5da5ac497141c7435da10444495b8577405d4ed01e524265b144a7063718c0c)
+Found cached dataset bigbench (/project/gpuuva021/shared/cot/hf_cache/tasksource___bigbench/arithmetic/1.0.0/c5da5ac497141c7435da10444495b8577405d4ed01e524265b144a7063718c0c)
+No finetuning or evaluation run specified, this is an ablation run, not using LoRA!
+Using AblationTrainer
+Evaluating!
+You're using a BloomTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+/home/lcur1112/.conda/envs/cot/lib/python3.10/site-packages/transformers/generation/utils.py:1255: UserWarning: You have modified the pretrained model configuration to control generation. This is a deprecated strategy to control generation and will be removed soon, in a future version. Please use a generation configuration file (see https://huggingface.co/docs/transformers/main_classes/text_generation)
+  warnings.warn(
+  0%|          | 0/4 [00:00<?, ?it/s] 50%|█████     | 2/4 [00:04<00:04,  2.26s/it] 75%|███████▌  | 3/4 [00:08<00:03,  3.18s/it]100%|██████████| 4/4 [00:12<00:00,  3.47s/it]100%|██████████| 4/4 [00:12<00:00,  3.24s/it]
+{'eval_loss': 0.0, 'eval_accuracy': 0.0, 'eval_runtime': 18.2678, 'eval_samples_per_second': 6.624, 'eval_steps_per_second': 0.219}
+
+===================================BUG REPORT===================================
+Welcome to bitsandbytes. For bug reports, please run
+
+python -m bitsandbytes
+
+ and submit this information together with your error trace to: https://github.com/TimDettmers/bitsandbytes/issues
+================================================================================
+bin /home/lcur1112/.conda/envs/cot/lib/python3.10/site-packages/bitsandbytes/libbitsandbytes_cuda117.so
+CUDA SETUP: CUDA runtime path found: /home/lcur1112/.conda/envs/cot/lib/libcudart.so.11.0
+CUDA SETUP: Highest compute capability among GPUs detected: 7.5
+CUDA SETUP: Detected CUDA version 117
+CUDA SETUP: Loading binary /home/lcur1112/.conda/envs/cot/lib/python3.10/site-packages/bitsandbytes/libbitsandbytes_cuda117.so...
+Namespace(train=False, wandb_run=None, model_id='bigscience/bloom-1b1', hf_cache_dir='/project/gpuuva021/shared/cot/hf_cache', debug=False, model_max_length=512, preprocessed_dir='/project/gpuuva021/shared/cot/data/preprocessed', dataset_name='arithmetic', dataset_is_bigbench=True, arithmetic_task_name='3_digit_division', bigbench_explanations_dataset='arithmetic_3_digit_division', bigbench_explanations_type='handtuned', bigbench_explanations_path='data/bigbench-explanations/', n_shot=3, rebuild_cache=True, shuffle_cots=False, step_by_step=False, no_explanation=True, qae=False, lr=0.001, max_epochs=10, batch_size=32, seed=666, lora_r=8, lora_alpha=32, lora_dropout=0.05, lora_bias='none')
+/project/gpuuva021/shared/cot/hf_cache
+Found cached dataset bigbench (/project/gpuuva021/shared/cot/hf_cache/tasksource___bigbench/arithmetic/1.0.0/c5da5ac497141c7435da10444495b8577405d4ed01e524265b144a7063718c0c)
+Found cached dataset bigbench (/project/gpuuva021/shared/cot/hf_cache/tasksource___bigbench/arithmetic/1.0.0/c5da5ac497141c7435da10444495b8577405d4ed01e524265b144a7063718c0c)
+No finetuning or evaluation run specified, this is an ablation run, not using LoRA!
+Using AblationTrainer
+Evaluating!
+You're using a BloomTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+/home/lcur1112/.conda/envs/cot/lib/python3.10/site-packages/transformers/generation/utils.py:1255: UserWarning: You have modified the pretrained model configuration to control generation. This is a deprecated strategy to control generation and will be removed soon, in a future version. Please use a generation configuration file (see https://huggingface.co/docs/transformers/main_classes/text_generation)
+  warnings.warn(
+  0%|          | 0/4 [00:00<?, ?it/s] 50%|█████     | 2/4 [00:11<00:11,  5.65s/it] 75%|███████▌  | 3/4 [00:22<00:07,  7.96s/it]100%|██████████| 4/4 [00:31<00:00,  8.33s/it]100%|██████████| 4/4 [00:31<00:00,  7.86s/it]
+{'eval_loss': 0.0, 'eval_accuracy': 0.1487603305785124, 'eval_runtime': 44.6467, 'eval_samples_per_second': 2.71, 'eval_steps_per_second': 0.09}
+
+===================================BUG REPORT===================================
+Welcome to bitsandbytes. For bug reports, please run
+
+python -m bitsandbytes
+
+ and submit this information together with your error trace to: https://github.com/TimDettmers/bitsandbytes/issues
+================================================================================
+bin /home/lcur1112/.conda/envs/cot/lib/python3.10/site-packages/bitsandbytes/libbitsandbytes_cuda117.so
+CUDA SETUP: CUDA runtime path found: /home/lcur1112/.conda/envs/cot/lib/libcudart.so.11.0
+CUDA SETUP: Highest compute capability among GPUs detected: 7.5
+CUDA SETUP: Detected CUDA version 117
+CUDA SETUP: Loading binary /home/lcur1112/.conda/envs/cot/lib/python3.10/site-packages/bitsandbytes/libbitsandbytes_cuda117.so...
+Namespace(train=False, wandb_run=None, model_id='bigscience/bloom-1b1', hf_cache_dir='/project/gpuuva021/shared/cot/hf_cache', debug=False, model_max_length=1015, preprocessed_dir='/project/gpuuva021/shared/cot/data/preprocessed', dataset_name='presuppositions_as_nli', dataset_is_bigbench=True, arithmetic_task_name=None, bigbench_explanations_dataset='presuppositions_as_nli', bigbench_explanations_type='handtuned', bigbench_explanations_path='data/bigbench-explanations/', n_shot=0, rebuild_cache=True, shuffle_cots=False, step_by_step=False, no_explanation=False, qae=False, lr=0.001, max_epochs=10, batch_size=32, seed=666, lora_r=8, lora_alpha=32, lora_dropout=0.05, lora_bias='none')
+/project/gpuuva021/shared/cot/hf_cache
+Found cached dataset json (/home/lcur1112/.cache/huggingface/datasets/json/default-ba76fde3db5b84f4/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f72e276c2e4)
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 23.31it/s]
+Loading cached processed dataset at /home/lcur1112/.cache/huggingface/datasets/json/default-ba76fde3db5b84f4/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f72e276c2e4/cache-3469f907dcb2dada.arrow
+Loading cached processed dataset at /home/lcur1112/.cache/huggingface/datasets/json/default-ba76fde3db5b84f4/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f72e276c2e4/cache-5767d5db5f3e8e3d.arrow
+Loading cached processed dataset at /home/lcur1112/.cache/huggingface/datasets/json/default-ba76fde3db5b84f4/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f72e276c2e4/cache-1ed7528e33f9afaf.arrow
+Loading cached processed dataset at /home/lcur1112/.cache/huggingface/datasets/json/default-ba76fde3db5b84f4/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f72e276c2e4/cache-460a42fcdacbf8e9.arrow
+Found cached dataset json (/home/lcur1112/.cache/huggingface/datasets/json/default-ba76fde3db5b84f4/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f72e276c2e4)
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 508.99it/s]
+Loading cached processed dataset at /home/lcur1112/.cache/huggingface/datasets/json/default-ba76fde3db5b84f4/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f72e276c2e4/cache-3469f907dcb2dada.arrow
+Loading cached processed dataset at /home/lcur1112/.cache/huggingface/datasets/json/default-ba76fde3db5b84f4/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f72e276c2e4/cache-5767d5db5f3e8e3d.arrow
+Loading cached processed dataset at /home/lcur1112/.cache/huggingface/datasets/json/default-ba76fde3db5b84f4/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f72e276c2e4/cache-1ed7528e33f9afaf.arrow
+Loading cached processed dataset at /home/lcur1112/.cache/huggingface/datasets/json/default-ba76fde3db5b84f4/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f72e276c2e4/cache-460a42fcdacbf8e9.arrow
+No finetuning or evaluation run specified, this is an ablation run, not using LoRA!
+Using AblationTrainer
+Evaluating!
+You're using a BloomTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+/home/lcur1112/.conda/envs/cot/lib/python3.10/site-packages/transformers/generation/utils.py:1255: UserWarning: You have modified the pretrained model configuration to control generation. This is a deprecated strategy to control generation and will be removed soon, in a future version. Please use a generation configuration file (see https://huggingface.co/docs/transformers/main_classes/text_generation)
+  warnings.warn(
+  0%|          | 0/6 [00:00<?, ?it/s] 33%|███▎      | 2/6 [00:09<00:19,  4.82s/it] 50%|█████     | 3/6 [00:18<00:19,  6.48s/it] 67%|██████▋   | 4/6 [00:28<00:15,  7.67s/it] 83%|████████▎ | 5/6 [00:40<00:09,  9.33s/it]100%|██████████| 6/6 [00:45<00:00,  7.87s/it]100%|██████████| 6/6 [00:45<00:00,  7.58s/it]
+{'eval_loss': 0.0, 'eval_accuracy': 0.0, 'eval_runtime': 56.5645, 'eval_samples_per_second': 3.129, 'eval_steps_per_second': 0.106}
+
+===================================BUG REPORT===================================
+Welcome to bitsandbytes. For bug reports, please run
+
+python -m bitsandbytes
+
+ and submit this information together with your error trace to: https://github.com/TimDettmers/bitsandbytes/issues
+================================================================================
+bin /home/lcur1112/.conda/envs/cot/lib/python3.10/site-packages/bitsandbytes/libbitsandbytes_cuda117.so
+CUDA SETUP: CUDA runtime path found: /home/lcur1112/.conda/envs/cot/lib/libcudart.so.11.0
+CUDA SETUP: Highest compute capability among GPUs detected: 7.5
+CUDA SETUP: Detected CUDA version 117
+CUDA SETUP: Loading binary /home/lcur1112/.conda/envs/cot/lib/python3.10/site-packages/bitsandbytes/libbitsandbytes_cuda117.so...
+Namespace(train=False, wandb_run=None, model_id='bigscience/bloom-1b1', hf_cache_dir='/project/gpuuva021/shared/cot/hf_cache', debug=False, model_max_length=1015, preprocessed_dir='/project/gpuuva021/shared/cot/data/preprocessed', dataset_name='presuppositions_as_nli', dataset_is_bigbench=True, arithmetic_task_name=None, bigbench_explanations_dataset='presuppositions_as_nli', bigbench_explanations_type='handtuned', bigbench_explanations_path='data/bigbench-explanations/', n_shot=0, rebuild_cache=True, shuffle_cots=False, step_by_step=True, no_explanation=False, qae=False, lr=0.001, max_epochs=10, batch_size=32, seed=666, lora_r=8, lora_alpha=32, lora_dropout=0.05, lora_bias='none')
+/project/gpuuva021/shared/cot/hf_cache
+Found cached dataset json (/home/lcur1112/.cache/huggingface/datasets/json/default-ba76fde3db5b84f4/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f72e276c2e4)
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 308.30it/s]
+Loading cached processed dataset at /home/lcur1112/.cache/huggingface/datasets/json/default-ba76fde3db5b84f4/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f72e276c2e4/cache-3469f907dcb2dada.arrow
+Loading cached processed dataset at /home/lcur1112/.cache/huggingface/datasets/json/default-ba76fde3db5b84f4/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f72e276c2e4/cache-5767d5db5f3e8e3d.arrow
+Loading cached processed dataset at /home/lcur1112/.cache/huggingface/datasets/json/default-ba76fde3db5b84f4/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f72e276c2e4/cache-1ed7528e33f9afaf.arrow
+Loading cached processed dataset at /home/lcur1112/.cache/huggingface/datasets/json/default-ba76fde3db5b84f4/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f72e276c2e4/cache-460a42fcdacbf8e9.arrow
+Found cached dataset json (/home/lcur1112/.cache/huggingface/datasets/json/default-ba76fde3db5b84f4/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f72e276c2e4)
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 641.43it/s]
+Loading cached processed dataset at /home/lcur1112/.cache/huggingface/datasets/json/default-ba76fde3db5b84f4/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f72e276c2e4/cache-3469f907dcb2dada.arrow
+Loading cached processed dataset at /home/lcur1112/.cache/huggingface/datasets/json/default-ba76fde3db5b84f4/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f72e276c2e4/cache-5767d5db5f3e8e3d.arrow
+Loading cached processed dataset at /home/lcur1112/.cache/huggingface/datasets/json/default-ba76fde3db5b84f4/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f72e276c2e4/cache-1ed7528e33f9afaf.arrow
+Loading cached processed dataset at /home/lcur1112/.cache/huggingface/datasets/json/default-ba76fde3db5b84f4/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f72e276c2e4/cache-460a42fcdacbf8e9.arrow
+No finetuning or evaluation run specified, this is an ablation run, not using LoRA!
+Using AblationTrainer
+Evaluating!
+You're using a BloomTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+/home/lcur1112/.conda/envs/cot/lib/python3.10/site-packages/transformers/generation/utils.py:1255: UserWarning: You have modified the pretrained model configuration to control generation. This is a deprecated strategy to control generation and will be removed soon, in a future version. Please use a generation configuration file (see https://huggingface.co/docs/transformers/main_classes/text_generation)
+  warnings.warn(
+  0%|          | 0/6 [00:00<?, ?it/s] 33%|███▎      | 2/6 [00:10<00:20,  5.04s/it] 50%|█████     | 3/6 [00:19<00:20,  6.79s/it] 67%|██████▋   | 4/6 [00:29<00:16,  8.04s/it] 83%|████████▎ | 5/6 [00:42<00:09,  9.91s/it]100%|██████████| 6/6 [00:48<00:00,  8.38s/it]100%|██████████| 6/6 [00:48<00:00,  8.03s/it]
+{'eval_loss': 0.0, 'eval_accuracy': 0.0, 'eval_runtime': 59.8175, 'eval_samples_per_second': 2.959, 'eval_steps_per_second': 0.1}
+
+===================================BUG REPORT===================================
+Welcome to bitsandbytes. For bug reports, please run
+
+python -m bitsandbytes
+
+ and submit this information together with your error trace to: https://github.com/TimDettmers/bitsandbytes/issues
+================================================================================
+bin /home/lcur1112/.conda/envs/cot/lib/python3.10/site-packages/bitsandbytes/libbitsandbytes_cuda117.so
+CUDA SETUP: CUDA runtime path found: /home/lcur1112/.conda/envs/cot/lib/libcudart.so.11.0
+CUDA SETUP: Highest compute capability among GPUs detected: 7.5
+CUDA SETUP: Detected CUDA version 117
+CUDA SETUP: Loading binary /home/lcur1112/.conda/envs/cot/lib/python3.10/site-packages/bitsandbytes/libbitsandbytes_cuda117.so...
+Namespace(train=False, wandb_run=None, model_id='bigscience/bloom-1b1', hf_cache_dir='/project/gpuuva021/shared/cot/hf_cache', debug=False, model_max_length=1015, preprocessed_dir='/project/gpuuva021/shared/cot/data/preprocessed', dataset_name='presuppositions_as_nli', dataset_is_bigbench=True, arithmetic_task_name=None, bigbench_explanations_dataset='presuppositions_as_nli', bigbench_explanations_type='handtuned', bigbench_explanations_path='data/bigbench-explanations/', n_shot=3, rebuild_cache=True, shuffle_cots=False, step_by_step=False, no_explanation=True, qae=False, lr=0.001, max_epochs=10, batch_size=32, seed=666, lora_r=8, lora_alpha=32, lora_dropout=0.05, lora_bias='none')
+/project/gpuuva021/shared/cot/hf_cache
+Found cached dataset json (/home/lcur1112/.cache/huggingface/datasets/json/default-ba76fde3db5b84f4/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f72e276c2e4)
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 590.79it/s]
+Loading cached processed dataset at /home/lcur1112/.cache/huggingface/datasets/json/default-ba76fde3db5b84f4/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f72e276c2e4/cache-3469f907dcb2dada.arrow
+Loading cached processed dataset at /home/lcur1112/.cache/huggingface/datasets/json/default-ba76fde3db5b84f4/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f72e276c2e4/cache-5767d5db5f3e8e3d.arrow
+Loading cached processed dataset at /home/lcur1112/.cache/huggingface/datasets/json/default-ba76fde3db5b84f4/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f72e276c2e4/cache-1ed7528e33f9afaf.arrow
+Loading cached processed dataset at /home/lcur1112/.cache/huggingface/datasets/json/default-ba76fde3db5b84f4/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f72e276c2e4/cache-460a42fcdacbf8e9.arrow
+Found cached dataset json (/home/lcur1112/.cache/huggingface/datasets/json/default-ba76fde3db5b84f4/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f72e276c2e4)
+  0%|          | 0/2 [00:00<?, ?it/s]100%|██████████| 2/2 [00:00<00:00, 522.10it/s]
+Loading cached processed dataset at /home/lcur1112/.cache/huggingface/datasets/json/default-ba76fde3db5b84f4/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f72e276c2e4/cache-3469f907dcb2dada.arrow
+Loading cached processed dataset at /home/lcur1112/.cache/huggingface/datasets/json/default-ba76fde3db5b84f4/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f72e276c2e4/cache-5767d5db5f3e8e3d.arrow
+Loading cached processed dataset at /home/lcur1112/.cache/huggingface/datasets/json/default-ba76fde3db5b84f4/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f72e276c2e4/cache-1ed7528e33f9afaf.arrow
+Loading cached processed dataset at /home/lcur1112/.cache/huggingface/datasets/json/default-ba76fde3db5b84f4/0.0.0/e347ab1c932092252e717ff3f949105a4dd28b27e842dd53157d2f72e276c2e4/cache-460a42fcdacbf8e9.arrow
+No finetuning or evaluation run specified, this is an ablation run, not using LoRA!
+Using AblationTrainer
+Evaluating!
+You're using a BloomTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+/home/lcur1112/.conda/envs/cot/lib/python3.10/site-packages/transformers/generation/utils.py:1255: UserWarning: You have modified the pretrained model configuration to control generation. This is a deprecated strategy to control generation and will be removed soon, in a future version. Please use a generation configuration file (see https://huggingface.co/docs/transformers/main_classes/text_generation)
+  warnings.warn(
+  0%|          | 0/6 [00:00<?, ?it/s] 33%|███▎      | 2/6 [00:23<00:47, 11.94s/it] 50%|█████     | 3/6 [00:46<00:49, 16.50s/it] 67%|██████▋   | 4/6 [01:10<00:38, 19.30s/it] 83%|████████▎ | 5/6 [01:40<00:23, 23.02s/it]100%|██████████| 6/6 [01:52<00:00, 19.29s/it]100%|██████████| 6/6 [01:52<00:00, 18.76s/it]
+{'eval_loss': 0.0, 'eval_accuracy': 0.327683615819209, 'eval_runtime': 140.3866, 'eval_samples_per_second': 1.261, 'eval_steps_per_second': 0.043}
