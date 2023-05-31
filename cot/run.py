@@ -21,6 +21,7 @@ def parse_option():
 
     # General args
     parser.add_argument('--train', action = 'store_true', help='If True, train the model. If False, evaluate the model.')
+    parser.add_argument('--save_name', default = 'debug', help='Name to save the model in results.json')
     parser.add_argument('--wandb_run', default = None, help='WandB run ID, if None, a new run is created')
     parser.add_argument('--model_id', default = 'bigscience/mt0-small', type=str, help='Model type')
     parser.add_argument('--hf_cache_dir', default = '/project/gpuuva021/shared/cot/hf_cache', type=str, help='Directory for HuggingFace cache')
@@ -65,6 +66,7 @@ def debug_parse_option(notebook = False):
 
     # General args
     parser.add_argument('--train', action = 'store_true', help='If True, train the model. If False, evaluate the model.')
+    parser.add_argument('--save_name', default = 'debug', help='Name to save the model in results.json')
     parser.add_argument('--wandb_run', default = None, help='WandB run ID, if None, a new run is created')
     parser.add_argument('--model_id', default = 'bigscience/bloom-1b1', type=str, help='Model type')
     parser.add_argument('--hf_cache_dir', default = 'datadump/hf', type=str, help='Directory for HuggingFace cache')
