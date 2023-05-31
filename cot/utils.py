@@ -1,5 +1,6 @@
 import pynvml
 import json
+from pathlib import Path
 
 def print_gpu_utilization():
     pynvml.nvmlInit()
@@ -26,8 +27,11 @@ def load_model(model_id, model_dict, hf_cache = '/nfs/scratch/atcs_lcur1654/'):
 
 def update_results(results = 'store/results.json', evals = None, args = None):
     # open store/results.json
-    with open(results, 'r') as f:
-        results_dict = json.load(f)
+    if Path(results).exists():
+        with open(results, 'r') as f:
+            results_dict = json.load(f)
+    else:
+        results_dict = {}
 
     args = vars(args)
     args['accuracy'] = evals['eval_accuracy']
