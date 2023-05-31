@@ -18,11 +18,11 @@ export WANDB_API_KEY=6b6f51f692ebb5799c9e3ee77ff79b3622fc9370
 cd $HOME/CoT/
 source activate cot
 
-srun python -u cot/run.py --model_id bigscience/bloom-3b  --train\
+srun python -u cot/run.py --model_id bigscience/bloom-3b  --train \
     --batch_size 4 --lr 0.0001 --n_shot 5 --max_epochs 5 \
     --dataset_name arithmetic --arithmetic_task_name 3_digit_division --bigbench_explanations_dataset arithmetic_3_digit_division
 
-srun python -u cot/run.py --model_id bigscience/bloom-3b  --train\
+srun python -u cot/run.py --model_id bigscience/bloom-3b  --train \
     --batch_size 4 --lr 0.0001 --n_shot 5 --max_epochs 5 \
     --dataset_name arithmetic --arithmetic_task_name 3_digit_division --bigbench_explanations_dataset arithmetic_3_digit_division\
     --allow_answer_at_eos
