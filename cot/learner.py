@@ -346,6 +346,9 @@ def run_model(model, tokenizer, tokenized_dataset, args):
     model.config.use_cache = False  # silence the warnings. Please re-enable for inference!
 
     if train is True:
+        # Evaluate pre-training for baseline performance
+        trainer.evaluate()
+
         # Train model
         print('Training!')
         trainer.train()
