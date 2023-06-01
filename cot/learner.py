@@ -291,7 +291,7 @@ def run_model(model, tokenizer, tokenized_dataset, args):
             if (start_of_answer_indices == -1).all():
                 print(f"No answer found anywhere in this batch.")
                 # returning nan skips this skep, see line 1936 in transformers/trainer.py (inner loop)
-                forward_out.loss = torch.tensor([torch.nan], device=device)
+                # forward_out.loss = torch.tensor([torch.nan], device=device)
                 # forward_out.loss = torch.log(forward_out.loss + 1)
 
             # Compute logits for answers if necessary
