@@ -141,8 +141,10 @@ def run_model(model, tokenizer, tokenized_dataset, args):
                 outputs = model.generate(**kwargs)
 
                 if log_excessively and self.is_in_train:
-                    unique_tokens_per_sample = len(outputs.unique()) / batch_size
-                    wandb.log({log_prefix + "unique_tokens_per_sample" : unique_tokens_per_sample}, commit=False)
+                    unique_tokens_per_sample = torch.zeros([outputs.shape[0]])
+                    for i in range(len(outputs)):
+                        unique_tokens_per_sample[i] = len(outputs[i].unique())
+                    wandb.log({log_prefix + "unique_tokens_per_sample" : unique_tokens_per_sample.mean()}, commit=False)
 
                 # 2. Compute input_with_explanations as the entire output where the answer itself is replaced by padding tokens
                 # 2.1. Generate mask_hiding_non_inputs
