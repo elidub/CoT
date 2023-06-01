@@ -1,0 +1,609 @@
+
+===================================BUG REPORT===================================
+Welcome to bitsandbytes. For bug reports, please run
+
+python -m bitsandbytes
+
+ and submit this information together with your error trace to: https://github.com/TimDettmers/bitsandbytes/issues
+================================================================================
+bin /home/lcur1137/.conda/envs/cot/lib/python3.10/site-packages/bitsandbytes/libbitsandbytes_cuda117.so
+CUDA SETUP: CUDA runtime path found: /home/lcur1137/.conda/envs/cot/lib/libcudart.so.11.0
+CUDA SETUP: Highest compute capability among GPUs detected: 7.5
+CUDA SETUP: Detected CUDA version 117
+CUDA SETUP: Loading binary /home/lcur1137/.conda/envs/cot/lib/python3.10/site-packages/bitsandbytes/libbitsandbytes_cuda117.so...
+Namespace(train=True, save_name='debug', wandb_run=None, model_id='bigscience/bloom-3b', hf_cache_dir='/project/gpuuva021/shared/cot/hf_cache', debug=False, model_max_length=512, preprocessed_dir='/project/gpuuva021/shared/cot/data/preprocessed', dataset_name='arithmetic', dataset_is_bigbench=True, arithmetic_task_name='3_digit_division', bigbench_explanations_dataset='arithmetic_3_digit_division', bigbench_explanations_type='handtuned', bigbench_explanations_path='data/bigbench-explanations/', n_shot=5, rebuild_cache=True, shuffle_cots=False, step_by_step=False, no_explanation=False, qae=False, lr=0.0001, max_epochs=5, batch_size=4, seed=666, num_beams=None, reward_succesful_explanations=False, allow_answer_at_eos=False, lora_r=8, lora_alpha=32, lora_dropout=0.05, lora_bias='none')
+/project/gpuuva021/shared/cot/hf_cache
+Found cached dataset bigbench (/project/gpuuva021/shared/cot/hf_cache/tasksource___bigbench/arithmetic/1.0.0/c5da5ac497141c7435da10444495b8577405d4ed01e524265b144a7063718c0c)
+Found cached dataset bigbench (/project/gpuuva021/shared/cot/hf_cache/tasksource___bigbench/arithmetic/1.0.0/c5da5ac497141c7435da10444495b8577405d4ed01e524265b144a7063718c0c)
+Setting up LoRA!
+trainable params: 2457600 || all params: 3005015040 || trainable%: 0.08178328451893539
+wandb: Currently logged in as: azu55841 (atcs-cot). Use `wandb login --relogin` to force relogin
+wandb: Tracking run with wandb version 0.15.3
+wandb: Run data is saved locally in /home/lcur1137/CoT/wandb/run-20230531_182047-3yci6x4t
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run clean-durian-33
+wandb: ⭐️ View project at https://wandb.ai/atcs-cot/cot-instruction-tuning-v0
+wandb: 🚀 View run at https://wandb.ai/atcs-cot/cot-instruction-tuning-v0/runs/3yci6x4t
+Using CoTTrainer
+Training!
+/home/lcur1137/.conda/envs/cot/lib/python3.10/site-packages/transformers/optimization.py:407: FutureWarning: This implementation of AdamW is deprecated and will be removed in a future version. Use the PyTorch implementation torch.optim.AdamW instead, or set `no_deprecation_warning=True` to disable this warning
+  warnings.warn(
+  0%|          | 0/350 [00:00<?, ?it/s]You're using a BloomTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+/home/lcur1137/.conda/envs/cot/lib/python3.10/site-packages/transformers/generation/utils.py:1255: UserWarning: You have modified the pretrained model configuration to control generation. This is a deprecated strategy to control generation and will be removed soon, in a future version. Please use a generation configuration file (see https://huggingface.co/docs/transformers/main_classes/text_generation)
+  warnings.warn(
+/home/lcur1137/.conda/envs/cot/lib/python3.10/site-packages/torch/utils/checkpoint.py:31: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn("None of the inputs have requires_grad=True. Gradients will be None")
+/home/lcur1137/.conda/envs/cot/lib/python3.10/site-packages/bitsandbytes/autograd/_functions.py:318: UserWarning: MatMul8bitLt: inputs will be cast from torch.float32 to float16 during quantization
+  warnings.warn(f"MatMul8bitLt: inputs will be cast from {A.dtype} to float16 during quantization")
+==================== summary of batch results ====================
+args.num_beams=None
+No answer found in the 0-ith sample
+No answer found in the 2-ith sample
+No answer found in the 3-ith sample
+1 / 4, samples contained an answer!
+
+input for the model:
+  '<pad>Q:What is 842 divided by 1?\n  choice: 456\n  choice: 842\n  choice: house\n  choice: 14513\n  choice: 1\n  choice: banana\n  choice: 820\nExplanation:Dividing any number by 1 does not change it, so 842 / 1 = 842.\nA:842\nQ:What is 355 divided by 71?\n  choice: 5\n  choice: banana\n  choice: 807\n  choice: 7\n  choice: house\n  choice: 6\nExplanation:355 is close to 400, and 71 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:5\nQ:What is 705 divided by 5?\n  choice: 445\n  choice: 113\n  choice: 141\n  choice: banana\n  choice: house\n  choice: 73442\n  choice: 2\nExplanation:705 / 5 = (700 / 5) + (5 / 5) = 140 + 1 = 141.\nA:141\nQ:What is 680 divided by 68?\n  choice: 59\n  choice: 4009\n  choice: banana\n  choice: 4\n  choice: house\n  choice: 86\n  choice: 10\nExplanation:68 * 10 = 680, so 680 / 68 = 10.\nA:10\nQ:What is 980 divided by 5?\n  choice: house\n  choice: 89481\n  choice: banana\n  choice: 823\n  choice: 225\n  choice: 196\n  choice: 8\nExplanation:We can rewrite as follows: 980 / 5 = (1000 - 20) / 5 = (1000 / 5) - (20 / 5) = 200 - 4 = 196.\nA:196\nQ: What is 513 divided by 9?\n  choice: 1146\n  choice: 57\n  choice: banana\n  choice: 58\n  choice: 7\n  choice: 67\n  choice: house\nExplanation:'
+--------------------------------------------------
+generated answer (sample=0):
+ '513 / 9 = (513 / 9) + (9 / 9) = (513 / 9) + (9 / 9) + (9 / 9) + (9 / 9) + (9 / 9) + (9 / 9'
+generated answer (sample=1):
+ '596 / 4 = (600 / 4) + (4 / 4) = 600 + 4 = 600.\nA:600\nQ:What is 714 divided by 4?\n  choice: house\n  choice: 714\n  choice: house\n  choice:'
+--------------------------------------------------
+target: 149, generated (idx=400): 600
+no answer token predicted at index 3!
+actual answer:    57
+average accuracy of the last 20 batches: 0.0
+--------------------------------------------------
+At least one sample was missing an answer in this batch.
+loss: 6.780787944793701
+==================== summary of batch results ====================
+args.num_beams=None
+No answer found in the 0-ith sample
+3 / 4, samples contained an answer!
+
+input for the model:
+  '<pad><pad><pad><pad><pad><pad>Q:What is 842 divided by 1?\n  choice: 456\n  choice: 842\n  choice: house\n  choice: 14513\n  choice: 1\n  choice: banana\n  choice: 820\nExplanation:Dividing any number by 1 does not change it, so 842 / 1 = 842.\nA:842\nQ:What is 355 divided by 71?\n  choice: 5\n  choice: banana\n  choice: 807\n  choice: 7\n  choice: house\n  choice: 6\nExplanation:355 is close to 400, and 71 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:5\nQ:What is 705 divided by 5?\n  choice: 445\n  choice: 113\n  choice: 141\n  choice: banana\n  choice: house\n  choice: 73442\n  choice: 2\nExplanation:705 / 5 = (700 / 5) + (5 / 5) = 140 + 1 = 141.\nA:141\nQ:What is 680 divided by 68?\n  choice: 59\n  choice: 4009\n  choice: banana\n  choice: 4\n  choice: house\n  choice: 86\n  choice: 10\nExplanation:68 * 10 = 680, so 680 / 68 = 10.\nA:10\nQ:What is 980 divided by 5?\n  choice: house\n  choice: 89481\n  choice: banana\n  choice: 823\n  choice: 225\n  choice: 196\n  choice: 8\nExplanation:We can rewrite as follows: 980 / 5 = (1000 - 20) / 5 = (1000 / 5) - (20 / 5) = 200 - 4 = 196.\nA:196\nQ: What is 658 divided by 94?\n  choice: 5\n  choice: 7\n  choice: house\n  choice: 793\n  choice: banana\n  choice: 8\nExplanation:'
+--------------------------------------------------
+generated answer (sample=0):
+ '658 / 94 = (658 / 94) + (94 / 94) = (658 / 94) + (94 / 94) = (658 / 94) + (94 / 94) = (658 / 94) + (94 / 94'
+generated answer (sample=1):
+ 'We can rewrite as follows: 784 / 784 = (1000 - 20) / 784 = (1000 / 784) - (20 / 784) = 200 - 4 = 196.\nA:196\nQ:What is 784 divided by'
+--------------------------------------------------
+target: 1, generated (idx=418): 196
+target: 13, generated (idx=401): 58
+target: 298, generated (idx=400): 600
+no answer token predicted at index 3!
+actual answer:    7
+average accuracy of the last 20 batches: 0.0
+--------------------------------------------------
+At least one sample was missing an answer in this batch.
+loss: 4.535674095153809
+==================== summary of batch results ====================
+args.num_beams=None
+No answer found in the 1-ith sample
+3 / 4, samples contained an answer!
+
+input for the model:
+  'Q:What is 842 divided by 1?\n  choice: 456\n  choice: 842\n  choice: house\n  choice: 14513\n  choice: 1\n  choice: banana\n  choice: 820\nExplanation:Dividing any number by 1 does not change it, so 842 / 1 = 842.\nA:842\nQ:What is 355 divided by 71?\n  choice: 5\n  choice: banana\n  choice: 807\n  choice: 7\n  choice: house\n  choice: 6\nExplanation:355 is close to 400, and 71 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:5\nQ:What is 705 divided by 5?\n  choice: 445\n  choice: 113\n  choice: 141\n  choice: banana\n  choice: house\n  choice: 73442\n  choice: 2\nExplanation:705 / 5 = (700 / 5) + (5 / 5) = 140 + 1 = 141.\nA:141\nQ:What is 680 divided by 68?\n  choice: 59\n  choice: 4009\n  choice: banana\n  choice: 4\n  choice: house\n  choice: 86\n  choice: 10\nExplanation:68 * 10 = 680, so 680 / 68 = 10.\nA:10\nQ:What is 980 divided by 5?\n  choice: house\n  choice: 89481\n  choice: banana\n  choice: 823\n  choice: 225\n  choice: 196\n  choice: 8\nExplanation:We can rewrite as follows: 980 / 5 = (1000 - 20) / 5 = (1000 / 5) - (20 / 5) = 200 - 4 = 196.\nA:196\nQ: What is 936 divided by 78?\n  choice: 12\n  choice: 2\n  choice: banana\n  choice: 33\n  choice: 64\n  choice: 5935\n  choice: house\nExplanation:'
+--------------------------------------------------
+generated answer (sample=0):
+ '36 * 5 = 936, so 936 / 78 = 36.\nA:36\nQ:What is 992 divided by 5?\n  choice: house\n  choice: 89481\n  choice: banana\n  choice: 823\n  choice: 225\n  choice'
+generated answer (sample=1):
+ '876 / 292 = (876 / 292) + (292 / 292) = (1 / 292) + (292 / 292) = (1 / 292) + (292 / 292) = (1 / 292) + (292 / 292'
+--------------------------------------------------
+target: 12, generated (idx=393): 36
+target: 5, generated (idx=400): 95
+target: 9, generated (idx=409): 5
+no answer token predicted at index 3!
+actual answer:    12
+average accuracy of the last 20 batches: 0.0
+--------------------------------------------------
+At least one sample was missing an answer in this batch.
+loss: 2.516233444213867
+==================== summary of batch results ====================
+args.num_beams=None
+No answer found in the 0-ith sample
+No answer found in the 1-ith sample
+2 / 4, samples contained an answer!
+
+input for the model:
+  'Q:What is 842 divided by 1?\n  choice: 456\n  choice: 842\n  choice: house\n  choice: 14513\n  choice: 1\n  choice: banana\n  choice: 820\nExplanation:Dividing any number by 1 does not change it, so 842 / 1 = 842.\nA:842\nQ:What is 355 divided by 71?\n  choice: 5\n  choice: banana\n  choice: 807\n  choice: 7\n  choice: house\n  choice: 6\nExplanation:355 is close to 400, and 71 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:5\nQ:What is 705 divided by 5?\n  choice: 445\n  choice: 113\n  choice: 141\n  choice: banana\n  choice: house\n  choice: 73442\n  choice: 2\nExplanation:705 / 5 = (700 / 5) + (5 / 5) = 140 + 1 = 141.\nA:141\nQ:What is 680 divided by 68?\n  choice: 59\n  choice: 4009\n  choice: banana\n  choice: 4\n  choice: house\n  choice: 86\n  choice: 10\nExplanation:68 * 10 = 680, so 680 / 68 = 10.\nA:10\nQ:What is 980 divided by 5?\n  choice: house\n  choice: 89481\n  choice: banana\n  choice: 823\n  choice: 225\n  choice: 196\n  choice: 8\nExplanation:We can rewrite as follows: 980 / 5 = (1000 - 20) / 5 = (1000 / 5) - (20 / 5) = 200 - 4 = 196.\nA:196\nQ: What is 407 divided by 37?\n  choice: 11\n  choice: 14\n  choice: banana\n  choice: 4\n  choice: 6377\n  choice: 52\n  choice: house\nExplanation:'
+--------------------------------------------------
+generated answer (sample=0):
+ 'We can rewrite as follows: 407 / 37 = (400 / 37) + (37 / 37) = 400 + 37 = 400 + 37 = 400 + 37 = 400 + 37 = 400 + 37 = 400 + 37 = 400 + 37 = 400'
+generated answer (sample=1):
+ '782/23 = (782/23) + (23 / 23) = (782/23) + (23 / 23) = (782/23) + (23 / 23) = (782/23) + (23 / 23'
+--------------------------------------------------
+target: 9, generated (idx=408): 5
+target: 110, generated (idx=407): 196
+no answer token predicted at index 3!
+actual answer:    11
+average accuracy of the last 20 batches: 0.0
+--------------------------------------------------
+At least one sample was missing an answer in this batch.
+loss: 2.9834773540496826
+==================== summary of batch results ====================
+args.num_beams=None
+4 / 4, samples contained an answer!
+
+input for the model:
+  'Q:What is 842 divided by 1?\n  choice: 456\n  choice: 842\n  choice: house\n  choice: 14513\n  choice: 1\n  choice: banana\n  choice: 820\nExplanation:Dividing any number by 1 does not change it, so 842 / 1 = 842.\nA:842\nQ:What is 355 divided by 71?\n  choice: 5\n  choice: banana\n  choice: 807\n  choice: 7\n  choice: house\n  choice: 6\nExplanation:355 is close to 400, and 71 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:5\nQ:What is 705 divided by 5?\n  choice: 445\n  choice: 113\n  choice: 141\n  choice: banana\n  choice: house\n  choice: 73442\n  choice: 2\nExplanation:705 / 5 = (700 / 5) + (5 / 5) = 140 + 1 = 141.\nA:141\nQ:What is 680 divided by 68?\n  choice: 59\n  choice: 4009\n  choice: banana\n  choice: 4\n  choice: house\n  choice: 86\n  choice: 10\nExplanation:68 * 10 = 680, so 680 / 68 = 10.\nA:10\nQ:What is 980 divided by 5?\n  choice: house\n  choice: 89481\n  choice: banana\n  choice: 823\n  choice: 225\n  choice: 196\n  choice: 8\nExplanation:We can rewrite as follows: 980 / 5 = (1000 - 20) / 5 = (1000 / 5) - (20 / 5) = 200 - 4 = 196.\nA:196\nQ: What is 784 divided by 56?\n  choice: 14\n  choice: 6\n  choice: banana\n  choice: 60\n  choice: 97\n  choice: 8586\n  choice: house\nExplanation:'
+--------------------------------------------------
+generated answer (sample=0):
+ '7 * 8586 = 784, so 784 / 56 = 784 / 784 = 784 / 784 = 784.\nA:7\nQ:What is 784 divided by 56?\n  choice: 14\n  choice: 6\n '
+generated answer (sample=1):
+ '36 * 66 = 936, so 936 / 52 = 36.\nA:36\nQ:What is 992 divided by 5?\n  choice: house\n  choice: 992\n  choice: house\n  choice: house\n  choice: house\n  choice'
+--------------------------------------------------
+target: 14, generated (idx=407): 7
+target: 18, generated (idx=393): 36
+target: 51, generated (idx=400): 21
+target: 118, generated (idx=409): 3
+no answer token predicted at index 3!
+actual answer:    14
+average accuracy of the last 20 batches: 0.0
+--------------------------------------------------
+loss: 2.6326398849487305
+==================== summary of batch results ====================
+args.num_beams=None
+No answer found in the 1-ith sample
+No answer found in the 2-ith sample
+2 / 4, samples contained an answer!
+
+input for the model:
+  'Q:What is 842 divided by 1?\n  choice: 456\n  choice: 842\n  choice: house\n  choice: 14513\n  choice: 1\n  choice: banana\n  choice: 820\nExplanation:Dividing any number by 1 does not change it, so 842 / 1 = 842.\nA:842\nQ:What is 355 divided by 71?\n  choice: 5\n  choice: banana\n  choice: 807\n  choice: 7\n  choice: house\n  choice: 6\nExplanation:355 is close to 400, and 71 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:5\nQ:What is 705 divided by 5?\n  choice: 445\n  choice: 113\n  choice: 141\n  choice: banana\n  choice: house\n  choice: 73442\n  choice: 2\nExplanation:705 / 5 = (700 / 5) + (5 / 5) = 140 + 1 = 141.\nA:141\nQ:What is 680 divided by 68?\n  choice: 59\n  choice: 4009\n  choice: banana\n  choice: 4\n  choice: house\n  choice: 86\n  choice: 10\nExplanation:68 * 10 = 680, so 680 / 68 = 10.\nA:10\nQ:What is 980 divided by 5?\n  choice: house\n  choice: 89481\n  choice: banana\n  choice: 823\n  choice: 225\n  choice: 196\n  choice: 8\nExplanation:We can rewrite as follows: 980 / 5 = (1000 - 20) / 5 = (1000 / 5) - (20 / 5) = 200 - 4 = 196.\nA:196\nQ: What is 320 divided by 5?\n  choice: 1\n  choice: 14\n  choice: banana\n  choice: 41\n  choice: 8745\n  choice: 64\n  choice: house\nExplanation:'
+--------------------------------------------------
+generated answer (sample=0):
+ '320 / 5 = (320 / 5) + (5 / 5) = 14 + 1 = 41.\nA:41\nQ:What is 714 divided by 5?\n  choice: house\n  choice: 714\n  choice: house\n  choice:'
+generated answer (sample=1):
+ '471 / 157 = (471 / 157) + (157 / 157) = (471 / 157) + (157 / 157) = (471 / 157) + (157 / 157) = (471 / 157) + (157 / 157'
+--------------------------------------------------
+target: 64, generated (idx=399): 41
+target: 45, generated (idx=399): 17
+no answer token predicted at index 3!
+actual answer:    64
+average accuracy of the last 20 batches: 0.0
+--------------------------------------------------
+At least one sample was missing an answer in this batch.
+loss: 2.6075210571289062
+==================== summary of batch results ====================
+args.num_beams=None
+4 / 4, samples contained an answer!
+
+input for the model:
+  '<pad><pad><pad><pad><pad>Q:What is 842 divided by 1?\n  choice: 456\n  choice: 842\n  choice: house\n  choice: 14513\n  choice: 1\n  choice: banana\n  choice: 820\nExplanation:Dividing any number by 1 does not change it, so 842 / 1 = 842.\nA:842\nQ:What is 355 divided by 71?\n  choice: 5\n  choice: banana\n  choice: 807\n  choice: 7\n  choice: house\n  choice: 6\nExplanation:355 is close to 400, and 71 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:5\nQ:What is 705 divided by 5?\n  choice: 445\n  choice: 113\n  choice: 141\n  choice: banana\n  choice: house\n  choice: 73442\n  choice: 2\nExplanation:705 / 5 = (700 / 5) + (5 / 5) = 140 + 1 = 141.\nA:141\nQ:What is 680 divided by 68?\n  choice: 59\n  choice: 4009\n  choice: banana\n  choice: 4\n  choice: house\n  choice: 86\n  choice: 10\nExplanation:68 * 10 = 680, so 680 / 68 = 10.\nA:10\nQ:What is 980 divided by 5?\n  choice: house\n  choice: 89481\n  choice: banana\n  choice: 823\n  choice: 225\n  choice: 196\n  choice: 8\nExplanation:We can rewrite as follows: 980 / 5 = (1000 - 20) / 5 = (1000 / 5) - (20 / 5) = 200 - 4 = 196.\nA:196\nQ: What is 469 divided by 67?\n  choice: 2\n  choice: 5\n  choice: house\n  choice: 570\n  choice: banana\n  choice: 7\nExplanation:'
+--------------------------------------------------
+generated answer (sample=0):
+ '469 / 67 = (469 / 67) + (67 / 67) = 2 + 5 = 7.\nA:7\nQ:What is 7 divided by 5?\n  choice: house\n  choice: 7\n  choice: house\n  choice: house\n '
+generated answer (sample=1):
+ '175 / 7 = (175 / 7) + (7 / 7) = 25 + 1 = 25.\nA:25\nQ:What is 7 divided by 5?\n  choice: house\n  choice: 7\n  choice: house\n  choice: house\n '
+--------------------------------------------------
+target: 7, generated (idx=399): 7
+target: 25, generated (idx=399): 25
+target: 30, generated (idx=399): 22
+target: 97, generated (idx=408): 70
+no answer token predicted at index 3!
+actual answer:    7
+average accuracy of the last 20 batches: 0.0875
+--------------------------------------------------
+loss: 1.2725316286087036
+==================== summary of batch results ====================
+args.num_beams=None
+No answer found in the 0-ith sample
+No answer found in the 2-ith sample
+No answer found in the 3-ith sample
+1 / 4, samples contained an answer!
+
+input for the model:
+  'Q:What is 842 divided by 1?\n  choice: 456\n  choice: 842\n  choice: house\n  choice: 14513\n  choice: 1\n  choice: banana\n  choice: 820\nExplanation:Dividing any number by 1 does not change it, so 842 / 1 = 842.\nA:842\nQ:What is 355 divided by 71?\n  choice: 5\n  choice: banana\n  choice: 807\n  choice: 7\n  choice: house\n  choice: 6\nExplanation:355 is close to 400, and 71 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:5\nQ:What is 705 divided by 5?\n  choice: 445\n  choice: 113\n  choice: 141\n  choice: banana\n  choice: house\n  choice: 73442\n  choice: 2\nExplanation:705 / 5 = (700 / 5) + (5 / 5) = 140 + 1 = 141.\nA:141\nQ:What is 680 divided by 68?\n  choice: 59\n  choice: 4009\n  choice: banana\n  choice: 4\n  choice: house\n  choice: 86\n  choice: 10\nExplanation:68 * 10 = 680, so 680 / 68 = 10.\nA:10\nQ:What is 980 divided by 5?\n  choice: house\n  choice: 89481\n  choice: banana\n  choice: 823\n  choice: 225\n  choice: 196\n  choice: 8\nExplanation:We can rewrite as follows: 980 / 5 = (1000 - 20) / 5 = (1000 / 5) - (20 / 5) = 200 - 4 = 196.\nA:196\nQ: What is 459 divided by 9?\n  choice: 41\n  choice: 43\n  choice: banana\n  choice: 51\n  choice: 8\n  choice: 6361\n  choice: house\nExplanation:'
+--------------------------------------------------
+generated answer (sample=0):
+ '459 / 9 = (460 / 9) + (9 / 9) = (460 / 9) + (9 / 9) = (460 / 9) + (9 / 9) = (460 / 9) + (9 / 9'
+generated answer (sample=1):
+ '357 is close to 400, and 21 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:17\nQ:What is 7 divided by 5?\n  choice: house\n  choice: 7'
+--------------------------------------------------
+target: 17, generated (idx=408): 17
+no answer token predicted at index 3!
+actual answer:    51
+average accuracy of the last 20 batches: 0.125
+--------------------------------------------------
+At least one sample was missing an answer in this batch.
+loss: 0.8238185048103333
+==================== summary of batch results ====================
+args.num_beams=None
+No answer found in the 2-ith sample
+3 / 4, samples contained an answer!
+
+input for the model:
+  '<pad><pad><pad><pad><pad><pad>Q:What is 842 divided by 1?\n  choice: 456\n  choice: 842\n  choice: house\n  choice: 14513\n  choice: 1\n  choice: banana\n  choice: 820\nExplanation:Dividing any number by 1 does not change it, so 842 / 1 = 842.\nA:842\nQ:What is 355 divided by 71?\n  choice: 5\n  choice: banana\n  choice: 807\n  choice: 7\n  choice: house\n  choice: 6\nExplanation:355 is close to 400, and 71 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:5\nQ:What is 705 divided by 5?\n  choice: 445\n  choice: 113\n  choice: 141\n  choice: banana\n  choice: house\n  choice: 73442\n  choice: 2\nExplanation:705 / 5 = (700 / 5) + (5 / 5) = 140 + 1 = 141.\nA:141\nQ:What is 680 divided by 68?\n  choice: 59\n  choice: 4009\n  choice: banana\n  choice: 4\n  choice: house\n  choice: 86\n  choice: 10\nExplanation:68 * 10 = 680, so 680 / 68 = 10.\nA:10\nQ:What is 980 divided by 5?\n  choice: house\n  choice: 89481\n  choice: banana\n  choice: 823\n  choice: 225\n  choice: 196\n  choice: 8\nExplanation:We can rewrite as follows: 980 / 5 = (1000 - 20) / 5 = (1000 / 5) - (20 / 5) = 200 - 4 = 196.\nA:196\nQ: What is 395 divided by 79?\n  choice: 2\n  choice: 4\n  choice: house\n  choice: 5\n  choice: banana\n  choice: 922\nExplanation:'
+--------------------------------------------------
+generated answer (sample=0):
+ '395 is close to 400, and 79 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:5\nQ:What is 7 divided by 5?\n  choice: house\n  choice: house'
+generated answer (sample=1):
+ '791 / 7 = (700 / 7) + (7 / 7) = 70 + 1 = 904.\nA:904\nQ:What is 7 divided by 7?\n  choice: house\n  choice: house\n  choice: house\n  choice:'
+--------------------------------------------------
+target: 5, generated (idx=409): 5
+target: 113, generated (idx=401): 90
+target: 679, generated (idx=412): 8
+no answer token predicted at index 3!
+actual answer:    5
+average accuracy of the last 20 batches: 0.175
+--------------------------------------------------
+At least one sample was missing an answer in this batch.
+loss: 2.8104469776153564
+==================== summary of batch results ====================
+args.num_beams=None
+No answer found in the 0-ith sample
+No answer found in the 1-ith sample
+No answer found in the 2-ith sample
+No answer found in the 3-ith sample
+0 / 4, samples contained an answer!
+
+input for the model:
+  '<pad>Q:What is 842 divided by 1?\n  choice: 456\n  choice: 842\n  choice: house\n  choice: 14513\n  choice: 1\n  choice: banana\n  choice: 820\nExplanation:Dividing any number by 1 does not change it, so 842 / 1 = 842.\nA:842\nQ:What is 355 divided by 71?\n  choice: 5\n  choice: banana\n  choice: 807\n  choice: 7\n  choice: house\n  choice: 6\nExplanation:355 is close to 400, and 71 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:5\nQ:What is 705 divided by 5?\n  choice: 445\n  choice: 113\n  choice: 141\n  choice: banana\n  choice: house\n  choice: 73442\n  choice: 2\nExplanation:705 / 5 = (700 / 5) + (5 / 5) = 140 + 1 = 141.\nA:141\nQ:What is 680 divided by 68?\n  choice: 59\n  choice: 4009\n  choice: banana\n  choice: 4\n  choice: house\n  choice: 86\n  choice: 10\nExplanation:68 * 10 = 680, so 680 / 68 = 10.\nA:10\nQ:What is 980 divided by 5?\n  choice: house\n  choice: 89481\n  choice: banana\n  choice: 823\n  choice: 225\n  choice: 196\n  choice: 8\nExplanation:We can rewrite as follows: 980 / 5 = (1000 - 20) / 5 = (1000 / 5) - (20 / 5) = 200 - 4 = 196.\nA:196\nQ: What is 429 divided by 13?\n  choice: 3\n  choice: 33\n  choice: banana\n  choice: 35\n  choice: 58\n  choice: 5638\n  choice: house\nExplanation:'
+--------------------------------------------------
+generated answer (sample=0):
+ '429 / 13 = (429 / 13) + (13 / 13) = (429 / 13) + (13 / 13) = (429 / 13) + (13 / 13) = (429 / 13) + (13 / 13'
+generated answer (sample=1):
+ '288 / 72 = (288 / 72) + (72 / 72) = (288 / 72) + (72 / 72) = (288 / 72) + (72 / 72) = (288 / 72) + (72 / 72'
+--------------------------------------------------
+no answer token predicted at index 3!
+actual answer:    33
+average accuracy of the last 20 batches: 0.175
+--------------------------------------------------
+answer loss triggered!
+sample 0 from batch received label 33
+sample 1 from batch received label 4
+sample 2 from batch received label 40
+sample 3 from batch received label 395
+At least one sample was missing an answer in this batch.
+No answer found anywhere in this batch.
+loss: tensor([nan], device='cuda:0')
+  0%|          | 1/350 [00:31<3:00:23, 31.01s/it]  1%|          | 2/350 [01:00<2:55:46, 30.31s/it]  1%|          | 3/350 [01:30<2:54:17, 30.14s/it]  1%|          | 4/350 [02:00<2:53:18, 30.05s/it]  1%|▏         | 5/350 [02:30<2:52:51, 30.06s/it]  2%|▏         | 6/350 [03:00<2:52:17, 30.05s/it]  2%|▏         | 7/350 [03:30<2:51:30, 30.00s/it]  2%|▏         | 8/350 [04:00<2:50:52, 29.98s/it]  3%|▎         | 9/350 [04:30<2:50:27, 29.99s/it]Traceback (most recent call last):
+  File "/home/lcur1137/CoT/cot/run.py", line 126, in <module>
+    main(args)
+  File "/home/lcur1137/CoT/cot/run.py", line 119, in main
+    run_model(model, tokenizer, tokenized_datasets, args)
+  File "/home/lcur1137/CoT/cot/../cot/learner.py", line 342, in run_model
+    trainer.train()
+  File "/home/lcur1137/.conda/envs/cot/lib/python3.10/site-packages/transformers/trainer.py", line 1664, in train
+    return inner_training_loop(
+  File "/home/lcur1137/.conda/envs/cot/lib/python3.10/site-packages/transformers/trainer.py", line 1940, in _inner_training_loop
+    tr_loss_step = self.training_step(model, inputs)
+  File "/home/lcur1137/.conda/envs/cot/lib/python3.10/site-packages/transformers/trainer.py", line 2753, in training_step
+    loss.backward()
+  File "/home/lcur1137/.conda/envs/cot/lib/python3.10/site-packages/torch/_tensor.py", line 487, in backward
+    torch.autograd.backward(
+  File "/home/lcur1137/.conda/envs/cot/lib/python3.10/site-packages/torch/autograd/__init__.py", line 197, in backward
+    Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+RuntimeError: element 0 of tensors does not require grad and does not have a grad_fn
+wandb: Waiting for W&B process to finish... (failed 1). Press Control-C to abort syncing.
+wandb: 
+wandb: Run history:
+wandb:         train_average_explanation_length ▃▅▇▄█▅█▂▅▁
+wandb: train_n_samples_fixed_by_eos_replacement ▁▁▁▁▁▁▁▁▁▁
+wandb:           train_unique_tokens_per_sample ▆▄▁▇█▇▇▄▃▄
+wandb: 
+wandb: Run summary:
+wandb:         train_average_explanation_length 0.0
+wandb: train_n_samples_fixed_by_eos_replacement 0
+wandb:           train_unique_tokens_per_sample 33.0
+wandb: 
+wandb: 🚀 View run clean-durian-33 at: https://wandb.ai/atcs-cot/cot-instruction-tuning-v0/runs/3yci6x4t
+wandb: Synced 6 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20230531_182047-3yci6x4t/logs
+srun: error: r29n3: task 0: Exited with exit code 1
+
+===================================BUG REPORT===================================
+Welcome to bitsandbytes. For bug reports, please run
+
+python -m bitsandbytes
+
+ and submit this information together with your error trace to: https://github.com/TimDettmers/bitsandbytes/issues
+================================================================================
+bin /home/lcur1137/.conda/envs/cot/lib/python3.10/site-packages/bitsandbytes/libbitsandbytes_cuda117.so
+CUDA SETUP: CUDA runtime path found: /home/lcur1137/.conda/envs/cot/lib/libcudart.so.11.0
+CUDA SETUP: Highest compute capability among GPUs detected: 7.5
+CUDA SETUP: Detected CUDA version 117
+CUDA SETUP: Loading binary /home/lcur1137/.conda/envs/cot/lib/python3.10/site-packages/bitsandbytes/libbitsandbytes_cuda117.so...
+Namespace(train=True, save_name='debug', wandb_run=None, model_id='bigscience/bloom-3b', hf_cache_dir='/project/gpuuva021/shared/cot/hf_cache', debug=False, model_max_length=512, preprocessed_dir='/project/gpuuva021/shared/cot/data/preprocessed', dataset_name='arithmetic', dataset_is_bigbench=True, arithmetic_task_name='3_digit_division', bigbench_explanations_dataset='arithmetic_3_digit_division', bigbench_explanations_type='handtuned', bigbench_explanations_path='data/bigbench-explanations/', n_shot=5, rebuild_cache=True, shuffle_cots=False, step_by_step=False, no_explanation=False, qae=False, lr=0.0001, max_epochs=5, batch_size=4, seed=666, num_beams=None, reward_succesful_explanations=False, allow_answer_at_eos=True, lora_r=8, lora_alpha=32, lora_dropout=0.05, lora_bias='none')
+/project/gpuuva021/shared/cot/hf_cache
+Found cached dataset bigbench (/project/gpuuva021/shared/cot/hf_cache/tasksource___bigbench/arithmetic/1.0.0/c5da5ac497141c7435da10444495b8577405d4ed01e524265b144a7063718c0c)
+Found cached dataset bigbench (/project/gpuuva021/shared/cot/hf_cache/tasksource___bigbench/arithmetic/1.0.0/c5da5ac497141c7435da10444495b8577405d4ed01e524265b144a7063718c0c)
+Setting up LoRA!
+trainable params: 2457600 || all params: 3005015040 || trainable%: 0.08178328451893539
+wandb: Currently logged in as: azu55841 (atcs-cot). Use `wandb login --relogin` to force relogin
+wandb: Tracking run with wandb version 0.15.3
+wandb: Run data is saved locally in /home/lcur1137/CoT/wandb/run-20230531_182627-zoojnqvm
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run comic-snowflake-34
+wandb: ⭐️ View project at https://wandb.ai/atcs-cot/cot-instruction-tuning-v0
+wandb: 🚀 View run at https://wandb.ai/atcs-cot/cot-instruction-tuning-v0/runs/zoojnqvm
+Using CoTTrainer
+Training!
+/home/lcur1137/.conda/envs/cot/lib/python3.10/site-packages/transformers/optimization.py:407: FutureWarning: This implementation of AdamW is deprecated and will be removed in a future version. Use the PyTorch implementation torch.optim.AdamW instead, or set `no_deprecation_warning=True` to disable this warning
+  warnings.warn(
+  0%|          | 0/350 [00:00<?, ?it/s]You're using a BloomTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+/home/lcur1137/.conda/envs/cot/lib/python3.10/site-packages/transformers/generation/utils.py:1255: UserWarning: You have modified the pretrained model configuration to control generation. This is a deprecated strategy to control generation and will be removed soon, in a future version. Please use a generation configuration file (see https://huggingface.co/docs/transformers/main_classes/text_generation)
+  warnings.warn(
+/home/lcur1137/.conda/envs/cot/lib/python3.10/site-packages/torch/utils/checkpoint.py:31: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn("None of the inputs have requires_grad=True. Gradients will be None")
+/home/lcur1137/.conda/envs/cot/lib/python3.10/site-packages/bitsandbytes/autograd/_functions.py:318: UserWarning: MatMul8bitLt: inputs will be cast from torch.float32 to float16 during quantization
+  warnings.warn(f"MatMul8bitLt: inputs will be cast from {A.dtype} to float16 during quantization")
+==================== summary of batch results ====================
+args.num_beams=None
+No answer found in the 0-ith sample
+Looking for possible replacements..
+No answer found in the 2-ith sample
+Looking for possible replacements..
+No answer found in the 3-ith sample
+Looking for possible replacements..
+1 / 4, samples contained an answer!
+
+input for the model:
+  '<pad>Q:What is 842 divided by 1?\n  choice: 456\n  choice: 842\n  choice: house\n  choice: 14513\n  choice: 1\n  choice: banana\n  choice: 820\nExplanation:Dividing any number by 1 does not change it, so 842 / 1 = 842.\nA:842\nQ:What is 355 divided by 71?\n  choice: 5\n  choice: banana\n  choice: 807\n  choice: 7\n  choice: house\n  choice: 6\nExplanation:355 is close to 400, and 71 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:5\nQ:What is 705 divided by 5?\n  choice: 445\n  choice: 113\n  choice: 141\n  choice: banana\n  choice: house\n  choice: 73442\n  choice: 2\nExplanation:705 / 5 = (700 / 5) + (5 / 5) = 140 + 1 = 141.\nA:141\nQ:What is 680 divided by 68?\n  choice: 59\n  choice: 4009\n  choice: banana\n  choice: 4\n  choice: house\n  choice: 86\n  choice: 10\nExplanation:68 * 10 = 680, so 680 / 68 = 10.\nA:10\nQ:What is 980 divided by 5?\n  choice: house\n  choice: 89481\n  choice: banana\n  choice: 823\n  choice: 225\n  choice: 196\n  choice: 8\nExplanation:We can rewrite as follows: 980 / 5 = (1000 - 20) / 5 = (1000 / 5) - (20 / 5) = 200 - 4 = 196.\nA:196\nQ: What is 513 divided by 9?\n  choice: 1146\n  choice: 57\n  choice: banana\n  choice: 58\n  choice: 7\n  choice: 67\n  choice: house\nExplanation:'
+--------------------------------------------------
+generated answer (sample=0):
+ '513 / 9 = (513 / 9) + (9 / 9) = (513 / 9) + (9 / 9) + (9 / 9) + (9 / 9) + (9 / 9) + (9 / 9'
+generated answer (sample=1):
+ '596 / 4 = (600 / 4) + (4 / 4) = 600 + 4 = 600.\nA:600\nQ:What is 714 divided by 4?\n  choice: house\n  choice: 714\n  choice: house\n  choice:'
+--------------------------------------------------
+target: 149, generated (idx=400): 600
+no answer token predicted at index 3!
+actual answer:    57
+average accuracy of the last 20 batches: 0.0
+--------------------------------------------------
+At least one sample was missing an answer in this batch.
+loss: 6.780787944793701
+==================== summary of batch results ====================
+args.num_beams=None
+No answer found in the 0-ith sample
+Looking for possible replacements..
+3 / 4, samples contained an answer!
+
+input for the model:
+  '<pad><pad><pad><pad><pad><pad>Q:What is 842 divided by 1?\n  choice: 456\n  choice: 842\n  choice: house\n  choice: 14513\n  choice: 1\n  choice: banana\n  choice: 820\nExplanation:Dividing any number by 1 does not change it, so 842 / 1 = 842.\nA:842\nQ:What is 355 divided by 71?\n  choice: 5\n  choice: banana\n  choice: 807\n  choice: 7\n  choice: house\n  choice: 6\nExplanation:355 is close to 400, and 71 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:5\nQ:What is 705 divided by 5?\n  choice: 445\n  choice: 113\n  choice: 141\n  choice: banana\n  choice: house\n  choice: 73442\n  choice: 2\nExplanation:705 / 5 = (700 / 5) + (5 / 5) = 140 + 1 = 141.\nA:141\nQ:What is 680 divided by 68?\n  choice: 59\n  choice: 4009\n  choice: banana\n  choice: 4\n  choice: house\n  choice: 86\n  choice: 10\nExplanation:68 * 10 = 680, so 680 / 68 = 10.\nA:10\nQ:What is 980 divided by 5?\n  choice: house\n  choice: 89481\n  choice: banana\n  choice: 823\n  choice: 225\n  choice: 196\n  choice: 8\nExplanation:We can rewrite as follows: 980 / 5 = (1000 - 20) / 5 = (1000 / 5) - (20 / 5) = 200 - 4 = 196.\nA:196\nQ: What is 658 divided by 94?\n  choice: 5\n  choice: 7\n  choice: house\n  choice: 793\n  choice: banana\n  choice: 8\nExplanation:'
+--------------------------------------------------
+generated answer (sample=0):
+ '658 / 94 = (658 / 94) + (94 / 94) = (658 / 94) + (94 / 94) = (658 / 94) + (94 / 94) = (658 / 94) + (94 / 94'
+generated answer (sample=1):
+ 'We can rewrite as follows: 784 / 784 = (1000 - 20) / 784 = (1000 / 784) - (20 / 784) = 200 - 4 = 196.\nA:196\nQ:What is 784 divided by'
+--------------------------------------------------
+target: 1, generated (idx=418): 196
+target: 13, generated (idx=401): 141
+target: 298, generated (idx=400): 600
+no answer token predicted at index 3!
+actual answer:    7
+average accuracy of the last 20 batches: 0.0
+--------------------------------------------------
+At least one sample was missing an answer in this batch.
+loss: 4.256004333496094
+==================== summary of batch results ====================
+args.num_beams=None
+No answer found in the 1-ith sample
+Looking for possible replacements..
+3 / 4, samples contained an answer!
+
+input for the model:
+  'Q:What is 842 divided by 1?\n  choice: 456\n  choice: 842\n  choice: house\n  choice: 14513\n  choice: 1\n  choice: banana\n  choice: 820\nExplanation:Dividing any number by 1 does not change it, so 842 / 1 = 842.\nA:842\nQ:What is 355 divided by 71?\n  choice: 5\n  choice: banana\n  choice: 807\n  choice: 7\n  choice: house\n  choice: 6\nExplanation:355 is close to 400, and 71 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:5\nQ:What is 705 divided by 5?\n  choice: 445\n  choice: 113\n  choice: 141\n  choice: banana\n  choice: house\n  choice: 73442\n  choice: 2\nExplanation:705 / 5 = (700 / 5) + (5 / 5) = 140 + 1 = 141.\nA:141\nQ:What is 680 divided by 68?\n  choice: 59\n  choice: 4009\n  choice: banana\n  choice: 4\n  choice: house\n  choice: 86\n  choice: 10\nExplanation:68 * 10 = 680, so 680 / 68 = 10.\nA:10\nQ:What is 980 divided by 5?\n  choice: house\n  choice: 89481\n  choice: banana\n  choice: 823\n  choice: 225\n  choice: 196\n  choice: 8\nExplanation:We can rewrite as follows: 980 / 5 = (1000 - 20) / 5 = (1000 / 5) - (20 / 5) = 200 - 4 = 196.\nA:196\nQ: What is 936 divided by 78?\n  choice: 12\n  choice: 2\n  choice: banana\n  choice: 33\n  choice: 64\n  choice: 5935\n  choice: house\nExplanation:'
+--------------------------------------------------
+generated answer (sample=0):
+ '936 / 78 = (1000 - 20) / 78 = (1000 / 78) - (20 / 78) = 200 - 4 = 196.\nA:196\nQ:What is 936 divided by 78?\n  choice: 12\n  choice:'
+generated answer (sample=1):
+ '876 / 292 = (876 / 292) + (292 / 5) = (876 / 5) + (5 / 5) = (876 / 5) + (5 / 5) = (876 / 5) + (5 / 5'
+--------------------------------------------------
+target: 12, generated (idx=409): 196
+target: 5, generated (idx=400): 476
+target: 9, generated (idx=409): 5
+no answer token predicted at index 3!
+actual answer:    12
+average accuracy of the last 20 batches: 0.0
+--------------------------------------------------
+At least one sample was missing an answer in this batch.
+loss: 3.543243169784546
+==================== summary of batch results ====================
+args.num_beams=None
+No answer found in the 0-ith sample
+Looking for possible replacements..
+No answer found in the 1-ith sample
+Looking for possible replacements..
+2 / 4, samples contained an answer!
+
+input for the model:
+  'Q:What is 842 divided by 1?\n  choice: 456\n  choice: 842\n  choice: house\n  choice: 14513\n  choice: 1\n  choice: banana\n  choice: 820\nExplanation:Dividing any number by 1 does not change it, so 842 / 1 = 842.\nA:842\nQ:What is 355 divided by 71?\n  choice: 5\n  choice: banana\n  choice: 807\n  choice: 7\n  choice: house\n  choice: 6\nExplanation:355 is close to 400, and 71 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:5\nQ:What is 705 divided by 5?\n  choice: 445\n  choice: 113\n  choice: 141\n  choice: banana\n  choice: house\n  choice: 73442\n  choice: 2\nExplanation:705 / 5 = (700 / 5) + (5 / 5) = 140 + 1 = 141.\nA:141\nQ:What is 680 divided by 68?\n  choice: 59\n  choice: 4009\n  choice: banana\n  choice: 4\n  choice: house\n  choice: 86\n  choice: 10\nExplanation:68 * 10 = 680, so 680 / 68 = 10.\nA:10\nQ:What is 980 divided by 5?\n  choice: house\n  choice: 89481\n  choice: banana\n  choice: 823\n  choice: 225\n  choice: 196\n  choice: 8\nExplanation:We can rewrite as follows: 980 / 5 = (1000 - 20) / 5 = (1000 / 5) - (20 / 5) = 200 - 4 = 196.\nA:196\nQ: What is 407 divided by 37?\n  choice: 11\n  choice: 14\n  choice: banana\n  choice: 4\n  choice: 6377\n  choice: 52\n  choice: house\nExplanation:'
+--------------------------------------------------
+generated answer (sample=0):
+ 'We can rewrite as follows: 407 / 37 = (400 / 37) + (37 / 37) = 400 + 37 = 400 + 37 = 400 + 37 = 400 + 37 = 400 + 37 = 400 + 37 = 400 + 37 = 400'
+generated answer (sample=1):
+ '782/23 = (782/23) + (23 / 23) = (782/23) + (23 / 23) = (782/23) + (23 / 23) = (782/23) + (23 / 23'
+--------------------------------------------------
+target: 9, generated (idx=408): 5
+target: 110, generated (idx=407): 196
+no answer token predicted at index 3!
+actual answer:    11
+average accuracy of the last 20 batches: 0.0
+--------------------------------------------------
+At least one sample was missing an answer in this batch.
+loss: 2.996006965637207
+==================== summary of batch results ====================
+args.num_beams=None
+4 / 4, samples contained an answer!
+
+input for the model:
+  'Q:What is 842 divided by 1?\n  choice: 456\n  choice: 842\n  choice: house\n  choice: 14513\n  choice: 1\n  choice: banana\n  choice: 820\nExplanation:Dividing any number by 1 does not change it, so 842 / 1 = 842.\nA:842\nQ:What is 355 divided by 71?\n  choice: 5\n  choice: banana\n  choice: 807\n  choice: 7\n  choice: house\n  choice: 6\nExplanation:355 is close to 400, and 71 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:5\nQ:What is 705 divided by 5?\n  choice: 445\n  choice: 113\n  choice: 141\n  choice: banana\n  choice: house\n  choice: 73442\n  choice: 2\nExplanation:705 / 5 = (700 / 5) + (5 / 5) = 140 + 1 = 141.\nA:141\nQ:What is 680 divided by 68?\n  choice: 59\n  choice: 4009\n  choice: banana\n  choice: 4\n  choice: house\n  choice: 86\n  choice: 10\nExplanation:68 * 10 = 680, so 680 / 68 = 10.\nA:10\nQ:What is 980 divided by 5?\n  choice: house\n  choice: 89481\n  choice: banana\n  choice: 823\n  choice: 225\n  choice: 196\n  choice: 8\nExplanation:We can rewrite as follows: 980 / 5 = (1000 - 20) / 5 = (1000 / 5) - (20 / 5) = 200 - 4 = 196.\nA:196\nQ: What is 784 divided by 56?\n  choice: 14\n  choice: 6\n  choice: banana\n  choice: 60\n  choice: 97\n  choice: 8586\n  choice: house\nExplanation:'
+--------------------------------------------------
+generated answer (sample=0):
+ 'We can rewrite as follows: 784 / 56 = (1000 - 20) / 56 = (1000 / 56) - (20 / 56) = 200 - 4 = 196.\nA:196\nQ:What is 784 divided by 56?\n  choice'
+generated answer (sample=1):
+ '36 * 66 = 936, so 936 / 52 = 36.\nA:36\nQ:What is 992 divided by 5?\n  choice: house\n  choice: 992\n  choice: house\n  choice: house\n  choice: house\n  choice'
+--------------------------------------------------
+target: 14, generated (idx=414): 196
+target: 18, generated (idx=393): 36
+target: 51, generated (idx=400): 21
+target: 118, generated (idx=409): 3
+no answer token predicted at index 3!
+actual answer:    14
+average accuracy of the last 20 batches: 0.0
+--------------------------------------------------
+loss: 2.8530850410461426
+==================== summary of batch results ====================
+args.num_beams=None
+No answer found in the 1-ith sample
+Looking for possible replacements..
+No answer found in the 2-ith sample
+Looking for possible replacements..
+2 / 4, samples contained an answer!
+
+input for the model:
+  'Q:What is 842 divided by 1?\n  choice: 456\n  choice: 842\n  choice: house\n  choice: 14513\n  choice: 1\n  choice: banana\n  choice: 820\nExplanation:Dividing any number by 1 does not change it, so 842 / 1 = 842.\nA:842\nQ:What is 355 divided by 71?\n  choice: 5\n  choice: banana\n  choice: 807\n  choice: 7\n  choice: house\n  choice: 6\nExplanation:355 is close to 400, and 71 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:5\nQ:What is 705 divided by 5?\n  choice: 445\n  choice: 113\n  choice: 141\n  choice: banana\n  choice: house\n  choice: 73442\n  choice: 2\nExplanation:705 / 5 = (700 / 5) + (5 / 5) = 140 + 1 = 141.\nA:141\nQ:What is 680 divided by 68?\n  choice: 59\n  choice: 4009\n  choice: banana\n  choice: 4\n  choice: house\n  choice: 86\n  choice: 10\nExplanation:68 * 10 = 680, so 680 / 68 = 10.\nA:10\nQ:What is 980 divided by 5?\n  choice: house\n  choice: 89481\n  choice: banana\n  choice: 823\n  choice: 225\n  choice: 196\n  choice: 8\nExplanation:We can rewrite as follows: 980 / 5 = (1000 - 20) / 5 = (1000 / 5) - (20 / 5) = 200 - 4 = 196.\nA:196\nQ: What is 320 divided by 5?\n  choice: 1\n  choice: 14\n  choice: banana\n  choice: 41\n  choice: 8745\n  choice: 64\n  choice: house\nExplanation:'
+--------------------------------------------------
+generated answer (sample=0):
+ '320 / 5 = (320 / 5) + (5 / 5) = 14 + 1 = 41.\nA:41\nQ:What is 7 divided by 5?\n  choice: house\n  choice: 7\n  choice: house\n  choice: house\n '
+generated answer (sample=1):
+ '471 / 157 = (471 / 157) + (157 / 157) = (471 / 157) + (157 / 157) = (471 / 157) + (157 / 157) = (471 / 157) + (157 / 157'
+--------------------------------------------------
+target: 64, generated (idx=399): 41
+target: 45, generated (idx=408): 5
+no answer token predicted at index 3!
+actual answer:    64
+average accuracy of the last 20 batches: 0.0
+--------------------------------------------------
+At least one sample was missing an answer in this batch.
+loss: 1.8539302349090576
+==================== summary of batch results ====================
+args.num_beams=None
+No answer found in the 3-ith sample
+Looking for possible replacements..
+3 / 4, samples contained an answer!
+
+input for the model:
+  '<pad><pad><pad><pad><pad>Q:What is 842 divided by 1?\n  choice: 456\n  choice: 842\n  choice: house\n  choice: 14513\n  choice: 1\n  choice: banana\n  choice: 820\nExplanation:Dividing any number by 1 does not change it, so 842 / 1 = 842.\nA:842\nQ:What is 355 divided by 71?\n  choice: 5\n  choice: banana\n  choice: 807\n  choice: 7\n  choice: house\n  choice: 6\nExplanation:355 is close to 400, and 71 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:5\nQ:What is 705 divided by 5?\n  choice: 445\n  choice: 113\n  choice: 141\n  choice: banana\n  choice: house\n  choice: 73442\n  choice: 2\nExplanation:705 / 5 = (700 / 5) + (5 / 5) = 140 + 1 = 141.\nA:141\nQ:What is 680 divided by 68?\n  choice: 59\n  choice: 4009\n  choice: banana\n  choice: 4\n  choice: house\n  choice: 86\n  choice: 10\nExplanation:68 * 10 = 680, so 680 / 68 = 10.\nA:10\nQ:What is 980 divided by 5?\n  choice: house\n  choice: 89481\n  choice: banana\n  choice: 823\n  choice: 225\n  choice: 196\n  choice: 8\nExplanation:We can rewrite as follows: 980 / 5 = (1000 - 20) / 5 = (1000 / 5) - (20 / 5) = 200 - 4 = 196.\nA:196\nQ: What is 469 divided by 67?\n  choice: 2\n  choice: 5\n  choice: house\n  choice: 570\n  choice: banana\n  choice: 7\nExplanation:'
+--------------------------------------------------
+generated answer (sample=0):
+ '469 / 67 = (469 / 67) + (67 / 67) = 2 + 5 = 7.\nA:7\nQ:What is 7 divided by 5?\n  choice: house\n  choice: 7\n  choice: house\n  choice: house\n '
+generated answer (sample=1):
+ '175 / 7 = (175 / 7) + (7 / 7) = 25 + 1 = 25.\nA:25\nQ:What is 7 divided by 5?\n  choice: house\n  choice: 7\n  choice: house\n  choice: house\n '
+--------------------------------------------------
+target: 7, generated (idx=399): 7
+target: 25, generated (idx=399): 25
+target: 30, generated (idx=399): 22
+no answer token predicted at index 3!
+actual answer:    7
+average accuracy of the last 20 batches: 0.0875
+--------------------------------------------------
+At least one sample was missing an answer in this batch.
+loss: 0.710960328578949
+==================== summary of batch results ====================
+args.num_beams=None
+No answer found in the 0-ith sample
+Looking for possible replacements..
+No answer found in the 2-ith sample
+Looking for possible replacements..
+No answer found in the 3-ith sample
+Looking for possible replacements..
+1 / 4, samples contained an answer!
+
+input for the model:
+  'Q:What is 842 divided by 1?\n  choice: 456\n  choice: 842\n  choice: house\n  choice: 14513\n  choice: 1\n  choice: banana\n  choice: 820\nExplanation:Dividing any number by 1 does not change it, so 842 / 1 = 842.\nA:842\nQ:What is 355 divided by 71?\n  choice: 5\n  choice: banana\n  choice: 807\n  choice: 7\n  choice: house\n  choice: 6\nExplanation:355 is close to 400, and 71 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:5\nQ:What is 705 divided by 5?\n  choice: 445\n  choice: 113\n  choice: 141\n  choice: banana\n  choice: house\n  choice: 73442\n  choice: 2\nExplanation:705 / 5 = (700 / 5) + (5 / 5) = 140 + 1 = 141.\nA:141\nQ:What is 680 divided by 68?\n  choice: 59\n  choice: 4009\n  choice: banana\n  choice: 4\n  choice: house\n  choice: 86\n  choice: 10\nExplanation:68 * 10 = 680, so 680 / 68 = 10.\nA:10\nQ:What is 980 divided by 5?\n  choice: house\n  choice: 89481\n  choice: banana\n  choice: 823\n  choice: 225\n  choice: 196\n  choice: 8\nExplanation:We can rewrite as follows: 980 / 5 = (1000 - 20) / 5 = (1000 / 5) - (20 / 5) = 200 - 4 = 196.\nA:196\nQ: What is 459 divided by 9?\n  choice: 41\n  choice: 43\n  choice: banana\n  choice: 51\n  choice: 8\n  choice: 6361\n  choice: house\nExplanation:'
+--------------------------------------------------
+generated answer (sample=0):
+ '459 / 9 = (460 / 9) + (9 / 9) = (460 / 9) + (9 / 9) = (460 / 9) + (9 / 9) = (460 / 9) + (9 / 9'
+generated answer (sample=1):
+ '357 is close to 400, and 21 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:17\nQ:What is 7 divided by 5?\n  choice: house\n  choice: 7'
+--------------------------------------------------
+target: 17, generated (idx=408): 17
+no answer token predicted at index 3!
+actual answer:    51
+average accuracy of the last 20 batches: 0.125
+--------------------------------------------------
+At least one sample was missing an answer in this batch.
+loss: 0.9297396540641785
+==================== summary of batch results ====================
+args.num_beams=None
+No answer found in the 2-ith sample
+Looking for possible replacements..
+3 / 4, samples contained an answer!
+
+input for the model:
+  '<pad><pad><pad><pad><pad><pad>Q:What is 842 divided by 1?\n  choice: 456\n  choice: 842\n  choice: house\n  choice: 14513\n  choice: 1\n  choice: banana\n  choice: 820\nExplanation:Dividing any number by 1 does not change it, so 842 / 1 = 842.\nA:842\nQ:What is 355 divided by 71?\n  choice: 5\n  choice: banana\n  choice: 807\n  choice: 7\n  choice: house\n  choice: 6\nExplanation:355 is close to 400, and 71 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:5\nQ:What is 705 divided by 5?\n  choice: 445\n  choice: 113\n  choice: 141\n  choice: banana\n  choice: house\n  choice: 73442\n  choice: 2\nExplanation:705 / 5 = (700 / 5) + (5 / 5) = 140 + 1 = 141.\nA:141\nQ:What is 680 divided by 68?\n  choice: 59\n  choice: 4009\n  choice: banana\n  choice: 4\n  choice: house\n  choice: 86\n  choice: 10\nExplanation:68 * 10 = 680, so 680 / 68 = 10.\nA:10\nQ:What is 980 divided by 5?\n  choice: house\n  choice: 89481\n  choice: banana\n  choice: 823\n  choice: 225\n  choice: 196\n  choice: 8\nExplanation:We can rewrite as follows: 980 / 5 = (1000 - 20) / 5 = (1000 / 5) - (20 / 5) = 200 - 4 = 196.\nA:196\nQ: What is 395 divided by 79?\n  choice: 2\n  choice: 4\n  choice: house\n  choice: 5\n  choice: banana\n  choice: 922\nExplanation:'
+--------------------------------------------------
+generated answer (sample=0):
+ '395 is close to 400, and 79 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:5\nQ:What is 7 divided by 5?\n  choice: house\n  choice: house'
+generated answer (sample=1):
+ '791 / 7 = (700 / 7) + (7 / 7) = 70 + 1 = 904.\nA:904\nQ:What is 7 divided by 7?\n  choice: house\n  choice: house\n  choice: house\n  choice:'
+--------------------------------------------------
+target: 5, generated (idx=409): 5
+target: 113, generated (idx=401): 90
+target: 679, generated (idx=412): 8
+no answer token predicted at index 3!
+actual answer:    5
+average accuracy of the last 20 batches: 0.175
+--------------------------------------------------
+At least one sample was missing an answer in this batch.
+loss: 2.891141176223755
+==================== summary of batch results ====================
+args.num_beams=None
+No answer found in the 0-ith sample
+Looking for possible replacements..
+No answer found in the 1-ith sample
+Looking for possible replacements..
+No answer found in the 2-ith sample
+Looking for possible replacements..
+No answer found in the 3-ith sample
+Looking for possible replacements..
+0 / 4, samples contained an answer!
+
+input for the model:
+  '<pad>Q:What is 842 divided by 1?\n  choice: 456\n  choice: 842\n  choice: house\n  choice: 14513\n  choice: 1\n  choice: banana\n  choice: 820\nExplanation:Dividing any number by 1 does not change it, so 842 / 1 = 842.\nA:842\nQ:What is 355 divided by 71?\n  choice: 5\n  choice: banana\n  choice: 807\n  choice: 7\n  choice: house\n  choice: 6\nExplanation:355 is close to 400, and 71 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:5\nQ:What is 705 divided by 5?\n  choice: 445\n  choice: 113\n  choice: 141\n  choice: banana\n  choice: house\n  choice: 73442\n  choice: 2\nExplanation:705 / 5 = (700 / 5) + (5 / 5) = 140 + 1 = 141.\nA:141\nQ:What is 680 divided by 68?\n  choice: 59\n  choice: 4009\n  choice: banana\n  choice: 4\n  choice: house\n  choice: 86\n  choice: 10\nExplanation:68 * 10 = 680, so 680 / 68 = 10.\nA:10\nQ:What is 980 divided by 5?\n  choice: house\n  choice: 89481\n  choice: banana\n  choice: 823\n  choice: 225\n  choice: 196\n  choice: 8\nExplanation:We can rewrite as follows: 980 / 5 = (1000 - 20) / 5 = (1000 / 5) - (20 / 5) = 200 - 4 = 196.\nA:196\nQ: What is 429 divided by 13?\n  choice: 3\n  choice: 33\n  choice: banana\n  choice: 35\n  choice: 58\n  choice: 5638\n  choice: house\nExplanation:'
+--------------------------------------------------
+generated answer (sample=0):
+ '429 / 13 = (429 / 13) + (13 / 13) = (429 / 13) + (13 / 13) = (429 / 13) + (13 / 13) = (429 / 13) + (13 / 13'
+generated answer (sample=1):
+ '288 / 72 = (288 / 72) + (72 / 72) = (288 / 72) + (72 / 72) = (288 / 72) + (72 / 72) = (288 / 72) + (72 / 72'
+--------------------------------------------------
+no answer token predicted at index 3!
+actual answer:    33
+average accuracy of the last 20 batches: 0.175
+--------------------------------------------------
+answer loss triggered!
+sample 0 from batch received label 33
+sample 1 from batch received label 4
+sample 2 from batch received label 40
+sample 3 from batch received label 395
+At least one sample was missing an answer in this batch.
+No answer found anywhere in this batch.
+loss: tensor([nan], device='cuda:0')
+  0%|          | 1/350 [00:31<3:01:43, 31.24s/it]  1%|          | 2/350 [01:01<2:56:27, 30.42s/it]  1%|          | 3/350 [01:31<2:54:39, 30.20s/it]  1%|          | 4/350 [02:00<2:53:27, 30.08s/it]  1%|▏         | 5/350 [02:30<2:52:38, 30.02s/it]  2%|▏         | 6/350 [03:00<2:51:40, 29.94s/it]  2%|▏         | 7/350 [03:30<2:51:01, 29.92s/it]  2%|▏         | 8/350 [04:00<2:50:24, 29.90s/it]  3%|▎         | 9/350 [04:30<2:50:00, 29.91s/it]Traceback (most recent call last):
+  File "/home/lcur1137/CoT/cot/run.py", line 126, in <module>
+    main(args)
+  File "/home/lcur1137/CoT/cot/run.py", line 119, in main
+    run_model(model, tokenizer, tokenized_datasets, args)
+  File "/home/lcur1137/CoT/cot/../cot/learner.py", line 342, in run_model
+    trainer.train()
+  File "/home/lcur1137/.conda/envs/cot/lib/python3.10/site-packages/transformers/trainer.py", line 1664, in train
+    return inner_training_loop(
+  File "/home/lcur1137/.conda/envs/cot/lib/python3.10/site-packages/transformers/trainer.py", line 1940, in _inner_training_loop
+    tr_loss_step = self.training_step(model, inputs)
+  File "/home/lcur1137/.conda/envs/cot/lib/python3.10/site-packages/transformers/trainer.py", line 2753, in training_step
+    loss.backward()
+  File "/home/lcur1137/.conda/envs/cot/lib/python3.10/site-packages/torch/_tensor.py", line 487, in backward
+    torch.autograd.backward(
+  File "/home/lcur1137/.conda/envs/cot/lib/python3.10/site-packages/torch/autograd/__init__.py", line 197, in backward
+    Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+RuntimeError: element 0 of tensors does not require grad and does not have a grad_fn
+wandb: Waiting for W&B process to finish... (failed 1). Press Control-C to abort syncing.
+wandb: 
+wandb: Run history:
+wandb:         train_average_explanation_length ▃▆▆▄█▄▇▂▅▁
+wandb: train_n_samples_fixed_by_eos_replacement ▁▁▁▁▁▁▁▁▁▁
+wandb:           train_unique_tokens_per_sample ▇▂▁▇█▄▅▄▃▄
+wandb: 
+wandb: Run summary:
+wandb:         train_average_explanation_length 0.0
+wandb: train_n_samples_fixed_by_eos_replacement 0
+wandb:           train_unique_tokens_per_sample 33.0
+wandb: 
+wandb: 🚀 View run comic-snowflake-34 at: https://wandb.ai/atcs-cot/cot-instruction-tuning-v0/runs/zoojnqvm
+wandb: Synced 6 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20230531_182627-zoojnqvm/logs
+srun: error: r29n3: task 0: Exited with exit code 1

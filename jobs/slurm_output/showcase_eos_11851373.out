@@ -1,0 +1,601 @@
+
+===================================BUG REPORT===================================
+Welcome to bitsandbytes. For bug reports, please run
+
+python -m bitsandbytes
+
+ and submit this information together with your error trace to: https://github.com/TimDettmers/bitsandbytes/issues
+================================================================================
+bin /home/lcur1137/.conda/envs/cot/lib/python3.10/site-packages/bitsandbytes/libbitsandbytes_cuda117.so
+CUDA SETUP: CUDA runtime path found: /home/lcur1137/.conda/envs/cot/lib/libcudart.so.11.0
+CUDA SETUP: Highest compute capability among GPUs detected: 7.5
+CUDA SETUP: Detected CUDA version 117
+CUDA SETUP: Loading binary /home/lcur1137/.conda/envs/cot/lib/python3.10/site-packages/bitsandbytes/libbitsandbytes_cuda117.so...
+Namespace(train=True, save_name='debug', wandb_run=None, model_id='bigscience/bloom-3b', hf_cache_dir='/project/gpuuva021/shared/cot/hf_cache', debug=False, model_max_length=512, preprocessed_dir='/project/gpuuva021/shared/cot/data/preprocessed', dataset_name='arithmetic', dataset_is_bigbench=True, arithmetic_task_name='3_digit_division', bigbench_explanations_dataset='arithmetic_3_digit_division', bigbench_explanations_type='handtuned', bigbench_explanations_path='data/bigbench-explanations/', n_shot=5, rebuild_cache=True, shuffle_cots=False, step_by_step=False, no_explanation=False, qae=False, lr=0.0001, max_epochs=5, batch_size=4, seed=666, num_beams=None, reward_succesful_explanations=False, allow_answer_at_eos=False, lora_r=8, lora_alpha=32, lora_dropout=0.05, lora_bias='none')
+/project/gpuuva021/shared/cot/hf_cache
+Downloading (…)lve/main/config.json:   0%|          | 0.00/693 [00:00<?, ?B/s]Downloading (…)lve/main/config.json: 100%|██████████| 693/693 [00:00<00:00, 2.16MB/s]
+Downloading pytorch_model.bin:   0%|          | 0.00/6.01G [00:00<?, ?B/s]Downloading pytorch_model.bin:   1%|          | 31.5M/6.01G [00:00<00:25, 236MB/s]Downloading pytorch_model.bin:   1%|          | 62.9M/6.01G [00:00<00:26, 228MB/s]Downloading pytorch_model.bin:   2%|▏         | 94.4M/6.01G [00:00<00:26, 226MB/s]Downloading pytorch_model.bin:   2%|▏         | 126M/6.01G [00:00<00:26, 219MB/s] Downloading pytorch_model.bin:   3%|▎         | 157M/6.01G [00:00<00:26, 220MB/s]Downloading pytorch_model.bin:   3%|▎         | 189M/6.01G [00:00<00:25, 228MB/s]Downloading pytorch_model.bin:   4%|▎         | 220M/6.01G [00:00<00:25, 231MB/s]Downloading pytorch_model.bin:   4%|▍         | 252M/6.01G [00:01<00:24, 231MB/s]Downloading pytorch_model.bin:   5%|▍         | 283M/6.01G [00:01<00:25, 225MB/s]Downloading pytorch_model.bin:   5%|▌         | 315M/6.01G [00:01<00:25, 226MB/s]Downloading pytorch_model.bin:   6%|▌         | 346M/6.01G [00:01<00:24, 227MB/s]Downloading pytorch_model.bin:   6%|▋         | 377M/6.01G [00:01<00:25, 221MB/s]Downloading pytorch_model.bin:   7%|▋         | 409M/6.01G [00:01<00:24, 225MB/s]Downloading pytorch_model.bin:   7%|▋         | 440M/6.01G [00:01<00:24, 224MB/s]Downloading pytorch_model.bin:   8%|▊         | 472M/6.01G [00:02<00:24, 226MB/s]Downloading pytorch_model.bin:   8%|▊         | 503M/6.01G [00:02<00:24, 221MB/s]Downloading pytorch_model.bin:   9%|▉         | 535M/6.01G [00:02<00:25, 211MB/s]Downloading pytorch_model.bin:   9%|▉         | 566M/6.01G [00:02<00:26, 204MB/s]Downloading pytorch_model.bin:  10%|▉         | 587M/6.01G [00:02<00:28, 191MB/s]Downloading pytorch_model.bin:  10%|█         | 608M/6.01G [00:02<00:29, 183MB/s]Downloading pytorch_model.bin:  10%|█         | 629M/6.01G [00:02<00:29, 182MB/s]Downloading pytorch_model.bin:  11%|█         | 650M/6.01G [00:03<00:28, 185MB/s]Downloading pytorch_model.bin:  11%|█▏        | 682M/6.01G [00:03<00:27, 194MB/s]Downloading pytorch_model.bin:  12%|█▏        | 713M/6.01G [00:03<00:26, 203MB/s]Downloading pytorch_model.bin:  12%|█▏        | 744M/6.01G [00:03<00:25, 208MB/s]Downloading pytorch_model.bin:  13%|█▎        | 776M/6.01G [00:03<00:25, 205MB/s]Downloading pytorch_model.bin:  13%|█▎        | 807M/6.01G [00:03<00:24, 209MB/s]Downloading pytorch_model.bin:  14%|█▍        | 828M/6.01G [00:03<00:24, 208MB/s]Downloading pytorch_model.bin:  14%|█▍        | 849M/6.01G [00:04<00:25, 203MB/s]Downloading pytorch_model.bin:  15%|█▍        | 881M/6.01G [00:04<00:25, 203MB/s]Downloading pytorch_model.bin:  15%|█▌        | 902M/6.01G [00:04<00:24, 204MB/s]Downloading pytorch_model.bin:  15%|█▌        | 923M/6.01G [00:04<00:25, 202MB/s]Downloading pytorch_model.bin:  16%|█▌        | 944M/6.01G [00:04<00:25, 197MB/s]Downloading pytorch_model.bin:  16%|█▌        | 975M/6.01G [00:04<00:23, 211MB/s]Downloading pytorch_model.bin:  17%|█▋        | 1.01G/6.01G [00:04<00:22, 219MB/s]Downloading pytorch_model.bin:  17%|█▋        | 1.04G/6.01G [00:04<00:22, 224MB/s]Downloading pytorch_model.bin:  18%|█▊        | 1.07G/6.01G [00:05<00:21, 228MB/s]Downloading pytorch_model.bin:  18%|█▊        | 1.10G/6.01G [00:05<00:22, 219MB/s]Downloading pytorch_model.bin:  19%|█▉        | 1.13G/6.01G [00:05<00:22, 220MB/s]Downloading pytorch_model.bin:  19%|█▉        | 1.16G/6.01G [00:05<00:23, 206MB/s]Downloading pytorch_model.bin:  20%|█▉        | 1.18G/6.01G [00:05<00:23, 203MB/s]Downloading pytorch_model.bin:  20%|██        | 1.21G/6.01G [00:05<00:23, 200MB/s]Downloading pytorch_model.bin:  20%|██        | 1.23G/6.01G [00:05<00:24, 197MB/s]Downloading pytorch_model.bin:  21%|██        | 1.25G/6.01G [00:05<00:24, 194MB/s]Downloading pytorch_model.bin:  21%|██        | 1.27G/6.01G [00:06<00:25, 189MB/s]Downloading pytorch_model.bin:  21%|██▏       | 1.29G/6.01G [00:06<00:25, 182MB/s]Downloading pytorch_model.bin:  22%|██▏       | 1.32G/6.01G [00:06<00:24, 193MB/s]Downloading pytorch_model.bin:  22%|██▏       | 1.34G/6.01G [00:06<00:26, 177MB/s]Downloading pytorch_model.bin:  23%|██▎       | 1.36G/6.01G [00:06<00:26, 177MB/s]Downloading pytorch_model.bin:  23%|██▎       | 1.39G/6.01G [00:06<00:23, 194MB/s]Downloading pytorch_model.bin:  24%|██▎       | 1.43G/6.01G [00:06<00:22, 201MB/s]Downloading pytorch_model.bin:  24%|██▍       | 1.46G/6.01G [00:07<00:22, 204MB/s]Downloading pytorch_model.bin:  25%|██▍       | 1.48G/6.01G [00:07<00:22, 198MB/s]Downloading pytorch_model.bin:  25%|██▌       | 1.51G/6.01G [00:07<00:21, 210MB/s]Downloading pytorch_model.bin:  25%|██▌       | 1.53G/6.01G [00:07<00:21, 206MB/s]Downloading pytorch_model.bin:  26%|██▌       | 1.56G/6.01G [00:07<00:21, 205MB/s]Downloading pytorch_model.bin:  26%|██▋       | 1.58G/6.01G [00:07<00:22, 197MB/s]Downloading pytorch_model.bin:  27%|██▋       | 1.60G/6.01G [00:07<00:22, 191MB/s]Downloading pytorch_model.bin:  27%|██▋       | 1.63G/6.01G [00:07<00:22, 192MB/s]Downloading pytorch_model.bin:  27%|██▋       | 1.65G/6.01G [00:07<00:22, 195MB/s]Downloading pytorch_model.bin:  28%|██▊       | 1.67G/6.01G [00:08<00:22, 197MB/s]Downloading pytorch_model.bin:  28%|██▊       | 1.70G/6.01G [00:08<00:20, 205MB/s]Downloading pytorch_model.bin:  29%|██▊       | 1.72G/6.01G [00:08<00:21, 203MB/s]Downloading pytorch_model.bin:  29%|██▉       | 1.74G/6.01G [00:08<00:22, 191MB/s]Downloading pytorch_model.bin:  30%|██▉       | 1.77G/6.01G [00:08<00:21, 197MB/s]Downloading pytorch_model.bin:  30%|██▉       | 1.79G/6.01G [00:08<00:21, 195MB/s]Downloading pytorch_model.bin:  30%|███       | 1.81G/6.01G [00:08<00:21, 192MB/s]Downloading pytorch_model.bin:  31%|███       | 1.84G/6.01G [00:08<00:23, 180MB/s]Downloading pytorch_model.bin:  31%|███       | 1.86G/6.01G [00:09<00:23, 179MB/s]Downloading pytorch_model.bin:  31%|███▏      | 1.88G/6.01G [00:09<00:22, 182MB/s]Downloading pytorch_model.bin:  32%|███▏      | 1.90G/6.01G [00:09<00:22, 181MB/s]Downloading pytorch_model.bin:  32%|███▏      | 1.92G/6.01G [00:09<00:23, 177MB/s]Downloading pytorch_model.bin:  32%|███▏      | 1.94G/6.01G [00:09<00:22, 179MB/s]Downloading pytorch_model.bin:  33%|███▎      | 1.96G/6.01G [00:09<00:22, 178MB/s]Downloading pytorch_model.bin:  33%|███▎      | 1.98G/6.01G [00:09<00:21, 184MB/s]Downloading pytorch_model.bin:  34%|███▎      | 2.01G/6.01G [00:09<00:20, 191MB/s]Downloading pytorch_model.bin:  34%|███▍      | 2.03G/6.01G [00:10<00:20, 195MB/s]Downloading pytorch_model.bin:  34%|███▍      | 2.07G/6.01G [00:10<00:19, 205MB/s]Downloading pytorch_model.bin:  35%|███▍      | 2.09G/6.01G [00:10<00:19, 206MB/s]Downloading pytorch_model.bin:  35%|███▌      | 2.12G/6.01G [00:10<00:18, 211MB/s]Downloading pytorch_model.bin:  36%|███▌      | 2.15G/6.01G [00:10<00:18, 212MB/s]Downloading pytorch_model.bin:  36%|███▋      | 2.18G/6.01G [00:10<00:17, 214MB/s]Downloading pytorch_model.bin:  37%|███▋      | 2.21G/6.01G [00:10<00:17, 214MB/s]Downloading pytorch_model.bin:  37%|███▋      | 2.24G/6.01G [00:10<00:17, 214MB/s]Downloading pytorch_model.bin:  38%|███▊      | 2.28G/6.01G [00:11<00:17, 212MB/s]Downloading pytorch_model.bin:  38%|███▊      | 2.31G/6.01G [00:11<00:17, 211MB/s]Downloading pytorch_model.bin:  39%|███▉      | 2.34G/6.01G [00:11<00:17, 214MB/s]Downloading pytorch_model.bin:  39%|███▉      | 2.37G/6.01G [00:11<00:16, 217MB/s]Downloading pytorch_model.bin:  40%|███▉      | 2.40G/6.01G [00:11<00:16, 212MB/s]Downloading pytorch_model.bin:  41%|████      | 2.43G/6.01G [00:11<00:16, 212MB/s]Downloading pytorch_model.bin:  41%|████      | 2.46G/6.01G [00:12<00:15, 223MB/s]Downloading pytorch_model.bin:  42%|████▏     | 2.50G/6.01G [00:12<00:15, 220MB/s]Downloading pytorch_model.bin:  42%|████▏     | 2.53G/6.01G [00:12<00:15, 224MB/s]Downloading pytorch_model.bin:  43%|████▎     | 2.56G/6.01G [00:12<00:15, 220MB/s]Downloading pytorch_model.bin:  43%|████▎     | 2.59G/6.01G [00:12<00:15, 219MB/s]Downloading pytorch_model.bin:  44%|████▎     | 2.62G/6.01G [00:12<00:15, 212MB/s]Downloading pytorch_model.bin:  44%|████▍     | 2.65G/6.01G [00:12<00:15, 216MB/s]Downloading pytorch_model.bin:  45%|████▍     | 2.68G/6.01G [00:13<00:15, 212MB/s]Downloading pytorch_model.bin:  45%|████▌     | 2.72G/6.01G [00:13<00:15, 210MB/s]Downloading pytorch_model.bin:  46%|████▌     | 2.75G/6.01G [00:13<00:15, 208MB/s]Downloading pytorch_model.bin:  46%|████▋     | 2.78G/6.01G [00:13<00:14, 215MB/s]Downloading pytorch_model.bin:  47%|████▋     | 2.81G/6.01G [00:13<00:14, 218MB/s]Downloading pytorch_model.bin:  47%|████▋     | 2.84G/6.01G [00:13<00:14, 216MB/s]Downloading pytorch_model.bin:  48%|████▊     | 2.87G/6.01G [00:13<00:15, 208MB/s]Downloading pytorch_model.bin:  48%|████▊     | 2.90G/6.01G [00:14<00:14, 214MB/s]Downloading pytorch_model.bin:  49%|████▉     | 2.94G/6.01G [00:14<00:14, 215MB/s]Downloading pytorch_model.bin:  49%|████▉     | 2.97G/6.01G [00:14<00:13, 221MB/s]Downloading pytorch_model.bin:  50%|████▉     | 3.00G/6.01G [00:14<00:13, 227MB/s]Downloading pytorch_model.bin:  50%|█████     | 3.03G/6.01G [00:14<00:13, 218MB/s]Downloading pytorch_model.bin:  51%|█████     | 3.06G/6.01G [00:14<00:13, 220MB/s]Downloading pytorch_model.bin:  52%|█████▏    | 3.09G/6.01G [00:14<00:13, 215MB/s]Downloading pytorch_model.bin:  52%|█████▏    | 3.12G/6.01G [00:15<00:13, 221MB/s]Downloading pytorch_model.bin:  53%|█████▎    | 3.16G/6.01G [00:15<00:13, 205MB/s]Downloading pytorch_model.bin:  53%|█████▎    | 3.18G/6.01G [00:15<00:14, 189MB/s]Downloading pytorch_model.bin:  53%|█████▎    | 3.21G/6.01G [00:15<00:14, 197MB/s]Downloading pytorch_model.bin:  54%|█████▍    | 3.24G/6.01G [00:15<00:13, 201MB/s]Downloading pytorch_model.bin:  54%|█████▍    | 3.26G/6.01G [00:15<00:13, 202MB/s]Downloading pytorch_model.bin:  55%|█████▍    | 3.28G/6.01G [00:15<00:13, 204MB/s]Downloading pytorch_model.bin:  55%|█████▌    | 3.31G/6.01G [00:16<00:12, 208MB/s]Downloading pytorch_model.bin:  56%|█████▌    | 3.34G/6.01G [00:16<00:12, 209MB/s]Downloading pytorch_model.bin:  56%|█████▌    | 3.37G/6.01G [00:16<00:12, 209MB/s]Downloading pytorch_model.bin:  56%|█████▋    | 3.39G/6.01G [00:16<00:13, 201MB/s]Downloading pytorch_model.bin:  57%|█████▋    | 3.41G/6.01G [00:16<00:13, 192MB/s]Downloading pytorch_model.bin:  57%|█████▋    | 3.43G/6.01G [00:16<00:13, 194MB/s]Downloading pytorch_model.bin:  57%|█████▋    | 3.45G/6.01G [00:16<00:13, 195MB/s]Downloading pytorch_model.bin:  58%|█████▊    | 3.47G/6.01G [00:16<00:13, 190MB/s]Downloading pytorch_model.bin:  58%|█████▊    | 3.49G/6.01G [00:16<00:12, 195MB/s]Downloading pytorch_model.bin:  58%|█████▊    | 3.51G/6.01G [00:17<00:12, 195MB/s]Downloading pytorch_model.bin:  59%|█████▉    | 3.53G/6.01G [00:17<00:12, 198MB/s]Downloading pytorch_model.bin:  59%|█████▉    | 3.55G/6.01G [00:17<00:12, 195MB/s]Downloading pytorch_model.bin:  60%|█████▉    | 3.59G/6.01G [00:17<00:11, 210MB/s]Downloading pytorch_model.bin:  60%|██████    | 3.61G/6.01G [00:17<00:12, 191MB/s]Downloading pytorch_model.bin:  61%|██████    | 3.64G/6.01G [00:17<00:11, 198MB/s]Downloading pytorch_model.bin:  61%|██████    | 3.66G/6.01G [00:17<00:11, 200MB/s]Downloading pytorch_model.bin:  61%|██████▏   | 3.69G/6.01G [00:17<00:11, 199MB/s]Downloading pytorch_model.bin:  62%|██████▏   | 3.71G/6.01G [00:18<00:11, 195MB/s]Downloading pytorch_model.bin:  62%|██████▏   | 3.73G/6.01G [00:18<00:11, 198MB/s]Downloading pytorch_model.bin:  63%|██████▎   | 3.76G/6.01G [00:18<00:10, 208MB/s]Downloading pytorch_model.bin:  63%|██████▎   | 3.80G/6.01G [00:18<00:10, 206MB/s]Downloading pytorch_model.bin:  64%|██████▎   | 3.82G/6.01G [00:18<00:10, 205MB/s]Downloading pytorch_model.bin:  64%|██████▍   | 3.85G/6.01G [00:18<00:10, 212MB/s]Downloading pytorch_model.bin:  65%|██████▍   | 3.88G/6.01G [00:18<00:09, 215MB/s]Downloading pytorch_model.bin:  65%|██████▌   | 3.91G/6.01G [00:18<00:09, 215MB/s]Downloading pytorch_model.bin:  66%|██████▌   | 3.94G/6.01G [00:19<00:09, 218MB/s]Downloading pytorch_model.bin:  66%|██████▌   | 3.97G/6.01G [00:19<00:09, 218MB/s]Downloading pytorch_model.bin:  67%|██████▋   | 4.01G/6.01G [00:19<00:09, 207MB/s]Downloading pytorch_model.bin:  67%|██████▋   | 4.03G/6.01G [00:19<00:09, 204MB/s]Downloading pytorch_model.bin:  67%|██████▋   | 4.05G/6.01G [00:19<00:09, 204MB/s]Downloading pytorch_model.bin:  68%|██████▊   | 4.08G/6.01G [00:19<00:09, 205MB/s]Downloading pytorch_model.bin:  68%|██████▊   | 4.11G/6.01G [00:19<00:09, 209MB/s]Downloading pytorch_model.bin:  69%|██████▉   | 4.14G/6.01G [00:20<00:08, 213MB/s]Downloading pytorch_model.bin:  69%|██████▉   | 4.17G/6.01G [00:20<00:08, 209MB/s]Downloading pytorch_model.bin:  70%|███████   | 4.20G/6.01G [00:20<00:08, 217MB/s]Downloading pytorch_model.bin:  71%|███████   | 4.24G/6.01G [00:20<00:08, 214MB/s]Downloading pytorch_model.bin:  71%|███████   | 4.27G/6.01G [00:20<00:08, 213MB/s]Downloading pytorch_model.bin:  72%|███████▏  | 4.30G/6.01G [00:20<00:07, 214MB/s]Downloading pytorch_model.bin:  72%|███████▏  | 4.33G/6.01G [00:20<00:07, 215MB/s]Downloading pytorch_model.bin:  73%|███████▎  | 4.36G/6.01G [00:21<00:07, 206MB/s]Downloading pytorch_model.bin:  73%|███████▎  | 4.39G/6.01G [00:21<00:07, 210MB/s]Downloading pytorch_model.bin:  74%|███████▎  | 4.42G/6.01G [00:21<00:07, 219MB/s]Downloading pytorch_model.bin:  74%|███████▍  | 4.46G/6.01G [00:21<00:07, 219MB/s]Downloading pytorch_model.bin:  75%|███████▍  | 4.49G/6.01G [00:21<00:07, 196MB/s]Downloading pytorch_model.bin:  75%|███████▌  | 4.51G/6.01G [00:21<00:07, 189MB/s]Downloading pytorch_model.bin:  75%|███████▌  | 4.53G/6.01G [00:22<00:08, 177MB/s]Downloading pytorch_model.bin:  76%|███████▌  | 4.55G/6.01G [00:22<00:08, 177MB/s]Downloading pytorch_model.bin:  76%|███████▌  | 4.57G/6.01G [00:22<00:07, 180MB/s]Downloading pytorch_model.bin:  76%|███████▋  | 4.59G/6.01G [00:22<00:07, 183MB/s]Downloading pytorch_model.bin:  77%|███████▋  | 4.61G/6.01G [00:22<00:07, 183MB/s]Downloading pytorch_model.bin:  77%|███████▋  | 4.65G/6.01G [00:22<00:06, 195MB/s]Downloading pytorch_model.bin:  78%|███████▊  | 4.68G/6.01G [00:22<00:06, 207MB/s]Downloading pytorch_model.bin:  78%|███████▊  | 4.70G/6.01G [00:22<00:06, 206MB/s]Downloading pytorch_model.bin:  79%|███████▊  | 4.73G/6.01G [00:22<00:05, 217MB/s]Downloading pytorch_model.bin:  79%|███████▉  | 4.76G/6.01G [00:23<00:05, 222MB/s]Downloading pytorch_model.bin:  80%|███████▉  | 4.79G/6.01G [00:23<00:05, 223MB/s]Downloading pytorch_model.bin:  80%|████████  | 4.82G/6.01G [00:23<00:05, 229MB/s]Downloading pytorch_model.bin:  81%|████████  | 4.85G/6.01G [00:23<00:04, 235MB/s]Downloading pytorch_model.bin:  81%|████████▏ | 4.89G/6.01G [00:23<00:04, 232MB/s]Downloading pytorch_model.bin:  82%|████████▏ | 4.92G/6.01G [00:23<00:04, 229MB/s]Downloading pytorch_model.bin:  82%|████████▏ | 4.95G/6.01G [00:23<00:04, 238MB/s]Downloading pytorch_model.bin:  83%|████████▎ | 4.98G/6.01G [00:24<00:04, 234MB/s]Downloading pytorch_model.bin:  83%|████████▎ | 5.01G/6.01G [00:24<00:04, 228MB/s]Downloading pytorch_model.bin:  84%|████████▍ | 5.04G/6.01G [00:24<00:04, 231MB/s]Downloading pytorch_model.bin:  85%|████████▍ | 5.08G/6.01G [00:24<00:03, 236MB/s]Downloading pytorch_model.bin:  85%|████████▌ | 5.11G/6.01G [00:24<00:03, 234MB/s]Downloading pytorch_model.bin:  86%|████████▌ | 5.14G/6.01G [00:24<00:03, 231MB/s]Downloading pytorch_model.bin:  86%|████████▌ | 5.17G/6.01G [00:24<00:03, 226MB/s]Downloading pytorch_model.bin:  87%|████████▋ | 5.20G/6.01G [00:25<00:03, 224MB/s]Downloading pytorch_model.bin:  87%|████████▋ | 5.23G/6.01G [00:25<00:03, 215MB/s]Downloading pytorch_model.bin:  88%|████████▊ | 5.26G/6.01G [00:25<00:03, 208MB/s]Downloading pytorch_model.bin:  88%|████████▊ | 5.28G/6.01G [00:25<00:03, 199MB/s]Downloading pytorch_model.bin:  88%|████████▊ | 5.31G/6.01G [00:25<00:03, 185MB/s]Downloading pytorch_model.bin:  89%|████████▊ | 5.33G/6.01G [00:25<00:03, 176MB/s]Downloading pytorch_model.bin:  89%|████████▉ | 5.36G/6.01G [00:25<00:03, 188MB/s]Downloading pytorch_model.bin:  90%|████████▉ | 5.38G/6.01G [00:25<00:03, 192MB/s]Downloading pytorch_model.bin:  90%|████████▉ | 5.40G/6.01G [00:26<00:03, 195MB/s]Downloading pytorch_model.bin:  90%|█████████ | 5.43G/6.01G [00:26<00:02, 197MB/s]Downloading pytorch_model.bin:  91%|█████████ | 5.45G/6.01G [00:26<00:02, 199MB/s]Downloading pytorch_model.bin:  91%|█████████ | 5.47G/6.01G [00:26<00:02, 198MB/s]Downloading pytorch_model.bin:  92%|█████████▏| 5.51G/6.01G [00:26<00:02, 205MB/s]Downloading pytorch_model.bin:  92%|█████████▏| 5.53G/6.01G [00:26<00:02, 206MB/s]Downloading pytorch_model.bin:  93%|█████████▎| 5.56G/6.01G [00:26<00:02, 211MB/s]Downloading pytorch_model.bin:  93%|█████████▎| 5.59G/6.01G [00:26<00:01, 218MB/s]Downloading pytorch_model.bin:  94%|█████████▎| 5.62G/6.01G [00:27<00:01, 208MB/s]Downloading pytorch_model.bin:  94%|█████████▍| 5.64G/6.01G [00:27<00:01, 203MB/s]Downloading pytorch_model.bin:  94%|█████████▍| 5.66G/6.01G [00:27<00:01, 197MB/s]Downloading pytorch_model.bin:  95%|█████████▍| 5.68G/6.01G [00:27<00:01, 199MB/s]Downloading pytorch_model.bin:  95%|█████████▌| 5.71G/6.01G [00:27<00:01, 204MB/s]Downloading pytorch_model.bin:  96%|█████████▌| 5.75G/6.01G [00:27<00:01, 212MB/s]Downloading pytorch_model.bin:  96%|█████████▌| 5.78G/6.01G [00:27<00:01, 210MB/s]Downloading pytorch_model.bin:  97%|█████████▋| 5.80G/6.01G [00:28<00:01, 193MB/s]Downloading pytorch_model.bin:  97%|█████████▋| 5.82G/6.01G [00:28<00:00, 193MB/s]Downloading pytorch_model.bin:  97%|█████████▋| 5.84G/6.01G [00:28<00:00, 197MB/s]Downloading pytorch_model.bin:  98%|█████████▊| 5.87G/6.01G [00:28<00:00, 210MB/s]Downloading pytorch_model.bin:  98%|█████████▊| 5.90G/6.01G [00:28<00:00, 207MB/s]Downloading pytorch_model.bin:  99%|█████████▊| 5.92G/6.01G [00:28<00:00, 189MB/s]Downloading pytorch_model.bin:  99%|█████████▉| 5.95G/6.01G [00:28<00:00, 181MB/s]Downloading pytorch_model.bin:  99%|█████████▉| 5.97G/6.01G [00:28<00:00, 187MB/s]Downloading pytorch_model.bin: 100%|█████████▉| 5.99G/6.01G [00:29<00:00, 190MB/s]Downloading pytorch_model.bin: 100%|██████████| 6.01G/6.01G [00:29<00:00, 206MB/s]
+Found cached dataset bigbench (/project/gpuuva021/shared/cot/hf_cache/tasksource___bigbench/arithmetic/1.0.0/c5da5ac497141c7435da10444495b8577405d4ed01e524265b144a7063718c0c)
+Found cached dataset bigbench (/project/gpuuva021/shared/cot/hf_cache/tasksource___bigbench/arithmetic/1.0.0/c5da5ac497141c7435da10444495b8577405d4ed01e524265b144a7063718c0c)
+Setting up LoRA!
+trainable params: 2457600 || all params: 3005015040 || trainable%: 0.08178328451893539
+wandb: Currently logged in as: azu55841 (atcs-cot). Use `wandb login --relogin` to force relogin
+wandb: Tracking run with wandb version 0.15.3
+wandb: Run data is saved locally in /home/lcur1137/CoT/wandb/run-20230531_173558-sdv6ip11
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run cosmic-sea-27
+wandb: ⭐️ View project at https://wandb.ai/atcs-cot/cot-instruction-tuning-v0
+wandb: 🚀 View run at https://wandb.ai/atcs-cot/cot-instruction-tuning-v0/runs/sdv6ip11
+Using CoTTrainer
+Training!
+/home/lcur1137/.conda/envs/cot/lib/python3.10/site-packages/transformers/optimization.py:407: FutureWarning: This implementation of AdamW is deprecated and will be removed in a future version. Use the PyTorch implementation torch.optim.AdamW instead, or set `no_deprecation_warning=True` to disable this warning
+  warnings.warn(
+  0%|          | 0/350 [00:00<?, ?it/s]You're using a BloomTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+/home/lcur1137/.conda/envs/cot/lib/python3.10/site-packages/transformers/generation/utils.py:1255: UserWarning: You have modified the pretrained model configuration to control generation. This is a deprecated strategy to control generation and will be removed soon, in a future version. Please use a generation configuration file (see https://huggingface.co/docs/transformers/main_classes/text_generation)
+  warnings.warn(
+/home/lcur1137/.conda/envs/cot/lib/python3.10/site-packages/torch/utils/checkpoint.py:31: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn("None of the inputs have requires_grad=True. Gradients will be None")
+/home/lcur1137/.conda/envs/cot/lib/python3.10/site-packages/bitsandbytes/autograd/_functions.py:318: UserWarning: MatMul8bitLt: inputs will be cast from torch.float32 to float16 during quantization
+  warnings.warn(f"MatMul8bitLt: inputs will be cast from {A.dtype} to float16 during quantization")
+==================== summary of batch results ====================
+args.num_beams=None
+No answer found in the 0-ith sample
+No answer found in the 2-ith sample
+No answer found in the 3-ith sample
+1 / 4, samples contained an answer!
+
+input for the model:
+  '<pad>Q:What is 842 divided by 1?\n  choice: 456\n  choice: 842\n  choice: house\n  choice: 14513\n  choice: 1\n  choice: banana\n  choice: 820\nExplanation:Dividing any number by 1 does not change it, so 842 / 1 = 842.\nA:842\nQ:What is 355 divided by 71?\n  choice: 5\n  choice: banana\n  choice: 807\n  choice: 7\n  choice: house\n  choice: 6\nExplanation:355 is close to 400, and 71 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:5\nQ:What is 705 divided by 5?\n  choice: 445\n  choice: 113\n  choice: 141\n  choice: banana\n  choice: house\n  choice: 73442\n  choice: 2\nExplanation:705 / 5 = (700 / 5) + (5 / 5) = 140 + 1 = 141.\nA:141\nQ:What is 680 divided by 68?\n  choice: 59\n  choice: 4009\n  choice: banana\n  choice: 4\n  choice: house\n  choice: 86\n  choice: 10\nExplanation:68 * 10 = 680, so 680 / 68 = 10.\nA:10\nQ:What is 980 divided by 5?\n  choice: house\n  choice: 89481\n  choice: banana\n  choice: 823\n  choice: 225\n  choice: 196\n  choice: 8\nExplanation:We can rewrite as follows: 980 / 5 = (1000 - 20) / 5 = (1000 / 5) - (20 / 5) = 200 - 4 = 196.\nA:196\nQ: What is 513 divided by 9?\n  choice: 1146\n  choice: 57\n  choice: banana\n  choice: 58\n  choice: 7\n  choice: 67\n  choice: house\nExplanation:'
+--------------------------------------------------
+generated answer (sample=0):
+ '513 / 9 = (513 / 9) + (9 / 9) = (513 / 9) + (9 / 9) + (9 / 9) + (9 / 9) + (9 / 9) + (9 / 9'
+generated answer (sample=1):
+ '596 / 4 = (600 / 4) + (4 / 4) = 600 + 4 = 600.\nA:600\nQ:What is 714 divided by 4?\n  choice: house\n  choice: 714\n  choice: house\n  choice:'
+--------------------------------------------------
+target: 149, generated (idx=400): 600
+no answer token predicted at index 3!
+actual answer:    57
+average accuracy of the last 20 batches: 0.0
+--------------------------------------------------
+At least one sample was missing an answer in this batch.
+loss: 6.780787944793701
+==================== summary of batch results ====================
+args.num_beams=None
+No answer found in the 0-ith sample
+No answer found in the 2-ith sample
+2 / 4, samples contained an answer!
+
+input for the model:
+  '<pad><pad><pad><pad><pad><pad>Q:What is 842 divided by 1?\n  choice: 456\n  choice: 842\n  choice: house\n  choice: 14513\n  choice: 1\n  choice: banana\n  choice: 820\nExplanation:Dividing any number by 1 does not change it, so 842 / 1 = 842.\nA:842\nQ:What is 355 divided by 71?\n  choice: 5\n  choice: banana\n  choice: 807\n  choice: 7\n  choice: house\n  choice: 6\nExplanation:355 is close to 400, and 71 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:5\nQ:What is 705 divided by 5?\n  choice: 445\n  choice: 113\n  choice: 141\n  choice: banana\n  choice: house\n  choice: 73442\n  choice: 2\nExplanation:705 / 5 = (700 / 5) + (5 / 5) = 140 + 1 = 141.\nA:141\nQ:What is 680 divided by 68?\n  choice: 59\n  choice: 4009\n  choice: banana\n  choice: 4\n  choice: house\n  choice: 86\n  choice: 10\nExplanation:68 * 10 = 680, so 680 / 68 = 10.\nA:10\nQ:What is 980 divided by 5?\n  choice: house\n  choice: 89481\n  choice: banana\n  choice: 823\n  choice: 225\n  choice: 196\n  choice: 8\nExplanation:We can rewrite as follows: 980 / 5 = (1000 - 20) / 5 = (1000 / 5) - (20 / 5) = 200 - 4 = 196.\nA:196\nQ: What is 658 divided by 94?\n  choice: 5\n  choice: 7\n  choice: house\n  choice: 793\n  choice: banana\n  choice: 8\nExplanation:'
+--------------------------------------------------
+generated answer (sample=0):
+ '658 / 94 = (650 / 94) + (94 / 94) = 650 + 94 = 650 + 94 = 650 + 94 = 650 + 94 = 650 + 94 = 650 + 94 = 650 + 94 = 650 + 94 = 650 +'
+generated answer (sample=1):
+ 'We can rewrite as follows: 784 / 784 = (1000 - 20) / 784 = (1000 / 784) - (20 / 784) = 200 - 4 = 196.\nA:196\nQ:What is 784 divided by'
+--------------------------------------------------
+target: 1, generated (idx=418): 196
+target: 298, generated (idx=400): 600
+no answer token predicted at index 3!
+actual answer:    7
+average accuracy of the last 20 batches: 0.0
+--------------------------------------------------
+At least one sample was missing an answer in this batch.
+loss: 4.20940637588501
+==================== summary of batch results ====================
+args.num_beams=None
+No answer found in the 1-ith sample
+3 / 4, samples contained an answer!
+
+input for the model:
+  'Q:What is 842 divided by 1?\n  choice: 456\n  choice: 842\n  choice: house\n  choice: 14513\n  choice: 1\n  choice: banana\n  choice: 820\nExplanation:Dividing any number by 1 does not change it, so 842 / 1 = 842.\nA:842\nQ:What is 355 divided by 71?\n  choice: 5\n  choice: banana\n  choice: 807\n  choice: 7\n  choice: house\n  choice: 6\nExplanation:355 is close to 400, and 71 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:5\nQ:What is 705 divided by 5?\n  choice: 445\n  choice: 113\n  choice: 141\n  choice: banana\n  choice: house\n  choice: 73442\n  choice: 2\nExplanation:705 / 5 = (700 / 5) + (5 / 5) = 140 + 1 = 141.\nA:141\nQ:What is 680 divided by 68?\n  choice: 59\n  choice: 4009\n  choice: banana\n  choice: 4\n  choice: house\n  choice: 86\n  choice: 10\nExplanation:68 * 10 = 680, so 680 / 68 = 10.\nA:10\nQ:What is 980 divided by 5?\n  choice: house\n  choice: 89481\n  choice: banana\n  choice: 823\n  choice: 225\n  choice: 196\n  choice: 8\nExplanation:We can rewrite as follows: 980 / 5 = (1000 - 20) / 5 = (1000 / 5) - (20 / 5) = 200 - 4 = 196.\nA:196\nQ: What is 936 divided by 78?\n  choice: 12\n  choice: 2\n  choice: banana\n  choice: 33\n  choice: 64\n  choice: 5935\n  choice: house\nExplanation:'
+--------------------------------------------------
+generated answer (sample=0):
+ '36 * 5 = 936, so 936 / 78 = 36.\nA:36\nQ:What is 992 divided by 5?\n  choice: house\n  choice: 89481\n  choice: banana\n  choice: 823\n  choice: 225\n  choice'
+generated answer (sample=1):
+ '876 / 292 = (876 / 292) + (292 / 292) = (1 / 292) + (292 / 292) = (1 / 292) + (292 / 292) = (1 / 292) + (292 / 292'
+--------------------------------------------------
+target: 12, generated (idx=393): 36
+target: 5, generated (idx=400): 95
+target: 9, generated (idx=409): 5
+no answer token predicted at index 3!
+actual answer:    12
+average accuracy of the last 20 batches: 0.0
+--------------------------------------------------
+At least one sample was missing an answer in this batch.
+loss: 2.4701197147369385
+==================== summary of batch results ====================
+args.num_beams=None
+No answer found in the 1-ith sample
+3 / 4, samples contained an answer!
+
+input for the model:
+  'Q:What is 842 divided by 1?\n  choice: 456\n  choice: 842\n  choice: house\n  choice: 14513\n  choice: 1\n  choice: banana\n  choice: 820\nExplanation:Dividing any number by 1 does not change it, so 842 / 1 = 842.\nA:842\nQ:What is 355 divided by 71?\n  choice: 5\n  choice: banana\n  choice: 807\n  choice: 7\n  choice: house\n  choice: 6\nExplanation:355 is close to 400, and 71 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:5\nQ:What is 705 divided by 5?\n  choice: 445\n  choice: 113\n  choice: 141\n  choice: banana\n  choice: house\n  choice: 73442\n  choice: 2\nExplanation:705 / 5 = (700 / 5) + (5 / 5) = 140 + 1 = 141.\nA:141\nQ:What is 680 divided by 68?\n  choice: 59\n  choice: 4009\n  choice: banana\n  choice: 4\n  choice: house\n  choice: 86\n  choice: 10\nExplanation:68 * 10 = 680, so 680 / 68 = 10.\nA:10\nQ:What is 980 divided by 5?\n  choice: house\n  choice: 89481\n  choice: banana\n  choice: 823\n  choice: 225\n  choice: 196\n  choice: 8\nExplanation:We can rewrite as follows: 980 / 5 = (1000 - 20) / 5 = (1000 / 5) - (20 / 5) = 200 - 4 = 196.\nA:196\nQ: What is 407 divided by 37?\n  choice: 11\n  choice: 14\n  choice: banana\n  choice: 4\n  choice: 6377\n  choice: 52\n  choice: house\nExplanation:'
+--------------------------------------------------
+generated answer (sample=0):
+ 'We can rewrite as follows: 407 / 37 = (1000 - 20) / 37 = (1000 / 37) - (20 / 37) = 200 - 4 = 196.\nA:196\nQ:What is 7 divided by 5?\n  choice: house'
+generated answer (sample=1):
+ '782/23 = (782/23) + (23 / 23) = (782/23) + (23 / 23) = (782/23) + (23 / 23) = (782/23) + (23 / 23'
+--------------------------------------------------
+target: 11, generated (idx=412): 196
+target: 9, generated (idx=408): 5
+target: 110, generated (idx=407): 196
+no answer token predicted at index 3!
+actual answer:    11
+average accuracy of the last 20 batches: 0.0
+--------------------------------------------------
+At least one sample was missing an answer in this batch.
+loss: 2.8859872817993164
+==================== summary of batch results ====================
+args.num_beams=None
+4 / 4, samples contained an answer!
+
+input for the model:
+  'Q:What is 842 divided by 1?\n  choice: 456\n  choice: 842\n  choice: house\n  choice: 14513\n  choice: 1\n  choice: banana\n  choice: 820\nExplanation:Dividing any number by 1 does not change it, so 842 / 1 = 842.\nA:842\nQ:What is 355 divided by 71?\n  choice: 5\n  choice: banana\n  choice: 807\n  choice: 7\n  choice: house\n  choice: 6\nExplanation:355 is close to 400, and 71 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:5\nQ:What is 705 divided by 5?\n  choice: 445\n  choice: 113\n  choice: 141\n  choice: banana\n  choice: house\n  choice: 73442\n  choice: 2\nExplanation:705 / 5 = (700 / 5) + (5 / 5) = 140 + 1 = 141.\nA:141\nQ:What is 680 divided by 68?\n  choice: 59\n  choice: 4009\n  choice: banana\n  choice: 4\n  choice: house\n  choice: 86\n  choice: 10\nExplanation:68 * 10 = 680, so 680 / 68 = 10.\nA:10\nQ:What is 980 divided by 5?\n  choice: house\n  choice: 89481\n  choice: banana\n  choice: 823\n  choice: 225\n  choice: 196\n  choice: 8\nExplanation:We can rewrite as follows: 980 / 5 = (1000 - 20) / 5 = (1000 / 5) - (20 / 5) = 200 - 4 = 196.\nA:196\nQ: What is 784 divided by 56?\n  choice: 14\n  choice: 6\n  choice: banana\n  choice: 60\n  choice: 97\n  choice: 8586\n  choice: house\nExplanation:'
+--------------------------------------------------
+generated answer (sample=0):
+ 'We can rewrite as follows: 784 / 56 = (1000 - 20) / 56 = (1000 / 56) - (20 / 56) = 200 - 4 = 196.\nA:196\nQ:What is 784 divided by 56?\n  choice'
+generated answer (sample=1):
+ '36 * 66 = 936, so 936 / 52 = 36.\nA:36\nQ:What is 992 divided by 5?\n  choice: house\n  choice: 89481\n  choice: banana\n  choice: 823\n  choice: 225\n  choice'
+--------------------------------------------------
+target: 14, generated (idx=414): 196
+target: 18, generated (idx=393): 36
+target: 51, generated (idx=400): 204
+target: 118, generated (idx=409): 5
+no answer token predicted at index 3!
+actual answer:    14
+average accuracy of the last 20 batches: 0.0
+--------------------------------------------------
+loss: 3.1660242080688477
+==================== summary of batch results ====================
+args.num_beams=None
+No answer found in the 1-ith sample
+No answer found in the 2-ith sample
+2 / 4, samples contained an answer!
+
+input for the model:
+  'Q:What is 842 divided by 1?\n  choice: 456\n  choice: 842\n  choice: house\n  choice: 14513\n  choice: 1\n  choice: banana\n  choice: 820\nExplanation:Dividing any number by 1 does not change it, so 842 / 1 = 842.\nA:842\nQ:What is 355 divided by 71?\n  choice: 5\n  choice: banana\n  choice: 807\n  choice: 7\n  choice: house\n  choice: 6\nExplanation:355 is close to 400, and 71 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:5\nQ:What is 705 divided by 5?\n  choice: 445\n  choice: 113\n  choice: 141\n  choice: banana\n  choice: house\n  choice: 73442\n  choice: 2\nExplanation:705 / 5 = (700 / 5) + (5 / 5) = 140 + 1 = 141.\nA:141\nQ:What is 680 divided by 68?\n  choice: 59\n  choice: 4009\n  choice: banana\n  choice: 4\n  choice: house\n  choice: 86\n  choice: 10\nExplanation:68 * 10 = 680, so 680 / 68 = 10.\nA:10\nQ:What is 980 divided by 5?\n  choice: house\n  choice: 89481\n  choice: banana\n  choice: 823\n  choice: 225\n  choice: 196\n  choice: 8\nExplanation:We can rewrite as follows: 980 / 5 = (1000 - 20) / 5 = (1000 / 5) - (20 / 5) = 200 - 4 = 196.\nA:196\nQ: What is 320 divided by 5?\n  choice: 1\n  choice: 14\n  choice: banana\n  choice: 41\n  choice: 8745\n  choice: 64\n  choice: house\nExplanation:'
+--------------------------------------------------
+generated answer (sample=0):
+ '320 / 5 = (320 / 5) + (5 / 5) = 14 + 1 = 41.\nA:41\nQ:What is 714 divided by 5?\n  choice: house\n  choice: 714\n  choice: house\n  choice:'
+generated answer (sample=1):
+ '471 / 157 = (471 / 157) + (157 / 157) = (471 / 157) + (157 / 157) = (471 / 157) + (157 / 157) = (471 / 157) + (157 / 157'
+--------------------------------------------------
+target: 64, generated (idx=399): 41
+target: 45, generated (idx=399): 17
+no answer token predicted at index 3!
+actual answer:    64
+average accuracy of the last 20 batches: 0.0
+--------------------------------------------------
+At least one sample was missing an answer in this batch.
+loss: 2.6081643104553223
+==================== summary of batch results ====================
+args.num_beams=None
+4 / 4, samples contained an answer!
+
+input for the model:
+  '<pad><pad><pad><pad><pad>Q:What is 842 divided by 1?\n  choice: 456\n  choice: 842\n  choice: house\n  choice: 14513\n  choice: 1\n  choice: banana\n  choice: 820\nExplanation:Dividing any number by 1 does not change it, so 842 / 1 = 842.\nA:842\nQ:What is 355 divided by 71?\n  choice: 5\n  choice: banana\n  choice: 807\n  choice: 7\n  choice: house\n  choice: 6\nExplanation:355 is close to 400, and 71 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:5\nQ:What is 705 divided by 5?\n  choice: 445\n  choice: 113\n  choice: 141\n  choice: banana\n  choice: house\n  choice: 73442\n  choice: 2\nExplanation:705 / 5 = (700 / 5) + (5 / 5) = 140 + 1 = 141.\nA:141\nQ:What is 680 divided by 68?\n  choice: 59\n  choice: 4009\n  choice: banana\n  choice: 4\n  choice: house\n  choice: 86\n  choice: 10\nExplanation:68 * 10 = 680, so 680 / 68 = 10.\nA:10\nQ:What is 980 divided by 5?\n  choice: house\n  choice: 89481\n  choice: banana\n  choice: 823\n  choice: 225\n  choice: 196\n  choice: 8\nExplanation:We can rewrite as follows: 980 / 5 = (1000 - 20) / 5 = (1000 / 5) - (20 / 5) = 200 - 4 = 196.\nA:196\nQ: What is 469 divided by 67?\n  choice: 2\n  choice: 5\n  choice: house\n  choice: 570\n  choice: banana\n  choice: 7\nExplanation:'
+--------------------------------------------------
+generated answer (sample=0):
+ '469 / 67 = (469 / 67) + (67 / 67) = 2 + 5 = 7.\nA:7\nQ:What is 7 divided by 5?\n  choice: house\n  choice: 7\n  choice: house\n  choice: house\n '
+generated answer (sample=1):
+ '175 / 7 = (175 / 7) + (7 / 7) = 25 + 1 = 25.\nA:25\nQ:What is 7 divided by 5?\n  choice: house\n  choice: 7\n  choice: house\n  choice: house\n '
+--------------------------------------------------
+target: 7, generated (idx=399): 7
+target: 25, generated (idx=399): 25
+target: 30, generated (idx=399): 22
+target: 97, generated (idx=400): 70
+no answer token predicted at index 3!
+actual answer:    7
+average accuracy of the last 20 batches: 0.0875
+--------------------------------------------------
+loss: 1.2261992692947388
+==================== summary of batch results ====================
+args.num_beams=None
+No answer found in the 0-ith sample
+No answer found in the 2-ith sample
+No answer found in the 3-ith sample
+1 / 4, samples contained an answer!
+
+input for the model:
+  'Q:What is 842 divided by 1?\n  choice: 456\n  choice: 842\n  choice: house\n  choice: 14513\n  choice: 1\n  choice: banana\n  choice: 820\nExplanation:Dividing any number by 1 does not change it, so 842 / 1 = 842.\nA:842\nQ:What is 355 divided by 71?\n  choice: 5\n  choice: banana\n  choice: 807\n  choice: 7\n  choice: house\n  choice: 6\nExplanation:355 is close to 400, and 71 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:5\nQ:What is 705 divided by 5?\n  choice: 445\n  choice: 113\n  choice: 141\n  choice: banana\n  choice: house\n  choice: 73442\n  choice: 2\nExplanation:705 / 5 = (700 / 5) + (5 / 5) = 140 + 1 = 141.\nA:141\nQ:What is 680 divided by 68?\n  choice: 59\n  choice: 4009\n  choice: banana\n  choice: 4\n  choice: house\n  choice: 86\n  choice: 10\nExplanation:68 * 10 = 680, so 680 / 68 = 10.\nA:10\nQ:What is 980 divided by 5?\n  choice: house\n  choice: 89481\n  choice: banana\n  choice: 823\n  choice: 225\n  choice: 196\n  choice: 8\nExplanation:We can rewrite as follows: 980 / 5 = (1000 - 20) / 5 = (1000 / 5) - (20 / 5) = 200 - 4 = 196.\nA:196\nQ: What is 459 divided by 9?\n  choice: 41\n  choice: 43\n  choice: banana\n  choice: 51\n  choice: 8\n  choice: 6361\n  choice: house\nExplanation:'
+--------------------------------------------------
+generated answer (sample=0):
+ '459 / 9 = (460 / 9) + (9 / 9) = (460 / 9) + (9 / 9) = (460 / 9) + (9 / 9) = (460 / 9) + (9 / 9'
+generated answer (sample=1):
+ '357 is close to 400, and 21 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:17\nQ:What is 7 divided by 5?\n  choice: house\n  choice: 7'
+--------------------------------------------------
+target: 17, generated (idx=408): 17
+no answer token predicted at index 3!
+actual answer:    51
+average accuracy of the last 20 batches: 0.125
+--------------------------------------------------
+At least one sample was missing an answer in this batch.
+loss: 0.907078742980957
+==================== summary of batch results ====================
+args.num_beams=None
+No answer found in the 2-ith sample
+3 / 4, samples contained an answer!
+
+input for the model:
+  '<pad><pad><pad><pad><pad><pad>Q:What is 842 divided by 1?\n  choice: 456\n  choice: 842\n  choice: house\n  choice: 14513\n  choice: 1\n  choice: banana\n  choice: 820\nExplanation:Dividing any number by 1 does not change it, so 842 / 1 = 842.\nA:842\nQ:What is 355 divided by 71?\n  choice: 5\n  choice: banana\n  choice: 807\n  choice: 7\n  choice: house\n  choice: 6\nExplanation:355 is close to 400, and 71 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:5\nQ:What is 705 divided by 5?\n  choice: 445\n  choice: 113\n  choice: 141\n  choice: banana\n  choice: house\n  choice: 73442\n  choice: 2\nExplanation:705 / 5 = (700 / 5) + (5 / 5) = 140 + 1 = 141.\nA:141\nQ:What is 680 divided by 68?\n  choice: 59\n  choice: 4009\n  choice: banana\n  choice: 4\n  choice: house\n  choice: 86\n  choice: 10\nExplanation:68 * 10 = 680, so 680 / 68 = 10.\nA:10\nQ:What is 980 divided by 5?\n  choice: house\n  choice: 89481\n  choice: banana\n  choice: 823\n  choice: 225\n  choice: 196\n  choice: 8\nExplanation:We can rewrite as follows: 980 / 5 = (1000 - 20) / 5 = (1000 / 5) - (20 / 5) = 200 - 4 = 196.\nA:196\nQ: What is 395 divided by 79?\n  choice: 2\n  choice: 4\n  choice: house\n  choice: 5\n  choice: banana\n  choice: 922\nExplanation:'
+--------------------------------------------------
+generated answer (sample=0):
+ '395 / 79 = (395 / 79) + (79 / 79) = 2 + 4 = 5.\nA:5\nQ:What is 7 divided by 5?\n  choice: house\n  choice: house\n  choice: house\n  choice: house\n '
+generated answer (sample=1):
+ '791 / 7 = (700 / 7) + (7 / 7) = 70 + 1 = 904.\nA:904\nQ:What is 7 divided by 7?\n  choice: house\n  choice: house\n  choice: house\n  choice:'
+--------------------------------------------------
+target: 5, generated (idx=400): 5
+target: 113, generated (idx=401): 90
+target: 679, generated (idx=412): 8
+no answer token predicted at index 3!
+actual answer:    5
+average accuracy of the last 20 batches: 0.175
+--------------------------------------------------
+At least one sample was missing an answer in this batch.
+loss: 2.817026138305664
+==================== summary of batch results ====================
+args.num_beams=None
+No answer found in the 0-ith sample
+No answer found in the 1-ith sample
+No answer found in the 2-ith sample
+No answer found in the 3-ith sample
+0 / 4, samples contained an answer!
+
+input for the model:
+  '<pad>Q:What is 842 divided by 1?\n  choice: 456\n  choice: 842\n  choice: house\n  choice: 14513\n  choice: 1\n  choice: banana\n  choice: 820\nExplanation:Dividing any number by 1 does not change it, so 842 / 1 = 842.\nA:842\nQ:What is 355 divided by 71?\n  choice: 5\n  choice: banana\n  choice: 807\n  choice: 7\n  choice: house\n  choice: 6\nExplanation:355 is close to 400, and 71 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:5\nQ:What is 705 divided by 5?\n  choice: 445\n  choice: 113\n  choice: 141\n  choice: banana\n  choice: house\n  choice: 73442\n  choice: 2\nExplanation:705 / 5 = (700 / 5) + (5 / 5) = 140 + 1 = 141.\nA:141\nQ:What is 680 divided by 68?\n  choice: 59\n  choice: 4009\n  choice: banana\n  choice: 4\n  choice: house\n  choice: 86\n  choice: 10\nExplanation:68 * 10 = 680, so 680 / 68 = 10.\nA:10\nQ:What is 980 divided by 5?\n  choice: house\n  choice: 89481\n  choice: banana\n  choice: 823\n  choice: 225\n  choice: 196\n  choice: 8\nExplanation:We can rewrite as follows: 980 / 5 = (1000 - 20) / 5 = (1000 / 5) - (20 / 5) = 200 - 4 = 196.\nA:196\nQ: What is 429 divided by 13?\n  choice: 3\n  choice: 33\n  choice: banana\n  choice: 35\n  choice: 58\n  choice: 5638\n  choice: house\nExplanation:'
+--------------------------------------------------
+generated answer (sample=0):
+ '429 / 13 = (429 / 13) + (13 / 13) = (429 / 13) + (13 / 13) = (429 / 13) + (13 / 13) = (429 / 13) + (13 / 13'
+generated answer (sample=1):
+ '288 / 72 = (288 / 72) + (72 / 72) = (288 / 72) + (72 / 72) = (288 / 72) + (72 / 72) = (288 / 72) + (72 / 72'
+--------------------------------------------------
+no answer token predicted at index 3!
+actual answer:    33
+average accuracy of the last 20 batches: 0.175
+--------------------------------------------------
+answer loss triggered!
+sample 0 from batch received label 33
+sample 1 from batch received label 4
+sample 2 from batch received label 40
+sample 3 from batch received label 395
+At least one sample was missing an answer in this batch.
+No answer found anywhere in this batch.
+loss: nan
+  0%|          | 1/350 [00:30<2:56:34, 30.36s/it]  1%|          | 2/350 [00:59<2:52:01, 29.66s/it]  1%|          | 3/350 [01:28<2:50:33, 29.49s/it]  1%|          | 4/350 [01:58<2:49:35, 29.41s/it]  1%|▏         | 5/350 [02:27<2:49:04, 29.40s/it]  2%|▏         | 6/350 [02:56<2:48:32, 29.40s/it]  2%|▏         | 7/350 [03:26<2:48:02, 29.40s/it]  2%|▏         | 8/350 [03:55<2:47:35, 29.40s/it]  3%|▎         | 9/350 [04:25<2:47:19, 29.44s/it]Traceback (most recent call last):
+  File "/home/lcur1137/CoT/cot/run.py", line 126, in <module>
+    main(args)
+  File "/home/lcur1137/CoT/cot/run.py", line 119, in main
+    run_model(model, tokenizer, tokenized_datasets, args)
+  File "/home/lcur1137/CoT/cot/../cot/learner.py", line 338, in run_model
+    trainer.train()
+  File "/home/lcur1137/.conda/envs/cot/lib/python3.10/site-packages/transformers/trainer.py", line 1664, in train
+    return inner_training_loop(
+  File "/home/lcur1137/.conda/envs/cot/lib/python3.10/site-packages/transformers/trainer.py", line 1940, in _inner_training_loop
+    tr_loss_step = self.training_step(model, inputs)
+  File "/home/lcur1137/.conda/envs/cot/lib/python3.10/site-packages/transformers/trainer.py", line 2753, in training_step
+    loss.backward()
+AttributeError: 'float' object has no attribute 'backward'
+wandb: Waiting for W&B process to finish... (failed 1). Press Control-C to abort syncing.
+wandb: 
+wandb: Run history:
+wandb:         train_average_explanation_length ▃▃▆▄▇▅█▂▅▁
+wandb: train_n_samples_fixed_by_eos_replacement ▁▁▁▁▁▁▁▁▁▁
+wandb:           train_unique_tokens_per_sample ▆▄▁▅▅▇█▄▄▄
+wandb: 
+wandb: Run summary:
+wandb:         train_average_explanation_length 0.0
+wandb: train_n_samples_fixed_by_eos_replacement 0
+wandb:           train_unique_tokens_per_sample 33.0
+wandb: 
+wandb: 🚀 View run cosmic-sea-27 at: https://wandb.ai/atcs-cot/cot-instruction-tuning-v0/runs/sdv6ip11
+wandb: Synced 6 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20230531_173558-sdv6ip11/logs
+srun: error: r33n6: task 0: Exited with exit code 1
+
+===================================BUG REPORT===================================
+Welcome to bitsandbytes. For bug reports, please run
+
+python -m bitsandbytes
+
+ and submit this information together with your error trace to: https://github.com/TimDettmers/bitsandbytes/issues
+================================================================================
+bin /home/lcur1137/.conda/envs/cot/lib/python3.10/site-packages/bitsandbytes/libbitsandbytes_cuda117.so
+CUDA SETUP: CUDA runtime path found: /home/lcur1137/.conda/envs/cot/lib/libcudart.so.11.0
+CUDA SETUP: Highest compute capability among GPUs detected: 7.5
+CUDA SETUP: Detected CUDA version 117
+CUDA SETUP: Loading binary /home/lcur1137/.conda/envs/cot/lib/python3.10/site-packages/bitsandbytes/libbitsandbytes_cuda117.so...
+Namespace(train=True, save_name='debug', wandb_run=None, model_id='bigscience/bloom-3b', hf_cache_dir='/project/gpuuva021/shared/cot/hf_cache', debug=False, model_max_length=512, preprocessed_dir='/project/gpuuva021/shared/cot/data/preprocessed', dataset_name='arithmetic', dataset_is_bigbench=True, arithmetic_task_name='3_digit_division', bigbench_explanations_dataset='arithmetic_3_digit_division', bigbench_explanations_type='handtuned', bigbench_explanations_path='data/bigbench-explanations/', n_shot=5, rebuild_cache=True, shuffle_cots=False, step_by_step=False, no_explanation=False, qae=False, lr=0.0001, max_epochs=5, batch_size=4, seed=666, num_beams=None, reward_succesful_explanations=False, allow_answer_at_eos=True, lora_r=8, lora_alpha=32, lora_dropout=0.05, lora_bias='none')
+/project/gpuuva021/shared/cot/hf_cache
+Found cached dataset bigbench (/project/gpuuva021/shared/cot/hf_cache/tasksource___bigbench/arithmetic/1.0.0/c5da5ac497141c7435da10444495b8577405d4ed01e524265b144a7063718c0c)
+Found cached dataset bigbench (/project/gpuuva021/shared/cot/hf_cache/tasksource___bigbench/arithmetic/1.0.0/c5da5ac497141c7435da10444495b8577405d4ed01e524265b144a7063718c0c)
+Setting up LoRA!
+trainable params: 2457600 || all params: 3005015040 || trainable%: 0.08178328451893539
+wandb: Currently logged in as: azu55841 (atcs-cot). Use `wandb login --relogin` to force relogin
+wandb: Tracking run with wandb version 0.15.3
+wandb: Run data is saved locally in /home/lcur1137/CoT/wandb/run-20230531_174127-4o1h9jnz
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run elated-voice-28
+wandb: ⭐️ View project at https://wandb.ai/atcs-cot/cot-instruction-tuning-v0
+wandb: 🚀 View run at https://wandb.ai/atcs-cot/cot-instruction-tuning-v0/runs/4o1h9jnz
+Using CoTTrainer
+Training!
+/home/lcur1137/.conda/envs/cot/lib/python3.10/site-packages/transformers/optimization.py:407: FutureWarning: This implementation of AdamW is deprecated and will be removed in a future version. Use the PyTorch implementation torch.optim.AdamW instead, or set `no_deprecation_warning=True` to disable this warning
+  warnings.warn(
+  0%|          | 0/350 [00:00<?, ?it/s]You're using a BloomTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+/home/lcur1137/.conda/envs/cot/lib/python3.10/site-packages/transformers/generation/utils.py:1255: UserWarning: You have modified the pretrained model configuration to control generation. This is a deprecated strategy to control generation and will be removed soon, in a future version. Please use a generation configuration file (see https://huggingface.co/docs/transformers/main_classes/text_generation)
+  warnings.warn(
+/home/lcur1137/.conda/envs/cot/lib/python3.10/site-packages/torch/utils/checkpoint.py:31: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn("None of the inputs have requires_grad=True. Gradients will be None")
+/home/lcur1137/.conda/envs/cot/lib/python3.10/site-packages/bitsandbytes/autograd/_functions.py:318: UserWarning: MatMul8bitLt: inputs will be cast from torch.float32 to float16 during quantization
+  warnings.warn(f"MatMul8bitLt: inputs will be cast from {A.dtype} to float16 during quantization")
+==================== summary of batch results ====================
+args.num_beams=None
+No answer found in the 0-ith sample
+Looking for possible replacements..
+No answer found in the 2-ith sample
+Looking for possible replacements..
+No answer found in the 3-ith sample
+Looking for possible replacements..
+1 / 4, samples contained an answer!
+
+input for the model:
+  '<pad>Q:What is 842 divided by 1?\n  choice: 456\n  choice: 842\n  choice: house\n  choice: 14513\n  choice: 1\n  choice: banana\n  choice: 820\nExplanation:Dividing any number by 1 does not change it, so 842 / 1 = 842.\nA:842\nQ:What is 355 divided by 71?\n  choice: 5\n  choice: banana\n  choice: 807\n  choice: 7\n  choice: house\n  choice: 6\nExplanation:355 is close to 400, and 71 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:5\nQ:What is 705 divided by 5?\n  choice: 445\n  choice: 113\n  choice: 141\n  choice: banana\n  choice: house\n  choice: 73442\n  choice: 2\nExplanation:705 / 5 = (700 / 5) + (5 / 5) = 140 + 1 = 141.\nA:141\nQ:What is 680 divided by 68?\n  choice: 59\n  choice: 4009\n  choice: banana\n  choice: 4\n  choice: house\n  choice: 86\n  choice: 10\nExplanation:68 * 10 = 680, so 680 / 68 = 10.\nA:10\nQ:What is 980 divided by 5?\n  choice: house\n  choice: 89481\n  choice: banana\n  choice: 823\n  choice: 225\n  choice: 196\n  choice: 8\nExplanation:We can rewrite as follows: 980 / 5 = (1000 - 20) / 5 = (1000 / 5) - (20 / 5) = 200 - 4 = 196.\nA:196\nQ: What is 513 divided by 9?\n  choice: 1146\n  choice: 57\n  choice: banana\n  choice: 58\n  choice: 7\n  choice: 67\n  choice: house\nExplanation:'
+--------------------------------------------------
+generated answer (sample=0):
+ '513 / 9 = (513 / 9) + (9 / 9) = (513 / 9) + (9 / 9) + (9 / 9) + (9 / 9) + (9 / 9) + (9 / 9'
+generated answer (sample=1):
+ '596 / 4 = (600 / 4) + (4 / 4) = 600 + 4 = 600.\nA:600\nQ:What is 714 divided by 4?\n  choice: house\n  choice: 714\n  choice: house\n  choice:'
+--------------------------------------------------
+target: 149, generated (idx=400): 600
+no answer token predicted at index 3!
+actual answer:    57
+average accuracy of the last 20 batches: 0.0
+--------------------------------------------------
+At least one sample was missing an answer in this batch.
+loss: 6.780787944793701
+==================== summary of batch results ====================
+args.num_beams=None
+No answer found in the 0-ith sample
+Looking for possible replacements..
+3 / 4, samples contained an answer!
+
+input for the model:
+  '<pad><pad><pad><pad><pad><pad>Q:What is 842 divided by 1?\n  choice: 456\n  choice: 842\n  choice: house\n  choice: 14513\n  choice: 1\n  choice: banana\n  choice: 820\nExplanation:Dividing any number by 1 does not change it, so 842 / 1 = 842.\nA:842\nQ:What is 355 divided by 71?\n  choice: 5\n  choice: banana\n  choice: 807\n  choice: 7\n  choice: house\n  choice: 6\nExplanation:355 is close to 400, and 71 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:5\nQ:What is 705 divided by 5?\n  choice: 445\n  choice: 113\n  choice: 141\n  choice: banana\n  choice: house\n  choice: 73442\n  choice: 2\nExplanation:705 / 5 = (700 / 5) + (5 / 5) = 140 + 1 = 141.\nA:141\nQ:What is 680 divided by 68?\n  choice: 59\n  choice: 4009\n  choice: banana\n  choice: 4\n  choice: house\n  choice: 86\n  choice: 10\nExplanation:68 * 10 = 680, so 680 / 68 = 10.\nA:10\nQ:What is 980 divided by 5?\n  choice: house\n  choice: 89481\n  choice: banana\n  choice: 823\n  choice: 225\n  choice: 196\n  choice: 8\nExplanation:We can rewrite as follows: 980 / 5 = (1000 - 20) / 5 = (1000 / 5) - (20 / 5) = 200 - 4 = 196.\nA:196\nQ: What is 658 divided by 94?\n  choice: 5\n  choice: 7\n  choice: house\n  choice: 793\n  choice: banana\n  choice: 8\nExplanation:'
+--------------------------------------------------
+generated answer (sample=0):
+ '658 / 94 = (658 / 94) + (94 / 94) = (658 / 94) + (94 / 94) = (658 / 94) + (94 / 94) = (658 / 94) + (94 / 94'
+generated answer (sample=1):
+ 'We can rewrite as follows: 784 / 784 = (1000 - 20) / 784 = (1000 / 784) - (20 / 784) = 200 - 4 = 196.\nA:196\nQ:What is 784 divided by'
+--------------------------------------------------
+target: 1, generated (idx=418): 196
+target: 13, generated (idx=401): 58
+target: 298, generated (idx=400): 600
+no answer token predicted at index 3!
+actual answer:    7
+average accuracy of the last 20 batches: 0.0
+--------------------------------------------------
+At least one sample was missing an answer in this batch.
+loss: 4.542442321777344
+==================== summary of batch results ====================
+args.num_beams=None
+4 / 4, samples contained an answer!
+
+input for the model:
+  'Q:What is 842 divided by 1?\n  choice: 456\n  choice: 842\n  choice: house\n  choice: 14513\n  choice: 1\n  choice: banana\n  choice: 820\nExplanation:Dividing any number by 1 does not change it, so 842 / 1 = 842.\nA:842\nQ:What is 355 divided by 71?\n  choice: 5\n  choice: banana\n  choice: 807\n  choice: 7\n  choice: house\n  choice: 6\nExplanation:355 is close to 400, and 71 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:5\nQ:What is 705 divided by 5?\n  choice: 445\n  choice: 113\n  choice: 141\n  choice: banana\n  choice: house\n  choice: 73442\n  choice: 2\nExplanation:705 / 5 = (700 / 5) + (5 / 5) = 140 + 1 = 141.\nA:141\nQ:What is 680 divided by 68?\n  choice: 59\n  choice: 4009\n  choice: banana\n  choice: 4\n  choice: house\n  choice: 86\n  choice: 10\nExplanation:68 * 10 = 680, so 680 / 68 = 10.\nA:10\nQ:What is 980 divided by 5?\n  choice: house\n  choice: 89481\n  choice: banana\n  choice: 823\n  choice: 225\n  choice: 196\n  choice: 8\nExplanation:We can rewrite as follows: 980 / 5 = (1000 - 20) / 5 = (1000 / 5) - (20 / 5) = 200 - 4 = 196.\nA:196\nQ: What is 936 divided by 78?\n  choice: 12\n  choice: 2\n  choice: banana\n  choice: 33\n  choice: 64\n  choice: 5935\n  choice: house\nExplanation:'
+--------------------------------------------------
+generated answer (sample=0):
+ '36 * 5 = 936, so 936 / 78 = 36.\nA:36\nQ:What is 992 divided by 5?\n  choice: house\n  choice: 89481\n  choice: banana\n  choice: 823\n  choice: 225\n  choice'
+generated answer (sample=1):
+ '876 / 292 = (876 / 292) + (292 / 292) = (1 + 3) + (3 + 5) = 9 + 3 = 11.\nA:11\nQ:What is 792 divided by 5?\n  choice: house'
+--------------------------------------------------
+target: 12, generated (idx=393): 36
+target: 3, generated (idx=412): 11
+target: 5, generated (idx=400): 476
+target: 9, generated (idx=409): 5
+no answer token predicted at index 3!
+actual answer:    12
+average accuracy of the last 20 batches: 0.0
+--------------------------------------------------
+loss: 3.0908501148223877
+==================== summary of batch results ====================
+args.num_beams=None
+No answer found in the 0-ith sample
+Looking for possible replacements..
+No answer found in the 1-ith sample
+Looking for possible replacements..
+2 / 4, samples contained an answer!
+
+input for the model:
+  'Q:What is 842 divided by 1?\n  choice: 456\n  choice: 842\n  choice: house\n  choice: 14513\n  choice: 1\n  choice: banana\n  choice: 820\nExplanation:Dividing any number by 1 does not change it, so 842 / 1 = 842.\nA:842\nQ:What is 355 divided by 71?\n  choice: 5\n  choice: banana\n  choice: 807\n  choice: 7\n  choice: house\n  choice: 6\nExplanation:355 is close to 400, and 71 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:5\nQ:What is 705 divided by 5?\n  choice: 445\n  choice: 113\n  choice: 141\n  choice: banana\n  choice: house\n  choice: 73442\n  choice: 2\nExplanation:705 / 5 = (700 / 5) + (5 / 5) = 140 + 1 = 141.\nA:141\nQ:What is 680 divided by 68?\n  choice: 59\n  choice: 4009\n  choice: banana\n  choice: 4\n  choice: house\n  choice: 86\n  choice: 10\nExplanation:68 * 10 = 680, so 680 / 68 = 10.\nA:10\nQ:What is 980 divided by 5?\n  choice: house\n  choice: 89481\n  choice: banana\n  choice: 823\n  choice: 225\n  choice: 196\n  choice: 8\nExplanation:We can rewrite as follows: 980 / 5 = (1000 - 20) / 5 = (1000 / 5) - (20 / 5) = 200 - 4 = 196.\nA:196\nQ: What is 407 divided by 37?\n  choice: 11\n  choice: 14\n  choice: banana\n  choice: 4\n  choice: 6377\n  choice: 52\n  choice: house\nExplanation:'
+--------------------------------------------------
+generated answer (sample=0):
+ 'We can rewrite as follows: 407 / 37 = (400 / 37) + (37 / 37) = 400 + 37 = 400 + 37 = 400 + 37 = 400 + 37 = 400 + 37 = 400 + 37 = 400 + 37 = 400'
+generated answer (sample=1):
+ '782/23 = (782/23) + (23 / 23) = (782/23) + (23 / 23) = (782/23) + (23 / 23) = (782/23) + (23 / 23'
+--------------------------------------------------
+target: 9, generated (idx=408): 5
+target: 110, generated (idx=407): 196
+no answer token predicted at index 3!
+actual answer:    11
+average accuracy of the last 20 batches: 0.0
+--------------------------------------------------
+At least one sample was missing an answer in this batch.
+loss: 3.0063371658325195
+==================== summary of batch results ====================
+args.num_beams=None
+4 / 4, samples contained an answer!
+
+input for the model:
+  'Q:What is 842 divided by 1?\n  choice: 456\n  choice: 842\n  choice: house\n  choice: 14513\n  choice: 1\n  choice: banana\n  choice: 820\nExplanation:Dividing any number by 1 does not change it, so 842 / 1 = 842.\nA:842\nQ:What is 355 divided by 71?\n  choice: 5\n  choice: banana\n  choice: 807\n  choice: 7\n  choice: house\n  choice: 6\nExplanation:355 is close to 400, and 71 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:5\nQ:What is 705 divided by 5?\n  choice: 445\n  choice: 113\n  choice: 141\n  choice: banana\n  choice: house\n  choice: 73442\n  choice: 2\nExplanation:705 / 5 = (700 / 5) + (5 / 5) = 140 + 1 = 141.\nA:141\nQ:What is 680 divided by 68?\n  choice: 59\n  choice: 4009\n  choice: banana\n  choice: 4\n  choice: house\n  choice: 86\n  choice: 10\nExplanation:68 * 10 = 680, so 680 / 68 = 10.\nA:10\nQ:What is 980 divided by 5?\n  choice: house\n  choice: 89481\n  choice: banana\n  choice: 823\n  choice: 225\n  choice: 196\n  choice: 8\nExplanation:We can rewrite as follows: 980 / 5 = (1000 - 20) / 5 = (1000 / 5) - (20 / 5) = 200 - 4 = 196.\nA:196\nQ: What is 784 divided by 56?\n  choice: 14\n  choice: 6\n  choice: banana\n  choice: 60\n  choice: 97\n  choice: 8586\n  choice: house\nExplanation:'
+--------------------------------------------------
+generated answer (sample=0):
+ 'We can rewrite as follows: 784 / 56 = (1000 - 20) / 56 = (1000 / 56) - (20 / 56) = 200 - 4 = 196.\nA:196\nQ:What is 784 divided by 56?\n  choice'
+generated answer (sample=1):
+ '36 * 66 = 936, so 936 / 52 = 36.\nA:36\nQ:What is 992 divided by 5?\n  choice: house\n  choice: 89481\n  choice: banana\n  choice: 823\n  choice: 225\n  choice'
+--------------------------------------------------
+target: 14, generated (idx=414): 196
+target: 18, generated (idx=393): 36
+target: 51, generated (idx=400): 205
+target: 118, generated (idx=409): 3
+no answer token predicted at index 3!
+actual answer:    14
+average accuracy of the last 20 batches: 0.0
+--------------------------------------------------
+loss: 2.8808863162994385
+==================== summary of batch results ====================
+args.num_beams=None
+No answer found in the 1-ith sample
+Looking for possible replacements..
+No answer found in the 2-ith sample
+Looking for possible replacements..
+2 / 4, samples contained an answer!
+
+input for the model:
+  'Q:What is 842 divided by 1?\n  choice: 456\n  choice: 842\n  choice: house\n  choice: 14513\n  choice: 1\n  choice: banana\n  choice: 820\nExplanation:Dividing any number by 1 does not change it, so 842 / 1 = 842.\nA:842\nQ:What is 355 divided by 71?\n  choice: 5\n  choice: banana\n  choice: 807\n  choice: 7\n  choice: house\n  choice: 6\nExplanation:355 is close to 400, and 71 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:5\nQ:What is 705 divided by 5?\n  choice: 445\n  choice: 113\n  choice: 141\n  choice: banana\n  choice: house\n  choice: 73442\n  choice: 2\nExplanation:705 / 5 = (700 / 5) + (5 / 5) = 140 + 1 = 141.\nA:141\nQ:What is 680 divided by 68?\n  choice: 59\n  choice: 4009\n  choice: banana\n  choice: 4\n  choice: house\n  choice: 86\n  choice: 10\nExplanation:68 * 10 = 680, so 680 / 68 = 10.\nA:10\nQ:What is 980 divided by 5?\n  choice: house\n  choice: 89481\n  choice: banana\n  choice: 823\n  choice: 225\n  choice: 196\n  choice: 8\nExplanation:We can rewrite as follows: 980 / 5 = (1000 - 20) / 5 = (1000 / 5) - (20 / 5) = 200 - 4 = 196.\nA:196\nQ: What is 320 divided by 5?\n  choice: 1\n  choice: 14\n  choice: banana\n  choice: 41\n  choice: 8745\n  choice: 64\n  choice: house\nExplanation:'
+--------------------------------------------------
+generated answer (sample=0):
+ '320 / 5 = (320 / 5) + (5 / 5) = 14 + 1 = 41.\nA:41\nQ:What is 714 divided by 5?\n  choice: house\n  choice: 714\n  choice: house\n  choice:'
+generated answer (sample=1):
+ '471 / 157 = (471 / 157) + (157 / 157) = (471 / 157) + (157 / 157) = (471 / 157) + (157 / 157) = (471 / 157) + (157 / 157'
+--------------------------------------------------
+target: 64, generated (idx=399): 41
+target: 45, generated (idx=408): 5
+no answer token predicted at index 3!
+actual answer:    64
+average accuracy of the last 20 batches: 0.0
+--------------------------------------------------
+At least one sample was missing an answer in this batch.
+loss: 1.7713918685913086
+==================== summary of batch results ====================
+args.num_beams=None
+No answer found in the 0-ith sample
+Looking for possible replacements..
+3 / 4, samples contained an answer!
+
+input for the model:
+  '<pad><pad><pad><pad><pad>Q:What is 842 divided by 1?\n  choice: 456\n  choice: 842\n  choice: house\n  choice: 14513\n  choice: 1\n  choice: banana\n  choice: 820\nExplanation:Dividing any number by 1 does not change it, so 842 / 1 = 842.\nA:842\nQ:What is 355 divided by 71?\n  choice: 5\n  choice: banana\n  choice: 807\n  choice: 7\n  choice: house\n  choice: 6\nExplanation:355 is close to 400, and 71 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:5\nQ:What is 705 divided by 5?\n  choice: 445\n  choice: 113\n  choice: 141\n  choice: banana\n  choice: house\n  choice: 73442\n  choice: 2\nExplanation:705 / 5 = (700 / 5) + (5 / 5) = 140 + 1 = 141.\nA:141\nQ:What is 680 divided by 68?\n  choice: 59\n  choice: 4009\n  choice: banana\n  choice: 4\n  choice: house\n  choice: 86\n  choice: 10\nExplanation:68 * 10 = 680, so 680 / 68 = 10.\nA:10\nQ:What is 980 divided by 5?\n  choice: house\n  choice: 89481\n  choice: banana\n  choice: 823\n  choice: 225\n  choice: 196\n  choice: 8\nExplanation:We can rewrite as follows: 980 / 5 = (1000 - 20) / 5 = (1000 / 5) - (20 / 5) = 200 - 4 = 196.\nA:196\nQ: What is 469 divided by 67?\n  choice: 2\n  choice: 5\n  choice: house\n  choice: 570\n  choice: banana\n  choice: 7\nExplanation:'
+--------------------------------------------------
+generated answer (sample=0):
+ '469 / 67 = (469 / 67) + (67 / 67) = (469 / 67) + (67 / 67) = (469 / 67) + (67 / 67) = (469 / 67) + (67 / 67'
+generated answer (sample=1):
+ '175 / 7 = (175 / 7) + (7 / 7) = 25 + 1 = 25.\nA:25\nQ:What is 7 divided by 5?\n  choice: house\n  choice: 7\n  choice: house\n  choice: house\n '
+--------------------------------------------------
+target: 25, generated (idx=399): 25
+target: 30, generated (idx=399): 22
+target: 97, generated (idx=408): 70
+no answer token predicted at index 3!
+actual answer:    7
+average accuracy of the last 20 batches: 0.0375
+--------------------------------------------------
+At least one sample was missing an answer in this batch.
+loss: 1.5768119096755981
+==================== summary of batch results ====================
+args.num_beams=None
+No answer found in the 0-ith sample
+Looking for possible replacements..
+No answer found in the 2-ith sample
+Looking for possible replacements..
+No answer found in the 3-ith sample
+Looking for possible replacements..
+1 / 4, samples contained an answer!
+
+input for the model:
+  'Q:What is 842 divided by 1?\n  choice: 456\n  choice: 842\n  choice: house\n  choice: 14513\n  choice: 1\n  choice: banana\n  choice: 820\nExplanation:Dividing any number by 1 does not change it, so 842 / 1 = 842.\nA:842\nQ:What is 355 divided by 71?\n  choice: 5\n  choice: banana\n  choice: 807\n  choice: 7\n  choice: house\n  choice: 6\nExplanation:355 is close to 400, and 71 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:5\nQ:What is 705 divided by 5?\n  choice: 445\n  choice: 113\n  choice: 141\n  choice: banana\n  choice: house\n  choice: 73442\n  choice: 2\nExplanation:705 / 5 = (700 / 5) + (5 / 5) = 140 + 1 = 141.\nA:141\nQ:What is 680 divided by 68?\n  choice: 59\n  choice: 4009\n  choice: banana\n  choice: 4\n  choice: house\n  choice: 86\n  choice: 10\nExplanation:68 * 10 = 680, so 680 / 68 = 10.\nA:10\nQ:What is 980 divided by 5?\n  choice: house\n  choice: 89481\n  choice: banana\n  choice: 823\n  choice: 225\n  choice: 196\n  choice: 8\nExplanation:We can rewrite as follows: 980 / 5 = (1000 - 20) / 5 = (1000 / 5) - (20 / 5) = 200 - 4 = 196.\nA:196\nQ: What is 459 divided by 9?\n  choice: 41\n  choice: 43\n  choice: banana\n  choice: 51\n  choice: 8\n  choice: 6361\n  choice: house\nExplanation:'
+--------------------------------------------------
+generated answer (sample=0):
+ '459 / 9 = (460 / 9) + (9 / 9) = (460 / 9) + (9 / 9) = (460 / 9) + (9 / 9) = (460 / 9) + (9 / 9'
+generated answer (sample=1):
+ '357 is close to 400, and 21 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:17\nQ:What is 7 divided by 5?\n  choice: house\n  choice: 7'
+--------------------------------------------------
+target: 17, generated (idx=408): 17
+no answer token predicted at index 3!
+actual answer:    51
+average accuracy of the last 20 batches: 0.075
+--------------------------------------------------
+At least one sample was missing an answer in this batch.
+loss: 0.8767154812812805
+==================== summary of batch results ====================
+args.num_beams=None
+No answer found in the 2-ith sample
+Looking for possible replacements..
+3 / 4, samples contained an answer!
+
+input for the model:
+  '<pad><pad><pad><pad><pad><pad>Q:What is 842 divided by 1?\n  choice: 456\n  choice: 842\n  choice: house\n  choice: 14513\n  choice: 1\n  choice: banana\n  choice: 820\nExplanation:Dividing any number by 1 does not change it, so 842 / 1 = 842.\nA:842\nQ:What is 355 divided by 71?\n  choice: 5\n  choice: banana\n  choice: 807\n  choice: 7\n  choice: house\n  choice: 6\nExplanation:355 is close to 400, and 71 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:5\nQ:What is 705 divided by 5?\n  choice: 445\n  choice: 113\n  choice: 141\n  choice: banana\n  choice: house\n  choice: 73442\n  choice: 2\nExplanation:705 / 5 = (700 / 5) + (5 / 5) = 140 + 1 = 141.\nA:141\nQ:What is 680 divided by 68?\n  choice: 59\n  choice: 4009\n  choice: banana\n  choice: 4\n  choice: house\n  choice: 86\n  choice: 10\nExplanation:68 * 10 = 680, so 680 / 68 = 10.\nA:10\nQ:What is 980 divided by 5?\n  choice: house\n  choice: 89481\n  choice: banana\n  choice: 823\n  choice: 225\n  choice: 196\n  choice: 8\nExplanation:We can rewrite as follows: 980 / 5 = (1000 - 20) / 5 = (1000 / 5) - (20 / 5) = 200 - 4 = 196.\nA:196\nQ: What is 395 divided by 79?\n  choice: 2\n  choice: 4\n  choice: house\n  choice: 5\n  choice: banana\n  choice: 922\nExplanation:'
+--------------------------------------------------
+generated answer (sample=0):
+ '395 is close to 400, and 79 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:5\nQ:What is 7 divided by 5?\n  choice: house\n  choice: house'
+generated answer (sample=1):
+ '791 / 7 = (700 / 7) + (7 / 7) = 70 + 1 = 904.\nA:904\nQ:What is 7 divided by 7?\n  choice: house\n  choice: house\n  choice: house\n  choice:'
+--------------------------------------------------
+target: 5, generated (idx=409): 5
+target: 113, generated (idx=401): 90
+target: 679, generated (idx=412): 8
+no answer token predicted at index 3!
+actual answer:    5
+average accuracy of the last 20 batches: 0.125
+--------------------------------------------------
+At least one sample was missing an answer in this batch.
+loss: 2.8458003997802734
+==================== summary of batch results ====================
+args.num_beams=None
+No answer found in the 0-ith sample
+Looking for possible replacements..
+No answer found in the 1-ith sample
+Looking for possible replacements..
+No answer found in the 2-ith sample
+Looking for possible replacements..
+No answer found in the 3-ith sample
+Looking for possible replacements..
+0 / 4, samples contained an answer!
+
+input for the model:
+  '<pad>Q:What is 842 divided by 1?\n  choice: 456\n  choice: 842\n  choice: house\n  choice: 14513\n  choice: 1\n  choice: banana\n  choice: 820\nExplanation:Dividing any number by 1 does not change it, so 842 / 1 = 842.\nA:842\nQ:What is 355 divided by 71?\n  choice: 5\n  choice: banana\n  choice: 807\n  choice: 7\n  choice: house\n  choice: 6\nExplanation:355 is close to 400, and 71 is close to 80, and 400 / 80 = 5, so we can guess that the answer must be 5.\nA:5\nQ:What is 705 divided by 5?\n  choice: 445\n  choice: 113\n  choice: 141\n  choice: banana\n  choice: house\n  choice: 73442\n  choice: 2\nExplanation:705 / 5 = (700 / 5) + (5 / 5) = 140 + 1 = 141.\nA:141\nQ:What is 680 divided by 68?\n  choice: 59\n  choice: 4009\n  choice: banana\n  choice: 4\n  choice: house\n  choice: 86\n  choice: 10\nExplanation:68 * 10 = 680, so 680 / 68 = 10.\nA:10\nQ:What is 980 divided by 5?\n  choice: house\n  choice: 89481\n  choice: banana\n  choice: 823\n  choice: 225\n  choice: 196\n  choice: 8\nExplanation:We can rewrite as follows: 980 / 5 = (1000 - 20) / 5 = (1000 / 5) - (20 / 5) = 200 - 4 = 196.\nA:196\nQ: What is 429 divided by 13?\n  choice: 3\n  choice: 33\n  choice: banana\n  choice: 35\n  choice: 58\n  choice: 5638\n  choice: house\nExplanation:'
+--------------------------------------------------
+generated answer (sample=0):
+ '429 / 13 = (429 / 13) + (13 / 13) = (429 / 13) + (13 / 13) = (429 / 13) + (13 / 13) = (429 / 13) + (13 / 13'
+generated answer (sample=1):
+ '288 / 72 = (288 / 72) + (72 / 72) = (288 / 72) + (72 / 72) = (288 / 72) + (72 / 72) = (288 / 72) + (72 / 72'
+--------------------------------------------------
+no answer token predicted at index 3!
+actual answer:    33
+average accuracy of the last 20 batches: 0.125
+--------------------------------------------------
+answer loss triggered!
+sample 0 from batch received label 33
+sample 1 from batch received label 4
+sample 2 from batch received label 40
+sample 3 from batch received label 395
+At least one sample was missing an answer in this batch.
+No answer found anywhere in this batch.
+loss: nan
+  0%|          | 1/350 [00:30<2:58:29, 30.69s/it]  1%|          | 2/350 [01:00<2:53:35, 29.93s/it]  1%|          | 3/350 [01:29<2:51:56, 29.73s/it]  1%|          | 4/350 [01:59<2:50:48, 29.62s/it]  1%|▏         | 5/350 [02:28<2:50:08, 29.59s/it]  2%|▏         | 6/350 [02:58<2:49:25, 29.55s/it]  2%|▏         | 7/350 [03:27<2:48:46, 29.52s/it]  2%|▏         | 8/350 [03:56<2:48:12, 29.51s/it]  3%|▎         | 9/350 [04:26<2:47:50, 29.53s/it]Traceback (most recent call last):
+  File "/home/lcur1137/CoT/cot/run.py", line 126, in <module>
+    main(args)
+  File "/home/lcur1137/CoT/cot/run.py", line 119, in main
+    run_model(model, tokenizer, tokenized_datasets, args)
+  File "/home/lcur1137/CoT/cot/../cot/learner.py", line 338, in run_model
+    trainer.train()
+  File "/home/lcur1137/.conda/envs/cot/lib/python3.10/site-packages/transformers/trainer.py", line 1664, in train
+    return inner_training_loop(
+  File "/home/lcur1137/.conda/envs/cot/lib/python3.10/site-packages/transformers/trainer.py", line 1940, in _inner_training_loop
+    tr_loss_step = self.training_step(model, inputs)
+  File "/home/lcur1137/.conda/envs/cot/lib/python3.10/site-packages/transformers/trainer.py", line 2753, in training_step
+    loss.backward()
+AttributeError: 'float' object has no attribute 'backward'
+wandb: Waiting for W&B process to finish... (failed 1). Press Control-C to abort syncing.
+wandb: 
+wandb: Run history:
+wandb:         train_average_explanation_length ▃▆█▄█▄▆▂▅▁
+wandb: train_n_samples_fixed_by_eos_replacement ▁▁▁▁▁▁▁▁▁▁
+wandb:           train_unique_tokens_per_sample ▆▂▃▇█▃▇▂▁▂
+wandb: 
+wandb: Run summary:
+wandb:         train_average_explanation_length 0.0
+wandb: train_n_samples_fixed_by_eos_replacement 0
+wandb:           train_unique_tokens_per_sample 33.0
+wandb: 
+wandb: 🚀 View run elated-voice-28 at: https://wandb.ai/atcs-cot/cot-instruction-tuning-v0/runs/4o1h9jnz
+wandb: Synced 6 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20230531_174127-4o1h9jnz/logs
+srun: error: r33n6: task 0: Exited with exit code 1
