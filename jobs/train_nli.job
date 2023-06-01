@@ -21,5 +21,5 @@ source activate cot
 srun python -u cot/run.py --model_id bigscience/bloom-3b \
     --batch_size 4 --n_shot 4 --max_epochs 50  --lr 0.0001 \
     --reward_succesful_explanations --allow_answer_at_eos \
-    --dataset_name presuppositions_as_nli --bigbench_explanations_dataset presuppositions_as_nli --n_shot 5 --model_max_length 1015 --train
+    --dataset_name presuppositions_as_nli --bigbench_explanations_dataset presuppositions_as_nli --model_max_length 1015 --train
     

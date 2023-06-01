@@ -11,16 +11,19 @@ def compute_ablation_metrics(eval_preds):
 
 
 def custom_compute_metrics(eval_preds):
-    logits, labels = eval_preds # logits is a tuple of 2 tensors, we think first is prediction, second is last layer or smth    
+    preds, labels = eval_preds # logits is a tuple of 2 tensors, we think first is prediction, second is last layer or smth    
 
-    logits_argmax = np.argmax(logits, axis=2)
-    assert logits_argmax.shape == labels.shape
+    # check elementwise equal, padding should also match
+    elementwise = np.equal(preds,labels)
 
-    accuracy = np.all(np.logical_or(logits_argmax == labels, labels == -100), axis=1).mean()
+    # sum them per sample and check if all matched per row
+    per_sample = np.sum(elementwise, axis=1)
+    n_correct = per_sample == elementwise.shape[1]
+    n_correct = np.sum(n_correct)
+    accuracy = n_correct / labels.shape[0]
 
-    # Compute samples_without_answer_fraction
-    # Checking whether logits are zero, first for all words in vocab, then for all tokens in sequence
-    samples_without_answer_mask = np.all(logits == 0, axis=(1,2))
-    samples_without_answer = np.sum(samples_without_answer_mask)
-    samples_without_answer_fraction = samples_without_answer / len(labels)
-    return {"accuracy": accuracy, "invalid": samples_without_answer_fraction}
+    # check how many rows were all pad
+    n_padding_per_sample = preds == -100
+    per_sample = np.sum(n_padding_per_sample, axis=1)
+    n_no_answers = np.sum(per_sample == 3)
+    return {"accuracy": accuracy, "invalid": n_no_answers}

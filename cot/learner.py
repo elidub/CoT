@@ -184,6 +184,8 @@ def run_model(model, tokenizer, tokenized_dataset, args):
                     self.accuracies = []
 
                 batch_accuracies = []
+                # accumulate answers ids in batch to return in eval loop, fill with padding of -100
+                batch_answers = torch.zeros(batch_size, labels.shape[1], dtype=torch.long) -100
                 for b in range(batch_size):
 
                     if start_of_answer_indices[b] != -1:
@@ -194,11 +196,12 @@ def run_model(model, tokenizer, tokenized_dataset, args):
                             acc = 0
                         else:
                             unpadded_label = inputs["labels"][b][inputs["labels"][b] != -100]
-                            # print(f"predicted answer: {tokenizer.decode(generated_answer[1:unpadded_label.shape[0]+1])}")
                             # skip answer token
                             pred = generated_answer[1:unpadded_label.shape[0]+1]
+                            answer_no_padding = pred[:unpadded_label.shape[0]]
+                            batch_answers[b, :answer_no_padding.shape[0]] = answer_no_padding
                             if debug:
-                                print(f"target: {tokenizer.decode(unpadded_label)}, generated (idx={start_of_answer_indices[b]}): {tokenizer.decode(pred[:unpadded_label.shape[0]])}")
+                                print(f"target: {tokenizer.decode(unpadded_label)}, generated (idx={start_of_answer_indices[b]}): {tokenizer.decode(answer_no_padding)}")
                             acc = int(torch.equal(unpadded_label, pred))
                         batch_accuracies.append(acc)
                     else:
@@ -215,6 +218,12 @@ def run_model(model, tokenizer, tokenized_dataset, args):
                         f"average accuracy of the last {n_running_mean_accuracy} batches: {sum(self.accuracies[-n_running_mean_accuracy:]) / n_running_mean_accuracy}"
                     )
                     print("-" * 50)
+
+                # processing on the output of compute_loss is 
+                # logits = outputs[1:] (for some reason)
+                # we concat an empty first batch so everything gets through
+                padded_batch = torch.zeros((batch_answers.shape[0]+1, batch_answers.shape[1]))
+                padded_batch[1:] = batch_answers
 
                 # 4. Call model.forward()
                 # See https://huggingface.co/docs/transformers/model_doc/bloom#transformers.BloomForCausalLM.forward
@@ -286,34 +295,34 @@ def run_model(model, tokenizer, tokenized_dataset, args):
                 # forward_out.loss = torch.log(forward_out.loss + 1)
 
             # Compute logits for answers if necessary
-            if return_outputs:
+            # if return_outputs:
                 # initialize answer_logits as a zeros tensor of shape (B, max_label_length, V)
-                max_label_length = max([len(label) for label in labels])
-                vocab_size = forward_out.logits.shape[-1]
-                answer_logits = torch.zeros((batch_size, max_label_length, vocab_size), device=device)
-                for i, label in enumerate(labels):
-                    if start_of_answer_indices[i] == -1:
-                        # If no answer was found, we leave the answer_logits as zeros.
-                        # This indicates that no answer was given by the model at all.
-                        continue
-                    else:
-                        start_of_answer_content_index = 0 if start_of_answer_indices[i] == -1 else start_of_answer_indices[i] + len(a_seq)
-                        # Determine sample_answer_logits for this sample
-                        sample_answer_logits = forward_out.logits[i][start_of_answer_content_index : start_of_answer_content_index+len(label)]
+                # max_label_length = max([len(label) for label in labels])
+                # vocab_size = forward_out.logits.shape[-1]
+                # answer_logits = torch.zeros((batch_size, max_label_length, vocab_size), device=device)
+                # for i, label in enumerate(labels):
+                #     if start_of_answer_indices[i] == -1:
+                #         # If no answer was found, we leave the answer_logits as zeros.
+                #         # This indicates that no answer was given by the model at all.
+                #         continue
+                #     else:
+                #         start_of_answer_content_index = 0 if start_of_answer_indices[i] == -1 else start_of_answer_indices[i] + len(a_seq)
+                #         # Determine sample_answer_logits for this sample
+                #         sample_answer_logits = forward_out.logits[i][start_of_answer_content_index : start_of_answer_content_index+len(label)]
 
-                        # Print confirming that we have sliced the correct indices
-                        # print("The following is only the answer content: ")
-                        # print(f"{tokenizer.decode(outputs[i][start_of_answer_content_index : start_of_answer_content_index+len(label)])}")  # prints e.g. "57" for arithmetic
+                #         # Print confirming that we have sliced the correct indices
+                #         # print("The following is only the answer content: ")
+                #         # print(f"{tokenizer.decode(outputs[i][start_of_answer_content_index : start_of_answer_content_index+len(label)])}")  # prints e.g. "57" for arithmetic
 
-                        # Fill in this sample's logits into answer_logits.
-                        # If this label is shorter than max_label_length, leave zeros for the remaining tokens unchanged.
-                        # These zeros will later be ignored because the label is -100 there.
-                        answer_logits[i,:len(label), :] = sample_answer_logits
+                #         # Fill in this sample's logits into answer_logits.
+                #         # If this label is shorter than max_label_length, leave zeros for the remaining tokens unchanged.
+                #         # These zeros will later be ignored because the label is -100 there.
+                #         answer_logits[i,:len(label), :] = sample_answer_logits
 
-                answer_logits = torch.cat((torch.zeros_like(answer_logits[0]).unsqueeze(0), answer_logits)) # For this https://github.com/huggingface/transformers/blob/17a55534f5e5df10ac4804d4270bf6b8cc24998d/src/transformers/trainer.py#L3526
+                # answer_logits = torch.cat((torch.zeros_like(answer_logits[0]).unsqueeze(0), answer_logits)) # For this https://github.com/huggingface/transformers/blob/17a55534f5e5df10ac4804d4270bf6b8cc24998d/src/transformers/trainer.py#L3526
 
             print(f"loss: {forward_out.loss}")
-            return (forward_out.loss, answer_logits) if return_outputs else forward_out.loss
+            return (forward_out.loss, padded_batch) if return_outputs else forward_out.loss
 
     if args.n_shot > 0 and not args.no_explanation:
         print("Using CoTTrainer")
