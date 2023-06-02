@@ -18,7 +18,7 @@ sys.path.insert(1, sys.path[0] + '/../')
 
 from cot.transform_outputs import transform_outputs
 from cot.model_utils import prep_lora_model
-from cot.metrics import custom_compute_metrics, compute_ablation_metrics
+from cot.metrics import qea_compute_metrics, compute_ablation_metrics, qae_compute_metrics
 from cot.trainer import AblationTrainer
 from cot.utils import update_results
 
@@ -64,26 +64,67 @@ def run_model(model, tokenizer, tokenized_dataset, args):
         dataloader_drop_last=True # Otherwise eval crashes on the last iteration requiring 28TB Memory
     )
 
-    # class CustomSeq2SeqTrainer(Seq2SeqTrainer):
-    class CustomSeq2SeqTrainer(Trainer):
+    class QAETrainer(Trainer):
         def compute_loss(self, model, inputs, return_outputs=False):
             with torch.no_grad():
-                # Alternative approach
-                # Advantages:
-                # - Less memory used 
-                #       with logits we crash at: --model_id bigscience/bloom-560m --batch_size 2 --n_shot 4, "max_new_tokens": 32
-                #       without logits we can generate: --model_id bigscience/bloom-1b1 --batch_size 4 --n_shot 4, "max_new_tokens": 32
-                # - We might get teacher-forcing for the answer (maybe not needed)
-                # - We don't need to check for different answer lengths manually (tokenizer(contradiction) is [7337, 326, 8156])
-                # - Guarantee that there's no funky shit going on with cumulative gradients, where outputs of the explanation affect logits of the answer
-                # 0.: Some useful variables for later on
+                debug = True
+                batch_size = inputs["input_ids"].shape[0]
+                sample_length = inputs["input_ids"].shape[-1]
+                tokens_to_generate = inputs["labels"].shape[1]
+                
+                input_tensor = inputs["input_ids"]
+                labels = inputs["labels"]
+            
+                full_correct_sequences = torch.concatenate([input_tensor, labels], dim=-1)
+                labels_formatted = full_correct_sequences.clone()
+                # we only want loss for the actual answer
+                labels_formatted[:, :sample_length] = -100
+
+                # nevermind I do want it to predict pad tokens because newlines are ugly
+                labels_formatted[:, sample_length:][labels_formatted[:, sample_length:] == -100] = 3
+
+                # replace mask tokens with pad for actual input sequence
+                full_correct_sequences[full_correct_sequences == -100] = 3 
+
+                # only attend to the input, not to the actual answer
+                attention_mask = torch.zeros_like(full_correct_sequences)
+                attention_mask[:, :sample_length] = 1
+
+            forward_out = model.forward(full_correct_sequences, labels=labels_formatted, attention_mask=attention_mask)
+            
+            # for return so we just take one logit more which will be thrown away
+            for i in range(batch_size):
+                # outputs logits are shifted to the left by one
+                pred = torch.argmax(forward_out.logits[i][-4:-1], dim=-1)
+                pred_decoded = tokenizer.decode(pred)
+                labels_with_replacement = labels[i].clone()
+                labels_with_replacement[labels_with_replacement == -100] = 3
+                label_decoded = repr(tokenizer.decode(labels_with_replacement))
+                if debug:
+                    print(f"sample {i} predicted: {pred_decoded}, label: {label_decoded}")
+            if debug:
+                print(f"loss: {forward_out.loss}")
+
+            preds = forward_out.logits.argmax(dim=-1)
+            preds = preds[:, -(tokens_to_generate+1):-1]
+            # mask sections that were not part of the prediction
+            preds[labels == -100] = -100
+
+            # hf cuts of first element when passing to compute metrics so we pad it.
+            results_holder = torch.zeros((preds.shape[0]+1, preds.shape[1]))
+            results_holder[1:] = preds
+            return (forward_out.loss, results_holder) if return_outputs else forward_out.loss   
+
+    # class CustomSeq2SeqTrainer(Seq2SeqTrainer):
+    class QEATrainer(Trainer):
+        def compute_loss(self, model, inputs, return_outputs=False):
+            with torch.no_grad():
                 device = inputs["input_ids"].device
                 debug = True
                 log_excessively = True
                 log_prefix = "train_" if self.is_in_train else "val_"
                 labels = inputs["labels"]
                 a_seq = torch.tensor([3000], device=device)           # "A:"
-                # a_seq = torch.tensor([3000, 210], device=inputs["input_ids"].device)      # "A: "
                 batch_size = inputs["input_ids"].shape[0]
 
                 # 1. Generate outputs without grad
@@ -290,44 +331,18 @@ def run_model(model, tokenizer, tokenized_dataset, args):
                 print(f"At least one sample was missing an answer in this batch.")
             if (start_of_answer_indices == -1).all():
                 print(f"No answer found anywhere in this batch.")
-                # returning nan skips this skep, see line 1936 in transformers/trainer.py (inner loop)
-                # forward_out.loss = torch.tensor([torch.nan], device=device)
-                # forward_out.loss = torch.log(forward_out.loss + 1)
-
-            # Compute logits for answers if necessary
-            # if return_outputs:
-                # initialize answer_logits as a zeros tensor of shape (B, max_label_length, V)
-                # max_label_length = max([len(label) for label in labels])
-                # vocab_size = forward_out.logits.shape[-1]
-                # answer_logits = torch.zeros((batch_size, max_label_length, vocab_size), device=device)
-                # for i, label in enumerate(labels):
-                #     if start_of_answer_indices[i] == -1:
-                #         # If no answer was found, we leave the answer_logits as zeros.
-                #         # This indicates that no answer was given by the model at all.
-                #         continue
-                #     else:
-                #         start_of_answer_content_index = 0 if start_of_answer_indices[i] == -1 else start_of_answer_indices[i] + len(a_seq)
-                #         # Determine sample_answer_logits for this sample
-                #         sample_answer_logits = forward_out.logits[i][start_of_answer_content_index : start_of_answer_content_index+len(label)]
-
-                #         # Print confirming that we have sliced the correct indices
-                #         # print("The following is only the answer content: ")
-                #         # print(f"{tokenizer.decode(outputs[i][start_of_answer_content_index : start_of_answer_content_index+len(label)])}")  # prints e.g. "57" for arithmetic
-
-                #         # Fill in this sample's logits into answer_logits.
-                #         # If this label is shorter than max_label_length, leave zeros for the remaining tokens unchanged.
-                #         # These zeros will later be ignored because the label is -100 there.
-                #         answer_logits[i,:len(label), :] = sample_answer_logits
-
-                # answer_logits = torch.cat((torch.zeros_like(answer_logits[0]).unsqueeze(0), answer_logits)) # For this https://github.com/huggingface/transformers/blob/17a55534f5e5df10ac4804d4270bf6b8cc24998d/src/transformers/trainer.py#L3526
-
+ 
             print(f"loss: {forward_out.loss}")
             return (forward_out.loss, padded_batch) if return_outputs else forward_out.loss
 
-    if args.n_shot > 0 and not args.no_explanation:
-        print("Using CoTTrainer")
-        CustomTrainer = CustomSeq2SeqTrainer
-        compute_metrics = custom_compute_metrics
+    if args.n_shot > 0 and not args.no_explanation and not args.qae:
+        print("Using CoTTrainer QEA")
+        CustomTrainer = QEATrainer
+        compute_metrics = qea_compute_metrics
+    elif args.n_shot > 0 and args.qae:
+        print("Using CoTTrainer QAE")
+        CustomTrainer = QAETrainer
+        compute_metrics = qae_compute_metrics
     else:
         print("Using AblationTrainer")
         CustomTrainer = AblationTrainer

@@ -1,0 +1,24 @@
+#!/bin/bash
+
+#SBATCH --gres=gpu:1
+#SBATCH --job-name=ArithmeticTraining
+#SBATCH --partition=gpu_titanrtx_shared_course
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=3
+#SBATCH --time=12:00:00
+#SBATCH --mem=32000M
+#SBATCH --output=jobs/slurm_output/train-arithmetic_%A.out
+
+module purge
+module load 2021
+module load Anaconda3/2021.05
+
+export WANDB_API_KEY=6b6f51f692ebb5799c9e3ee77ff79b3622fc9370
+
+cd $HOME/CoT/
+source activate cot
+
+srun python -u cot/run.py --model_id bigscience/bloom-3b \
+    --batch_size 4 --n_shot 4 --max_epochs 50  --lr 0.0001 \
+    --qae \
+    --dataset_name arithmetic --arithmetic_task_name 3_digit_division --bigbench_explanations_dataset arithmetic_3_digit_division --train

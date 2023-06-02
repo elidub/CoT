@@ -77,7 +77,8 @@ class CoTDataset(torch.utils.data.Dataset):
             
                 
             if self.args.qae:
-                raise NotImplementedError("QAE is not implemented yet!")
+                # no reformatting needed for QAE
+                pass 
             else:
                 if self.args.n_shot > 0 and not self.args.no_explanation:
                     for i in range(len(dt)):
