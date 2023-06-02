@@ -1,30 +1,30 @@
 {
   "arithmetic": {
     "eval": {
-      "bigscience/bloom-560m": 0.2,
-      "bigscience/bloom-1b1" : 0.3,
-      "bigscience/bloom-1b7" : 0.4,
-      "bigscience/bloom-3b"  : 0.5
+      "bigscience/bloom-560m": 0.225,
+      "bigscience/bloom-1b1" : 0.2,
+      "bigscience/bloom-1b7" : 0.3166,
+      "bigscience/bloom-3b"  : 0.175
     },
     "train": {
-      "bigscience/bloom-560m": 0.4,
-      "bigscience/bloom-1b1" : 0.5,
-      "bigscience/bloom-1b7" : 0.6,
-      "bigscience/bloom-3b"  : 0.65
+      "bigscience/bloom-560m": 0.5833,
+      "bigscience/bloom-1b1" : 0.667,
+      "bigscience/bloom-1b7" : 0.65,
+      "bigscience/bloom-3b"  : 0.675
     }
   },
   "presuppositions_as_nli": {
     "eval": {
-      "bigscience/bloom-560m": 0.25,
-      "bigscience/bloom-1b1" : 0.35,
-      "bigscience/bloom-1b7" : 0.45,
-      "bigscience/bloom-3b"  : 0.55
+      "bigscience/bloom-560m": 0.1818,
+      "bigscience/bloom-1b1" : 0.278,
+      "bigscience/bloom-1b7" : 0.284,
+      "bigscience/bloom-3b"  : 0.3125
     },
     "train": {
-      "bigscience/bloom-560m": 0.45,
-      "bigscience/bloom-1b1" : 0.55,
-      "bigscience/bloom-1b7" : 0.63,
-      "bigscience/bloom-3b"  : 0.65
+      "bigscience/bloom-560m": 0.517,
+      "bigscience/bloom-1b1" : 0.517,
+      "bigscience/bloom-1b7" : 0.4886,
+      "bigscience/bloom-3b"  : 0.4886
     }
   }
 }
