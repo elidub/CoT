@@ -11,6 +11,12 @@
       "bigscience/bloom-1b1" : 0.667,
       "bigscience/bloom-1b7" : 0.65,
       "bigscience/bloom-3b"  : 0.675
+    },
+    "no-cot": {
+      "bigscience/bloom-560m": 65.83,
+      "bigscience/bloom-1b1" : 66.667,
+      "bigscience/bloom-1b7" : 69.17,
+      "bigscience/bloom-3b"  : 61.93
     }
   },
   "presuppositions_as_nli": {
@@ -25,6 +31,12 @@
       "bigscience/bloom-1b1" : 0.517,
       "bigscience/bloom-1b7" : 0.4886,
       "bigscience/bloom-3b"  : 0.4886
+    },
+    "no-cot": {
+      "bigscience/bloom-560m": 59.09,
+      "bigscience/bloom-1b1" : 59.09,
+      "bigscience/bloom-1b7" : 59.66,
+      "bigscience/bloom-3b"  : 61.93
     }
   }
 }
