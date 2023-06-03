@@ -50,7 +50,7 @@ def parse_option():
     # Training args (lora)
     parser.add_argument('--lora_r', default = 8, type=int, help='Rank of LoRa')
     parser.add_argument('--lora_alpha', default = 32, type=int, help='Alpha used for LoRa')
-    parser.add_argument('--lora_dropout', default = 0.05, type=float, help='Alpha used for LoRa')
+    parser.add_argument('--lora_dropout', default = 0.05, type=float, help='Dropout used for LoRa')
     parser.add_argument('--lora_bias', default = "none", type=str, help='Bias type for LoRa Can be "none", "all" or "lora_only"')
 
     args = parser.parse_args()
@@ -100,7 +100,7 @@ def debug_parse_option(notebook = False):
     # Training args (lora)
     parser.add_argument('--lora_r', default = 8, type=int, help='Rank of LoRa')
     parser.add_argument('--lora_alpha', default = 32, type=int, help='Alpha used for LoRa')
-    parser.add_argument('--lora_dropout', default = 0.05, type=float, help='Alpha used for LoRa')
+    parser.add_argument('--lora_dropout', default = 0.05, type=float, help='Dropout used for LoRa')
     parser.add_argument('--lora_bias', default = "none", type=str, help='Bias type for LoRa Can be "none", "all" or "lora_only"')
 
     args = parser.parse_args() if not notebook else parser.parse_args(args=[])
