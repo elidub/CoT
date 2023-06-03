@@ -1,42 +1,54 @@
 {
   "arithmetic": {
     "eval": {
+      "bigscience/bloom-560m": 0.3884297520661157,
+      "bigscience/bloom-1b1": 0.1487603305785124,
+      "bigscience/bloom-1b7": 0.2231404958677686,
+      "bigscience/bloom-3b": 0.19834710743801653
+    },
+    "train": {
+      "bigscience/bloom-560m": 0.6583,
+      "bigscience/bloom-1b1" : 0.66667,
+      "bigscience/bloom-1b7" : 0.6917,
+      "bigscience/bloom-3b"  : 0.6193
+    },
+    "cot-eval": {
       "bigscience/bloom-560m": 0.225,
       "bigscience/bloom-1b1" : 0.2,
       "bigscience/bloom-1b7" : 0.3166,
       "bigscience/bloom-3b"  : 0.175
     },
-    "train": {
+    "cot-train": {
       "bigscience/bloom-560m": 0.5833,
       "bigscience/bloom-1b1" : 0.667,
       "bigscience/bloom-1b7" : 0.65,
       "bigscience/bloom-3b"  : 0.675
-    },
-    "no-cot": {
-      "bigscience/bloom-560m": 65.83,
-      "bigscience/bloom-1b1" : 66.667,
-      "bigscience/bloom-1b7" : 69.17,
-      "bigscience/bloom-3b"  : 61.93
     }
   },
   "presuppositions_as_nli": {
     "eval": {
+      "bigscience/bloom-560m": 0.3107344632768362,
+      "bigscience/bloom-1b1": 0.3107344632768362,
+      "bigscience/bloom-1b7": 0.3050847457627119,
+      "bigscience/bloom-3b": 0.5310734463276836
+    },
+    "train": {
+      "bigscience/bloom-560m": 0.5909,
+      "bigscience/bloom-1b1" : 0.5909,
+      "bigscience/bloom-1b7" :0.5966,
+      "bigscience/bloom-3b"  : 0.6193
+    },
+    "cot-eval": {
       "bigscience/bloom-560m": 0.1818,
       "bigscience/bloom-1b1" : 0.278,
       "bigscience/bloom-1b7" : 0.284,
       "bigscience/bloom-3b"  : 0.3125
     },
-    "train": {
+    "cot-train": {
       "bigscience/bloom-560m": 0.517,
       "bigscience/bloom-1b1" : 0.517,
       "bigscience/bloom-1b7" : 0.4886,
       "bigscience/bloom-3b"  : 0.4886
-    },
-    "no-cot": {
-      "bigscience/bloom-560m": 59.09,
-      "bigscience/bloom-1b1" : 59.09,
-      "bigscience/bloom-1b7" : 59.66,
-      "bigscience/bloom-3b"  : 61.93
     }
   }
 }
