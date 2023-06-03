@@ -1,19 +1,11 @@
 import argparse
-import os, sys
-
-# src_path = os.path.join(sys.path[0], '../')
-# sys.path.insert(1, src_path)
+import sys
 
 sys.path.insert(1, sys.path[0] + '/../')
 
-
-from cot.model_utils import load_model_dicts, load_model
-from cot.learner import run_model
 from cot.dataset import CoTDataset
-
-
-
-
+from cot.learner import run_model
+from cot.model_utils import load_model, load_model_dicts
 
 
 def parse_option():
@@ -26,6 +18,7 @@ def parse_option():
     parser.add_argument('--model_id', default = 'bigscience/bloom-3b', type=str, help='Model type')
     parser.add_argument('--hf_cache_dir', default = '/project/gpuuva021/shared/cot/hf_cache', type=str, help='Directory for HuggingFace cache')
     parser.add_argument('--debug', action='store_true', help='Use smaller datasets and store more info for debugging')
+    parser.add_argument('--debug_prints', action='store_true', help='print outputs for easier debugging')
     parser.add_argument('--model_max_length', default = 512, type=int, help='Longest context the model/tokenizer is expected to support')
 
     # Dataset args
@@ -47,8 +40,10 @@ def parse_option():
     parser.add_argument('--lr', default = 1e-3, type=float, help='Learning rate')
     parser.add_argument('--max_epochs', default = 10, type=int, help='Maximum number of epochs to train')
     parser.add_argument('--batch_size', default = 4, type=int, help='Batch size')
+    parser.add_argument('--max_new_tokens', default = 50, type=int, help='Amount of new tokens to generate (QEA)')
     parser.add_argument('--seed', default=666, type=int, help="The seed for reproducibility")
-    parser.add_argument('--num_beams', default = 1, required=False, type=int, help='The number of beams to use when generating explanations.')
+    parser.add_argument('--num_beams', default = None, required=False, type=int, help='The number of beams to use when generating explanations.')
+    parser.add_argument('--repetition_penalty', default=2.0, required=False, type=float, help='penalty for generating repeated content (QEA Trainer).')
     parser.add_argument('--reward_succesful_explanations', action = 'store_true', help='If an explanation led to the correct answer, it will be treated as ground-truth during training.')
     parser.add_argument('--allow_answer_at_eos', action = 'store_true', help='If the model generates an explanation with EOS-token but without answer marker, replace the EOS-token with the marker to prevent invalidation.')
 
@@ -71,6 +66,7 @@ def debug_parse_option(notebook = False):
     parser.add_argument('--model_id', default = 'bigscience/bloom-1b1', type=str, help='Model type')
     parser.add_argument('--hf_cache_dir', default = 'datadump/hf', type=str, help='Directory for HuggingFace cache')
     parser.add_argument('--debug', default = True, help='Use smaller datasets and store more info for debugging')
+    parser.add_argument('--debug_prints', action='store_true', help='print outputs for easier debugging')
     parser.add_argument('--model_max_length', default = 512, type=int, help='Longest context the model/tokenizer is expected to support')
 
     # Dataset args
@@ -92,8 +88,10 @@ def debug_parse_option(notebook = False):
     parser.add_argument('--lr', default = 1e-3, type=float, help='Learning rate')
     parser.add_argument('--max_epochs', default = 1, type=int, help='Maximum number of epochs to train')
     parser.add_argument('--batch_size', default = 8, type=int, help='Batch size')
+    parser.add_argument('--max_new_tokens', default = 50, type=int, help='Amount of new tokens to generate (QEA)')
     parser.add_argument('--seed', default=666, type=int, help="The seed for reproducibility")
     parser.add_argument('--num_beams', default = None, required=False, type=int, help='The number of beams to use when generating explanations.')
+    parser.add_argument('--repetition_penalty', default=2.0, required=False, type=float, help='penalty for generating repeated content (QEA Trainer).')
     parser.add_argument('--reward_succesful_explanations', action = 'store_true', help='If an explanation led to the correct answer, it will be treated as ground-truth during training.')
     parser.add_argument('--allow_answer_at_eos', action = 'store_true', help='If the model generates an explanation with EOS-token but without answer marker, replace the EOS-token with the marker to prevent invalidation.')
 

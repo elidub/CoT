@@ -1,5 +1,6 @@
-from pathlib import Path
 import os
+from pathlib import Path
+
 from datasets import load_dataset
 from torch.utils.data import Subset
 
@@ -11,12 +12,13 @@ def download_bigbench_drive(target_dir):
         target_dir (str): path to cache directory
     """
     from google_drive_downloader import GoogleDriveDownloader as gdd
-    # url to my google drive
-    gdd.download_file_from_google_drive(file_id='1m6sIfgb7hUMMjOmeT1uJp',
-                                    dest_path='./bigbench.zip',
-                                    unzip=True)
 
-    os.remove('./bigbench.zip')
+    # url to my google drive
+    gdd.download_file_from_google_drive(
+        file_id="1m6sIfgb7hUMMjOmeT1uJp", dest_path="./bigbench.zip", unzip=True
+    )
+
+    os.remove("./bigbench.zip")
 
 
 def download_hf_datasets(target_dir):
@@ -64,11 +66,11 @@ def load_bigbench_dataset(dataset_name, directory, remap_names=True):
         dataset = load_dataset("truthful_qa", "generation")
         # truthful_qa only contains validation, so i renamed it to train for consistency
         print("truthful_qa only contains split validation, use the validation as train and split it")
-        # split with fixed seed so the split should always be the same. 
+        # split with fixed seed so the split should always be the same.
         # COT dataset is called twice so the dataset is constructed twice, but if the seed stays the same that's fine
-        dataset = dataset['validation'].train_test_split(test_size=0.3, seed=42)
+        dataset = dataset["validation"].train_test_split(test_size=0.3, seed=42)
         # rename test to validation
-        dataset['validation'] = dataset.pop('test')
+        dataset["validation"] = dataset.pop("test")
 
     else:
         raise NotImplementedError(f"no dataset available with name: {dataset_name}")
@@ -76,18 +78,24 @@ def load_bigbench_dataset(dataset_name, directory, remap_names=True):
     if remap_names:
         dataset["train"] = dataset["train"].map(rename_keys).map(add_question_prompt)
         try:
-            dataset["validation"] = dataset["validation"].map(rename_keys).map(add_question_prompt)
+            dataset["validation"] = (
+                dataset["validation"].map(rename_keys).map(add_question_prompt)
+            )
         except KeyError:
             pass
 
     return dataset
 
+
 def filter_arithmetic_tasks(dataset, task):
-    assert len(dataset) == 12019, f"Expected bigbench arithmetic dataset with 12019 samples, but got one with {len(dataset)} samples instead. Did you specify it correctly? First sample is {dataset[0]=}"
+    assert (
+        len(dataset) == 12019
+    ), f"Expected bigbench arithmetic dataset with 12019 samples, but got one with {len(dataset)} samples instead. Did you specify it correctly? First sample is {dataset[0]=}"
     if task == "3_digit_division":
         return Subset(dataset, range(3618, 4019))
     else:
         raise NotImplementedError(f"Unknown arithmetic task: {task}.")
+
 
 if __name__ == "__main__":
     cache_dir = "/tmp/bigbench"

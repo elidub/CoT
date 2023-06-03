@@ -1,21 +1,9 @@
-from datasets import load_from_disk
-import os
-from datasets import load_dataset
-from transformers import AutoModelForCausalLM, AutoModelForSeq2SeqLM, AutoTokenizer, T5ForConditionalGeneration, T5Tokenizer
-from peft import LoraConfig, get_peft_model, prepare_model_for_int8_training, TaskType
-from transformers import DataCollatorForSeq2Seq, Seq2SeqTrainer, Seq2SeqTrainingArguments, Trainer, TrainingArguments, DataCollator, DataCollatorWithPadding, DataCollatorForLanguageModeling
-import wandb
-import evaluate
-import numpy as np
+from transformers import Trainer
 import torch
-from torch import nn
-from undecorated import undecorated
 from types import MethodType
 
 import sys
 sys.path.insert(1, sys.path[0] + '/../')
-
-from cot.transform_outputs import transform_outputs
 
 class AblationTrainer(Trainer):
     def compute_loss(self, model, inputs, return_outputs=False):
