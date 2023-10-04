@@ -1,6 +1,4 @@
+# Abstract
+Large Language Models are typically used in a zero-shot or few-shot setting, that is, on novel tasks. When prompted to only give an answer, these models usually do not perform to their full potential. Chain-of-Thought prompting has been shown to successfully extract reasoning capabilities for large models (>100B parameters). However, smaller models do not inherently show these capabilities, even when prompted in such a manner. We examine whether these models can be finetuned in a few-shot Chain-of-Thought setting.
 
-## Data
-### BigBench
-We use the BigBench provided by huggingface / tasksource.
-### BigBench explanations
-A copy of the explanations for the bigbench dataset from Lampinen et al. (original available [here](https://console.cloud.google.com/storage/browser/dm_some_explanations_for_bigbench_tasks)) is already included in cot/data/bigbench-explanations.
+Our method only requires a small number of ground truth Chain-of-Thought examples. Unlike other methods, we train on question- answer pairs only, while reusing the same static support for each forward pass. We show that Chain-of-Thought finetuning in this manner can improve the answers to two common reasoning tasks (3-digit-division and natural language inference) for models as small as 560m parameters. However, our technique does not outperform finetuning without CoT, indicating that the models do not learn to reason. We at- tribute most performance gains to finetuning on the task itself.
